@@ -10,7 +10,7 @@ import {
   expertiseTiers,
   recognitionRank,
 } from "@/data/profile-tiers";
-import type { ExpertiseTier, Person } from "@/lib/people-types";
+import type { ExpertiseTier, Person, VintageEra } from "@/lib/people-types";
 
 // Stances that count as "live endorsement" of a strategy. evolved-away and
 // opposes deliberately excluded — counting them would conflate the people
@@ -144,6 +144,100 @@ export default function HomePage() {
   const policyHeavy = skews
     .filter((sk) => sk.counts["policy-meta"] / sk.total >= 0.4)
     .sort((a, b) => b.total - a.total);
+
+  // Vintage signature per strategy. For each strategy with 4+ profiled
+  // endorsers, what share of its endorsers come from each era. Then
+  // surface strategies where one era is over-indexed vs the corpus-wide
+  // baseline.
+  type VintageSkew = {
+    strategy: (typeof strategies)[number];
+    total: number;
+    counts: Record<VintageEra, number>;
+    n: number;
+  };
+  const corpusVintageBaseline: Record<VintageEra, number> = {
+    pioneer: 0,
+    "symbolic-era": 0,
+    "pre-deep-learning": 0,
+    "deep-learning": 0,
+    "scaling-era": 0,
+    "post-chatgpt": 0,
+  };
+  let baselineN = 0;
+  for (const s of strategies) {
+    for (const e of profiledEndorsers(s.id)) {
+      const v = e.person.profile?.vintage;
+      if (!v) continue;
+      corpusVintageBaseline[v]++;
+      baselineN++;
+    }
+  }
+  const baselineShare: Record<VintageEra, number> = { ...corpusVintageBaseline };
+  if (baselineN > 0) {
+    for (const k of Object.keys(baselineShare) as VintageEra[]) {
+      baselineShare[k] = baselineShare[k] / baselineN;
+    }
+  }
+  const vintageSkews: VintageSkew[] = [];
+  for (const s of strategies) {
+    const endorsers = profiledEndorsers(s.id);
+    const counts: Record<VintageEra, number> = {
+      pioneer: 0,
+      "symbolic-era": 0,
+      "pre-deep-learning": 0,
+      "deep-learning": 0,
+      "scaling-era": 0,
+      "post-chatgpt": 0,
+    };
+    let n = 0;
+    for (const e of endorsers) {
+      const v = e.person.profile?.vintage;
+      if (!v) continue;
+      counts[v]++;
+      n++;
+    }
+    if (n < 4) continue;
+    vintageSkews.push({ strategy: s, total: endorsers.length, counts, n });
+  }
+  // For each era, surface strategies where its share is at least 1.5x
+  // the corpus baseline AND it has at least 3 endorsers from that era.
+  const oldGuardLean = vintageSkews
+    .map((sk) => ({
+      sk,
+      eraCount: sk.counts.pioneer + sk.counts["symbolic-era"],
+      lift:
+        baselineShare.pioneer + baselineShare["symbolic-era"] > 0
+          ? (sk.counts.pioneer + sk.counts["symbolic-era"]) / sk.n /
+            (baselineShare.pioneer + baselineShare["symbolic-era"])
+          : 0,
+    }))
+    .filter((x) => x.eraCount >= 3 && x.lift >= 1.5)
+    .sort((a, b) => b.lift - a.lift)
+    .slice(0, 6);
+  const newWaveLean = vintageSkews
+    .map((sk) => ({
+      sk,
+      eraCount: sk.counts["post-chatgpt"],
+      lift:
+        baselineShare["post-chatgpt"] > 0
+          ? sk.counts["post-chatgpt"] / sk.n / baselineShare["post-chatgpt"]
+          : 0,
+    }))
+    .filter((x) => x.eraCount >= 3 && x.lift >= 1.5)
+    .sort((a, b) => b.lift - a.lift)
+    .slice(0, 6);
+  const scalingEraLean = vintageSkews
+    .map((sk) => ({
+      sk,
+      eraCount: sk.counts["scaling-era"],
+      lift:
+        baselineShare["scaling-era"] > 0
+          ? sk.counts["scaling-era"] / sk.n / baselineShare["scaling-era"]
+          : 0,
+    }))
+    .filter((x) => x.eraCount >= 3 && x.lift >= 1.5)
+    .sort((a, b) => b.lift - a.lift)
+    .slice(0, 6);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
@@ -373,6 +467,66 @@ export default function HomePage() {
         </section>
       )}
 
+      {(oldGuardLean.length > 0 ||
+        scalingEraLean.length > 0 ||
+        newWaveLean.length > 0) && (
+        <section className="mt-16 border-t hairline pt-10">
+          <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
+            <h2
+              className="text-2xl"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Where each era leans.
+            </h2>
+            <Link href="/board" className="underline-wiggle text-sm">
+              the board →
+            </Link>
+          </div>
+          <p
+            className="text-sm mb-8 max-w-3xl"
+            style={{ color: "var(--color-ink-soft)" }}
+          >
+            Strategies where one vintage is at least 1.5× over-represented
+            among endorsers compared with the corpus baseline. Reads as
+            'positions disproportionately held by people whose AI worldview
+            formed in this era'. Threshold: 4+ profiled endorsers per
+            strategy, 3+ from the leaning era.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <VintageLeanColumn
+              label="Old guard"
+              caption="≥1.5× lift from pioneer + symbolic-era"
+              items={oldGuardLean.map((x) => ({
+                strategy: x.sk.strategy,
+                total: x.sk.total,
+                eraCount: x.eraCount,
+                lift: x.lift,
+              }))}
+            />
+            <VintageLeanColumn
+              label="Scaling-era"
+              caption="≥1.5× lift from 2018–2022 entrants"
+              items={scalingEraLean.map((x) => ({
+                strategy: x.sk.strategy,
+                total: x.sk.total,
+                eraCount: x.eraCount,
+                lift: x.lift,
+              }))}
+            />
+            <VintageLeanColumn
+              label="New wave"
+              caption="≥1.5× lift from post-ChatGPT entrants"
+              items={newWaveLean.map((x) => ({
+                strategy: x.sk.strategy,
+                total: x.sk.total,
+                eraCount: x.eraCount,
+                lift: x.lift,
+              }))}
+            />
+          </div>
+        </section>
+      )}
+
       <section className="mt-16 border-t hairline pt-10">
         <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
           <h2
@@ -556,6 +710,73 @@ function LeverRow({
           <StrategyCard key={s.id} strategy={s} compact />
         ))}
       </div>
+    </div>
+  );
+}
+
+function VintageLeanColumn({
+  label,
+  caption,
+  items,
+}: {
+  label: string;
+  caption: string;
+  items: {
+    strategy: (typeof strategies)[number];
+    total: number;
+    eraCount: number;
+    lift: number;
+  }[];
+}) {
+  return (
+    <div>
+      <p className="num-label mb-2">{label}</p>
+      <p
+        className="text-xs italic mb-3"
+        style={{ color: "var(--color-ink-soft)" }}
+      >
+        {caption}
+      </p>
+      {items.length === 0 ? (
+        <p
+          className="text-xs italic"
+          style={{ color: "var(--color-ink-soft)" }}
+        >
+          No strategy meets the threshold.
+        </p>
+      ) : (
+        <ul className="space-y-2">
+          {items.map(({ strategy, total, eraCount, lift }) => (
+            <li
+              key={strategy.id}
+              className="border-l-2 hairline pl-3 py-1.5 hover:border-[var(--color-ink)] transition-colors"
+            >
+              <Link
+                href={`/strategy/${strategy.id}`}
+                className="unstyled block"
+              >
+                <p
+                  className="text-sm leading-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {strategy.name}
+                </p>
+                <p
+                  className="text-[10px] mt-0.5"
+                  style={{
+                    color: "var(--color-ink-soft)",
+                    fontFamily: "var(--font-mono)",
+                    letterSpacing: "0.05em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {eraCount} of {total} · lift {lift.toFixed(1)}×
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
