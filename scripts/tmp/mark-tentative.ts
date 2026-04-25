@@ -19,11 +19,15 @@ const DATA_DIR = path.resolve(import.meta.dir, "..", "..", "src", "data");
 const WEAK_SUMMARY_PHRASES = [
   "less explicit on safety",
   "less explicit on strategy",
+  "less explicit on x-risk",
+  "less explicit on x risk",
+  "less explicitly aligned",
   "less direct on",
   "background reputation",
   "implicit on",
   "passing remark",
   "inferred from a passing",
+  "positions inferred from",
   "consistently bullish on capabilities",
   "without explicit safety",
   "without an explicit safety",
@@ -31,6 +35,7 @@ const WEAK_SUMMARY_PHRASES = [
   "implied stance",
   "inferred stance",
   "no direct safety position",
+  "public statements are rare",
 ];
 
 function shouldMarkBySummary(summary: string): boolean {

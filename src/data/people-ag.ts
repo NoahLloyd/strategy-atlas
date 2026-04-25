@@ -5835,6 +5835,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "mixed",
+        tentative: true,
         summary:
           "Public statements are rare; positions inferred from research output emphasize scaling generative pretraining and unifying modalities into a single representation.",
         quotes: [
@@ -5951,6 +5952,7 @@ export const people: Person[] = [
       {
         strategyId: "alignment-first",
         stance: "mixed",
+        tentative: true,
         summary:
           "Public on inclusivity and reproducibility in ML; less explicitly aligned-or-against on AI x-risk framings, but supportive of Bengio-style cautious framing in Canadian policy.",
         quotes: [
@@ -6151,6 +6153,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "mixed",
+        tentative: true,
         summary:
           "Argues physical-world robotics is the bottleneck to general AI usefulness; less explicit on x-risk strategy but views capability progress as the priority.",
         quotes: [
