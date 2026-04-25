@@ -260,10 +260,10 @@ export const profileOverrides: Record<string, Profile> = {
   "helen-toner": {
     expertise: "policy-meta",
     expertiseNote:
-      "Director of strategy at CSET (Georgetown). Former OpenAI board member. China-AI-policy expertise. Reads research; does not produce ML research.",
+      "Interim Executive Director of Georgetown's CSET (Sept 2025); previously Director of Strategy. Former OpenAI board member. China-AI-policy expertise. Reads research; does not produce ML research.",
     recognition: "field-leading",
     recognitionNote:
-      "Extensive press during November 2023 OpenAI board episode. Senate testimony. Recognised in policy circles, less to general public.",
+      "Extensive press during November 2023 OpenAI board episode. Senate testimony; TIME 100 AI 2024. Recognised in policy circles, less to general public.",
   },
   "jaan-tallinn": {
     expertise: "policy-meta",
@@ -1280,5 +1280,469 @@ export const profileOverrides: Record<string, Profile> = {
     recognition: "household-name",
     recognitionNote:
       "NYT bestseller author; mainstream press regular.",
+  },
+  "jensen-huang": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "NVIDIA founder/CEO. Operates as exec; not an ML researcher. NVIDIA hardware underpins essentially all frontier training runs, so the strategic framing of the technology is influential.",
+    recognition: "household-name",
+    recognitionNote:
+      "TIME100 multiple years. Mainstream-press fixture; widely-watched keynotes.",
+  },
+  "anca-dragan": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "Google DeepMind safety lead; UC Berkeley professor on leave. Deep technical work on human-robot interaction, value alignment, and AI safety. Hands-on at frontier scale.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in robotics and ML safety communities. TIME 100 AI 2024.",
+  },
+  "eric-horvitz": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Microsoft Chief Scientific Officer. Long publication record on probabilistic reasoning and AI ethics. Past AAAI president.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Senior MS executive role gives high tech-industry recognition. Less mainstream press.",
+  },
+  "sebastian-thrun": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Udacity founder; Stanford professor; founded Google X self-driving. Pioneered autonomous-vehicle ML. Less central to current frontier ML.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream press regular for self-driving and online education.",
+  },
+  "paul-g-allen": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Microsoft co-founder (1953–2018). Funded the Allen Institute for AI (AI2). Operated as philanthropist; not a technical AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Microsoft co-founder profile; mainstream-press regular while alive.",
+  },
+  "oren-etzioni": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Founding CEO of Allen Institute for AI (AI2, 2014–2022). Co-founded TrueMedia.org (deepfake detection). University of Washington professor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major figure in academic AI; recurring mainstream press.",
+  },
+  "steve-wozniak": {
+    expertise: "commentator",
+    expertiseNote:
+      "Apple co-founder. Engineering background but no specialised AI work; commentary is celebrity-tier.",
+    recognition: "household-name",
+    recognitionNote:
+      "Among the most widely-recognised individuals in tech.",
+  },
+  "brian-christian": {
+    expertise: "external-domain",
+    expertiseNote:
+      "UC Berkeley CHAI affiliate; writer. 'The Alignment Problem' (2020) is one of the most-cited mainstream AI-safety books. CS background, but role is journalist-of-the-field.",
+    recognition: "field-leading",
+    recognitionNote:
+      "NYT bestseller author; recognised in safety community.",
+  },
+  "vincent-conitzer": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Carnegie Mellon and Oxford. Game-theoretic AI safety; mechanism design; multi-agent ethics. Active publisher.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in academic AI; less press.",
+  },
+  "kai-fu-lee": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Sinovation Ventures founder; 01.AI founder. PhD in AI but operates as VC/CEO; deep China-AI ecosystem expertise. 'AI Superpowers' (2018).",
+    recognition: "household-name",
+    recognitionNote:
+      "NYT bestseller author; mainstream press regular on China-US AI competition.",
+  },
+  "jen-easterly": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Director of CISA (US Cybersecurity and Infrastructure Security Agency, 2021–2025). Engages AI through critical-infrastructure security frame. Cybersecurity, not ML.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in US government and cybersecurity circles. Some mainstream press.",
+  },
+  "norbert-wiener": {
+    expertise: "external-domain",
+    expertiseNote:
+      "MIT mathematician (1894–1964). Founded cybernetics. 'God and Golem, Inc.' (1964) anticipates modern alignment concerns. Foundational influence on the field of computing.",
+    recognition: "household-name",
+    recognitionNote:
+      "Wiener's Cybernetics is a foundational text; widely-recognised name in the history of science.",
+  },
+  "jaron-lanier": {
+    expertise: "external-domain",
+    expertiseNote:
+      "VR pioneer; Microsoft Research. Cultural critic. 'You Are Not a Gadget'; 'Ten Arguments for Deleting Your Social Media Accounts'. Adjacent to AI.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream public-intellectual profile.",
+  },
+  "samuel-butler": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Victorian writer (1835–1902). 'Erewhon' (1872) anticipates machine consciousness; cited as the earliest treatment of AI x-risk. Not a technical contributor — historical reference.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Canonical Victorian author; cited in AI history.",
+  },
+  "irving-good": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Bletchley Park cryptanalyst (1916–2009). Coined the 'intelligence explosion' framing in 1965 essay 'Speculations Concerning the First Ultraintelligent Machine'.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Foundational reference for AI x-risk thought; less mainstream press.",
+  },
+  "alan-turing": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Foundational mathematician (1912–1954). Turing test, Turing machine, halting problem. Computing namesake. Engaged AI futures in 1951 essay/lecture.",
+    recognition: "household-name",
+    recognitionNote:
+      "Defining figure in the history of computing; Wikipedia in 100+ languages.",
+  },
+  "claude-shannon": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Bell Labs mathematician (1916–2001). Founded information theory. Built early chess-playing machines. Engaged AI futures in 1950s.",
+    recognition: "household-name",
+    recognitionNote:
+      "Foundational figure in 20th-century computing.",
+  },
+  "marvin-minsky": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "MIT (1927–2016). Co-founded MIT AI Lab; foundational symbolic-AI work. 'The Society of Mind' (1986). Skeptic of pure-NN approaches in his later years.",
+    recognition: "household-name",
+    recognitionNote:
+      "Foundational AI figure; widely-cited public intellectual.",
+  },
+  "john-mccarthy": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Stanford (1927–2011). Coined 'artificial intelligence' (1956 Dartmouth conference). Lisp inventor. Turing Award 1971.",
+    recognition: "household-name",
+    recognitionNote:
+      "Foundational figure in computing; field-naming credential.",
+  },
+  "ray-kurzweil": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Inventor and futurist. 'The Singularity Is Near' (2005); 'The Singularity Is Nearer' (2024). Frequently optimistic on transformative AI timelines. Inventor by training; not a current ML contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "NYT bestseller author; widely-cited futurism profile.",
+  },
+  "joseph-weizenbaum": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "MIT (1923–2008). Built ELIZA (1966); 'Computer Power and Human Reason' (1976) is an early AI-ethics text questioning the limits of computation.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major figure in AI history; less mainstream press now.",
+  },
+  "douglas-engelbart": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "SRI inventor (1925–2013). Mother of All Demos (1968) included mouse, hypertext, video conferencing. Augmentation-of-intelligence framing.",
+    recognition: "household-name",
+    recognitionNote:
+      "Foundational figure in personal computing.",
+  },
+  "donald-knuth": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Stanford emeritus. The Art of Computer Programming. Turing Award 1974. Less central to current AI but foundational on algorithms.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major-figure profile in computer science.",
+  },
+  "alan-kay": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Smalltalk inventor; Xerox PARC. Turing Award 2003. Adjacent to AI through user-interface and education.",
+    recognition: "household-name",
+    recognitionNote:
+      "Foundational figure in personal computing.",
+  },
+  "doug-lenat": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Cyc creator (1950–2023). Symbolic-AI advocate. 30+ year project to build a comprehensive commonsense knowledge base.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major figure in symbolic AI; less general-public profile.",
+  },
+  "patrick-collison": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Stripe co-founder/CEO. Operates as tech exec; not a technical AI contributor. Strong reader and patron of science-of-progress thinking.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major-tech-founder profile; mainstream press regular.",
+  },
+  "larry-page": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Google co-founder. Funded DeepMind; reportedly favours acceleration. Not a current technical AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Among the most globally-recognised tech founders.",
+  },
+  "sergey-brin": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Google co-founder. Returned to Google to work on Gemini; technically engaged with the project.",
+    recognition: "household-name",
+    recognitionNote:
+      "Among the most globally-recognised tech founders.",
+  },
+  "larry-ellison": {
+    expertise: "commentator",
+    expertiseNote:
+      "Oracle co-founder. Operates as exec; not a technical AI contributor. Associated with Stargate JV and surveillance-AI framing.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major-tech-founder profile.",
+  },
+  "tim-oreilly": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "O'Reilly Media founder. Coined 'Web 2.0'. AI engagement is publishing/policy framing; not technical research.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream tech-publishing fixture for decades.",
+  },
+  "stewart-brand": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Whole Earth Catalog founder; Long Now Foundation. Long-horizon framing influential in tech culture. Not an AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Counter-cultural-tech profile; mainstream press regular.",
+  },
+  "kevin-kelly": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Wired co-founder. 'The Inevitable' (2016). Tech-futurist commentary; not technical contribution.",
+    recognition: "household-name",
+    recognitionNote:
+      "Defining tech-magazine writer; recognised broadly.",
+  },
+  "shoshana-zuboff": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Harvard Business School emerita. 'The Age of Surveillance Capitalism' (2019) framed how data harvesting and AI shape modern economy.",
+    recognition: "household-name",
+    recognitionNote:
+      "NYT bestseller author; mainstream press regular.",
+  },
+  "evgeny-morozov": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Belarussian writer/researcher. 'The Net Delusion'; 'To Save Everything, Click Here'. Solutionism critique; AI-policy commentary.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in tech-criticism and policy circles.",
+  },
+  "frank-pasquale": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Law professor. 'The Black Box Society'; 'New Laws of Robotics'. AI accountability and algorithmic regulation framing.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in tech-law and academic circles.",
+  },
+  "mireille-hildebrandt": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "VUB professor. Law and computer-science expertise. AI law and constitutional theory.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in academic-law and EU AI policy circles.",
+  },
+  "luciano-floridi": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Yale; Oxford. Information-philosophy framing of AI ethics. Author of multiple AI-ethics books.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in AI ethics circles. Less mainstream press.",
+  },
+  "iyad-rahwan": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Director of Center for Humans and Machines, Max Planck Institute. Moral Machine experiment on autonomous-vehicle ethics. Active publisher.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Moral Machine got mainstream press; less press personally.",
+  },
+  "thomas-dietterich": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Oregon State emeritus. Past AAAI president. Long ML publication record; engages safety from technical-pragmatist view.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in academic ML; less mainstream press.",
+  },
+  "stuart-buck": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Founder of Good Science Project. Engages AI through metascience-and-funding lens. Not a technical contributor.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in metascience and grant-policy circles.",
+  },
+  "jason-matheny": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "RAND CEO. Earlier OSTP and IARPA director. National-security-AI policy expertise. Not a technical contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Senior US AI-security policy figure. Some mainstream press.",
+  },
+  "amy-zegart": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Stanford / Hoover. Intelligence-community and AI-and-national-security policy. Not a technical contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in US intelligence and AI policy circles.",
+  },
+  "vint-cerf": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "TCP/IP co-inventor. Google chief Internet evangelist. Turing Award 2004. Engages AI through internet-architecture lens.",
+    recognition: "household-name",
+    recognitionNote:
+      "Father-of-the-internet profile.",
+  },
+  "jeff-dean": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "Google chief scientist. Long ML infrastructure record (MapReduce, TensorFlow, PaLM, Gemini). Hands-on technical leader at frontier scale.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised universally in ML systems; less mainstream press.",
+  },
+  "joelle-pineau": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "McGill / Mila / former Meta FAIR head of research. Reinforcement-learning and reproducibility work. Active publisher.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in academic and industry ML.",
+  },
+  "lisa-su": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "AMD CEO. Engineering background; operates as exec. Strategic role in AI hardware competition with NVIDIA.",
+    recognition: "household-name",
+    recognitionNote:
+      "TIME100; mainstream business-press fixture.",
+  },
+  "tony-blair": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Former UK Prime Minister. Tony Blair Institute drives AI-state-capacity policy advocacy. Head-of-government-grade operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised political figure.",
+  },
+  "emmanuel-macron": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "French President. Hosted Paris AI Action Summit (Feb 2025). Head-of-government operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised head-of-state.",
+  },
+  "narendra-modi": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Indian Prime Minister. India AI Mission policy leadership. Head-of-government operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised head-of-state.",
+  },
+  "xi-jinping": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Chinese Communist Party general secretary; PRC President. Strategic AI and semiconductor policy direction-setter.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised head-of-state.",
+  },
+  "olaf-scholz": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Former German Chancellor. Convened EU-level AI policy. Head-of-government operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised political figure.",
+  },
+  "fumio-kishida": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Former Japanese Prime Minister (2021–2024). Hiroshima AI Process policy initiative. Head-of-government operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised political figure.",
+  },
+  "alex-karp": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Palantir co-founder/CEO. Hands-on operator on national-security AI. Not a technical contributor; PhD in social theory.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream business-press regular.",
+  },
+  "alex-wang": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Scale AI founder/CEO; recently moved to lead Meta Superintelligence Labs. Operates as exec; minimal current ML publication record.",
+    recognition: "field-leading",
+    recognitionNote:
+      "TIME100 AI multiple years; mainstream tech press.",
+  },
+  "palmer-luckey": {
+    expertise: "commentator",
+    expertiseNote:
+      "Anduril founder; Oculus founder. Operates as exec; not a technical AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream tech-and-defence press regular.",
+  },
+  "vivek-ramaswamy": {
+    expertise: "commentator",
+    expertiseNote:
+      "Investor and political commentator. Operates as exec/politician; not a technical AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream political-press fixture.",
+  },
+  "tobi-lutke": {
+    expertise: "commentator",
+    expertiseNote:
+      "Shopify CEO. Operates as exec; not a technical AI contributor. AI-first internal mandate at Shopify drew press.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream tech-business profile.",
+  },
+  "tony-fadell": {
+    expertise: "commentator",
+    expertiseNote:
+      "Nest founder; Apple iPod team. Operates as exec/inventor; not an AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream tech-press regular.",
   },
 };
