@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { people, getPerson } from "@/lib/people";
 import { PersonAvatar } from "@/components/PersonAvatar";
+import { vintageTiers } from "@/data/profile-tiers";
+import type { VintageEra } from "@/lib/people-types";
 
 export const metadata = {
   title: "Timelines — AGI Strategies",
@@ -86,6 +88,37 @@ export default function TimelinesBoard() {
         )
       : sortedYears[Math.floor(sortedYears.length / 2)];
 
+  // Median forecast year by vintage. Hypothesis: forecasters whose
+  // worldview formed in earlier eras don't necessarily predict later
+  // dates — and whether they do is itself interesting.
+  const byVintage: { era: VintageEra; years: number[] }[] = vintageTiers.map(
+    (t) => ({ era: t.id, years: [] as number[] }),
+  );
+  for (const c of latestClaims) {
+    const p = getPerson(c.personId);
+    const v = p?.profile?.vintage;
+    if (!v) continue;
+    if (c.sortKey >= 9999) continue;
+    const slot = byVintage.find((x) => x.era === v);
+    if (slot) slot.years.push(c.sortKey);
+  }
+  const vintageStats = byVintage
+    .filter((b) => b.years.length >= 3)
+    .map((b) => {
+      const sorted = b.years.slice().sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      const median =
+        sorted.length % 2 === 0
+          ? Math.round((sorted[mid - 1] + sorted[mid]) / 2)
+          : sorted[mid];
+      return {
+        era: b.era,
+        label: vintageTiers.find((t) => t.id === b.era)!.label,
+        n: b.years.length,
+        median,
+      };
+    });
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <section className="mb-10 max-w-3xl">
@@ -165,6 +198,72 @@ export default function TimelinesBoard() {
           Below, every claim is listed individually — including revisions.
         </p>
       </section>
+
+      {vintageStats.length >= 3 && (() => {
+        const minMedian = Math.min(...vintageStats.map((s) => s.median));
+        const maxMedian = Math.max(...vintageStats.map((s) => s.median));
+        const span = Math.max(1, maxMedian - minMedian);
+        return (
+          <section
+            className="mb-10 border hairline p-5"
+            style={{ background: "var(--color-parchment-soft)" }}
+          >
+            <div className="flex items-baseline justify-between flex-wrap gap-2 mb-3">
+              <p className="num-label">
+                median AGI year by vintage · era of forecaster formation
+              </p>
+              <span
+                className="num-label"
+                style={{ color: "var(--color-ink-soft)" }}
+              >
+                latest forecast per person
+              </span>
+            </div>
+            <ul className="space-y-1.5">
+              {vintageStats.map((s) => (
+                <li key={s.era} className="flex items-center gap-3 text-xs">
+                  <span
+                    style={{ width: 150, color: "var(--color-ink-soft)" }}
+                    className="num-label"
+                  >
+                    {s.label}
+                  </span>
+                  <div
+                    className="flex-1 h-3 relative"
+                    style={{ background: "var(--color-rule)" }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: `${((s.median - minMedian) / span) * 100}%`,
+                        top: 0,
+                        bottom: 0,
+                        width: 6,
+                        marginLeft: -3,
+                        background: "var(--color-accent)",
+                      }}
+                    />
+                  </div>
+                  <span
+                    className="num-label whitespace-nowrap"
+                    style={{ width: 80, textAlign: "right" }}
+                  >
+                    {s.median} · n={s.n}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p
+              className="text-[10px] italic mt-3"
+              style={{ color: "var(--color-ink-soft)" }}
+            >
+              Bar position shows where the era's median lands inside the
+              full range observed across eras. Tiers with fewer than 3
+              dated forecasts are hidden.
+            </p>
+          </section>
+        );
+      })()}
 
       {decades.map(({ label, min, max }) => {
         const bucket = claims.filter((c) => c.sortKey >= min && c.sortKey < max);
