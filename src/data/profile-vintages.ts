@@ -448,12 +448,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "MIT PhD 2004. Quantum-complexity foundational work spans 2000s. AI engagement on top of pre-deep-learning theoretical foundations.",
   },
-  "yudkowsky-eliezer": {
-    // Defensive duplicate in case alternate id is used.
-    vintage: "symbolic-era",
-    vintageNote:
-      "See eliezer-yudkowsky.",
-  },
 
   // Pioneers (pre-1980).
   "alan-turing": {
@@ -645,11 +639,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "Analogy-and-cognition work spans 1990s-present. AI: A Guide for Thinking Humans 2019 critiques deep learning from a symbolic-era prior.",
   },
-  "richard-sutton-deep": {
-    vintage: "deep-learning",
-    vintageNote:
-      "Career bridges symbolic to deep learning. Bitter Lesson 2019 is the deep-learning crystallisation.",
-  },
   "joy-buolamwini": {
     vintage: "deep-learning",
     vintageNote:
@@ -684,11 +673,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintage: "deep-learning",
     vintageNote:
       "Moral Machine 2014. Max Planck CHM. Computational social science of AI ethics in the deep-learning era.",
-  },
-  "fei-fei-li-deep": {
-    vintage: "deep-learning",
-    vintageNote:
-      "ImageNet 2009 catalysed the deep-learning era. Stanford HAI 2019. See fei-fei-li.",
   },
   "thomas-dietterich": {
     vintage: "symbolic-era",
@@ -792,11 +776,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "Stripe 2010. Engages AI/science-of-progress through scaling era reading list. Career frame is post-2010 tech founder.",
   },
-  "reid-hoffman-deep": {
-    vintage: "deep-learning",
-    vintageNote:
-      "LinkedIn era 2003-2016 predates AI focus; Inflection 2022 brings him into scaling-era. See reid-hoffman.",
-  },
 
   // Post-ChatGPT (2023+).
   "ezra-klein": {
@@ -894,11 +873,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "Paris AI Action Summit February 2025. Entirely post-ChatGPT AI frame.",
   },
-  "audrey-tang-deep": {
-    vintage: "deep-learning",
-    vintageNote:
-      "Civic-tech work 2010+; Digital Minister 2016-2024. See audrey-tang.",
-  },
   "ted-chiang": {
     vintage: "post-chatgpt",
     vintageNote:
@@ -913,11 +887,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintage: "deep-learning",
     vintageNote:
       "Stratechery 2013. AI strategic-analysis frame from the deep-learning era.",
-  },
-  "mira-murati-deep": {
-    vintage: "deep-learning",
-    vintageNote:
-      "See mira-murati.",
   },
   "lex-fridman": {
     vintage: "deep-learning",
@@ -949,16 +918,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "Yield Giving 2022. AI-related giving post-ChatGPT.",
   },
-  "rishi-sunak-deep": {
-    vintage: "post-chatgpt",
-    vintageNote:
-      "See rishi-sunak.",
-  },
-  "yi-zeng-deep": {
-    vintage: "deep-learning",
-    vintageNote:
-      "See yi-zeng.",
-  },
   "luciano-floridi": {
     vintage: "pre-deep-learning",
     vintageNote:
@@ -984,11 +943,6 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "CISA director 2021-2025. AI-as-critical-infrastructure framing post-ChatGPT.",
   },
-  "kai-fu-lee-deep": {
-    vintage: "deep-learning",
-    vintageNote:
-      "See kai-fu-lee.",
-  },
   "stuart-buck": {
     vintage: "scaling-era",
     vintageNote:
@@ -1001,11 +955,6 @@ export const profileVintages: Record<string, VintageEntry> = {
   },
 
   // Tech founders, late commentary.
-  "patrick-collison-bridge": {
-    vintage: "deep-learning",
-    vintageNote:
-      "See patrick-collison.",
-  },
   "larry-page": {
     vintage: "deep-learning",
     vintageNote:
@@ -1087,15 +1036,5 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintage: "deep-learning",
     vintageNote:
       "DeepMind COO from 2018. Operational role spans deep-learning into scaling.",
-  },
-  "stuart-armstrong-bridge": {
-    vintage: "pre-deep-learning",
-    vintageNote:
-      "See stuart-armstrong.",
-  },
-  "anders-sandberg-bridge": {
-    vintage: "pre-deep-learning",
-    vintageNote:
-      "See anders-sandberg.",
   },
 };
