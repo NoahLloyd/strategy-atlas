@@ -4,7 +4,8 @@
   "private": true,
   "description": "A map of AI safety macrostrategies, their levers, and how they combine",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
