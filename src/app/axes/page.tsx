@@ -325,8 +325,8 @@ export default function AxesPage() {
         <p>
           An empty cell here — say, <em>coercion = unilateral force</em> with
           few strategies — either points to a blind spot in the named
-          portfolio, or to an empirical no-go region. The atlas catalogues; it
-          does not judge which.
+          portfolio, or to an empirical no-go region. The survey catalogues;
+          it does not judge which.
         </p>
       </section>
     </div>
