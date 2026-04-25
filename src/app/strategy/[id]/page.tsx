@@ -16,6 +16,13 @@ import { scenarios } from "@/data/scenarios";
 import { vintagesByStrategy } from "@/data/vintages";
 import { selfUnderminingByStrategy } from "@/data/selfUndermining";
 import { analogueByStrategy, analogueDomainLabel } from "@/data/analogues";
+import { tagsForStrategyId } from "@/data/strategy-tag-bridge";
+import { peopleByStrategyTag } from "@/lib/people";
+import { PersonAvatar } from "@/components/PersonAvatar";
+import {
+  expertiseTiers,
+  recognitionTiers,
+} from "@/data/profile-tiers";
 
 export function generateStaticParams() {
   return strategies.map((s) => ({ id: s.id }));
@@ -63,6 +70,20 @@ export default async function StrategyPage({
     sc.responsive.includes(strategy.id)
   );
 
+  const peopleTags = tagsForStrategyId(strategy.id);
+  const peopleOnRecordSet = new Map<string, ReturnType<typeof peopleByStrategyTag>[number]>();
+  for (const t of peopleTags) {
+    for (const p of peopleByStrategyTag(t)) {
+      if (!peopleOnRecordSet.has(p.id)) peopleOnRecordSet.set(p.id, p);
+    }
+  }
+  const peopleOnRecord = Array.from(peopleOnRecordSet.values()).sort((a, b) => {
+    const aProfiled = a.profile ? 1 : 0;
+    const bProfiled = b.profile ? 1 : 0;
+    if (aProfiled !== bProfiled) return bProfiled - aProfiled;
+    return a.name.localeCompare(b.name);
+  });
+
   const sections: { id: string; label: string }[] = [
     { id: "mechanism", label: "Mechanism" },
   ];
@@ -78,6 +99,8 @@ export default async function StrategyPage({
     sections.push({ id: "analogue", label: "Analogue" });
   if (scenariosAddressed.length > 0)
     sections.push({ id: "scenarios", label: "Scenarios" });
+  if (peopleOnRecord.length > 0)
+    sections.push({ id: "people", label: "People on the record" });
   sections.push({ id: "coordinates", label: "Coordinates" });
   if (conflictGroups.length > 0) sections.push({ id: "conflicts", label: "Conflicts" });
   if (complementGroups.length > 0)
@@ -277,6 +300,104 @@ export default async function StrategyPage({
               </Link>
             ))}
           </div>
+        </section>
+      )}
+
+      {peopleOnRecord.length > 0 && (
+        <section id="people" className="mb-10 border-t hairline pt-6 scroll-mt-8">
+          <div className="flex items-baseline justify-between mb-3">
+            <h2 className="num-label">People on the record</h2>
+            <span className="num-label opacity-60">
+              {peopleOnRecord.length}
+            </span>
+          </div>
+          <p className="text-sm mb-5" style={{ color: "var(--color-ink-soft)" }}>
+            Profiled figures appear first, with their tier in small caps. Each
+            face links to the person and their full quote record.{" "}
+            {peopleTags.length > 1 ? (
+              <>
+                Aggregates positions tagged{" "}
+                {peopleTags.map((t, i) => (
+                  <span key={t}>
+                    <code className="text-xs">{t}</code>
+                    {i < peopleTags.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+                .
+              </>
+            ) : peopleTags.length === 1 ? (
+              <>
+                Tag: <code className="text-xs">{peopleTags[0]}</code>.
+              </>
+            ) : null}
+          </p>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {peopleOnRecord.slice(0, 36).map((p) => {
+              const expertise = expertiseTiers.find(
+                (t) => t.id === p.profile?.expertise,
+              );
+              const recognition = recognitionTiers.find(
+                (t) => t.id === p.profile?.recognition,
+              );
+              return (
+                <li key={p.id}>
+                  <Link
+                    href={`/people/${p.id}`}
+                    className="unstyled flex items-start gap-3 border hairline p-2.5 hover:border-[var(--color-ink)] transition-colors h-full"
+                  >
+                    <PersonAvatar person={p} size={40} />
+                    <div className="flex-1 min-w-0">
+                      <p
+                        className="text-sm leading-tight"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                        }}
+                      >
+                        {p.name}
+                      </p>
+                      {p.profile ? (
+                        <p
+                          className="text-[10px] mt-1"
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            color: "var(--color-ink-soft)",
+                            letterSpacing: "0.05em",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          {expertise?.short} · {recognition?.short}
+                        </p>
+                      ) : (
+                        p.tagline && (
+                          <p
+                            className="text-xs italic mt-1 truncate"
+                            style={{ color: "var(--color-ink-soft)" }}
+                            title={p.tagline}
+                          >
+                            {p.tagline}
+                          </p>
+                        )
+                      )}
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          {peopleOnRecord.length > 36 && (
+            <p className="text-xs italic mt-3" style={{ color: "var(--color-ink-soft)" }}>
+              {peopleOnRecord.length - 36} more on the record. See the full
+              tag page:{" "}
+              {peopleTags.map((t, i) => (
+                <span key={t}>
+                  <Link href={`/strategies/${t}`} className="underline-wiggle">
+                    {t}
+                  </Link>
+                  {i < peopleTags.length - 1 ? " · " : ""}
+                </span>
+              ))}
+            </p>
+          )}
         </section>
       )}
 

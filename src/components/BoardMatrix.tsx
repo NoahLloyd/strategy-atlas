@@ -21,6 +21,8 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
     "all" | "endorses" | "opposes"
   >("all");
   const [hovered, setHovered] = useState<Person | null>(null);
+  const [view, setView] = useState<"faces" | "names">("faces");
+  const [tagsExpanded, setTagsExpanded] = useState(false);
 
   const profiled = useMemo(
     () => people.filter((p) => p.profile),
@@ -48,6 +50,7 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
   }
 
   const totalProfiled = profiled.length;
+  const visibleTags = tagsExpanded ? allTagsRanked : allTagsRanked.slice(0, 18);
 
   return (
     <div>
@@ -60,7 +63,7 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
           >
             any
           </button>
-          {allTagsRanked.slice(0, 18).map((t) => (
+          {visibleTags.map((t) => (
             <button
               key={t.id}
               onClick={() =>
@@ -71,6 +74,15 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
               {t.name} <span className="direction">{t.count}</span>
             </button>
           ))}
+          {!tagsExpanded && allTagsRanked.length > 18 && (
+            <button
+              onClick={() => setTagsExpanded(true)}
+              className="chip"
+              style={{ borderStyle: "dashed" }}
+            >
+              + {allTagsRanked.length - 18} more
+            </button>
+          )}
         </div>
         <div className="flex items-center gap-3 flex-wrap text-xs">
           <span className="num-label">stance</span>
@@ -83,6 +95,16 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
               style={!tagFilter && s !== "all" ? { opacity: 0.4 } : undefined}
             >
               {s}
+            </button>
+          ))}
+          <span className="num-label">view</span>
+          {(["faces", "names"] as const).map((v) => (
+            <button
+              key={v}
+              onClick={() => setView(v)}
+              className={view === v ? "chip is-complement" : "chip"}
+            >
+              {v}
             </button>
           ))}
           <span className="num-label ml-auto">
@@ -108,7 +130,7 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                 <th
                   key={r.id}
                   className="text-left p-2 align-bottom border-b hairline"
-                  style={{ minWidth: "150px" }}
+                  style={{ minWidth: view === "names" ? "200px" : "150px" }}
                 >
                   <span className="num-label block">{r.label}</span>
                   <span
@@ -139,6 +161,7 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                 </th>
                 {recognitionTiers.map((r) => {
                   const cell = grid[e.id][r.id];
+                  const intensity = Math.min(cell.length * 4, 32);
                   return (
                     <td
                       key={r.id}
@@ -146,10 +169,7 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                       style={{
                         background:
                           cell.length > 0
-                            ? `color-mix(in oklab, var(--color-accent) ${Math.min(
-                                cell.length * 4,
-                                32,
-                              )}%, var(--color-parchment))`
+                            ? `color-mix(in oklab, var(--color-accent) ${intensity}%, var(--color-parchment))`
                             : "var(--color-parchment)",
                         verticalAlign: "top",
                       }}
@@ -157,28 +177,60 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                       {cell.length === 0 && (
                         <span
                           className="block text-center text-xl select-none"
-                          style={{ color: "var(--color-ink-soft)", opacity: 0.4 }}
+                          style={{
+                            color: "var(--color-ink-soft)",
+                            opacity: 0.4,
+                          }}
                         >
                           ·
                         </span>
                       )}
-                      <ul className="flex flex-wrap gap-1.5">
-                        {cell.map((p) => (
-                          <li key={p.id}>
-                            <Link
-                              href={`/people/${p.id}`}
-                              className="unstyled inline-block"
-                              onMouseEnter={() => setHovered(p)}
-                              onMouseLeave={() =>
-                                setHovered((h) => (h?.id === p.id ? null : h))
-                              }
-                              title={p.name}
-                            >
-                              <PersonAvatar person={p} size={28} />
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+                      {cell.length > 0 && (
+                        <div
+                          className="num-label mb-1 px-1"
+                          style={{ opacity: 0.6, fontSize: "0.6rem" }}
+                        >
+                          {cell.length}
+                        </div>
+                      )}
+                      {view === "faces" ? (
+                        <ul className="flex flex-wrap gap-1.5 px-1 pb-1">
+                          {cell.map((p) => (
+                            <li key={p.id}>
+                              <Link
+                                href={`/people/${p.id}`}
+                                className="unstyled inline-block"
+                                onMouseEnter={() => setHovered(p)}
+                                onMouseLeave={() =>
+                                  setHovered((h) =>
+                                    h?.id === p.id ? null : h,
+                                  )
+                                }
+                                title={p.name}
+                              >
+                                <PersonAvatar person={p} size={28} />
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <ul className="px-1 pb-1 space-y-0.5">
+                          {cell
+                            .slice()
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map((p) => (
+                              <li key={p.id}>
+                                <Link
+                                  href={`/people/${p.id}`}
+                                  className="unstyled block text-[11px] leading-tight hover:underline"
+                                  onMouseEnter={() => setHovered(p)}
+                                >
+                                  {p.name}
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      )}
                     </td>
                   );
                 })}
@@ -239,12 +291,13 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
             className="text-xs italic"
             style={{ color: "var(--color-ink-soft)" }}
           >
-            Hover any face to see who it is. Click to open the full profile.
-            Cells deepen with population — sparse cells name positions the
-            field has not produced.
+            Hover any face or name to see who it is. Click to open the full
+            profile. Cells deepen with population — sparse cells name positions
+            the field has not produced.
           </p>
         )}
       </div>
+
     </div>
   );
 }

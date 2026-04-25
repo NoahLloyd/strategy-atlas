@@ -689,4 +689,596 @@ export const profileOverrides: Record<string, Profile> = {
     recognitionNote:
       "Recognised inside the safety community.",
   },
+  "scott-aaronson": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "UT Austin computer-science professor. Foundational work on quantum complexity. 2022–2024 stint at OpenAI on watermarking and cryptographic safety. Long-running Shtetl-Optimized blog covers AI rigorously.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major figure in theoretical computer science. Recognised broadly online; less mainstream press than the lab CEOs.",
+  },
+  "robin-hanson": {
+    expertise: "external-domain",
+    expertiseNote:
+      "George Mason economist. 'Age of Em' (2016) was an early formal economic treatment of post-AGI futures. Long publication record on prediction markets and futarchy.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in EA, rationalist, and economics circles. Less mainstream press.",
+  },
+  "ben-goertzel": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Founded SingularityNET; long history of AGI research (OpenCog framework). Published extensively on artificial general intelligence theory. Less central to current frontier ML.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Coined modern usage of 'AGI' as a research term. Recognised in AGI/transhumanist circles.",
+  },
+  "richard-sutton": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "University of Alberta professor. Co-author of the foundational RL textbook with Andrew Barto. Turing Award 2024 (with Barto). 'The Bitter Lesson' (2019) is one of the most-read essays in modern ML.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Universal name in ML. Turing Award announcement got tech-press coverage. Less general-public recognition than Hinton/LeCun.",
+  },
+  "andrew-barto": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "UMass Amherst emeritus. Co-author with Sutton of the standard RL textbook. Turing Award 2024 for foundational RL contributions.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised universally in ML. Less press visibility than Sutton.",
+  },
+  "yejin-choi": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "University of Washington / Stanford NLP professor. MacArthur Fellow 2022 for commonsense-reasoning work. Active publisher across NLP and reasoning evaluation.",
+    recognition: "field-leading",
+    recognitionNote:
+      "TED talk 'Why AI is incredibly smart and shockingly stupid' has wide reach. MacArthur and Anita Borg awards.",
+  },
+  "douglas-hofstadter": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Indiana University cognitive scientist. 'Gödel, Escher, Bach' (1979, Pulitzer 1980) and 'I Am a Strange Loop' shaped a generation's thinking on intelligence. Engages AI as cognitive scientist; not a current ML researcher.",
+    recognition: "household-name",
+    recognitionNote:
+      "GEB has sold over a million copies. Wikipedia entries in 30+ languages.",
+  },
+  "stephen-hawking": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Theoretical physicist (1942–2018). Cosmology, not AI; AI commentary was occasional. Co-signed the 2014 'Stephen Hawking AI letter' framing AI as existential.",
+    recognition: "household-name",
+    recognitionNote:
+      "Universal name recognition; Wikipedia in 100+ languages.",
+  },
+  "ted-chiang": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Speculative-fiction writer. 'Story of Your Life', 'Exhalation', 'The Lifecycle of Software Objects' explore AI and consciousness with care. Influences how the field talks about AI.",
+    recognition: "household-name",
+    recognitionNote:
+      "'Arrival' (2016 film adaptation) brought wide recognition. New Yorker AI essays widely shared.",
+  },
+  "mo-gawdat": {
+    expertise: "commentator",
+    expertiseNote:
+      "Former chief business officer of Google X. 'Scary Smart' (2021). Operates as motivational author and speaker; not a technical AI contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Bestseller author and TEDx-style speaker. Recognised in self-help/AI-anxiety crossover audiences.",
+  },
+  "sara-hooker": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Founder of Adaption Labs; former head of Cohere For AI. Active publisher on hardware lottery, sparsity, multilingual evaluation.",
+    recognition: "field-leading",
+    recognitionNote:
+      "TIME100 AI 2023. Recognised in ML research and AI-policy circles.",
+  },
+  "subbarao-kambhampati": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Arizona State professor. Long publication record on planning and reasoning. Vocal critic of LLM 'planning' claims; fellow of AAAI, ACM, AAAS.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recurring podcast and panel guest. Recognised within AI research. Less mainstream press.",
+  },
+  "naomi-klein": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Author and journalist (UBC). 'No Logo', 'The Shock Doctrine'. AI engagement is via critique-of-capitalism frame. Not a technical AI commentator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Books in 30+ languages; mainstream-press regular.",
+  },
+  "cory-doctorow": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Author and EFF fellow. 'Enshittification' (2023) framed platform decay; many AI-policy essays at Pluralistic. Technical fluency on systems and DRM, less on ML proper.",
+    recognition: "household-name",
+    recognitionNote:
+      "Widely-followed blog and SF author. Mainstream press regular.",
+  },
+  "maria-ressa": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Filipino journalist; Rappler co-founder. 2021 Nobel Peace Prize for press-freedom work. Engages AI through information-integrity lens.",
+    recognition: "household-name",
+    recognitionNote:
+      "Nobel laureate; TIME100; widely covered globally.",
+  },
+  "noam-chomsky": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Linguist (MIT, Arizona). Generative grammar foundations. AI engagement is largely critical (NYT 'False Promise of ChatGPT', 2023). Not a technical AI researcher.",
+    recognition: "household-name",
+    recognitionNote:
+      "Among the most-cited intellectuals of the 20th century. Wikipedia in 100+ languages.",
+  },
+  "steven-pinker": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Harvard psychologist. Cognitive-science and Enlightenment-rationalism books. AI engagement is occasional and skeptical of x-risk framings. Not a technical AI researcher.",
+    recognition: "household-name",
+    recognitionNote:
+      "Multiple NYT-bestseller books; TED regular; mainstream press.",
+  },
+  "rodney-brooks": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "MIT roboticist; iRobot/Robust AI founder. Foundational work on subsumption architecture. Skeptic of frontier-LLM AGI claims; tracks his own predictions on his blog.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in robotics and AI circles. Less mainstream press than the LLM-era founders.",
+  },
+  "ian-goodfellow": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "Invented GANs (2014). Co-author of the standard 'Deep Learning' textbook with Bengio and Courville. Apple → Google DeepMind ML lead.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised universally in ML. Less mainstream press than the lab CEOs.",
+  },
+  "peter-norvig": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Stanford HAI fellow; former Google research director. Co-author of 'Artificial Intelligence: A Modern Approach' with Stuart Russell.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Standard AI textbook gives him near-universal recognition in CS. Less mainstream press.",
+  },
+  "joscha-bach": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Cognitive scientist; works on computational models of cognition. Theoretical contributor to AI consciousness and cognitive architectures.",
+    recognition: "established",
+    recognitionNote:
+      "Recurring podcast guest (Lex Fridman). Recognised in cognitive-science and rationalist circles.",
+  },
+  "lex-fridman": {
+    expertise: "commentator",
+    expertiseNote:
+      "MIT research scientist (autonomous-vehicle background) turned podcaster. Hosts major AI/safety figures; not a primary research contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Among the largest podcasts globally; mainstream press regular.",
+  },
+  "dwarkesh-patel": {
+    expertise: "commentator",
+    expertiseNote:
+      "Independent podcaster. Long-form interviews with researchers (Aschenbrenner, Suleyman, Hassabis). Not a technical contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major reach within AI/tech-podcast audiences. Less general-public recognition.",
+  },
+  "tyler-cowen": {
+    expertise: "external-domain",
+    expertiseNote:
+      "George Mason economist. Marginal Revolution blog; Emergent Ventures. Engages AI through economics-and-culture lens. Not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Bloomberg columnist; widely-cited economics commentator.",
+  },
+  "joy-buolamwini": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Founded the Algorithmic Justice League. PhD MIT Media Lab on facial-recognition bias. 'Gender Shades' research drove regulatory change.",
+    recognition: "household-name",
+    recognitionNote:
+      "Featured in Coded Bias documentary; congressional testimony; mainstream press regular.",
+  },
+  "kate-darling": {
+    expertise: "external-domain",
+    expertiseNote:
+      "MIT Media Lab research scientist. Robot ethics and human-robot interaction. 'The New Breed' (2021).",
+    recognition: "field-leading",
+    recognitionNote:
+      "Frequent press appearances and TED talks on robot ethics.",
+  },
+  "robert-wright": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Journalist. 'Nonzero' (2000) framed cooperation in evolutionary terms; Bloggingheads.tv founder. Engages AI through cooperation/Newcomb-style lens.",
+    recognition: "field-leading",
+    recognitionNote:
+      "NYT bestseller author; recurring podcast presence.",
+  },
+  "sundar-pichai": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "CEO of Alphabet (since 2019). Operates as exec; not a research contributor. Strategic decisions on Gemini, search-AI, antitrust posture.",
+    recognition: "household-name",
+    recognitionNote:
+      "Big-tech CEO; mainstream press regular.",
+  },
+  "satya-nadella": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "CEO of Microsoft (since 2014). Drove Microsoft's OpenAI partnership. Operates as exec; not a researcher.",
+    recognition: "household-name",
+    recognitionNote:
+      "Big-tech CEO; mainstream press regular.",
+  },
+  "mark-zuckerberg": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Meta founder/CEO. Drives Llama open-weights strategy; operates as exec rather than ML researcher.",
+    recognition: "household-name",
+    recognitionNote:
+      "Among the most globally recognised individuals.",
+  },
+  "jeff-bezos": {
+    expertise: "commentator",
+    expertiseNote:
+      "Amazon founder. AI investor (Anthropic Series C, Series D); not a technical contributor. Operates as investor/exec.",
+    recognition: "household-name",
+    recognitionNote:
+      "Among the most globally recognised individuals.",
+  },
+  "eric-schmidt": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Former Google CEO/chair. Co-chair of the National Security Commission on AI; runs Special Competitive Studies Project. Operates in policy and investment, not research.",
+    recognition: "household-name",
+    recognitionNote:
+      "Recurring senior-statesman press appearances; congressional testimony.",
+  },
+  "peter-thiel": {
+    expertise: "commentator",
+    expertiseNote:
+      "Investor (Founders Fund, Palantir co-founder). Engages AI ideologically (techno-libertarian). Not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major political-and-tech press figure.",
+  },
+  "mackenzie-scott": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Yield Giving founder. Major philanthropist; AI-related donations are part of broader giving. Not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream press regular for unrestricted-giving philanthropy.",
+  },
+  "ursula-von-der-leyen": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "European Commission president. Drove the EU AI Act. Head-of-government level operator; not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Head-of-government level recognition across EU and globally.",
+  },
+  "joe-biden": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Former US President. Issued the October 2023 AI Executive Order. Head-of-government operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised head-of-state.",
+  },
+  "donald-trump": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "US President. Rescinded Biden's AI EO in January 2025; executive policy on AI infrastructure (Stargate). Head-of-state operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised head-of-state.",
+  },
+  "kamala-harris": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Former US Vice President. Led Biden-era AI safety summits convening. Head-of-government operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised political figure.",
+  },
+  "jd-vance": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "US Vice President. Paris AI Action Summit (Feb 2025) opened the Trump administration's AI policy stance toward deregulation. Head-of-government operator.",
+    recognition: "household-name",
+    recognitionNote:
+      "Globally recognised political figure.",
+  },
+  "dawn-song": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "UC Berkeley professor. Deep work on AI security, privacy-preserving ML, and verifiable AI. MacArthur Fellow 2010.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in security/ML community. Less mainstream profile than ML-celebrity peers.",
+  },
+  "david-silver": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "DeepMind principal scientist. Lead architect of AlphaGo, AlphaZero, AlphaStar. Deep RL pioneer.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised universally in RL. Less mainstream press than Hassabis.",
+  },
+  "vernor-vinge": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Mathematician and SF author (1944–2024). Coined modern 'singularity' usage in his 1993 essay. Not a technical AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Hugo-Award-winning SF author; widely cited in singularity discourse.",
+  },
+  "martin-rees": {
+    expertise: "external-domain",
+    expertiseNote:
+      "UK Astronomer Royal. Co-founded Cambridge Centre for the Study of Existential Risk. Cosmologist; engages AI through x-risk lens.",
+    recognition: "household-name",
+    recognitionNote:
+      "Member of the House of Lords; mainstream UK press regular.",
+  },
+  "huw-price": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Cambridge philosopher of science. Co-founded Centre for the Study of Existential Risk with Rees and Tallinn.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in academic-philosophy and x-risk circles.",
+  },
+  "joseph-carlsmith": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Senior researcher at Open Philanthropy. Long essays on AI takeover risk and decision theory. Philosopher; not a technical ML researcher.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in safety/EA circles. Hard-Pasta Substack (Hands and Cities) widely read.",
+  },
+  "andrew-critch": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "UC Berkeley CHAI research scientist. Long publication record on multi-agent AI safety; coined 'multi/multi alignment' framing.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised inside the alignment community.",
+  },
+  "william-saunders": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "Former OpenAI Superalignment researcher. Resigned 2024 with public concerns. Senate testimony on AI risk.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in AI-safety circles via departure and testimony.",
+  },
+  "suchir-balaji": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "Former OpenAI researcher (1991–2024). Public concerns on copyright and training data; died Nov 2024.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Death and circumstances drew major press; recognised in AI/policy circles.",
+  },
+  "gwern-branwen": {
+    expertise: "applied-technical",
+    expertiseNote:
+      "Independent essayist. Broad publication base on ML scaling laws, statistics, and analysis. No formal ML credentials but technically rigorous.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Universally read inside the rationalist/AI-research community.",
+  },
+  "wei-dai": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Cryptographer (b-money, predecessor to Bitcoin). Long body of LessWrong posts on decision theory and updateless decision theory.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in cryptography and rationalist communities.",
+  },
+  "allan-dafoe": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Director of Frontier Safety and Governance, Google DeepMind. Earlier founded Centre for the Governance of AI (GovAI). Political scientist applied to AI governance.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in AI-governance and policy circles. Less mainstream press.",
+  },
+  "jade-leung": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Chief Scientist at the UK AI Safety Institute (since 2024). Earlier OpenAI head of governance and GovAI.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Senior policy figure recognised in AI-governance circles.",
+  },
+  "beth-barnes": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Founder/CEO of METR (Model Evaluation & Threat Research). Designed many frontier-model dangerous-capability evals. Earlier OpenAI alignment.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in evals and safety circles. Less mainstream press.",
+  },
+  "tamay-besiroglu": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Co-founder of Epoch AI. Empirical scaling and compute trends; published on training compute and AI economics.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in AI-economics and forecasting circles.",
+  },
+  "jaime-sevilla": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Director of Epoch AI. Compute, training-data, and capability-trend analysis.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in AI-economics and forecasting circles.",
+  },
+  "anthony-aguirre": {
+    expertise: "external-domain",
+    expertiseNote:
+      "UC Santa Cruz physicist. Co-founded Future of Life Institute and Metaculus. Engages AI through forecasting and x-risk lens.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in EA, forecasting, and AI-policy circles.",
+  },
+  "ed-felten": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Princeton CS professor emeritus. Long publication record on security, privacy, and tech policy. Twice in US government (Deputy CTO, FTC Chief Technologist).",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in tech-policy and CS circles. Less mainstream press.",
+  },
+  "francois-chollet": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Created Keras. Founded Ndea (2025). Author of the ARC-AGI benchmark, a public test specifically designed to resist memorisation.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Widely recognised in ML; ARC-AGI prize made some mainstream coverage.",
+  },
+  "melanie-mitchell": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Santa Fe Institute professor. 'Artificial Intelligence: A Guide for Thinking Humans' (2019). Long publication record on analogy and complexity.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in academic AI and complexity circles.",
+  },
+  "judea-pearl": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "UCLA professor. Turing Award 2011 for foundational causality and Bayesian-network work. 'The Book of Why' (2018).",
+    recognition: "household-name",
+    recognitionNote:
+      "Turing Award; Wikipedia in 30+ languages.",
+  },
+  "daron-acemoglu": {
+    expertise: "external-domain",
+    expertiseNote:
+      "MIT economist. Nobel Prize in Economics 2024 (with Johnson and Robinson). Engages AI through institutional-economics frame.",
+    recognition: "household-name",
+    recognitionNote:
+      "Nobel laureate; mainstream press regular.",
+  },
+  "erik-brynjolfsson": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Stanford HAI economist. 'The Second Machine Age' (with McAfee, 2014). Long body of empirical work on AI and labour.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recurring testimony and press; less mainstream profile than Acemoglu.",
+  },
+  "carl-benedikt-frey": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Oxford Martin School economist. Co-author of 'Future of Employment' (2013) on AI/automation displacement.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Widely cited automation-economics research.",
+  },
+  "joseph-stiglitz": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Columbia economist. Nobel Prize in Economics 2001. AI engagement is via labour and competition-policy lens.",
+    recognition: "household-name",
+    recognitionNote:
+      "Nobel laureate; mainstream press regular.",
+  },
+  "amartya-sen": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Harvard economist. Nobel Prize in Economics 1998. Engages AI through capabilities-and-development frame.",
+    recognition: "household-name",
+    recognitionNote:
+      "Nobel laureate; widely-published public intellectual.",
+  },
+  "esther-duflo": {
+    expertise: "external-domain",
+    expertiseNote:
+      "MIT economist. Nobel Prize in Economics 2019 (with Banerjee and Kremer). Engages AI through development-and-poverty frame.",
+    recognition: "household-name",
+    recognitionNote:
+      "Nobel laureate; mainstream press regular.",
+  },
+  "tim-berners-lee": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "Inventor of the World Wide Web. Turing Award 2016. Engages AI through Solid project and decentralisation framing.",
+    recognition: "household-name",
+    recognitionNote:
+      "Web-inventor profile; Wikipedia in 100+ languages.",
+  },
+  "stephen-wolfram": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Founder of Wolfram Research / Wolfram|Alpha. Computational-mathematics platform builder. Engages AI through computational-equivalence framing.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream press regular; popular online presence.",
+  },
+  "peter-singer": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Princeton ethicist. 'Animal Liberation' (1975); founder of effective-altruism intellectual lineage. AI welfare engagement via philosophy.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major public-intellectual profile; Wikipedia in 50+ languages.",
+  },
+  "will-macaskill": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Oxford philosopher; co-founded GWWC, 80,000 Hours, EA movement infrastructure. 'What We Owe the Future' (2022). Not a technical AI contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Defining EA-movement figure; book NYT-bestseller; some mainstream press.",
+  },
+  "ezra-klein": {
+    expertise: "external-domain",
+    expertiseNote:
+      "NYT columnist; Vox co-founder. Engages AI through politics-and-policy lens. Not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major NYT podcast and column reach.",
+  },
+  "kara-swisher": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Tech journalist. Founded Recode/Vox; hosts Pivot and On podcasts. Drives much CEO-level press; not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream tech-press fixture for two decades.",
+  },
+  "ev-williams": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Twitter and Medium co-founder. Operates as platform exec; not a technical AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Recognised tech-founder; mainstream press regular.",
+  },
+  "bill-mckibben": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Climate journalist; founded 350.org. AI engagement through climate-and-energy lens (data centre energy demand). Not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "NYT bestseller author; mainstream press regular.",
+  },
 };
