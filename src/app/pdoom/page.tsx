@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { people, getPerson } from "@/lib/people";
-import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 import { vintageTiers } from "@/data/profile-tiers";
 import type { VintageEra } from "@/lib/people-types";
 
 export const metadata = {
-  title: "p(doom) board — AGI Strategies",
+  title: "p(doom) board · AGI Strategies",
   description:
     "Every p(doom) estimate on the record, dated and linked to its source.",
 };
@@ -89,7 +89,7 @@ export default function PDoomBoard() {
       ? (sortedV[sortedV.length / 2 - 1] + sortedV[sortedV.length / 2]) / 2
       : sortedV[Math.floor(sortedV.length / 2)];
 
-  // p(doom) by vintage — does the era your priors formed in correlate
+  // p(doom) by vintage, does the era your priors formed in correlate
   // with the estimate you settle on. Each tier requires 3+ datapoints.
   const byVintage: { era: VintageEra; values: number[] }[] = vintageTiers.map(
     (t) => ({ era: t.id, values: [] as number[] }),
@@ -123,7 +123,7 @@ export default function PDoomBoard() {
         </h1>
         <p className="text-lg leading-relaxed mb-3" style={{ color: "var(--color-ink-soft)" }}>
           p(doom) is shorthand for the probability a person assigns to
-          civilisational catastrophe from AI. Definitions vary — extinction,
+          civilisational catastrophe from AI. Definitions vary: extinction,
           disempowerment, loss of control, or just bad outcomes. The claim
           only means what the person said it means, on the date they said it.
           Every entry below links to its source.
@@ -192,8 +192,8 @@ export default function PDoomBoard() {
           style={{ color: "var(--color-ink-soft)" }}
         >
           A person who has stated multiple p(doom) values shows up once here,
-          using their most recent claim. Below, every claim is listed —
-          including past ones — so a single person can appear multiple times.
+          using their most recent claim. Below, every claim is listed,
+          including past ones, so a single person can appear multiple times.
         </p>
       </section>
 
@@ -240,7 +240,7 @@ export default function PDoomBoard() {
             style={{ color: "var(--color-ink-soft)" }}
           >
             The honest test of whether era predicts estimate. n is small
-            per tier — read this as a signal, not a verdict. Tiers with
+            per tier; read this as a signal, not a verdict. Tiers with
             fewer than 3 datapoints are hidden.
           </p>
         </section>
@@ -270,22 +270,35 @@ export default function PDoomBoard() {
                   <li key={`${c.personId}-${i}`} className="border hairline p-4">
                     <div className="flex items-start gap-3 mb-1">
                       {person && (
-                        <Link href={`/people/${c.personId}`} className="unstyled">
-                          <PersonAvatar person={person} size={40} />
-                        </Link>
+                        <HoverFaceLink
+                          person={person}
+                          size={40}
+                          placement="right"
+                        />
                       )}
                       <div className="flex-1 flex items-baseline justify-between flex-wrap gap-2">
-                        <Link
-                          href={`/people/${c.personId}`}
-                          className="unstyled hover:underline"
-                        >
-                          <h3
-                            className="text-lg"
-                            style={{ fontFamily: "var(--font-display)" }}
+                        {person ? (
+                          <HoverFaceLink person={person} placement="below">
+                            <h3
+                              className="text-lg hover:underline"
+                              style={{ fontFamily: "var(--font-display)" }}
+                            >
+                              {c.personName}
+                            </h3>
+                          </HoverFaceLink>
+                        ) : (
+                          <Link
+                            href={`/people/${c.personId}`}
+                            className="unstyled hover:underline"
                           >
-                            {c.personName}
-                          </h3>
-                        </Link>
+                            <h3
+                              className="text-lg"
+                              style={{ fontFamily: "var(--font-display)" }}
+                            >
+                              {c.personName}
+                            </h3>
+                          </Link>
+                        )}
                         <span
                           className="text-2xl"
                           style={{ fontFamily: "var(--font-display)" }}

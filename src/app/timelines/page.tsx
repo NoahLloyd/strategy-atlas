@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { people, getPerson } from "@/lib/people";
-import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 import { vintageTiers } from "@/data/profile-tiers";
 import type { VintageEra } from "@/lib/people-types";
 
 export const metadata = {
-  title: "Timelines — AGI Strategies",
+  title: "Timelines · AGI Strategies",
   description:
     "Every named AGI / transformative AI timeline on the record, with a dated primary source.",
 };
@@ -90,7 +90,7 @@ export default function TimelinesBoard() {
 
   // Median forecast year by vintage. Hypothesis: forecasters whose
   // worldview formed in earlier eras don't necessarily predict later
-  // dates — and whether they do is itself interesting.
+  // dates, and whether they do is itself interesting.
   const byVintage: { era: VintageEra; years: number[] }[] = vintageTiers.map(
     (t) => ({ era: t.id, years: [] as number[] }),
   );
@@ -195,7 +195,7 @@ export default function TimelinesBoard() {
           style={{ color: "var(--color-ink-soft)" }}
         >
           Each forecaster shown once, using their most recent dated claim.
-          Below, every claim is listed individually — including revisions.
+          Below, every claim is listed individually, including revisions.
         </p>
       </section>
 
@@ -283,16 +283,29 @@ export default function TimelinesBoard() {
                 <li key={`${c.personId}-${i}`} className="border hairline p-4">
                   <div className="flex items-start gap-3 mb-1">
                     {person && (
-                      <Link href={`/people/${c.personId}`} className="unstyled">
-                        <PersonAvatar person={person} size={40} />
-                      </Link>
+                      <HoverFaceLink
+                        person={person}
+                        size={40}
+                        placement="right"
+                      />
                     )}
                     <div className="flex-1 flex items-baseline justify-between flex-wrap gap-2">
-                      <Link href={`/people/${c.personId}`} className="unstyled hover:underline">
-                        <h3 className="text-lg" style={{ fontFamily: "var(--font-display)" }}>
-                          {c.personName}
-                        </h3>
-                      </Link>
+                      {person ? (
+                        <HoverFaceLink person={person} placement="below">
+                          <h3
+                            className="text-lg hover:underline"
+                            style={{ fontFamily: "var(--font-display)" }}
+                          >
+                            {c.personName}
+                          </h3>
+                        </HoverFaceLink>
+                      ) : (
+                        <Link href={`/people/${c.personId}`} className="unstyled hover:underline">
+                          <h3 className="text-lg" style={{ fontFamily: "var(--font-display)" }}>
+                            {c.personName}
+                          </h3>
+                        </Link>
+                      )}
                       <span className="text-xl" style={{ fontFamily: "var(--font-display)" }}>
                         {c.year ? c.year : c.range ? `${c.range[0]}–${c.range[1]}` : ""}
                         {c.probability !== undefined && (
