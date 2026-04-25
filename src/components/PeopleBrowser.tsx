@@ -312,6 +312,12 @@ export function PeopleBrowser({
                       {expertiseTiers.find((t) => t.id === p.profile!.expertise)?.label}
                       {" · "}
                       {recognitionTiers.find((t) => t.id === p.profile!.recognition)?.label}
+                      {p.profile.vintage && (
+                        <>
+                          {" · "}
+                          {vintageTiers.find((t) => t.id === p.profile!.vintage)?.label}
+                        </>
+                      )}
                     </p>
                   )}
                   <div className="flex flex-wrap gap-1">
