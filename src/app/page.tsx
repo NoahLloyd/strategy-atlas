@@ -67,7 +67,7 @@ export default function HomePage() {
             Browse {people.length} people →
           </Link>
           <Link href="/atlas" className="chip">
-            Strategy atlas
+            Overview
           </Link>
           <Link href="/board" className="chip">
             The board

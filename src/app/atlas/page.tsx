@@ -148,7 +148,7 @@ export default function HomePage() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <section className="mb-10 max-w-3xl">
-        <p className="num-label mb-3">the atlas</p>
+        <p className="num-label mb-3">overview</p>
         <h1
           className="text-4xl sm:text-5xl leading-tight mb-4"
           style={{ fontFamily: "var(--font-display)" }}
@@ -157,7 +157,7 @@ export default function HomePage() {
         </h1>
         <p className="text-lg leading-relaxed mb-3" style={{ color: "var(--color-ink-soft)" }}>
           Each strategy is a bet about which failure mode binds — which one
-          actually gates a good outcome. The atlas catalogues{" "}
+          actually gates a good outcome. The survey catalogues{" "}
           <strong style={{ color: "var(--color-ink)" }}>{strategies.length}</strong>{" "}
           named bets, the{" "}
           <strong style={{ color: "var(--color-ink)" }}>{levers.length}</strong>{" "}
@@ -226,7 +226,7 @@ export default function HomePage() {
             What&apos;s here.
           </h2>
           <p className="text-sm max-w-3xl mb-6" style={{ color: "var(--color-ink-soft)" }}>
-            Seven ways to enter the atlas. Start where the question is yours.
+            Seven ways to enter the survey. Start where the question is yours.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -299,7 +299,7 @@ export default function HomePage() {
           className="text-2xl mb-4"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          If you want one path through the atlas.
+          If you want one path through the survey.
         </h2>
         <ol className="space-y-3 text-sm max-w-3xl" style={{ color: "var(--color-ink)" }}>
           <li>

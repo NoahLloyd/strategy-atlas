@@ -113,7 +113,7 @@ export default async function StrategyPage({
   return (
     <article className="max-w-4xl mx-auto px-6 py-10">
       <Link href="/" className="num-label inline-block mb-6 hover:underline">
-        ← atlas
+        ← overview
       </Link>
 
       <header className="mb-8">

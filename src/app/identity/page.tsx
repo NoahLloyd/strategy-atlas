@@ -80,7 +80,7 @@ export default function IdentityPage() {
           Is this a bet, or an identity?
         </h1>
         <p className="text-lg leading-relaxed mb-3" style={{ color: "var(--color-ink-soft)" }}>
-          The atlas treats every strategy as a bet about which failure mode
+          The survey treats every strategy as a bet about which failure mode
           binds. But in the AI safety field, many strategies function as
           identities rather than as bets. Identities persist regardless of
           evidence, and their advocates resist updates that would require

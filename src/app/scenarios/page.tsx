@@ -240,7 +240,7 @@ function ScenarioBlock({ scenario }: { scenario: Scenario }) {
           ))}
           {missing > 0 && (
             <span className="chip" style={{ opacity: 0.5 }}>
-              {missing} not yet in atlas
+              {missing} not yet catalogued
             </span>
           )}
         </div>

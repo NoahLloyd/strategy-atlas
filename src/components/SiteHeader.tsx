@@ -39,7 +39,7 @@ const sections: NavSection[] = [
     href: "/atlas",
     icon: "framework",
     links: [
-      { href: "/atlas", label: "Atlas", hint: "all 76 macrostrategies", icon: "atlas" },
+      { href: "/atlas", label: "Overview", hint: "the strategy survey landing page", icon: "atlas" },
       { href: "/levers", label: "Levers", hint: "the 15 control levers", icon: "levers" },
       { href: "/axes", label: "Axes", hint: "five orthogonal dimensions", icon: "axes" },
       { href: "/matrix", label: "Matrix", hint: "pairwise conflict & complement", icon: "matrix" },
