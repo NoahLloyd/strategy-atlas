@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { people, getPerson } from "@/lib/people";
 import { PersonAvatar } from "@/components/PersonAvatar";
+import { vintageTiers } from "@/data/profile-tiers";
+import type { VintageEra } from "@/lib/people-types";
 
 export const metadata = {
   title: "p(doom) board — AGI Strategies",
@@ -59,6 +61,56 @@ export default function PDoomBoard() {
     { label: "< 1%", min: 0, max: 0.01 },
   ];
 
+  // Latest claim per person, for a clean distribution count without
+  // double-counting evolved estimates.
+  const latestPerPerson = new Map<string, typeof claims[number]>();
+  for (const c of claims) {
+    const ex = latestPerPerson.get(c.personId);
+    if (!ex) {
+      latestPerPerson.set(c.personId, c);
+      continue;
+    }
+    if ((c.date ?? "") > (ex.date ?? "")) latestPerPerson.set(c.personId, c);
+  }
+  const latest = Array.from(latestPerPerson.values());
+  const ladderForDist = ladder.map((b) => ({
+    ...b,
+    count: latest.filter((c) => c.valueNumber >= b.min && c.valueNumber < b.max)
+      .length,
+  }));
+  const maxBucket = Math.max(1, ...ladderForDist.map((b) => b.count));
+  const meanLatest =
+    latest.reduce((acc, c) => acc + c.valueNumber, 0) / Math.max(1, latest.length);
+  const sortedV = latest.map((c) => c.valueNumber).sort((a, b) => a - b);
+  const medianLatest =
+    sortedV.length === 0
+      ? 0
+      : sortedV.length % 2 === 0
+      ? (sortedV[sortedV.length / 2 - 1] + sortedV[sortedV.length / 2]) / 2
+      : sortedV[Math.floor(sortedV.length / 2)];
+
+  // p(doom) by vintage — does the era your priors formed in correlate
+  // with the estimate you settle on. Each tier requires 3+ datapoints.
+  const byVintage: { era: VintageEra; values: number[] }[] = vintageTiers.map(
+    (t) => ({ era: t.id, values: [] as number[] }),
+  );
+  for (const c of latest) {
+    const p = getPerson(c.personId);
+    const v = p?.profile?.vintage;
+    if (!v) continue;
+    const slot = byVintage.find((x) => x.era === v);
+    if (slot) slot.values.push(c.valueNumber);
+  }
+  const vintageStats = byVintage
+    .filter((b) => b.values.length >= 3)
+    .map((b) => ({
+      era: b.era,
+      label: vintageTiers.find((t) => t.id === b.era)!.label,
+      n: b.values.length,
+      mean: b.values.reduce((a, b) => a + b, 0) / b.values.length,
+    }));
+  const maxVintageMean = Math.max(0.05, ...vintageStats.map((s) => s.mean));
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <section className="mb-10 max-w-3xl">
@@ -77,6 +129,122 @@ export default function PDoomBoard() {
           Every entry below links to its source.
         </p>
       </section>
+
+      <section
+        className="mb-10 border-2 border-[var(--color-ink)] p-5"
+        style={{ background: "var(--color-parchment-soft)" }}
+      >
+        <div className="flex items-baseline justify-between flex-wrap gap-3 mb-4">
+          <p className="num-label">distribution · latest claim per person</p>
+          <div className="flex flex-wrap gap-3 text-xs">
+            <span>
+              <span className="num-label">n</span>{" "}
+              <span style={{ fontFamily: "var(--font-display)" }}>
+                {latest.length}
+              </span>
+            </span>
+            <span>
+              <span className="num-label">mean</span>{" "}
+              <span style={{ fontFamily: "var(--font-display)" }}>
+                {Math.round(meanLatest * 100)}%
+              </span>
+            </span>
+            <span>
+              <span className="num-label">median</span>{" "}
+              <span style={{ fontFamily: "var(--font-display)" }}>
+                {Math.round(medianLatest * 100)}%
+              </span>
+            </span>
+          </div>
+        </div>
+        <ul className="space-y-1.5">
+          {ladderForDist.map((b) => (
+            <li key={b.label} className="flex items-center gap-3 text-xs">
+              <span
+                style={{ width: 70, color: "var(--color-ink-soft)" }}
+                className="num-label"
+              >
+                {b.label}
+              </span>
+              <div
+                className="flex-1 h-3"
+                style={{ background: "var(--color-rule)" }}
+              >
+                <div
+                  style={{
+                    width: `${(b.count / maxBucket) * 100}%`,
+                    height: "100%",
+                    background: "var(--color-accent)",
+                  }}
+                />
+              </div>
+              <span
+                className="num-label"
+                style={{ width: 28, textAlign: "right" }}
+              >
+                {b.count}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p
+          className="text-[10px] italic mt-3"
+          style={{ color: "var(--color-ink-soft)" }}
+        >
+          A person who has stated multiple p(doom) values shows up once here,
+          using their most recent claim. Below, every claim is listed —
+          including past ones — so a single person can appear multiple times.
+        </p>
+      </section>
+
+      {vintageStats.length >= 3 && (
+        <section className="mb-10 border hairline p-5" style={{ background: "var(--color-parchment-soft)" }}>
+          <div className="flex items-baseline justify-between flex-wrap gap-2 mb-3">
+            <p className="num-label">mean p(doom) by vintage · era of formation</p>
+            <span className="num-label" style={{ color: "var(--color-ink-soft)" }}>
+              latest claim per person
+            </span>
+          </div>
+          <ul className="space-y-1.5">
+            {vintageStats.map((s) => (
+              <li key={s.era} className="flex items-center gap-3 text-xs">
+                <span
+                  style={{ width: 150, color: "var(--color-ink-soft)" }}
+                  className="num-label"
+                >
+                  {s.label}
+                </span>
+                <div
+                  className="flex-1 h-3"
+                  style={{ background: "var(--color-rule)" }}
+                >
+                  <div
+                    style={{
+                      width: `${(s.mean / maxVintageMean) * 100}%`,
+                      height: "100%",
+                      background: "var(--color-accent)",
+                    }}
+                  />
+                </div>
+                <span
+                  className="num-label whitespace-nowrap"
+                  style={{ width: 80, textAlign: "right" }}
+                >
+                  {Math.round(s.mean * 100)}% · n={s.n}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p
+            className="text-[10px] italic mt-3"
+            style={{ color: "var(--color-ink-soft)" }}
+          >
+            The honest test of whether era predicts estimate. n is small
+            per tier — read this as a signal, not a verdict. Tiers with
+            fewer than 3 datapoints are hidden.
+          </p>
+        </section>
+      )}
 
       <section>
         {ladder.map(({ label, min, max }) => {
