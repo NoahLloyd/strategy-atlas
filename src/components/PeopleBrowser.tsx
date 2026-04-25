@@ -15,6 +15,7 @@ import {
   expertiseTiers,
   recognitionTiers,
   vintageTiers,
+  vintageRank,
 } from "@/data/profile-tiers";
 
 function formatPDoom(v: number | [number, number]): string {
@@ -22,7 +23,13 @@ function formatPDoom(v: number | [number, number]): string {
   return `${Math.round(v * 100)}%`;
 }
 
-type Sort = "name" | "pdoom-desc" | "pdoom-asc" | "recent";
+type Sort =
+  | "name"
+  | "pdoom-desc"
+  | "pdoom-asc"
+  | "recent"
+  | "vintage-asc"
+  | "vintage-desc";
 
 export function PeopleBrowser({
   people,
@@ -79,6 +86,20 @@ export function PeopleBrowser({
       );
     } else if (sort === "recent") {
       out = out.slice().sort((a, b) => (b.lastUpdated ?? "").localeCompare(a.lastUpdated ?? ""));
+    } else if (sort === "vintage-asc" || sort === "vintage-desc") {
+      // Vintage rank: pioneer = 0, post-chatgpt = 5. Older first when asc.
+      // People without a vintage classification fall to the end either way.
+      const value = (p: Person) => {
+        const v = p.profile?.vintage;
+        if (!v) return sort === "vintage-asc" ? Infinity : -1;
+        return vintageRank[v];
+      };
+      out = out.slice().sort((a, b) => {
+        const va = value(a);
+        const vb = value(b);
+        if (va !== vb) return sort === "vintage-asc" ? va - vb : vb - va;
+        return a.name.localeCompare(b.name);
+      });
     }
     return out;
   }, [
@@ -114,6 +135,8 @@ export function PeopleBrowser({
             <option value="name">Alphabetical</option>
             <option value="pdoom-desc">p(doom) high to low</option>
             <option value="pdoom-asc">p(doom) low to high</option>
+            <option value="vintage-asc">Vintage · oldest first</option>
+            <option value="vintage-desc">Vintage · newest first</option>
             <option value="recent">Recently updated</option>
           </select>
         </div>
