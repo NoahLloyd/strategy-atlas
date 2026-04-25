@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { Person } from "@/lib/people-types";
+import type {
+  Person,
+  ExpertiseTier,
+  RecognitionTier,
+} from "@/lib/people-types";
 import {
   expertiseTiers,
   recognitionTiers,
@@ -15,6 +19,8 @@ type Props = {
   allTagsRanked: { id: string; name: string; count: number }[];
 };
 
+type CellKey = `${ExpertiseTier}|${RecognitionTier}`;
+
 export function BoardMatrix({ people, allTagsRanked }: Props) {
   const [tagFilter, setTagFilter] = useState<string | null>(null);
   const [stanceFilter, setStanceFilter] = useState<
@@ -23,6 +29,7 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
   const [hovered, setHovered] = useState<Person | null>(null);
   const [view, setView] = useState<"faces" | "names">("faces");
   const [tagsExpanded, setTagsExpanded] = useState(false);
+  const [focusedCell, setFocusedCell] = useState<CellKey | null>(null);
 
   const profiled = useMemo(
     () => people.filter((p) => p.profile),
@@ -161,17 +168,28 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                 </th>
                 {recognitionTiers.map((r) => {
                   const cell = grid[e.id][r.id];
+                  const cellKey = `${e.id}|${r.id}` as CellKey;
+                  const isFocused = focusedCell === cellKey;
                   const intensity = Math.min(cell.length * 4, 32);
                   return (
                     <td
                       key={r.id}
                       className="p-1 align-top border hairline"
+                      onClick={() => {
+                        if (cell.length === 0) return;
+                        setFocusedCell((c) => (c === cellKey ? null : cellKey));
+                      }}
                       style={{
                         background:
                           cell.length > 0
                             ? `color-mix(in oklab, var(--color-accent) ${intensity}%, var(--color-parchment))`
                             : "var(--color-parchment)",
+                        outline: isFocused
+                          ? "2px solid var(--color-ink)"
+                          : "none",
+                        outlineOffset: "-2px",
                         verticalAlign: "top",
+                        cursor: cell.length > 0 ? "pointer" : "default",
                       }}
                     >
                       {cell.length === 0 && (
@@ -194,7 +212,10 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                         </div>
                       )}
                       {view === "faces" ? (
-                        <ul className="flex flex-wrap gap-1.5 px-1 pb-1">
+                        <ul
+                          className="flex flex-wrap gap-1.5 px-1 pb-1"
+                          onClick={(e) => e.stopPropagation()}
+                        >
                           {cell.map((p) => (
                             <li key={p.id}>
                               <Link
@@ -214,7 +235,10 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                           ))}
                         </ul>
                       ) : (
-                        <ul className="px-1 pb-1 space-y-0.5">
+                        <ul
+                          className="px-1 pb-1 space-y-0.5"
+                          onClick={(e) => e.stopPropagation()}
+                        >
                           {cell
                             .slice()
                             .sort((a, b) => a.name.localeCompare(b.name))
@@ -239,6 +263,77 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
           </tbody>
         </table>
       </div>
+
+      {focusedCell && (() => {
+        const [eId, rId] = focusedCell.split("|") as [
+          ExpertiseTier,
+          RecognitionTier,
+        ];
+        const cellPeople = grid[eId][rId];
+        const exp = expertiseTiers.find((t) => t.id === eId);
+        const rec = recognitionTiers.find((t) => t.id === rId);
+        return (
+          <div
+            className="mt-4 border-2 border-[var(--color-ink)] p-4"
+            style={{ background: "var(--color-parchment-soft)" }}
+          >
+            <div className="flex items-baseline justify-between gap-3 flex-wrap mb-3">
+              <div>
+                <p className="num-label">focused cell</p>
+                <h3
+                  className="text-lg leading-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {exp?.label} · {rec?.label}
+                </h3>
+                <p
+                  className="text-xs italic mt-1"
+                  style={{ color: "var(--color-ink-soft)" }}
+                >
+                  {exp?.criterion} · {rec?.criterion}
+                </p>
+              </div>
+              <button
+                onClick={() => setFocusedCell(null)}
+                className="chip"
+              >
+                clear
+              </button>
+            </div>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {cellPeople
+                .slice()
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((p) => (
+                  <li key={p.id}>
+                    <Link
+                      href={`/people/${p.id}`}
+                      className="unstyled flex items-start gap-3 border hairline p-2 hover:border-[var(--color-ink)] transition-colors h-full"
+                    >
+                      <PersonAvatar person={p} size={36} />
+                      <div className="flex-1 min-w-0">
+                        <p
+                          className="text-sm leading-tight"
+                          style={{ fontFamily: "var(--font-display)" }}
+                        >
+                          {p.name}
+                        </p>
+                        {p.tagline && (
+                          <p
+                            className="text-[10px] italic mt-1 line-clamp-2"
+                            style={{ color: "var(--color-ink-soft)" }}
+                          >
+                            {p.tagline}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        );
+      })()}
 
       <div
         className="mt-4 border hairline p-4 min-h-[5rem]"
@@ -291,9 +386,9 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
             className="text-xs italic"
             style={{ color: "var(--color-ink-soft)" }}
           >
-            Hover any face or name to see who it is. Click to open the full
-            profile. Cells deepen with population — sparse cells name positions
-            the field has not produced.
+            Hover a face or name to see who it is. Click a face to open the
+            profile, or click a cell to drill in. Cells deepen with population —
+            sparse cells name positions the field has not produced.
           </p>
         )}
       </div>
