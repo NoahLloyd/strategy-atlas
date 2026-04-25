@@ -75,14 +75,17 @@ export default function HomePage() {
           <Link href="/people" className="chip is-complement">
             Browse {people.length} people →
           </Link>
+          <Link href="/atlas" className="chip">
+            Strategy atlas
+          </Link>
+          <Link href="/board" className="chip">
+            The board
+          </Link>
           <Link href="/pdoom" className="chip">
-            p(doom) board
+            p(doom)
           </Link>
           <Link href="/timelines" className="chip">
-            AGI timelines
-          </Link>
-          <Link href="/strategies" className="chip">
-            Strategy tags <span className="direction">{tagStats.length}</span>
+            Timelines
           </Link>
         </div>
       </section>
@@ -237,6 +240,62 @@ export default function HomePage() {
           </ul>
         </section>
       )}
+
+      <section className="mb-16 border-t-2 border-[var(--color-ink)] pt-6">
+        <div className="grid md:grid-cols-[2fr_1fr] gap-8 items-start">
+          <div>
+            <h2
+              className="text-2xl mb-3"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Where the consensus lives.
+            </h2>
+            <p
+              className="text-base leading-relaxed mb-3 max-w-2xl"
+              style={{ color: "var(--color-ink-soft)" }}
+            >
+              The most prominent figures on the record are placed on a
+              two-axis grid: <strong style={{ color: "var(--color-ink)" }}>expertise</strong>{" "}
+              (frontier-builder → commentator) on the technical side and{" "}
+              <strong style={{ color: "var(--color-ink)" }}>recognition</strong>{" "}
+              (household-name → emerging) on the public side. The grid is
+              hand-classified with concrete evidence per person — no single
+              proxy. Filter by strategy to see whether a position is held
+              mostly by builders, mostly by commentators, or somewhere in
+              between.
+            </p>
+            <p
+              className="text-sm italic mb-4 max-w-2xl"
+              style={{ color: "var(--color-ink-soft)" }}
+            >
+              The tiers categorise role and reach. They are not a ranking —
+              an external-domain expert and a frontier-builder are different
+              vantages, not better and worse.
+            </p>
+            <Link href="/board" className="chip is-complement">
+              Open the board →
+            </Link>
+          </div>
+          <div className="border hairline p-4" style={{ background: "var(--color-parchment-soft)" }}>
+            <p className="num-label mb-2">six expertise tiers</p>
+            <ul className="text-xs space-y-1" style={{ color: "var(--color-ink-soft)" }}>
+              <li>frontier-builder</li>
+              <li>deep-technical</li>
+              <li>applied-technical</li>
+              <li>policy / meta</li>
+              <li>external-domain</li>
+              <li>commentator</li>
+            </ul>
+            <p className="num-label mb-2 mt-4">four recognition tiers</p>
+            <ul className="text-xs space-y-1" style={{ color: "var(--color-ink-soft)" }}>
+              <li>household-name</li>
+              <li>field-leading</li>
+              <li>established</li>
+              <li>emerging</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <section className="mb-16 border-t-2 border-[var(--color-ink)] pt-6">
         <h2
