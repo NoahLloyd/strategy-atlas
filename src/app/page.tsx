@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { people, strategyTagUsage } from "@/lib/people";
 import { getTagById } from "@/lib/strategy-tags";
-import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 
 function formatPDoom(v: number | [number, number]): string {
   if (Array.isArray(v)) return `${Math.round(v[0] * 100)}–${Math.round(v[1] * 100)}%`;
@@ -39,7 +39,6 @@ export default function HomePage() {
   return (
     <div className="max-w-6xl mx-auto px-6 pt-14 pb-20">
       <section className="mb-16 max-w-4xl">
-        <p className="num-label mb-3">agi strategies</p>
         <h1
           className="text-5xl sm:text-6xl lg:text-7xl leading-[1.03] mb-6"
           style={{ fontFamily: "var(--font-display)" }}
@@ -50,17 +49,17 @@ export default function HomePage() {
           className="text-xl leading-relaxed mb-4 max-w-3xl"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          A citation-backed repository of strategic positions on AI and AGI.
-          Every claim is tied to a named person, dated, and linked to a
-          primary source.
+          Every position on this site belongs to a named person, is dated,
+          and links to a primary source. So you don&apos;t have to take
+          anyone&apos;s word for what a researcher, executive, or politician
+          actually thinks about AGI.
         </p>
         <p
           className="text-base leading-relaxed max-w-3xl"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          The goal is a record so dense that no one has to take anyone&apos;s
-          word for what a researcher, executive, or politician actually thinks.
-          Strategy categories emerge from the corpus, not the other way round.
+          Strategy tags are read off what people say, not assigned from a
+          checklist. They evolve as the directory grows.
         </p>
         <div className="flex flex-wrap gap-3 mt-8">
           <Link href="/people" className="chip is-complement">
@@ -92,51 +91,67 @@ export default function HomePage() {
       </section>
 
       <section className="mb-16 border-t-2 border-[var(--color-ink)] pt-6">
-        <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
+        <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6 gap-3 flex-wrap">
           <h2
             className="text-2xl"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Recently added.
           </h2>
-          <Link href="/people" className="underline-wiggle text-sm">
-            all people →
-          </Link>
+          <div className="flex items-baseline gap-3">
+            <span
+              className="num-label"
+              style={{ color: "var(--color-ink-soft)" }}
+            >
+              by last updated
+            </span>
+            <Link href="/people" className="underline-wiggle text-sm">
+              all people →
+            </Link>
+          </div>
         </div>
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
           {recentlyAdded.map((p) => (
             <li key={p.id}>
-              <Link href={`/people/${p.id}`} className="unstyled">
-                <div className="flex items-start gap-3 border hairline p-3 hover:border-[var(--color-ink)] transition-colors">
-                  <PersonAvatar person={p} size={40} />
-                  <div className="flex-1 min-w-0">
+              <div className="flex items-start gap-3 border hairline p-3 hover:border-[var(--color-ink)] transition-colors">
+                <HoverFaceLink person={p} size={40} placement="right" />
+                <div className="flex-1 min-w-0">
+                  <Link href={`/people/${p.id}`} className="unstyled hover:underline">
                     <p className="font-medium leading-tight" style={{ fontFamily: "var(--font-display)" }}>
                       {p.name}
                     </p>
-                    {p.tagline && (
-                      <p className="text-xs italic line-clamp-2 mt-1" style={{ color: "var(--color-ink-soft)" }}>
-                        {p.tagline}
-                      </p>
-                    )}
-                  </div>
+                  </Link>
+                  {p.tagline && (
+                    <p className="text-xs italic line-clamp-2 mt-1" style={{ color: "var(--color-ink-soft)" }}>
+                      {p.tagline}
+                    </p>
+                  )}
                 </div>
-              </Link>
+              </div>
             </li>
           ))}
         </ul>
       </section>
 
       <section className="mb-16 border-t-2 border-[var(--color-ink)] pt-6">
-        <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
+        <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6 gap-3 flex-wrap">
           <h2
             className="text-2xl"
             style={{ fontFamily: "var(--font-display)" }}
           >
             The spread, in one look.
           </h2>
-          <Link href="/pdoom" className="underline-wiggle text-sm">
-            every p(doom) →
-          </Link>
+          <div className="flex items-baseline gap-3">
+            <span
+              className="num-label"
+              style={{ color: "var(--color-ink-soft)" }}
+            >
+              by p(doom)
+            </span>
+            <Link href="/pdoom" className="underline-wiggle text-sm">
+              every p(doom) →
+            </Link>
+          </div>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
           <div>
@@ -147,14 +162,17 @@ export default function HomePage() {
                   key={person.id}
                   className="flex items-center gap-3 border-b hairline py-2"
                 >
-                  <Link href={`/people/${person.id}`} className="unstyled">
-                    <PersonAvatar person={person} size={36} />
-                  </Link>
-                  <Link href={`/people/${person.id}`} className="unstyled hover:underline flex-1">
-                    <span style={{ fontFamily: "var(--font-display)" }}>
-                      {person.name}
-                    </span>
-                  </Link>
+                  <HoverFaceLink person={person} size={36} placement="right" />
+                  <span className="flex-1">
+                    <HoverFaceLink person={person} placement="below">
+                      <span
+                        className="hover:underline"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {person.name}
+                      </span>
+                    </HoverFaceLink>
+                  </span>
                   <span
                     className="text-xl"
                     style={{ fontFamily: "var(--font-display)" }}
@@ -173,14 +191,17 @@ export default function HomePage() {
                   key={person.id}
                   className="flex items-center gap-3 border-b hairline py-2"
                 >
-                  <Link href={`/people/${person.id}`} className="unstyled">
-                    <PersonAvatar person={person} size={36} />
-                  </Link>
-                  <Link href={`/people/${person.id}`} className="unstyled hover:underline flex-1">
-                    <span style={{ fontFamily: "var(--font-display)" }}>
-                      {person.name}
-                    </span>
-                  </Link>
+                  <HoverFaceLink person={person} size={36} placement="right" />
+                  <span className="flex-1">
+                    <HoverFaceLink person={person} placement="below">
+                      <span
+                        className="hover:underline"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {person.name}
+                      </span>
+                    </HoverFaceLink>
+                  </span>
                   <span
                     className="text-xl"
                     style={{ fontFamily: "var(--font-display)" }}
@@ -196,16 +217,24 @@ export default function HomePage() {
 
       {topTags.length > 0 && (
         <section className="mb-16 border-t-2 border-[var(--color-ink)] pt-6">
-          <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
+          <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6 gap-3 flex-wrap">
             <h2
               className="text-2xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
               The most adhered-to strategies so far.
             </h2>
-            <Link href="/strategies" className="underline-wiggle text-sm">
-              every tag →
-            </Link>
+            <div className="flex items-baseline gap-3">
+              <span
+                className="num-label"
+                style={{ color: "var(--color-ink-soft)" }}
+              >
+                by endorser count
+              </span>
+              <Link href="/strategies" className="underline-wiggle text-sm">
+                every tag →
+              </Link>
+            </div>
           </div>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {topTags.map(({ id, count }) => {
@@ -253,8 +282,8 @@ export default function HomePage() {
               (frontier-builder → commentator) on the technical side and{" "}
               <strong style={{ color: "var(--color-ink)" }}>recognition</strong>{" "}
               (household-name → emerging) on the public side. A third
-              dimension — <strong style={{ color: "var(--color-ink)" }}>vintage</strong>{" "}
-              (pioneer → post-ChatGPT) — captures the era of AI whose
+              dimension, <strong style={{ color: "var(--color-ink)" }}>vintage</strong>{" "}
+              (pioneer → post-ChatGPT), captures the era of AI whose
               problems shaped the person&apos;s priors. Each tier is
               hand-classified with concrete evidence; no single proxy.
               Filter by strategy to see whether a position is held mostly
@@ -266,7 +295,7 @@ export default function HomePage() {
               style={{ color: "var(--color-ink-soft)" }}
             >
               The tiers categorise role, reach, and era. They are not a
-              ranking — an external-domain expert and a frontier-builder
+              ranking. An external-domain expert and a frontier-builder
               are different vantages, not better and worse.
             </p>
             <Link href="/board" className="chip is-complement">
@@ -303,71 +332,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mb-16 border-t-2 border-[var(--color-ink)] pt-6">
-        <h2
-          className="text-2xl mb-3"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          Method.
-        </h2>
-        <ol className="space-y-4 text-base max-w-3xl" style={{ color: "var(--color-ink)" }}>
-          <li className="flex gap-4">
-            <span className="num-label mt-1 flex-shrink-0">01</span>
-            <span>
-              A person is added when there is at least one primary source
-              where they state a strategic position about AI. No paraphrase
-              without marking; no source without a URL.
-            </span>
-          </li>
-          <li className="flex gap-4">
-            <span className="num-label mt-1 flex-shrink-0">02</span>
-            <span>
-              Every quote is tagged by fidelity: direct, faithful paraphrase,
-              loose paraphrase, or summary. The link goes to the primary source.
-            </span>
-          </li>
-          <li className="flex gap-4">
-            <span className="num-label mt-1 flex-shrink-0">03</span>
-            <span>
-              Strategy tags are assigned by matching the person&apos;s argument
-              to an inductive taxonomy — not by asking the person what tag
-              applies. The taxonomy evolves with the corpus.
-            </span>
-          </li>
-          <li className="flex gap-4">
-            <span className="num-label mt-1 flex-shrink-0">04</span>
-            <span>
-              Separate fields capture p(doom) statements and AGI timeline
-              predictions. When a person updates their view, the update is
-              logged rather than overwriting the old claim.
-            </span>
-          </li>
-        </ol>
-      </section>
-
-      <section className="border-t-2 border-[var(--color-ink)] pt-6">
-        <h2
-          className="text-2xl mb-3"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          What this is not.
-        </h2>
-        <ul className="space-y-3 text-base max-w-3xl" style={{ color: "var(--color-ink-soft)" }}>
-          <li>
-            <strong style={{ color: "var(--color-ink)" }}>Not a ranking.</strong>{" "}
-            A person with more quotes is better documented, not more important.
-          </li>
-          <li>
-            <strong style={{ color: "var(--color-ink)" }}>Not an endorsement.</strong>{" "}
-            Every strategy tag is represented; inclusion is not agreement.
-          </li>
-          <li>
-            <strong style={{ color: "var(--color-ink)" }}>Not settled.</strong>{" "}
-            Tags will merge, split, and evolve as the corpus grows past 1000
-            people.
-          </li>
-        </ul>
-      </section>
     </div>
   );
 }
