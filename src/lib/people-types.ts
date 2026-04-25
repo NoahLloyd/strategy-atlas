@@ -46,6 +46,11 @@ export interface StrategyPosition {
   stance: StrategyStance;
   summary: string;
   quotes: Quote[];
+  // Mark true when the assignment is inferred from a passing remark or
+  // background reputation, not a clear position statement. UI hides
+  // tentative-only matches when filtering by strategy, so these don't
+  // pollute the per-strategy reading.
+  tentative?: boolean;
 }
 
 export interface PDoomClaim {

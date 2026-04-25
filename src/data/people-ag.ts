@@ -131,6 +131,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Argues AI will produce trillion-dollar companies and decisively shift the U.S.-China balance; less explicit on safety strategy but consistently bullish on capabilities.",
         quotes: [
@@ -1299,6 +1300,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Argues AI-for-biology will transform agriculture, medicine, and food systems within a decade; less explicit on safety strategy but consistently bullish on capabilities.",
         quotes: [
@@ -6389,6 +6391,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "mixed",
+        tentative: true,
         summary:
           "Argues GPT-4 already exhibits early AGI behaviors and that capability progress will continue rapidly; less explicit on safety strategy.",
         quotes: [

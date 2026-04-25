@@ -50,6 +50,11 @@ export function PeopleBrowser({
   const [recognition, setRecognition] = useState<RecognitionTier | null>(null);
   const [vintage, setVintage] = useState<VintageEra | null>(null);
   const [onlyProfiled, setOnlyProfiled] = useState(false);
+  // When filtering by a strategy tag, hide people whose only position on
+  // that tag is tentative (assigned from a passing remark, not a clear
+  // statement). Default ON — tentative assignments otherwise pad the
+  // per-strategy list with people who aren't really on that bet.
+  const [hideTentative, setHideTentative] = useState(true);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -57,7 +62,13 @@ export function PeopleBrowser({
       if (q && !p.name.toLowerCase().includes(q) && !p.summary.toLowerCase().includes(q) && !(p.tagline?.toLowerCase().includes(q))) {
         return false;
       }
-      if (tag && !p.positions.some((pos) => pos.strategyId === tag)) return false;
+      if (tag) {
+        const matching = p.positions.filter((pos) => pos.strategyId === tag);
+        if (matching.length === 0) return false;
+        if (hideTentative && matching.every((pos) => pos.tentative)) {
+          return false;
+        }
+      }
       if (category && !p.categories.includes(category as never)) return false;
       if (onlyWithPDoom && !(p.pDoom && p.pDoom.length > 0)) return false;
       if (onlyWithVideo) {
@@ -114,6 +125,7 @@ export function PeopleBrowser({
     recognition,
     vintage,
     onlyProfiled,
+    hideTentative,
   ]);
 
   return (
@@ -140,45 +152,13 @@ export function PeopleBrowser({
             <option value="recent">Recently updated</option>
           </select>
         </div>
-        <div className="flex flex-wrap gap-2 items-center text-xs">
-          <button
-            onClick={() => setTag(null)}
-            className={tag === null ? "chip is-complement" : "chip"}
-          >
-            all strategies
-          </button>
-          {allTags.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setTag(tag === t.id ? null : t.id)}
-              className={tag === t.id ? "chip is-complement" : "chip"}
-            >
-              {t.name} <span className="direction">{t.count}</span>
-            </button>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-2 items-center text-xs">
-          <button
-            onClick={() => setCategory(null)}
-            className={category === null ? "chip is-complement" : "chip"}
-          >
-            all roles
-          </button>
-          {allCategories.map((c) => (
-            <button
-              key={c}
-              onClick={() => setCategory(category === c ? null : c)}
-              className={category === c ? "chip is-complement" : "chip"}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-        <details className="border hairline p-2 text-xs" style={{ color: "var(--color-ink-soft)" }}>
-          <summary className="cursor-pointer num-label">
-            profile filters · expertise &amp; recognition
-          </summary>
-          <div className="grid sm:grid-cols-2 gap-3 mt-3">
+        {/* Profile filters — visible by default. These are the load-bearing
+            filters; the strategy chip list below is for narrowing further. */}
+        <div className="border hairline p-3 text-xs" style={{ color: "var(--color-ink-soft)" }}>
+          <p className="num-label mb-3">
+            profile filters · expertise · recognition · vintage
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
             <div>
               <p className="num-label mb-2">expertise</p>
               <div className="flex flex-wrap gap-1">
@@ -260,8 +240,56 @@ export function PeopleBrowser({
             <Link href="/board" className="underline-wiggle">
               board
             </Link>{" "}
-            for the full grid and tier criteria. Profiled subset is hand-classified.
+            for the full grid and tier criteria. Profiled subset is
+            hand-classified — unprofiled people are filtered out by these
+            chips.
           </p>
+        </div>
+        <div className="flex flex-wrap gap-2 items-center text-xs">
+          <button
+            onClick={() => setCategory(null)}
+            className={category === null ? "chip is-complement" : "chip"}
+          >
+            all roles
+          </button>
+          {allCategories.map((c) => (
+            <button
+              key={c}
+              onClick={() => setCategory(category === c ? null : c)}
+              className={category === c ? "chip is-complement" : "chip"}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+        {/* Strategy chips — collapsed by default. There are too many tags
+            to scan as a top-level filter; reach for them when you have a
+            specific strategy in mind. */}
+        <details className="border hairline p-2 text-xs" style={{ color: "var(--color-ink-soft)" }}>
+          <summary className="cursor-pointer num-label">
+            filter by specific strategy ({allTags.length} tags)
+            {tag && (() => {
+              const t = allTags.find((x) => x.id === tag);
+              return t ? <span> · selected: {t.name}</span> : null;
+            })()}
+          </summary>
+          <div className="flex flex-wrap gap-2 items-center mt-3">
+            <button
+              onClick={() => setTag(null)}
+              className={tag === null ? "chip is-complement" : "chip"}
+            >
+              all strategies
+            </button>
+            {allTags.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTag(tag === t.id ? null : t.id)}
+                className={tag === t.id ? "chip is-complement" : "chip"}
+              >
+                {t.name} <span className="direction">{t.count}</span>
+              </button>
+            ))}
+          </div>
         </details>
         <div className="flex flex-wrap gap-4 text-xs" style={{ color: "var(--color-ink-soft)" }}>
           <label className="flex items-center gap-2 cursor-pointer">
@@ -287,6 +315,19 @@ export function PeopleBrowser({
               onChange={(e) => setOnlyProfiled(e.target.checked)}
             />
             only profiled
+          </label>
+          <label
+            className="flex items-center gap-2 cursor-pointer"
+            title="When filtering by a strategy, hide people whose only matching position is tentative — i.e. inferred from a passing remark, not a clear statement."
+            style={tag ? undefined : { opacity: 0.5 }}
+          >
+            <input
+              type="checkbox"
+              checked={hideTentative}
+              onChange={(e) => setHideTentative(e.target.checked)}
+              disabled={!tag}
+            />
+            hide tentative-only matches
           </label>
           <span className="num-label ml-auto">{filtered.length} of {people.length}</span>
         </div>
