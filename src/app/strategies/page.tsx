@@ -28,6 +28,7 @@ export default function StrategiesIndex() {
   type TagStats = {
     endorsers: number;
     opposers: number;
+    tentativeOnly: number;
     pdoomMean: number | null;
     pdoomCount: number;
   };
@@ -35,6 +36,7 @@ export default function StrategiesIndex() {
   for (const t of strategyTags) {
     let endorsers = 0;
     let opposers = 0;
+    let tentativeOnly = 0;
     const pVals: number[] = [];
     for (const p of people) {
       const positions = p.positions.filter((pos) => pos.strategyId === t.id);
@@ -47,6 +49,7 @@ export default function StrategiesIndex() {
       );
       if (isEndorse) {
         endorsers++;
+        if (positions.every((pos) => pos.tentative)) tentativeOnly++;
         const v = pdoomMid(p.pDoom?.[0]?.value);
         if (v !== null) pVals.push(v);
       }
@@ -55,6 +58,7 @@ export default function StrategiesIndex() {
     tagStats.set(t.id, {
       endorsers,
       opposers,
+      tentativeOnly,
       pdoomMean:
         pVals.length === 0
           ? null
@@ -178,6 +182,11 @@ export default function StrategiesIndex() {
                       <span>↑ {stats.endorsers} endorse</span>
                       {stats.opposers > 0 && (
                         <span>↓ {stats.opposers} oppose</span>
+                      )}
+                      {stats.tentativeOnly > 0 && (
+                        <span title="Endorsers whose only matching position is tentative">
+                          ~ {stats.tentativeOnly} tentative
+                        </span>
                       )}
                       {stats.pdoomMean !== null && (
                         <span>
