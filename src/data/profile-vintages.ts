@@ -1037,4 +1037,276 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "DeepMind COO from 2018. Operational role spans deep-learning into scaling.",
   },
+
+  // Second-pass classifications for the long tail of profiled people.
+  "steve-wozniak": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Apple co-founder; AI commentary largely post-ChatGPT (signed FLI Pause letter 2023).",
+  },
+  "cassie-kozyrkov": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Google chief decision scientist 2014–2022. Career maps to deep-learning era applied ML.",
+  },
+  "vincent-conitzer": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Carnegie Mellon professor; multi-agent + game-theoretic AI work spans 2000s. Frame predates deep learning.",
+  },
+  "paul-g-allen": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "1953–2018. Microsoft co-founder. AI2 founded 2014. AI engagement is pre-deep-learning era philanthropy.",
+  },
+  "erik-brynjolfsson": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Race Against the Machine 2011, The Second Machine Age 2014. Pre-deep-learning labour-economics frame.",
+  },
+  "daron-acemoglu": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "MIT economist; institutional-economics work on technology long predates deep learning. Why Nations Fail 2012.",
+  },
+  "carl-benedikt-frey": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Future of Employment 2013 with Osborne — defining pre-deep-learning automation-economics paper.",
+  },
+  "jason-matheny": {
+    vintage: "scaling-era",
+    vintageNote:
+      "RAND CEO from 2022; founding director CSET 2019. Career bridges intelligence-community to scaling-era AI policy.",
+  },
+  "emmanuel-macron": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Paris AI Action Summit 2025; AI policy posture intensifies post-ChatGPT.",
+  },
+  "geoffrey-miller": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Evolutionary psychologist; AI risk commentary intensified post-ChatGPT (signed pause letter 2023).",
+  },
+  "jeremy-howard": {
+    vintage: "deep-learning",
+    vintageNote:
+      "fast.ai co-founded 2016. Career is deep-learning era democratisation.",
+  },
+  "abeba-birhane": {
+    vintage: "deep-learning",
+    vintageNote:
+      "PhD UCD 2022; critical-AI work on training data and bias matures in deep-learning era.",
+  },
+  "jeff-hawkins": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Numenta founded 2005. On Intelligence 2004. Cortical-theory frame predates deep learning.",
+  },
+  "will-macaskill": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Founded GWWC 2009 and 80,000 Hours 2011. EA-movement intellectual frame is pre-deep-learning.",
+  },
+  "andrew-yang": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Universal-basic-income presidential platform 2020 was deep-learning-era automation-anxiety framing.",
+  },
+  "gillian-hadfield": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Schwartz Reisman Institute founded 2019. Regulatory markets and AI law work in deep-learning era.",
+  },
+  "david-sacks": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "All-In podcast (2020) became AI-heavy post-ChatGPT. White House AI/crypto Czar 2025.",
+  },
+  "alondra-nelson": {
+    vintage: "scaling-era",
+    vintageNote:
+      "AI Bill of Rights blueprint 2022 (OSTP). Career bridges sociology of science into scaling-era AI policy.",
+  },
+  "percy-liang": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Stanford from 2012. CRFM founded 2021. Career is deep-learning era benchmark and foundation-model work.",
+  },
+  "rishi-bommasani": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Stanford CRFM. Foundation Model Index work post-2021. Career is scaling-era foundation-model evaluation.",
+  },
+  "mo-gawdat": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Google X CBO 2014–2018. Scary Smart 2021. Career bridges deep-learning era operations to AI commentary.",
+  },
+  "sara-hooker": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Hardware Lottery paper 2020. Cohere For AI 2022. Career anchors in scaling-era applied research.",
+  },
+  "jeff-dean": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Google senior fellow; Brain co-founder ~2011. Operationally embedded in deep-learning era throughout.",
+  },
+  "subbarao-kambhampati": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Arizona State professor since 1992. Planning-and-reasoning frame is symbolic-era; LLM critique runs on top.",
+  },
+  "lisa-su": {
+    vintage: "deep-learning",
+    vintageNote:
+      "AMD CEO since 2014. AI-relevant chip strategy through deep-learning era hardware demand.",
+  },
+  "alex-wang": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Scale AI founded 2016. Data-labeling-for-models scaled with the scaling era.",
+  },
+  "bill-mckibben": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Climate-journalism career predates AI; engagement on data-centre energy demand is post-ChatGPT.",
+  },
+  "fumio-kishida": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Japan PM 2021–2024. Hiroshima AI Process 2023 G7 framework was the post-ChatGPT G7 AI initiative.",
+  },
+  "christof-koch": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Allen Institute neuroscience program lead from 2011. Consciousness-and-computing work spans 1990s+.",
+  },
+  "alex-karp": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Palantir co-founder 2003; CEO since founding. Operates AI as defence/intel through deep-learning era.",
+  },
+  "palmer-luckey": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Anduril founded 2017. Defence-AI strategy matures in scaling era.",
+  },
+  "tobi-lutke": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Shopify founder; AI-as-coworker memo 2025 frames the post-ChatGPT integration debate.",
+  },
+  "xi-jinping": {
+    vintage: "deep-learning",
+    vintageNote:
+      "China AI Development Plan 2017 set the deep-learning era AI strategic posture.",
+  },
+  "narendra-modi": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "India AI Mission 2024; AI engagement intensifies post-ChatGPT.",
+  },
+  "olaf-scholz": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Germany chancellor 2021–2025. EU AI Act work and AI Action Summit 2025 sit in post-ChatGPT era.",
+  },
+  "patricia-churchland": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Neurophilosopher (UCSD). Brain-Trust 2011. Cognitive frame predates deep learning.",
+  },
+  "anil-seth": {
+    vintage: "deep-learning",
+    vintageNote:
+      "University of Sussex; Being You 2021. Consciousness science frame matures during deep-learning era.",
+  },
+  "doris-tsao": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Caltech then Berkeley. Face-cell neuroscience work spans 2010s. Frame is deep-learning era cognitive neuro.",
+  },
+  "amartya-sen": {
+    vintage: "pioneer",
+    vintageNote:
+      "1933–. Nobel 1998. Capabilities approach frames AI through pre-AI ethics established 1980s.",
+  },
+  "esther-duflo": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Nobel 2019. Development-economics work post-2003. Engages AI through deep-learning-era development frame.",
+  },
+  "joseph-stiglitz": {
+    vintage: "pioneer",
+    vintageNote:
+      "1943–. Nobel 2001. Information-asymmetries frame is pre-AI; AI commentary inherits it.",
+  },
+  "adam-dangelo": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Quora founded 2009. Poe AI 2022. OpenAI board 2018. AI engagement is scaling-era founder-investor.",
+  },
+  "john-searle": {
+    vintage: "pioneer",
+    vintageNote:
+      "1932–. Chinese Room 1980. Foundational philosophy-of-mind work predates AI as discipline.",
+  },
+  "thomas-nagel": {
+    vintage: "pioneer",
+    vintageNote:
+      "1937–. What Is It Like to Be a Bat 1974. Foundational philosophy-of-mind argument predates AI.",
+  },
+  "tony-fadell": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "iPod and Nest era pre-AI. Build 2022 + AI commentary intensifies post-ChatGPT.",
+  },
+  "joelle-pineau": {
+    vintage: "deep-learning",
+    vintageNote:
+      "McGill from 2004; FAIR co-lead 2017. Career bridges into deep-learning era reproducibility work.",
+  },
+  "vivek-ramaswamy": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Roivant founded 2014. AI-as-political-platform engagement is post-ChatGPT presidential cycle 2024.",
+  },
+  "bret-taylor": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Salesforce co-CEO 2021-2022. OpenAI board chair 2023. Career bridges into scaling-era AI governance.",
+  },
+  "vint-cerf": {
+    vintage: "pioneer",
+    vintageNote:
+      "Co-designed TCP/IP 1973. Internet pioneer; AI commentary inherits a pre-AI computing frame.",
+  },
+  "tony-blair": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "TBI Future of Britain Conference 2023+ has AI-policy focus; pre-2023 was governance broadly.",
+  },
+  "ed-felten": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Princeton from 1993. Tech-policy work spans 2000s. Pre-deep-learning frame.",
+  },
+  "cathy-oneil": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Weapons of Math Destruction 2016. Algorithmic-bias frame matures in deep-learning era.",
+  },
+  "amy-zegart": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Stanford Hoover Institution. Spies, Lies, and Algorithms 2022. AI-and-intelligence work in scaling era.",
+  },
+  "bill-joy": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Sun Microsystems co-founder. Why the Future Doesn't Need Us 2000 — pre-deep-learning x-risk argument.",
+  },
 };
