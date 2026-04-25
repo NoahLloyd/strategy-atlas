@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #4a4a4a;
+  --color-parchment: #faf8f3;
+  --color-parchment-soft: #f2efe6;
+  --color-rule: #d9d5ca;
+  --color-link: #8b3a2e;
+  --color-link-hover: #6b2a20;
+  --color-accent: #c9a86a;
+  --color-conflict: #b24a3a;
+  --color-complement: #3a7a52;
+  --color-neutral: #8a8778;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Serif", "Iowan Old Style", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-ui: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-feature-settings: "ss01", "kern", "liga", "calt";
+  letter-spacing: -0.01em;
+}
+
+/* Display-only feature settings for Fraunces when used for headlines */
+[style*="--font-display"],
+h1[style*="font-display"],
+h2[style*="font-display"],
+h3[style*="font-display"] {
+  font-variation-settings: "opsz" 120, "SOFT" 50, "WONK" 0;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-ink: #f3ede0;
+  --color-ink-soft: #aba79a;
+  --color-parchment: #0f0e0c;
+  --color-parchment-soft: #181712;
+  --color-rule: #2f2d28;
+  --color-link: #e08a6a;
+  --color-link-hover: #edb494;
+  --color-accent: #d4a75a;
+  --color-conflict: #db7560;
+  --color-complement: #7fc294;
+  --color-neutral: #958f7f;
+}
+
+html,
+body {
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-feature-settings: "kern", "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.hairline {
+  border-color: var(--color-rule);
+}
+
+.lever-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--color-rule);
+  background: var(--color-parchment-soft);
+  color: var(--color-ink-soft);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+.lever-pill.is-active {
+  background: var(--color-ink);
+  color: var(--color-parchment);
+  border-color: var(--color-ink);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--color-rule);
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  line-height: 1.1;
+  text-decoration: none;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.chip:hover {
+  background: var(--color-parchment-soft);
+  border-color: var(--color-ink-soft);
+}
+
+.chip.is-conflict {
+  border-color: var(--color-conflict);
+  color: var(--color-conflict);
+}
+
+.chip.is-complement {
+  border-color: var(--color-complement);
+  color: var(--color-complement);
+}
+
+.chip .direction {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.num-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
+}
+
+.rule-heavy {
+  border-top: 2px solid var(--color-ink);
+}
+
+.rule-light {
+  border-top: 1px solid var(--color-rule);
+}
+
+a.unstyled {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.underline-wiggle {
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+a.underline-wiggle:hover {
+  color: var(--color-link-hover);
+}
+
+.matrix-cell {
+  border: 1px solid var(--color-rule);
+  padding: 0.75rem;
+  min-height: 5rem;
+  background: var(--color-parchment);
+}
+
+.matrix-cell.is-conflict {
+  background: color-mix(in oklab, var(--color-conflict) 12%, var(--color-parchment));
+}
+
+.matrix-cell.is-complement {
+  background: color-mix(in oklab, var(--color-complement) 10%, var(--color-parchment));
+}
+
+.matrix-cell.is-self {
+  background: var(--color-parchment-soft);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    var(--color-rule) 4px,
+    var(--color-rule) 5px
+  );
+}
+
+.matrix-cell.is-same-lever {
+  background: color-mix(in oklab, var(--color-accent) 12%, var(--color-parchment));
+}
+
+.small-caps {
+  font-variant: all-small-caps;
+  letter-spacing: 0.08em;
+}
