@@ -36,8 +36,7 @@ export default function PeopleIndex() {
         <p className="text-lg leading-relaxed mb-3" style={{ color: "var(--color-ink-soft)" }}>
           Every strategic claim on this site belongs to a named person, is
           dated, and links to a primary source. Direct quotes are marked
-          <em> direct</em>; paraphrases are marked as such. Videos are cropped
-          to the moment the person said it.
+          <em> direct</em>; paraphrases are marked as such.
         </p>
         <p className="text-base leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
           Strategy categories are inductive — built from what people actually
