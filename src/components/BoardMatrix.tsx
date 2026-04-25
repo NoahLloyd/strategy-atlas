@@ -13,6 +13,7 @@ import {
 } from "@/data/profile-tiers";
 import { getTagById } from "@/lib/strategy-tags";
 import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 
 type Props = {
   people: Person[];
@@ -217,20 +218,20 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                           onClick={(e) => e.stopPropagation()}
                         >
                           {cell.map((p) => (
-                            <li key={p.id}>
-                              <Link
-                                href={`/people/${p.id}`}
-                                className="unstyled inline-block"
-                                onMouseEnter={() => setHovered(p)}
-                                onMouseLeave={() =>
-                                  setHovered((h) =>
-                                    h?.id === p.id ? null : h,
-                                  )
-                                }
-                                title={p.name}
-                              >
-                                <PersonAvatar person={p} size={28} />
-                              </Link>
+                            <li
+                              key={p.id}
+                              onMouseEnter={() => setHovered(p)}
+                              onMouseLeave={() =>
+                                setHovered((h) =>
+                                  h?.id === p.id ? null : h,
+                                )
+                              }
+                            >
+                              <HoverFaceLink
+                                person={p}
+                                size={28}
+                                placement="below"
+                              />
                             </li>
                           ))}
                         </ul>

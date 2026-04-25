@@ -231,7 +231,7 @@ export function SiteHeader() {
           })}
           <Link
             href="/about"
-            className="unstyled px-3 text-sm flex items-center gap-1.5 transition-colors"
+            className="unstyled px-3 text-sm flex items-center gap-1.5 transition-colors hover:bg-[var(--color-parchment-soft)]"
             style={{
               color:
                 pathname === "/about"

@@ -195,3 +195,94 @@ a.underline-wiggle:hover {
   font-variant: all-small-caps;
   letter-spacing: 0.08em;
 }
+
+/* Hover-card on face avatars in dense people-grids. The card is hidden
+   by default and revealed when the hovering face is hovered or has
+   keyboard focus, including via the wrapping link. We use CSS only —
+   no JS state — so the card stays available even on touch (tap reveals
+   the link's :focus-visible state). */
+.face-hover {
+  position: relative;
+  display: inline-block;
+}
+.face-hover-card {
+  position: absolute;
+  z-index: 60;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 90ms ease, transform 90ms ease;
+  background: var(--color-parchment);
+  border: 1px solid var(--color-ink);
+  box-shadow: 0 8px 22px -10px rgba(0, 0, 0, 0.35);
+  padding: 0.75rem;
+  width: 280px;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--color-ink);
+}
+.face-hover:hover .face-hover-card,
+.face-hover:focus-within .face-hover-card {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Default placement: bottom-aligned with the face. Variants below
+   handle edge cases. */
+.face-hover-card.place-below {
+  top: calc(100% + 6px);
+  left: 0;
+}
+.face-hover-card.place-above {
+  bottom: calc(100% + 6px);
+  left: 0;
+}
+.face-hover-card.place-right {
+  top: 0;
+  left: calc(100% + 6px);
+}
+.face-hover-card .face-hover-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.15;
+  margin-bottom: 2px;
+  color: var(--color-ink);
+}
+.face-hover-card .face-hover-tagline {
+  font-style: italic;
+  color: var(--color-ink-soft);
+  margin-bottom: 6px;
+}
+.face-hover-card .face-hover-meta {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: 6px;
+}
+.face-hover-card .face-hover-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 6px;
+}
+.face-hover-card .face-hover-tag {
+  display: inline-block;
+  border: 1px solid var(--color-rule);
+  padding: 1px 5px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  color: var(--color-ink-soft);
+  background: var(--color-parchment-soft);
+}
+.face-hover-card .face-hover-cta {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}

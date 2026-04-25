@@ -3,7 +3,7 @@ import { strategies, strategiesByLever, symmetricConflicts } from "@/lib/strateg
 import { levers } from "@/data/levers";
 import { StrategyCard } from "@/components/StrategyCard";
 import { LeverField } from "@/components/LeverField";
-import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 import { tagsForStrategyId } from "@/data/strategy-tag-bridge";
 import { peopleByStrategyTag } from "@/lib/people";
 import {
@@ -475,11 +475,17 @@ function SkewColumn({
         <ul className="space-y-3">
           {items.slice(0, 6).map((sk) => {
             const tier = expertiseTiers.find((t) => t.id === sk.dominant);
+            // Strategy name + meta inside a Link; faces outside the
+            // Link so each face's own link handles navigation cleanly
+            // (nested anchors are invalid HTML).
             return (
-              <li key={sk.strategy.id}>
+              <li
+                key={sk.strategy.id}
+                className="border-l-2 hairline pl-3 py-1.5 hover:border-[var(--color-ink)] transition-colors"
+              >
                 <Link
                   href={`/strategy/${sk.strategy.id}`}
-                  className="unstyled block border-l-2 hairline pl-3 py-1.5 hover:border-[var(--color-ink)] transition-colors"
+                  className="unstyled block"
                 >
                   <p
                     className="text-sm leading-tight"
@@ -499,28 +505,28 @@ function SkewColumn({
                     {tier?.short} · {Math.round(sk.dominantShare * 100)}% of{" "}
                     {sk.total}
                   </p>
-                  {sk.topFaces.length > 0 && (
-                    <ul className="flex flex-wrap gap-1">
-                      {sk.topFaces.map((p) => (
-                        <li key={p.id} title={p.name}>
-                          <PersonAvatar person={p} size={20} />
-                        </li>
-                      ))}
-                      {sk.total > sk.topFaces.length && (
-                        <li
-                          className="num-label"
-                          style={{
-                            alignSelf: "center",
-                            color: "var(--color-ink-soft)",
-                            marginLeft: 2,
-                          }}
-                        >
-                          +{sk.total - sk.topFaces.length}
-                        </li>
-                      )}
-                    </ul>
-                  )}
                 </Link>
+                {sk.topFaces.length > 0 && (
+                  <ul className="flex flex-wrap gap-1">
+                    {sk.topFaces.map((p) => (
+                      <li key={p.id}>
+                        <HoverFaceLink person={p} size={20} placement="below" />
+                      </li>
+                    ))}
+                    {sk.total > sk.topFaces.length && (
+                      <li
+                        className="num-label"
+                        style={{
+                          alignSelf: "center",
+                          color: "var(--color-ink-soft)",
+                          marginLeft: 2,
+                        }}
+                      >
+                        +{sk.total - sk.topFaces.length}
+                      </li>
+                    )}
+                  </ul>
+                )}
               </li>
             );
           })}

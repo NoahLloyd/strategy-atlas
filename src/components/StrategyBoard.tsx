@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type {
   Person,
   ExpertiseTier,
@@ -8,7 +7,7 @@ import {
   expertiseTiers,
   recognitionTiers,
 } from "@/data/profile-tiers";
-import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 
 type Props = {
   endorsers: Person[];
@@ -141,13 +140,11 @@ export function StrategyBoard({
                         <ul className="flex flex-wrap gap-1">
                           {cellEndorse.map((p) => (
                             <li key={p.id}>
-                              <Link
-                                href={`/people/${p.id}`}
-                                className="unstyled inline-block"
-                                title={`${p.name} — endorses`}
-                              >
-                                <PersonAvatar person={p} size={22} />
-                              </Link>
+                              <HoverFaceLink
+                                person={p}
+                                size={22}
+                                placement="below"
+                              />
                             </li>
                           ))}
                         </ul>
@@ -158,41 +155,37 @@ export function StrategyBoard({
                           style={{ opacity: 0.85 }}
                         >
                           {cellOppose.map((p) => (
-                            <li key={p.id}>
-                              <Link
-                                href={`/people/${p.id}`}
-                                className="unstyled inline-block relative"
+                            <li
+                              key={p.id}
+                              className="relative"
+                              style={{ filter: "grayscale(0.7)" }}
+                            >
+                              <HoverFaceLink
+                                person={p}
+                                size={22}
+                                placement="below"
+                              />
+                              <span
+                                aria-hidden="true"
+                                className="absolute pointer-events-none"
+                                style={{
+                                  top: -3,
+                                  right: -3,
+                                  width: 10,
+                                  height: 10,
+                                  borderRadius: 999,
+                                  background: "var(--color-parchment)",
+                                  border: "1px solid var(--color-ink)",
+                                  color: "var(--color-ink)",
+                                  fontSize: 8,
+                                  lineHeight: "8px",
+                                  textAlign: "center",
+                                  fontFamily: "var(--font-mono)",
+                                }}
                                 title={`${p.name} — opposes`}
                               >
-                                <span
-                                  className="block"
-                                  style={{
-                                    filter: "grayscale(0.7)",
-                                  }}
-                                >
-                                  <PersonAvatar person={p} size={22} />
-                                </span>
-                                <span
-                                  aria-hidden="true"
-                                  className="absolute pointer-events-none"
-                                  style={{
-                                    top: -3,
-                                    right: -3,
-                                    width: 10,
-                                    height: 10,
-                                    borderRadius: 999,
-                                    background: "var(--color-parchment)",
-                                    border: "1px solid var(--color-ink)",
-                                    color: "var(--color-ink)",
-                                    fontSize: 8,
-                                    lineHeight: "8px",
-                                    textAlign: "center",
-                                    fontFamily: "var(--font-mono)",
-                                  }}
-                                >
-                                  ×
-                                </span>
-                              </Link>
+                                ×
+                              </span>
                             </li>
                           ))}
                         </ul>
