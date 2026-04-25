@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { strategyTags, getTagById } from "@/lib/strategy-tags";
 import { peopleByStrategyTag, people as allPeople } from "@/lib/people";
 import { QuoteBlock } from "@/components/QuoteBlock";
-import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 import { StrategyBoard } from "@/components/StrategyBoard";
 import {
   expertiseTiers,
@@ -25,7 +25,7 @@ export async function generateMetadata({
   const t = getTagById(id);
   if (!t) return { title: "Not found" };
   return {
-    title: `${t.name} — AGI Strategies`,
+    title: `${t.name} · AGI Strategies`,
     description: t.oneLine,
   };
 }
@@ -45,11 +45,26 @@ export default async function StrategyTagPage({
     "conditional",
     "evolved-toward",
   ]);
-  const endorsers = adherents.filter((p) =>
+  // Stated endorser: has at least one non-tentative endorsing position on
+  // this tag. Tentative-only adherents are surfaced separately so the
+  // headline counts don't inflate from passing remarks.
+  const isStatedEndorser = (p: typeof adherents[number]) =>
     p.positions.some(
-      (pos) => pos.strategyId === id && ENDORSING_STANCES.has(pos.stance),
-    ),
-  );
+      (pos) =>
+        pos.strategyId === id &&
+        ENDORSING_STANCES.has(pos.stance) &&
+        !pos.tentative,
+    );
+  const isTentativeEndorser = (p: typeof adherents[number]) =>
+    !isStatedEndorser(p) &&
+    p.positions.some(
+      (pos) =>
+        pos.strategyId === id &&
+        ENDORSING_STANCES.has(pos.stance) &&
+        pos.tentative,
+    );
+  const endorsers = adherents.filter(isStatedEndorser);
+  const tentativeEndorsers = adherents.filter(isTentativeEndorser);
   const opposers = adherents.filter((p) =>
     p.positions.some(
       (pos) =>
@@ -61,7 +76,7 @@ export default async function StrategyTagPage({
   const corpusProfiled = allPeople.filter((p) => p.profile).length;
   const strategyId = tagToStrategyId[id];
 
-  // Endorser p(doom) summary — only first claim per person, mid-point of any
+  // Endorser p(doom) summary, only first claim per person, mid-point of any
   // ranges. We deliberately don't synthesise opposers' p(doom) into this stat
   // because the question "what do endorsers of this bet expect" is what makes
   // it useful.
@@ -103,13 +118,15 @@ export default async function StrategyTagPage({
 
   // Co-endorsement: which other strategy tags do this tag's endorsers most
   // commonly also endorse? This is a behavioural signal of which strategies
-  // the field treats as compatible — independent of the declared conflicts
-  // map. Built only from positive stances on both sides.
+  // the field treats as compatible, independent of the declared conflicts
+  // map. Built only from stated positive stances on both sides; tentative
+  // tags would otherwise pad the pairing with assignments we don't stand
+  // behind.
   const coCounts = new Map<string, number>();
   for (const p of endorsers) {
     const heldTags = new Set(
       p.positions
-        .filter((pos) => ENDORSING_STANCES.has(pos.stance))
+        .filter((pos) => ENDORSING_STANCES.has(pos.stance) && !pos.tentative)
         .map((pos) => pos.strategyId),
     );
     for (const otherTag of heldTags) {
@@ -160,12 +177,14 @@ export default async function StrategyTagPage({
       {(endorsers.length >= 3 || endorserPVals.length >= 3) && (
         <section className="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-px bg-[var(--color-rule)] border hairline">
           <SnapshotStat
-            label="endorsers on record"
+            label="stated endorsers"
             value={endorsers.length.toString()}
             sub={
-              opposers.length > 0
-                ? `${opposers.length} oppose`
-                : "no opposers yet"
+              tentativeEndorsers.length > 0
+                ? `+${tentativeEndorsers.length} tentative · ${opposers.length} oppose`
+                : opposers.length > 0
+                  ? `${opposers.length} oppose`
+                  : "no opposers yet"
             }
           />
           <SnapshotStat
@@ -187,7 +206,7 @@ export default async function StrategyTagPage({
           {endorserPMean === null && (
             <SnapshotStat
               label="endorser p(doom)"
-              value="—"
+              value="·"
               sub="no estimates on record"
             />
           )}
@@ -216,36 +235,38 @@ export default async function StrategyTagPage({
             style={{ color: "var(--color-ink-soft)" }}
           >
             Highest-recognition profiled endorsers, broken ties by quote count.
-            Inclusion is not endorsement of the position — it&apos;s recognition
+            Inclusion is not endorsement of the position, it&apos;s recognition
             of who the discourse turns to when the bet is debated.
           </p>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {principalVoices.map((p) => (
-              <li key={p.id}>
-                <Link
-                  href={`/people/${p.id}`}
-                  className="unstyled flex flex-col items-center text-center border hairline p-3 hover:border-[var(--color-ink)] transition-colors h-full"
-                >
-                  <PersonAvatar person={p} size={56} />
-                  <p
-                    className="text-sm leading-tight mt-2"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {p.name}
-                  </p>
-                  {p.profile && (
-                    <p
-                      className="text-[10px] mt-1"
-                      style={{
-                        color: "var(--color-ink-soft)",
-                        fontFamily: "var(--font-mono)",
-                        letterSpacing: "0.04em",
-                      }}
+              <li
+                key={p.id}
+                className="flex flex-col items-center text-center border hairline p-3 hover:border-[var(--color-ink)] transition-colors h-full"
+              >
+                <HoverFaceLink person={p} size={56} placement="below" />
+                <span className="mt-2">
+                  <HoverFaceLink person={p} placement="below">
+                    <span
+                      className="text-sm leading-tight hover:underline"
+                      style={{ fontFamily: "var(--font-display)" }}
                     >
-                      {recognitionTiers.find((t) => t.id === p.profile!.recognition)?.label}
-                    </p>
-                  )}
-                </Link>
+                      {p.name}
+                    </span>
+                  </HoverFaceLink>
+                </span>
+                {p.profile && (
+                  <p
+                    className="text-[10px] mt-1"
+                    style={{
+                      color: "var(--color-ink-soft)",
+                      fontFamily: "var(--font-mono)",
+                      letterSpacing: "0.04em",
+                    }}
+                  >
+                    {recognitionTiers.find((t) => t.id === p.profile!.recognition)?.label}
+                  </p>
+                )}
               </li>
             ))}
           </ul>
@@ -268,7 +289,7 @@ export default async function StrategyTagPage({
             style={{ color: "var(--color-ink-soft)" }}
           >
             What other strategies the same people endorse. Behavioural
-            signal of compatibility — not a declared rule. A high share
+            signal of compatibility, not a declared rule. A high share
             means the two positions are routinely held together.
           </p>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
@@ -308,7 +329,7 @@ export default async function StrategyTagPage({
               declared relations matrix
             </Link>
             . Where they differ, the data reveals a pairing the framework
-            doesn&apos;t name yet — the{" "}
+            doesn&apos;t name yet, the{" "}
             <Link href="/co-strategies" className="underline-wiggle">
               global co-endorsement view
             </Link>{" "}
@@ -448,7 +469,7 @@ export default async function StrategyTagPage({
                   style={{ color: "var(--color-ink-soft)" }}
                 >
                   Vintage is the era when this person&apos;s AI worldview
-                  formed — pioneer through post-ChatGPT. A bet held mostly
+                  formed, pioneer through post-ChatGPT. A bet held mostly
                   by post-ChatGPT entrants is in a different epistemic
                   state from one held by pre-deep-learning veterans.
                 </p>
@@ -466,31 +487,67 @@ export default async function StrategyTagPage({
           >
             People on the record.
           </h2>
-          <span className="num-label">{adherents.length}</span>
+          <span className="num-label">
+            {adherents.length}
+            {tentativeEndorsers.length > 0 && (
+              <span style={{ color: "var(--color-ink-soft)" }}>
+                {" · "}
+                {tentativeEndorsers.length} tentative
+              </span>
+            )}
+          </span>
         </div>
         {adherents.length === 0 && (
           <p className="text-sm italic" style={{ color: "var(--color-ink-soft)" }}>
             No quotes catalogued yet for this tag.
           </p>
         )}
-        <div className="space-y-12">
-          {adherents.map((p) => {
+        {(() => {
+          const isTentativeForTag = (p: typeof adherents[number]) =>
+            p.positions
+              .filter((pos) => pos.strategyId === id)
+              .every((pos) => pos.tentative);
+          const PERSON_RENDER_CAP = 80;
+          const statedAll = adherents
+            .filter((p) => !isTentativeForTag(p))
+            .slice()
+            .sort((a, b) => a.name.localeCompare(b.name));
+          const stated = statedAll.slice(0, PERSON_RENDER_CAP);
+          const statedRemaining = statedAll.length - stated.length;
+          const tentativeAll = adherents
+            .filter(isTentativeForTag)
+            .slice()
+            .sort((a, b) => a.name.localeCompare(b.name));
+          const tentative = tentativeAll.slice(0, PERSON_RENDER_CAP);
+          const tentativeRemaining = tentativeAll.length - tentative.length;
+
+          const renderPerson = (p: typeof adherents[number]) => {
             const positions = p.positions.filter((pos) => pos.strategyId === id);
+            const allTentative = positions.every((pos) => pos.tentative);
             return (
-              <div key={p.id}>
+              <div
+                key={p.id}
+                style={
+                  allTentative
+                    ? {
+                        borderLeft: "2px dashed var(--color-rule)",
+                        paddingLeft: "1rem",
+                        opacity: 0.85,
+                      }
+                    : undefined
+                }
+              >
                 <div className="flex items-start gap-4 mb-2">
-                  <Link className="unstyled" href={`/people/${p.id}`}>
-                    <PersonAvatar person={p} size={56} />
-                  </Link>
+                  <HoverFaceLink person={p} size={56} placement="right" />
                   <div className="flex-1 flex items-baseline justify-between gap-3 flex-wrap">
                     <div>
                       <h3
                         className="text-2xl leading-tight"
                         style={{ fontFamily: "var(--font-display)" }}
                       >
-                        <Link className="unstyled hover:underline" href={`/people/${p.id}`}>
-                          {p.name}
-                        </Link>
+                        <HoverFaceLink person={p} placement="below">
+                          <span className="hover:underline">{p.name}</span>
+                        </HoverFaceLink>
                       </h3>
                       {p.tagline && (
                         <p className="text-xs italic mt-1" style={{ color: "var(--color-ink-soft)" }}>
@@ -501,7 +558,7 @@ export default async function StrategyTagPage({
                     {positions[0] && (
                       <span className="num-label flex items-center gap-2">
                         {positions[0].stance}
-                        {positions.every((p) => p.tentative) && (
+                        {allTentative && (
                           <span
                             title="Assignment inferred from a passing remark, not a clear position statement"
                             style={{
@@ -531,8 +588,61 @@ export default async function StrategyTagPage({
                 ))}
               </div>
             );
-          })}
-        </div>
+          };
+
+          return (
+            <>
+              <div className="space-y-12">{stated.map(renderPerson)}</div>
+              {statedRemaining > 0 && (
+                <p
+                  className="text-sm italic mt-8 max-w-3xl"
+                  style={{ color: "var(--color-ink-soft)" }}
+                >
+                  {statedRemaining} more on the record. The page renders the
+                  first {stated.length} alphabetically; the rest live in the{" "}
+                  <Link href="/people" className="underline-wiggle">
+                    full directory
+                  </Link>
+                  , filterable by this tag.
+                </p>
+              )}
+              {tentative.length > 0 && (
+                <>
+                  <div
+                    className="my-10 border-t hairline pt-6 max-w-3xl"
+                    style={{ borderTopStyle: "dashed" }}
+                  >
+                    <p
+                      className="num-label mb-2"
+                      style={{ color: "var(--color-ink-soft)" }}
+                    >
+                      tentative · {tentativeAll.length}
+                    </p>
+                    <p
+                      className="text-xs italic"
+                      style={{ color: "var(--color-ink-soft)" }}
+                    >
+                      Below are entries flagged tentative: assignments
+                      inferred from a passing remark, hype quote, or paper
+                      abstract rather than a clear strategy statement. Shown
+                      in dashed cards so a stronger primary source can
+                      replace them later.
+                    </p>
+                  </div>
+                  <div className="space-y-12">{tentative.map(renderPerson)}</div>
+                  {tentativeRemaining > 0 && (
+                    <p
+                      className="text-sm italic mt-8 max-w-3xl"
+                      style={{ color: "var(--color-ink-soft)" }}
+                    >
+                      {tentativeRemaining} more tentative entries not shown.
+                    </p>
+                  )}
+                </>
+              )}
+            </>
+          );
+        })()}
       </section>
     </article>
   );

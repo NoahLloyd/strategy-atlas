@@ -18,7 +18,8 @@ import { selfUnderminingByStrategy } from "@/data/selfUndermining";
 import { analogueByStrategy, analogueDomainLabel } from "@/data/analogues";
 import { tagsForStrategyId } from "@/data/strategy-tag-bridge";
 import { peopleByStrategyTag } from "@/lib/people";
-import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 import {
   expertiseTiers,
   recognitionTiers,
@@ -190,7 +191,7 @@ export default async function StrategyPage({
 
       {postSuccessByStrategy[strategy.id] && (
         <section id="post-success" className="mb-10 border-l-2 pl-5 py-2 scroll-mt-8" style={{ borderColor: "var(--color-accent)" }}>
-          <h2 className="num-label mb-2">If it succeeds — what binds next</h2>
+          <h2 className="num-label mb-2">If it succeeds: what binds next</h2>
           <p className="leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
             {postSuccessByStrategy[strategy.id]}
           </p>
@@ -214,7 +215,7 @@ export default async function StrategyPage({
             className="text-xs italic mt-2"
             style={{ color: "var(--color-ink-soft)" }}
           >
-            A strategy held without a falsification signal is not strategy —
+            A strategy held without a falsification signal is not strategy;
             it is affiliation. Continued support after this signal lands is
             identity, not bet.{" "}
             <Link href="/identity" className="underline-wiggle">
@@ -389,7 +390,7 @@ export default async function StrategyPage({
                   </div>
                 </div>
                 <p className="text-[11px] italic sm:col-span-2" style={{ color: "var(--color-ink-soft)" }}>
-                  A strategy whose endorsement skews to commentators or external-domain experts is in a different epistemic state from one endorsed mostly by frontier-builders. The mix is read carefully across both axes — see <Link href="/board" className="underline-wiggle">the board</Link> for criteria. Counts are over the {profiledOnly.length} profiled people on this strategy ({peopleOnRecord.length - profiledOnly.length} unprofiled excluded).
+                  A strategy whose endorsement skews to commentators or external-domain experts is in a different epistemic state from one endorsed mostly by frontier-builders. The mix is read carefully across both axes; see <Link href="/board" className="underline-wiggle">the board</Link> for criteria. Counts are over the {profiledOnly.length} profiled people on this strategy ({peopleOnRecord.length - profiledOnly.length} unprofiled excluded).
                 </p>
               </div>
             );
@@ -404,13 +405,16 @@ export default async function StrategyPage({
                 (t) => t.id === p.profile?.recognition,
               );
               return (
-                <li key={p.id}>
-                  <Link
-                    href={`/people/${p.id}`}
-                    className="unstyled flex items-start gap-3 border hairline p-2.5 hover:border-[var(--color-ink)] transition-colors h-full"
-                  >
-                    <PersonAvatar person={p} size={40} />
-                    <div className="flex-1 min-w-0">
+                <li
+                  key={p.id}
+                  className="flex items-start gap-3 border hairline p-2.5 hover:border-[var(--color-ink)] transition-colors h-full"
+                >
+                  <HoverFaceLink person={p} size={40} placement="right" />
+                  <div className="flex-1 min-w-0">
+                    <Link
+                      href={`/people/${p.id}`}
+                      className="unstyled hover:underline"
+                    >
                       <p
                         className="text-sm leading-tight"
                         style={{
@@ -419,31 +423,31 @@ export default async function StrategyPage({
                       >
                         {p.name}
                       </p>
-                      {p.profile ? (
+                    </Link>
+                    {p.profile ? (
+                      <p
+                        className="text-[10px] mt-1"
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          color: "var(--color-ink-soft)",
+                          letterSpacing: "0.05em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {expertise?.short} · {recognition?.short}
+                      </p>
+                    ) : (
+                      p.tagline && (
                         <p
-                          className="text-[10px] mt-1"
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            color: "var(--color-ink-soft)",
-                            letterSpacing: "0.05em",
-                            textTransform: "uppercase",
-                          }}
+                          className="text-xs italic mt-1 truncate"
+                          style={{ color: "var(--color-ink-soft)" }}
+                          title={p.tagline}
                         >
-                          {expertise?.short} · {recognition?.short}
+                          {p.tagline}
                         </p>
-                      ) : (
-                        p.tagline && (
-                          <p
-                            className="text-xs italic mt-1 truncate"
-                            style={{ color: "var(--color-ink-soft)" }}
-                            title={p.tagline}
-                          >
-                            {p.tagline}
-                          </p>
-                        )
-                      )}
-                    </div>
-                  </Link>
+                      )
+                    )}
+                  </div>
                 </li>
               );
             })}
@@ -524,7 +528,7 @@ export default async function StrategyPage({
 
       <section id="conflicts" className="mb-10 border-t hairline pt-6 scroll-mt-8">
         <div className="flex items-baseline justify-between mb-3">
-          <h2 className="num-label">Conflicts with — by mechanism</h2>
+          <h2 className="num-label">Conflicts, grouped by mechanism</h2>
           <span className="num-label opacity-60">{conflicts.length}</span>
         </div>
         {conflictGroups.length === 0 ? (
@@ -543,7 +547,7 @@ export default async function StrategyPage({
 
       <section id="complements" className="mb-10 border-t hairline pt-6 scroll-mt-8">
         <div className="flex items-baseline justify-between mb-3">
-          <h2 className="num-label">Complements with — by mechanism</h2>
+          <h2 className="num-label">Complements, grouped by mechanism</h2>
           <span className="num-label opacity-60">{complements.length}</span>
         </div>
         {complementGroups.length === 0 ? (
@@ -570,15 +574,12 @@ export default async function StrategyPage({
           </p>
           <div className="flex flex-wrap gap-2">
             {twins.map((t) => (
-              <Link
-                key={t.id}
-                href={`/strategy/${t.id}`}
-                className="chip"
-                title={t.bet}
-              >
-                {t.name}
-                <span className="direction">twin</span>
-              </Link>
+              <HoverStrategyLink key={t.id} strategy={t} placement="below">
+                <span className="chip">
+                  {t.name}
+                  <span className="direction">twin</span>
+                </span>
+              </HoverStrategyLink>
             ))}
           </div>
         </section>
@@ -595,7 +596,7 @@ export default async function StrategyPage({
             return (
               <div key={axis.id} className="flex gap-3">
                 <span className="num-label w-40 shrink-0">{axis.name}</span>
-                <span>{value?.name || selfValueId?.replace(/-/g, " ") || "—"}</span>
+                <span>{value?.name || selfValueId?.replace(/-/g, " ") || "·"}</span>
               </div>
             );
           })}
@@ -604,7 +605,7 @@ export default async function StrategyPage({
 
       <section className="mt-12 border-t hairline pt-6 text-sm">
         <p style={{ color: "var(--color-ink-soft)" }}>
-          Source note: <code className="text-xs">{strategy.filename}</code>
+          Source note: <code className="text-xs">{strategy.filename.replace(/\s+macrostrategy\.md$/, " strategy.md")}</code>
         </p>
       </section>
     </article>
@@ -679,16 +680,15 @@ function MechanismGroup({
       </p>
       <div className="flex flex-wrap gap-2">
         {group.items.map((c) => (
-          <Link
-            key={c.id}
-            href={`/strategy/${c.id}`}
-            className={`chip ${
-              kind === "conflict" ? "is-conflict" : "is-complement"
-            }`}
-            title={c.bet}
-          >
-            {c.name}
-          </Link>
+          <HoverStrategyLink key={c.id} strategy={c} placement="below">
+            <span
+              className={`chip ${
+                kind === "conflict" ? "is-conflict" : "is-complement"
+              }`}
+            >
+              {c.name}
+            </span>
+          </HoverStrategyLink>
         ))}
       </div>
     </div>
