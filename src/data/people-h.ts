@@ -458,7 +458,7 @@ export const people: Person[] = [
     affiliations: [
       { org: "UCLA", role: "Professor of Gender Studies and African American Studies", current: true },
     ],
-    wikipedia: "https://en.wikipedia.org/wiki/Safiya_Umoja_Noble",
+    wikipedia: "https://en.wikipedia.org/wiki/Safiya_Noble",
     twitter: "safiyanoble",
     positions: [
       {
