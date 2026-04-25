@@ -7,11 +7,12 @@ import {
   relationBetween,
 } from "@/lib/strategies";
 import { levers, leverById } from "@/data/levers";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 import type { LeverId, Strategy } from "@/lib/types";
 import { mechanismForPair, mechanismCatalogue } from "@/lib/mechanism";
 
 export const metadata = {
-  title: "Matrix — AGI Strategies",
+  title: "Matrix · AGI Strategies",
 };
 
 export default function MatrixPage() {
@@ -59,28 +60,28 @@ export default function MatrixPage() {
           <li className="flex items-center gap-3">
             <CellSwatch kind="conflict" />
             <span>
-              <strong style={{ color: "var(--color-conflict)" }}>Conflict</strong> (
-              {conflictCount}) — same lever, opposite direction.
+              <strong style={{ color: "var(--color-conflict)" }}>Conflict</strong>{" "}
+              ({conflictCount}): same lever, opposite direction.
             </span>
           </li>
           <li className="flex items-center gap-3">
             <CellSwatch kind="complement" />
             <span>
               <strong style={{ color: "var(--color-complement)" }}>Complement</strong>{" "}
-              ({complementCount}) — different levers, mutually reinforcing.
+              ({complementCount}): different levers, mutually reinforcing.
             </span>
           </li>
           <li className="flex items-center gap-3">
             <CellSwatch kind="same-lever" />
             <span>
-              <strong>Same-lever twin</strong> ({sameLeverCount}) — same lever,
+              <strong>Same-lever twin</strong> ({sameLeverCount}): same lever,
               same direction. Pulling together, often double-counting.
             </span>
           </li>
           <li className="flex items-center gap-3">
             <CellSwatch kind="none" />
             <span>
-              <strong>No named relation</strong> ({noneCount}) — different
+              <strong>No named relation</strong> ({noneCount}): different
               levers, no explicit complement. Most pairs live here.
             </span>
           </li>
@@ -89,8 +90,8 @@ export default function MatrixPage() {
           className="text-sm italic mt-4"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          The relations below are <em>declared</em> in the catalogue. For the
-          counterpart — pairs people <em>actually</em> hold together — see{" "}
+          The relations below are <em>declared</em> in the catalogue. For
+          the counterpart (pairs people <em>actually</em> hold together), see{" "}
           <Link href="/co-strategies" className="underline-wiggle">
             /co-strategies
           </Link>
@@ -114,7 +115,7 @@ export default function MatrixPage() {
         </h2>
         <p className="text-base leading-relaxed mb-6" style={{ color: "var(--color-ink-soft)" }}>
           A conflict or complement is not a single relation. Hovering any
-          coloured cell in the matrix — or any chip on a strategy page — shows
+          coloured cell in the matrix, or any chip on a strategy page, shows
           the mechanism by which that pair relates. The vocabulary:
         </p>
 
@@ -177,7 +178,7 @@ export default function MatrixPage() {
         </p>
         <p>
           Read the matrix in blocks. Each lever band is a cluster of strategies
-          making the same kind of bet — within the band the only relations are
+          making the same kind of bet; within the band the only relations are
           conflict (opposite pulls), same-lever twin (same pull), or none.
           Cross-band cells show how the field composes.
         </p>
@@ -243,19 +244,19 @@ function MatrixGrid({
                   maxWidth: "18px",
                 }}
               >
-                <Link
-                  href={`/strategy/${s.id}`}
-                  className="unstyled block"
-                  style={{
-                    writingMode: "vertical-rl",
-                    transform: "rotate(180deg)",
-                    whiteSpace: "nowrap",
-                    padding: "2px 3px",
-                  }}
-                  title={s.name}
-                >
-                  {s.name}
-                </Link>
+                <HoverStrategyLink strategy={s} placement="below">
+                  <span
+                    className="block"
+                    style={{
+                      writingMode: "vertical-rl",
+                      transform: "rotate(180deg)",
+                      whiteSpace: "nowrap",
+                      padding: "2px 3px",
+                    }}
+                  >
+                    {s.name}
+                  </span>
+                </HoverStrategyLink>
               </th>
             ))}
           </tr>
@@ -272,16 +273,14 @@ function MatrixGrid({
                     }`}
                     style={{ maxWidth: "210px", height: "18px" }}
                   >
-                    <Link
-                      href={`/strategy/${rowStrat.id}`}
-                      className="unstyled hover:underline block"
-                      title={rowStrat.bet}
-                    >
-                      <span className="num-label mr-1 text-[9px]">
-                        {leverDirSymbol(rowStrat.leverDirection)}
+                    <HoverStrategyLink strategy={rowStrat} placement="right">
+                      <span className="hover:underline block">
+                        <span className="num-label mr-1 text-[9px]">
+                          {leverDirSymbol(rowStrat.leverDirection)}
+                        </span>
+                        {rowStrat.name}
                       </span>
-                      {rowStrat.name}
-                    </Link>
+                    </HoverStrategyLink>
                   </th>
                   {flat.map((colStrat) => {
                     if (rowStrat.id === colStrat.id) {
@@ -320,7 +319,7 @@ function MatrixGrid({
                             : ""
                         }`}
                         style={{ padding: 0, minHeight: 0, height: "18px", width: "18px" }}
-                        title={`${rowStrat.name} × ${colStrat.name} — ${mechLabel}`}
+                        title={`${rowStrat.name} × ${colStrat.name}, ${mechLabel}`}
                       />
                     );
                   })}

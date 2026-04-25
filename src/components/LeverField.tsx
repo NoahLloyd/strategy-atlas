@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Strategy, Lever } from "@/lib/types";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 
 /**
  * A single-glance visualization of the strategy space.
@@ -34,7 +35,7 @@ export function LeverField({
   return (
     <div className="border-2 border-[var(--color-ink)] bg-[var(--color-parchment)]">
       <div className="border-b hairline px-4 py-2 flex items-baseline justify-between">
-        <p className="num-label">the field — every strategy, plotted</p>
+        <p className="num-label">the field, every strategy, plotted</p>
         <p className="num-label">{strategies.length} strategies · {levers.length} levers</p>
       </div>
       <div className="py-2">
@@ -108,7 +109,7 @@ function LeverRow({
           <span
             className="text-[9px] uppercase tracking-wider"
             style={{ color: "var(--color-conflict)" }}
-            title="This lever has strategies pulling in both directions — real conflict surface."
+            title="This lever has strategies pulling in both directions, real conflict surface."
           >
             ↕
           </span>
@@ -189,12 +190,7 @@ function NeutralCenter({ items }: { items: Strategy[] }) {
 
 function Dot({ strategy, color }: { strategy: Strategy; color: string }) {
   return (
-    <Link
-      href={`/strategy/${strategy.id}`}
-      className="unstyled block"
-      title={`${strategy.name} — ${strategy.bet}`}
-      aria-label={strategy.name}
-    >
+    <HoverStrategyLink strategy={strategy} placement="below">
       <span
         className="inline-block rounded-full hover:scale-150 transition-transform cursor-pointer"
         style={{
@@ -204,6 +200,6 @@ function Dot({ strategy, color }: { strategy: Strategy; color: string }) {
           border: "1px solid var(--color-parchment)",
         }}
       />
-    </Link>
+    </HoverStrategyLink>
   );
 }

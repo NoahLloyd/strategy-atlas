@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 import type {
   Strategy,
   Lever,
@@ -112,7 +113,7 @@ export function PortfolioAudit({
               value={`${audit.leverCoverage} / ${levers.length}`}
               sub={
                 audit.totalStrategies === 0
-                  ? "—"
+                  ? "·"
                   : `${audit.leverCoveragePct}% coverage`
               }
             />
@@ -120,15 +121,15 @@ export function PortfolioAudit({
               label="Concentration"
               value={
                 audit.totalStrategies === 0
-                  ? "—"
+                  ? "·"
                   : `${audit.concentrationPct}%`
               }
               sub={
                 audit.totalStrategies === 0
-                  ? "—"
+                  ? "·"
                   : audit.dominantLever
                   ? `top lever: ${audit.dominantLever.name}`
-                  : "—"
+                  : "·"
               }
             />
             <Metric
@@ -137,7 +138,7 @@ export function PortfolioAudit({
               sub={
                 audit.conflicts.length === 0
                   ? audit.totalStrategies === 0
-                    ? "—"
+                    ? "·"
                     : "internally consistent"
                   : "same lever, opposite pulls"
               }
@@ -339,13 +340,13 @@ export function PortfolioAudit({
                           {c.leverName}
                         </span>
                         <span>
-                          <Link href={`/strategy/${c.a.id}`} className="underline-wiggle">
-                            {c.a.name}
-                          </Link>{" "}
+                          <HoverStrategyLink strategy={c.a} placement="below">
+                            <span className="underline-wiggle">{c.a.name}</span>
+                          </HoverStrategyLink>{" "}
                           <span style={{ color: "var(--color-conflict)" }}>↕</span>{" "}
-                          <Link href={`/strategy/${c.b.id}`} className="underline-wiggle">
-                            {c.b.name}
-                          </Link>
+                          <HoverStrategyLink strategy={c.b} placement="below">
+                            <span className="underline-wiggle">{c.b.name}</span>
+                          </HoverStrategyLink>
                         </span>
                       </li>
                     ))}
