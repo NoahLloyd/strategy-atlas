@@ -109,4 +109,19 @@ export const wikipediaOverrides: Record<string, string> = {
   "tobi-lutke": "https://en.wikipedia.org/wiki/Tobias_L%C3%BCtke",
   "tony-fadell": "https://en.wikipedia.org/wiki/Tony_Fadell",
   "jensen-huang": "https://en.wikipedia.org/wiki/Jensen_Huang",
+  "jeremy-howard": "https://en.wikipedia.org/wiki/Jeremy_Howard_(entrepreneur)",
+  "percy-liang": "https://en.wikipedia.org/wiki/Percy_Liang",
+  "andrew-yang": "https://en.wikipedia.org/wiki/Andrew_Yang",
+  "michael-jordan":
+    "https://en.wikipedia.org/wiki/Michael_I._Jordan",
+  "anil-seth": "https://en.wikipedia.org/wiki/Anil_Seth",
+  "christof-koch": "https://en.wikipedia.org/wiki/Christof_Koch",
+  "doris-tsao": "https://en.wikipedia.org/wiki/Doris_Tsao",
+  "patricia-churchland":
+    "https://en.wikipedia.org/wiki/Patricia_Churchland",
+  "thomas-nagel": "https://en.wikipedia.org/wiki/Thomas_Nagel",
+  "john-searle": "https://en.wikipedia.org/wiki/John_Searle",
+  "bret-taylor": "https://en.wikipedia.org/wiki/Bret_Taylor",
+  "adam-dangelo": "https://en.wikipedia.org/wiki/Adam_D%27Angelo",
+  "david-sacks": "https://en.wikipedia.org/wiki/David_O._Sacks",
 };

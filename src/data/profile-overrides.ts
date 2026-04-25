@@ -1745,4 +1745,252 @@ export const profileOverrides: Record<string, Profile> = {
     recognitionNote:
       "Mainstream tech-press regular.",
   },
+  "jeremy-howard": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Co-founder of fast.ai and Answer.AI. ULMFiT (2018) seeded transfer-learning in NLP. Long teaching record at Kaggle, USF.",
+    recognition: "field-leading",
+    recognitionNote:
+      "fast.ai courses widely used; recurring podcast and conference presence.",
+  },
+  "percy-liang": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Stanford professor, director of CRFM. HELM benchmark, foundation-model definition (with Bommasani). Long publication record across NLP and ML.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in academic AI; less mainstream press.",
+  },
+  "rishi-bommasani": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Stanford CRFM. Co-author of 'Opportunities and Risks of Foundation Models' (2021), the canonical foundation-model framing paper.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in foundation-models research community.",
+  },
+  "stella-biderman": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "EleutherAI executive director. Pythia, GPT-NeoX-20B, Pile dataset. Hands-on technical lead on open-weights frontier-scale training.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in open-weights ML community. Some mainstream press.",
+  },
+  "victoria-krakovna": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Google DeepMind safety researcher. Co-founder Future of Life Institute. Long publication record on specification gaming, side effects, AI safety taxonomy.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in alignment community.",
+  },
+  "tom-davidson": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Open Philanthropy senior research analyst. Compute-takeover-takeoff modelling. Forecaster; not a technical researcher.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in safety/forecasting circles.",
+  },
+  "rob-bensinger": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "MIRI research communications lead. Edits Yudkowsky's writing. Strategic communications; not a technical researcher.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised inside the rationalist/MIRI community.",
+  },
+  "andrew-yang": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Forward Party founder; 2020 US Presidential candidate. UBI advocacy in response to AI displacement. Not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major political-press profile.",
+  },
+  "cathy-oneil": {
+    expertise: "applied-technical",
+    expertiseNote:
+      "Mathematician (PhD Harvard). Founded ORCAA (algorithmic-auditing firm). 'Weapons of Math Destruction' (2016). Translates ML failure into public terms.",
+    recognition: "household-name",
+    recognitionNote:
+      "NYT-bestseller author; mainstream-press fixture.",
+  },
+  "bill-joy": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Sun Microsystems co-founder. 'Why the Future Doesn't Need Us' (2000) was a foundational early AI x-risk essay in mainstream venues.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major figure in computing history; widely cited Wired essay.",
+  },
+  "geoffrey-miller": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Evolutionary psychologist (UNM). 'Spent', 'Mate'. AI engagement is mostly via long-podcasts and Twitter/X. Not a technical AI contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Active podcast presence; less mainstream-press visibility.",
+  },
+  "abeba-birhane": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Mozilla senior advisor; Trinity College Dublin. Empirical audits of dataset bias and computer-vision harms. Strong publication record.",
+    recognition: "field-leading",
+    recognitionNote:
+      "TIME 100 AI 2023; TED talks; recognised in AI ethics community.",
+  },
+  "gillian-hadfield": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "University of Toronto Schwartz Reisman; OpenAI. Senior policy researcher with legal and economic background. Not a technical AI contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in AI-governance and academic-law communities.",
+  },
+  "alondra-nelson": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Sociologist; Institute for Advanced Study. Helped author the AI Bill of Rights at OSTP (2022). Not a technical AI contributor.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Senior US policy figure; some mainstream press.",
+  },
+  "michael-jordan": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "UC Berkeley professor (the AI Michael Jordan, not the basketball player). Foundational ML theory. AAAI fellow, ACM fellow, IEEE fellow.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised universally in academic ML; less mainstream press because of name confusion.",
+  },
+  "rachel-thomas": {
+    expertise: "applied-technical",
+    expertiseNote:
+      "fast.ai co-founder; data-ethics researcher. ML-education and data-ethics focus, less core-ML research.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in fast.ai ecosystem.",
+  },
+  "ryan-greenblatt": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Redwood Research. Active publisher on AI control, scheming, alignment-stress-testing.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in alignment community.",
+  },
+  "owain-evans": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Apollo Research. Long publication record on truthful AI and language-model evaluation.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in alignment community.",
+  },
+  "shakir-mohamed": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Google DeepMind. Senior researcher; co-founded Deep Learning Indaba. Active publisher on probabilistic ML and AI ethics.",
+    recognition: "established",
+    recognitionNote:
+      "Recognised in academic ML and African-AI community.",
+  },
+  "yi-tay": {
+    expertise: "frontier-builder",
+    expertiseNote:
+      "Reka founder; former Google Brain. Long publication record on transformer architecture and scaling. Hands-on at frontier scale.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in ML research community.",
+  },
+  "cassie-kozyrkov": {
+    expertise: "applied-technical",
+    expertiseNote:
+      "Founder of Data Scientific; former Google chief decision scientist. Decision-science framing of ML deployment. Not a frontier-ML researcher.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major Medium / LinkedIn following. Recurring conference presence.",
+  },
+  "jeff-hawkins": {
+    expertise: "deep-technical",
+    expertiseNote:
+      "Numenta founder. Hierarchical Temporal Memory; 'A Thousand Brains' (2021). Cortex-inspired AI architecture. Not in the dominant DL paradigm.",
+    recognition: "household-name",
+    recognitionNote:
+      "Palm/Handspring profile; book NYT-noted.",
+  },
+  "david-sacks": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Craft Ventures; AI/Crypto Czar in the Trump White House (since 2025). Investor and operator; not a technical contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "All-In podcast; mainstream press regular.",
+  },
+  "bret-taylor": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "OpenAI board chair (since Nov 2023). Sierra co-founder. Earlier Salesforce co-CEO and Twitter board chair. Operates as exec; not a technical AI contributor.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major-tech-exec profile; mainstream press regular.",
+  },
+  "adam-dangelo": {
+    expertise: "policy-meta",
+    expertiseNote:
+      "Quora CEO; Poe AI. OpenAI board member through November 2023 episode. Operates as exec; not a current AI researcher.",
+    recognition: "household-name",
+    recognitionNote:
+      "Mainstream tech-press fixture; OpenAI board episode press.",
+  },
+  "anil-seth": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Sussex University neuroscientist. 'Being You' (2021). Engages AI through consciousness science.",
+    recognition: "field-leading",
+    recognitionNote:
+      "TED talks; mainstream science-press regular.",
+  },
+  "christof-koch": {
+    expertise: "external-domain",
+    expertiseNote:
+      "Allen Institute for Brain Science. Integrated Information Theory advocate; major figure in consciousness research.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Recognised in neuroscience and consciousness fields.",
+  },
+  "doris-tsao": {
+    expertise: "external-domain",
+    expertiseNote:
+      "UC Berkeley neuroscientist. MacArthur Fellow 2018. Face-recognition neural circuits research influences interpretability framing.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major academic-neuroscience figure.",
+  },
+  "patricia-churchland": {
+    expertise: "external-domain",
+    expertiseNote:
+      "UCSD philosopher. Neurophilosophy. Published on AI consciousness and morality.",
+    recognition: "field-leading",
+    recognitionNote:
+      "Major academic-philosophy figure.",
+  },
+  "thomas-nagel": {
+    expertise: "external-domain",
+    expertiseNote:
+      "NYU philosopher. 'What Is It Like to Be a Bat?' (1974) is the canonical reference for the hard problem. Not actively engaging AI; cited heavily.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major figure in 20th/21st-century philosophy of mind.",
+  },
+  "john-searle": {
+    expertise: "external-domain",
+    expertiseNote:
+      "UC Berkeley emeritus. Chinese Room argument (1980). Major philosophical critic of computational consciousness; some controversy.",
+    recognition: "household-name",
+    recognitionNote:
+      "Major figure in philosophy of mind.",
+  },
 };
