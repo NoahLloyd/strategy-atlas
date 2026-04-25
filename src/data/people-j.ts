@@ -383,8 +383,29 @@ export const people: Person[] = [
           },
         ],
       },
+      {
+        strategyId: "near-term-harms",
+        stance: "endorses",
+        summary:
+          "Argues system-level audits—rather than dataset audits or model cards alone—are required to capture real-world harms; supports legal frameworks that mandate access to deployed models.",
+        quotes: [
+          {
+            text:
+              "Algorithmic audits are most effective when they look at the entire sociotechnical system, including the people, processes, and incentives surrounding the deployed model.",
+            date: "2020",
+            fidelity: "paraphrase-faithful",
+            source: {
+              title: "Closing the AI Accountability Gap",
+              url: "https://arxiv.org/abs/2001.00973",
+              medium: "paper",
+              publisher: "arXiv / FAccT",
+              date: "2020-01-03",
+            },
+          },
+        ],
+      },
     ],
-    lastUpdated: "2026-04-24",
+    lastUpdated: "2026-04-25",
   },
 
   {

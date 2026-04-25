@@ -2212,6 +2212,26 @@ export const people: Person[] = [
           },
         ],
       },
+      {
+        strategyId: "governance-first",
+        stance: "endorses",
+        summary:
+          "Argues AI demands updated US state capacity and labour-market institutions; conservative-coded but governance-supportive.",
+        quotes: [
+          {
+            text:
+              "If AI is the most important technology of the 21st century, the US state should be set up to govern it. Right now, it isn't.",
+            date: "2024",
+            fidelity: "paraphrase-loose",
+            source: {
+              title: "Sam Hammond — Substack",
+              url: "https://www.secondbest.ca/",
+              medium: "blog",
+              publisher: "Second Best",
+            },
+          },
+        ],
+      },
     ],
     lastUpdated: "2026-04-25",
   },
