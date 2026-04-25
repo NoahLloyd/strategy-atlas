@@ -35,7 +35,7 @@ const ibmSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "AGI Strategies — a map of AI safety macrostrategies",
+  title: "AGI Strategies, a map of AI safety strategies",
   description:
     "A citation-backed repository of AI/AGI strategy positions held by researchers, executives, policymakers, and public figures. Every claim links to a primary source.",
 };
