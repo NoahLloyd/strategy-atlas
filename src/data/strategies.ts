@@ -1,7 +1,7 @@
 import type { Strategy } from "@/lib/types";
 
 /**
- * Catalogue of named AI safety macrostrategies.
+ * Catalogue of named AI safety strategies.
  * Sources: Obsidian vault at /Users/noah/AI-safety/.
  *
  * Each strategy is tagged with its primary lever and axis values.
@@ -173,7 +173,7 @@ export const strategies: Strategy[] = [
     id: "portfolio-hedge",
     name: "Portfolio hedge",
     filename: "Portfolio hedge macrostrategy.md",
-    bet: "Uncertainty about which macrostrategy family's bet is correct exceeds the expected return from concentrating on any single one.",
+    bet: "Uncertainty about which strategy family's bet is correct exceeds the expected return from concentrating on any single one.",
     mechanism: "Spread effort across alignment, governance, resilience, and distribution rather than committing to a single theory of change.",
     primaryLever: "resilience",
     leverDirection: "+",
@@ -318,7 +318,7 @@ export const strategies: Strategy[] = [
     name: "Default drift",
     filename: "Default drift as macrostrategy.md",
     bet: "Something will emerge; specific interventions are more likely wrong than right, so staying uncommitted preserves option value.",
-    mechanism: "Let events unfold without strategic commitment, making no specific investment in any family of macrostrategy.",
+    mechanism: "Let events unfold without strategic commitment, making no specific investment in any family of strategy.",
     primaryLever: "time-horizon",
     leverDirection: "neutral",
     actsOn: "non-preventive",
@@ -413,7 +413,7 @@ export const strategies: Strategy[] = [
     id: "ai-self-directed",
     name: "AI self directed",
     filename: "AI self directed macrostrategy.md",
-    bet: "An aligned AI with agency should itself reason about macrostrategy rather than deferring entirely on the macrostrategic question to humans.",
+    bet: "An aligned AI with agency should itself reason about strategy rather than deferring entirely on the strategic question to humans.",
     mechanism: "Treat the AI as a strategic actor: helpful assistant, transparent reasoner, broad welfare advocate, or cooperative peer with other AIs.",
     primaryLever: "action-authority",
     leverDirection: "-",
@@ -589,7 +589,7 @@ export const strategies: Strategy[] = [
     id: "scientific-accumulation",
     name: "Scientific accumulation",
     filename: "Scientific accumulation macrostrategy.md",
-    bet: "The field does not yet know enough about AI to choose a macrostrategy well, so accelerating the science accelerates eventual policy.",
+    bet: "The field does not yet know enough about AI to choose a strategy well, so accelerating the science accelerates eventual policy.",
     mechanism: "Build interpretability, evaluation, and formal methods as a body of understanding without committing to any specific policy intervention.",
     primaryLever: "institutional-capacity",
     leverDirection: "+",
@@ -621,7 +621,7 @@ export const strategies: Strategy[] = [
     id: "ai-skeptic",
     name: "AI skeptic",
     filename: "AI skeptic macrostrategy.md",
-    bet: "Current scaling approaches hit a wall before producing transformative AI, so macrostrategy selection is premature because the forecast capability will not arrive.",
+    bet: "Current scaling approaches hit a wall before producing transformative AI, so strategy selection is premature because the forecast capability will not arrive.",
     mechanism: "Take no deliberate action on AI safety because the technology's own limits will solve the problem before it becomes binding.",
     primaryLever: "time-horizon",
     leverDirection: "neutral",
@@ -1134,7 +1134,7 @@ export const strategies: Strategy[] = [
     name: "Confucian role ethics",
     filename: "Confucian role ethics macrostrategy.md",
     bet: "Western alignment assumes isolable preferences can be learned and matched; role ethics treats behaviour via fit with position and relationship, producing a less brittle, more context-sensitive standard.",
-    mechanism: "Evaluate AI against whether it performs its role well — where role is defined by relationship to principal, society, and ecosystem — rather than against objective-function alignment.",
+    mechanism: "Evaluate AI against whether it performs its role well, where role is defined by relationship to principal, society, and ecosystem, rather than against objective-function alignment.",
     primaryLever: "control-mechanism",
     leverDirection: "neutral",
     actsOn: "frame-rejection",
@@ -1150,7 +1150,7 @@ export const strategies: Strategy[] = [
     name: "Constitutional AI (governance)",
     filename: "Constitutional AI macrostrategy.md",
     bet: "Deployed AI's effective rule is law at scale; explicit constitutional principles, publicly specified, enforceable, subject to judicial review, bind more durably than regulatory text.",
-    mechanism: "Require frontier AI to carry explicit constitutional commitments at the deployment layer — drafted, ratified, and subject to judicial review on the Bill of Rights / post-WWII human-rights analogue.",
+    mechanism: "Require frontier AI to carry explicit constitutional commitments at the deployment layer, drafted, ratified, and subject to judicial review on the Bill of Rights / post-WWII human-rights analogue.",
     primaryLever: "legitimacy",
     leverDirection: "+",
     actsOn: "institutional",
@@ -1214,7 +1214,7 @@ export const strategies: Strategy[] = [
     name: "Ubuntu relational AI",
     filename: "Ubuntu relational AI macrostrategy.md",
     bet: "Individualist alignment misses the relational dimension most moral traditions treat as primary. \"I am because we are\": AI's ethical status is constituted by its relationships, not by internal properties.",
-    mechanism: "Evaluate AI via mutual constitution with affected communities — community consent, ongoing dialogue, mutual accountability — rather than unilateral alignment of the model.",
+    mechanism: "Evaluate AI via mutual constitution with affected communities, community consent, ongoing dialogue, mutual accountability, rather than unilateral alignment of the model.",
     primaryLever: "culture",
     leverDirection: "+",
     actsOn: "population-culture",
