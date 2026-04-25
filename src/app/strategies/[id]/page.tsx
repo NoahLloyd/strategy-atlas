@@ -499,7 +499,23 @@ export default async function StrategyTagPage({
                       )}
                     </div>
                     {positions[0] && (
-                      <span className="num-label">{positions[0].stance}</span>
+                      <span className="num-label flex items-center gap-2">
+                        {positions[0].stance}
+                        {positions.every((p) => p.tentative) && (
+                          <span
+                            title="Assignment inferred from a passing remark, not a clear position statement"
+                            style={{
+                              border: "1px solid var(--color-rule)",
+                              borderStyle: "dashed",
+                              padding: "0 5px",
+                              fontSize: "0.55rem",
+                              color: "var(--color-ink-soft)",
+                            }}
+                          >
+                            tentative
+                          </span>
+                        )}
+                      </span>
                     )}
                   </div>
                 </div>
