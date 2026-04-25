@@ -241,6 +241,28 @@ export const people: Person[] = [
           },
         ],
       },
+      {
+        strategyId: "alignment-first",
+        stance: "endorses",
+        summary:
+          "Argues misaligned power-seeking AI is a substantial existential risk this century and the case requires only weak premises about agentic capabilities.",
+        quotes: [
+          {
+            text:
+              "My current estimate is that the probability of existential catastrophe from power-seeking, misaligned AI by 2070 is more than 10%.",
+            date: "2022",
+            fidelity: "paraphrase-faithful",
+            context: "Updated estimate after the original report; revised upward.",
+            source: {
+              title: "Is Power-Seeking AI an Existential Risk?",
+              url: "https://arxiv.org/abs/2206.13353",
+              medium: "paper",
+              publisher: "arXiv / Open Philanthropy",
+              date: "2022",
+            },
+          },
+        ],
+      },
     ],
     pDoom: [
       {
@@ -255,8 +277,19 @@ export const people: Person[] = [
           date: "2022-06-23",
         },
       },
+      {
+        value: [0.1, 0.5],
+        date: "2022",
+        definition: "Existential catastrophe from misaligned power-seeking AI by 2070; revised range.",
+        source: {
+          title: "Is Power-Seeking AI an Existential Risk?",
+          url: "https://arxiv.org/abs/2206.13353",
+          medium: "paper",
+          publisher: "Open Philanthropy",
+        },
+      },
     ],
-    lastUpdated: "2026-04-24",
+    lastUpdated: "2026-04-25",
   },
 
   {

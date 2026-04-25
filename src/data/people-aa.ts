@@ -38,6 +38,27 @@ export const people: Person[] = [
           },
         ],
       },
+      {
+        strategyId: "near-term-harms",
+        stance: "endorses",
+        summary:
+          "Argues the field over-weights existential risk relative to documented harms from deployed systems and that solid engineering for robustness, validation, and oversight does most of the safety work.",
+        quotes: [
+          {
+            text:
+              "The risk of superintelligent AI taking over the world is much less concerning than the risk of dumb AI being deployed in safety-critical systems without proper validation.",
+            date: "2018",
+            fidelity: "paraphrase-faithful",
+            source: {
+              title: "Robust Artificial Intelligence and Robust Human Organizations",
+              url: "https://arxiv.org/abs/1811.10840",
+              medium: "paper",
+              publisher: "arXiv",
+              date: "2018-11-27",
+            },
+          },
+        ],
+      },
     ],
     lastUpdated: "2026-04-25",
   },
