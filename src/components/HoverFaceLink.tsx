@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { Person } from "@/lib/people-types";
 import { PersonAvatar } from "@/components/PersonAvatar";
 import {
@@ -18,6 +19,10 @@ type Props = {
   // when the parent is itself an interactive surface where a popup
   // would interfere.
   noCard?: boolean;
+  // Optional override for the visible trigger. When provided, render
+  // the children inside the link instead of the default avatar. Used
+  // to attach a hover card to a text-only name link.
+  children?: ReactNode;
 };
 
 function formatPDoom(v: number | [number, number]): string {
@@ -26,14 +31,16 @@ function formatPDoom(v: number | [number, number]): string {
   return `${Math.round(v * 100)}%`;
 }
 
-// Linked avatar with a polished hover card showing name, tagline,
-// tier line, top strategy tags, and p(doom). The card is CSS-only;
-// it appears on hover and stays clickable via the underlying link.
+// Linked avatar (or child trigger) with a polished hover card showing
+// name, tagline, tier line, top strategy tags, and p(doom). The card
+// is CSS-only; it appears on hover and stays clickable via the
+// underlying link.
 export function HoverFaceLink({
   person,
   size = 28,
   placement = "below",
   noCard,
+  children,
 }: Props) {
   if (noCard) {
     return (
@@ -42,7 +49,7 @@ export function HoverFaceLink({
         className="unstyled inline-block"
         title={person.name}
       >
-        <PersonAvatar person={person} size={size} />
+        {children ?? <PersonAvatar person={person} size={size} />}
       </Link>
     );
   }
@@ -67,7 +74,7 @@ export function HoverFaceLink({
         className="unstyled inline-block"
         aria-label={person.name}
       >
-        <PersonAvatar person={person} size={size} />
+        {children ?? <PersonAvatar person={person} size={size} />}
       </Link>
       <span
         className={`face-hover-card place-${placement}`}
@@ -121,7 +128,6 @@ export function HoverFaceLink({
             )}
           </div>
         )}
-        <p className="face-hover-cta">click to open profile →</p>
       </span>
     </span>
   );
