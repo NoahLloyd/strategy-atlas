@@ -217,7 +217,7 @@ export const commitmentsByStrategy: Record<string, Commitment[]> = {
         "If AI agency is instrumental, cooperation is a design choice humans make, not a two-sided arrangement.",
     },
   ],
-  "ai-self-directed-macrostrategy": [
+  "ai-self-directed": [
     {
       topic: "agency",
       claim: "AI should and can set its own goals.",

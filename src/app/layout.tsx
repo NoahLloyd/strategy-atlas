@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "AGI Strategies — who believes what about AI",
+  title: "AGI Strategies — a map of AI safety macrostrategies",
   description:
     "A citation-backed repository of AI/AGI strategy positions held by researchers, executives, policymakers, and public figures. Every claim links to a primary source.",
 };
@@ -42,7 +41,6 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <SiteHeader />
         <main className="flex-1">{children}</main>
-        <SiteFooter />
       </body>
     </html>
   );
