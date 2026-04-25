@@ -53,6 +53,39 @@ export default function TimelinesBoard() {
     { label: "Beyond 2060", min: 2061, max: 9999 },
   ];
 
+  // Latest dated claim per person, used for the at-a-glance distribution
+  // so a single forecaster appears once even if they've revised twice.
+  const latestByPerson = new Map<string, typeof claims[number]>();
+  for (const c of claims) {
+    const ex = latestByPerson.get(c.personId);
+    if (!ex) {
+      latestByPerson.set(c.personId, c);
+      continue;
+    }
+    if ((c.date ?? "") > (ex.date ?? "")) latestByPerson.set(c.personId, c);
+  }
+  const latestClaims = Array.from(latestByPerson.values());
+  const distBins = decades.map((b) => ({
+    ...b,
+    count: latestClaims.filter((c) => c.sortKey >= b.min && c.sortKey < b.max)
+      .length,
+  }));
+  const distMax = Math.max(1, ...distBins.map((b) => b.count));
+  const sortedYears = latestClaims
+    .map((c) => c.sortKey)
+    .filter((y) => y < 9999)
+    .sort((a, b) => a - b);
+  const medianYear =
+    sortedYears.length === 0
+      ? null
+      : sortedYears.length % 2 === 0
+      ? Math.round(
+          (sortedYears[sortedYears.length / 2 - 1] +
+            sortedYears[sortedYears.length / 2]) /
+            2,
+        )
+      : sortedYears[Math.floor(sortedYears.length / 2)];
+
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
       <section className="mb-10 max-w-3xl">
@@ -68,6 +101,68 @@ export default function TimelinesBoard() {
           50% confidence, first plausibility, or definitional passage of a
           specific test. Each claim below is paired with a dated source so you
           can judge in context.
+        </p>
+      </section>
+
+      <section
+        className="mb-10 border-2 border-[var(--color-ink)] p-5"
+        style={{ background: "var(--color-parchment-soft)" }}
+      >
+        <div className="flex items-baseline justify-between flex-wrap gap-3 mb-4">
+          <p className="num-label">distribution · latest forecast per person</p>
+          <div className="flex flex-wrap gap-3 text-xs">
+            <span>
+              <span className="num-label">n</span>{" "}
+              <span style={{ fontFamily: "var(--font-display)" }}>
+                {latestClaims.length}
+              </span>
+            </span>
+            {medianYear !== null && (
+              <span>
+                <span className="num-label">median</span>{" "}
+                <span style={{ fontFamily: "var(--font-display)" }}>
+                  {medianYear}
+                </span>
+              </span>
+            )}
+          </div>
+        </div>
+        <ul className="space-y-1.5">
+          {distBins.map((b) => (
+            <li key={b.label} className="flex items-center gap-3 text-xs">
+              <span
+                style={{ width: 110, color: "var(--color-ink-soft)" }}
+                className="num-label"
+              >
+                {b.label}
+              </span>
+              <div
+                className="flex-1 h-3"
+                style={{ background: "var(--color-rule)" }}
+              >
+                <div
+                  style={{
+                    width: `${(b.count / distMax) * 100}%`,
+                    height: "100%",
+                    background: "var(--color-accent)",
+                  }}
+                />
+              </div>
+              <span
+                className="num-label"
+                style={{ width: 28, textAlign: "right" }}
+              >
+                {b.count}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p
+          className="text-[10px] italic mt-3"
+          style={{ color: "var(--color-ink-soft)" }}
+        >
+          Each forecaster shown once, using their most recent dated claim.
+          Below, every claim is listed individually — including revisions.
         </p>
       </section>
 

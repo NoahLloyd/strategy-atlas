@@ -66,17 +66,6 @@ export default function AboutPage() {
         </p>
       </Section>
 
-      <Section title="Video timestamps.">
-        <p>
-          Where a quote comes from video, the video is embedded and cropped
-          to the moment the person said it, using the YouTube <em>start</em>
-          and <em>end</em> parameters or the equivalent on Vimeo. One click
-          plays the exact segment. When we have not yet located the exact
-          timestamp for a video-sourced quote, the embed plays from the
-          beginning — that is a known imperfection of the current corpus.
-        </p>
-      </Section>
-
       <Section title="p(doom) and timelines.">
         <p className="mb-3">
           Two recurring comparative artefacts in the AI debate are <strong>

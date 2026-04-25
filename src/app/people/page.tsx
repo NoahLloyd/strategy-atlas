@@ -22,15 +22,6 @@ export default function PeopleIndex() {
       acc + p.positions.reduce((q, pos) => q + pos.quotes.length, 0),
     0,
   );
-  const videoQuotes = people.reduce(
-    (acc, p) =>
-      acc +
-      p.positions.reduce(
-        (q, pos) => q + pos.quotes.filter((qu) => qu.source.videoId).length,
-        0,
-      ),
-    0,
-  );
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
@@ -57,11 +48,7 @@ export default function PeopleIndex() {
 
       <section className="mb-12 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         <Stat label="People indexed" value={people.length.toString()} />
-        <Stat
-          label="Quotes"
-          value={totalQuotes.toString()}
-          sub={`${videoQuotes} timestamped to video`}
-        />
+        <Stat label="Quotes" value={totalQuotes.toString()} />
         <Stat label="p(doom) on record" value={pDoomCount.toString()} />
         <Stat label="Strategy tags" value={tags.length.toString()} />
       </section>

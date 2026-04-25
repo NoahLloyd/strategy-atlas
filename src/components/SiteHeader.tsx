@@ -66,6 +66,8 @@ const sections: NavSection[] = [
     icon: "tools",
     links: [
       { href: "/portfolio", label: "Portfolio audit", hint: "stack-test a strategy combination", icon: "portfolio" },
+      { href: "/compare", label: "Compare", hint: "two strategies, side by side", icon: "matrix" },
+      { href: "/co-strategies", label: "Co-endorsement", hint: "pairs people hold together", icon: "matrix" },
       { href: "/identity", label: "Bet or identity", hint: "diagnose how a position is held", icon: "identity" },
       { href: "/commitments", label: "Commitments", hint: "worldview assumptions by strategy", icon: "commitments" },
     ],

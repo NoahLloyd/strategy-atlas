@@ -85,6 +85,17 @@ export default function MatrixPage() {
             </span>
           </li>
         </ul>
+        <p
+          className="text-sm italic mt-4"
+          style={{ color: "var(--color-ink-soft)" }}
+        >
+          The relations below are <em>declared</em> in the catalogue. For the
+          counterpart — pairs people <em>actually</em> hold together — see{" "}
+          <Link href="/co-strategies" className="underline-wiggle">
+            /co-strategies
+          </Link>
+          .
+        </p>
       </section>
 
       <MatrixGrid

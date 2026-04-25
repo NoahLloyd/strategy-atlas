@@ -52,10 +52,7 @@ async function fetchSummary(
   title: string,
 ): Promise<{ thumbnail?: string; original?: string }> {
   const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
-  const res = await fetch(apiUrl, {
-    headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
-  });
-  if (!res.ok) throw new Error(`summary ${res.status}`);
+  const res = await fetchJsonWithBackoff(apiUrl, "summary");
   const data = (await res.json()) as {
     thumbnail?: { source: string };
     originalimage?: { source: string };
@@ -64,6 +61,113 @@ async function fetchSummary(
     thumbnail: data.thumbnail?.source,
     original: data.originalimage?.source,
   };
+}
+
+// MediaWiki Action API pageimages — succeeds for some pages where the REST
+// summary returns no thumbnail (e.g. articles whose lead image is set via
+// page_image_free but not surfaced through the summary endpoint).
+async function fetchPageImage(title: string): Promise<string | null> {
+  const url =
+    `https://en.wikipedia.org/w/api.php?action=query&format=json` +
+    `&titles=${encodeURIComponent(title)}` +
+    `&prop=pageimages&pithumbsize=400&piprop=thumbnail|original` +
+    `&redirects=1&origin=*`;
+  const res = await fetchJsonWithBackoff(url, "pageimages");
+  const data = (await res.json()) as {
+    query?: {
+      pages?: Record<
+        string,
+        {
+          thumbnail?: { source: string };
+          original?: { source: string };
+        }
+      >;
+    };
+  };
+  const pages = data.query?.pages ?? {};
+  for (const id of Object.keys(pages)) {
+    const p = pages[id];
+    const src = p.thumbnail?.source ?? p.original?.source;
+    if (src) return src;
+  }
+  return null;
+}
+
+// Wikidata P18 (image) lookup. Articles often link to a Wikidata item where
+// an image is set even when the article body has none. Resolves the title to
+// a Q-id, reads claims for P18, then constructs the Commons file URL.
+async function fetchWikidataImage(title: string): Promise<string | null> {
+  // Step 1: title -> Wikidata Q-id via pageprops.
+  const propsUrl =
+    `https://en.wikipedia.org/w/api.php?action=query&format=json` +
+    `&titles=${encodeURIComponent(title)}` +
+    `&prop=pageprops&ppprop=wikibase_item&redirects=1&origin=*`;
+  const propsRes = await fetchJsonWithBackoff(propsUrl, "wikidata-id");
+  const propsData = (await propsRes.json()) as {
+    query?: {
+      pages?: Record<string, { pageprops?: { wikibase_item?: string } }>;
+    };
+  };
+  let qid: string | null = null;
+  for (const k of Object.keys(propsData.query?.pages ?? {})) {
+    qid = propsData.query!.pages![k].pageprops?.wikibase_item ?? null;
+    if (qid) break;
+  }
+  if (!qid) return null;
+
+  // Step 2: Q-id -> P18 (image filename).
+  const entUrl = `https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`;
+  const entRes = await fetchJsonWithBackoff(entUrl, "wikidata-entity");
+  const entData = (await entRes.json()) as {
+    entities?: Record<
+      string,
+      {
+        claims?: Record<
+          string,
+          {
+            mainsnak?: { datavalue?: { value?: string } };
+          }[]
+        >;
+      }
+    >;
+  };
+  const claim = entData.entities?.[qid]?.claims?.["P18"]?.[0];
+  const filename = claim?.mainsnak?.datavalue?.value;
+  if (!filename) return null;
+
+  // Step 3: filename -> direct Commons URL via Special:FilePath. This 302s
+  // to the actual upload.wikimedia.org path, which Bun.fetch will follow.
+  const safeName = filename.replace(/ /g, "_");
+  return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(safeName)}?width=400`;
+}
+
+// Wikimedia Commons full-text search by person name. Catches photos that have
+// been uploaded to Commons (often from conferences) but are not linked to any
+// Wikipedia article or Wikidata item — common for newer AI safety researchers.
+//
+// We require the file title to literally contain the person's name as a
+// substring. Otherwise Commons' relevance-ranked search returns photos of
+// unrelated people who merely share a first or last name.
+async function fetchCommonsByName(name: string): Promise<string | null> {
+  const query = `"${name}"`;
+  const url =
+    `https://commons.wikimedia.org/w/api.php?action=query&format=json` +
+    `&list=search&srnamespace=6&srlimit=10` +
+    `&srsearch=${encodeURIComponent(query)}&origin=*`;
+  const res = await fetchJsonWithBackoff(url, "commons-search");
+  const data = (await res.json()) as {
+    query?: { search?: { title: string }[] };
+  };
+  const hits = data.query?.search ?? [];
+  const lowerName = name.toLowerCase();
+  const wantedExt = /\.(jpg|jpeg|png|webp)$/i;
+  const candidate = hits
+    .map((h) => h.title.replace(/^File:/, ""))
+    .filter((t) => wantedExt.test(t))
+    .find((t) => t.toLowerCase().includes(lowerName));
+  if (!candidate) return null;
+  const safeName = candidate.replace(/ /g, "_");
+  return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(safeName)}?width=400`;
 }
 
 function extFromUrl(url: string): string {
@@ -78,6 +182,27 @@ function extFromUrl(url: string): string {
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+async function fetchJsonWithBackoff(
+  url: string,
+  label: string,
+): Promise<Response> {
+  // Wikipedia/Wikidata return 429 on bursts; treat 5xx the same way.
+  let delay = 800;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const res = await fetch(url, {
+      headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
+    });
+    if (res.ok) return res;
+    if (res.status === 404) throw new Error(`${label} 404`);
+    if (res.status !== 429 && res.status < 500) {
+      throw new Error(`${label} ${res.status}`);
+    }
+    await sleep(delay);
+    delay = Math.min(delay * 2, 10_000);
+  }
+  throw new Error(`${label} rate-limited after retries`);
+}
 
 async function downloadBinaryWithBackoff(
   url: string,
@@ -115,11 +240,17 @@ async function loadExistingManifest(): Promise<Record<string, string>> {
 async function main() {
   await mkdir(PUBLIC_DIR, { recursive: true });
 
-  const targets = people
-    .filter((p) => p.wikipedia)
-    .map((p) => ({ id: p.id, name: p.name, wikipedia: p.wikipedia! }));
+  // Everyone gets considered. People with a Wikipedia URL get the full chain
+  // (summary → pageimages → Wikidata → Commons-by-name); people without get
+  // only Commons-by-name. Newly profiled researchers without articles often
+  // have a conference photo on Commons that the chain finds.
+  const targets = people.map((p) => ({
+    id: p.id,
+    name: p.name,
+    wikipedia: p.wikipedia,
+  }));
 
-  console.log(`[wiki-photos] candidates with wikipedia URL: ${targets.length}`);
+  console.log(`[wiki-photos] total candidates: ${targets.length}`);
 
   const finalIndex: Record<string, string> = {};
   const previous = await loadExistingManifest();
@@ -135,36 +266,91 @@ async function main() {
   const needsFetch = REFRESH ? targets : targets.filter((t) => !finalIndex[t.id]);
   console.log(`[wiki-photos] still need to fetch: ${needsFetch.length}`);
 
-  // Phase 1: summaries in parallel batches.
+  // Phase 1: try summary, then pageimages, then Wikidata P18, then a
+  // Commons name search. Each fallback catches a different failure mode.
   const summaries = new Map<string, string>(); // id -> imageUrl
   const summaryErrors: { id: string; reason: string }[] = [];
-  const BATCH = 4;
-  for (let i = 0; i < needsFetch.length; i += BATCH) {
-    const slice = needsFetch.slice(i, i + BATCH);
-    await Promise.all(
-      slice.map(async (t) => {
-        const title = wikipediaTitle(t.wikipedia);
-        if (!title) {
-          summaryErrors.push({ id: t.id, reason: "could-not-parse-wikipedia-url" });
-          return;
-        }
+  const sourceMix = { summary: 0, pageimage: 0, wikidata: 0, commons: 0 };
+  // Sequential lookups. Wikidata in particular 429s on bursts of even 4-wide
+  // parallelism, and the previous failures all clustered there.
+  for (let i = 0; i < needsFetch.length; i++) {
+    const t = needsFetch[i];
+    const tried: string[] = [];
+
+    if (t.wikipedia) {
+      const title = wikipediaTitle(t.wikipedia);
+      if (!title) {
+        tried.push("wikipedia-url:unparseable");
+      } else {
+        // Step A: REST summary thumbnail.
         try {
           const s = await fetchSummary(title);
           const url = s.thumbnail ?? s.original;
-          if (!url) {
-            summaryErrors.push({ id: t.id, reason: "no-image-on-wikipedia-page" });
-            return;
+          if (url) {
+            summaries.set(t.id, url);
+            sourceMix.summary++;
+            await sleep(120);
+            continue;
           }
-          summaries.set(t.id, url);
+          tried.push("summary:none");
         } catch (e) {
-          summaryErrors.push({ id: t.id, reason: (e as Error).message });
+          tried.push(`summary:${(e as Error).message}`);
         }
-      }),
-    );
-    if ((i + BATCH) % 40 === 0) await sleep(200);
+
+        // Step B: MediaWiki pageimages.
+        try {
+          const url = await fetchPageImage(title);
+          if (url) {
+            summaries.set(t.id, url);
+            sourceMix.pageimage++;
+            await sleep(120);
+            continue;
+          }
+          tried.push("pageimages:none");
+        } catch (e) {
+          tried.push(`pageimages:${(e as Error).message}`);
+        }
+
+        // Step C: Wikidata P18.
+        try {
+          const url = await fetchWikidataImage(title);
+          if (url) {
+            summaries.set(t.id, url);
+            sourceMix.wikidata++;
+            await sleep(180);
+            continue;
+          }
+          tried.push("wikidata:none");
+        } catch (e) {
+          tried.push(`wikidata:${(e as Error).message}`);
+        }
+      }
+    }
+
+    // Step D: Commons name search (works regardless of Wikipedia article).
+    try {
+      const url = await fetchCommonsByName(t.name);
+      if (url) {
+        summaries.set(t.id, url);
+        sourceMix.commons++;
+        if (summaries.size % 20 === 0) {
+          console.log(
+            `[wiki-photos] resolved ${summaries.size}/${needsFetch.length} (latest: ${t.id})`,
+          );
+        }
+        await sleep(180);
+        continue;
+      }
+      tried.push("commons:none");
+    } catch (e) {
+      tried.push(`commons:${(e as Error).message}`);
+    }
+
+    summaryErrors.push({ id: t.id, reason: tried.join("; ") || "no-image-anywhere" });
+    await sleep(120);
   }
   console.log(
-    `[wiki-photos] summaries: ${summaries.size} ok, ${summaryErrors.length} fail`,
+    `[wiki-photos] summaries: ${summaries.size} ok (summary ${sourceMix.summary}, pageimages ${sourceMix.pageimage}, wikidata ${sourceMix.wikidata}, commons ${sourceMix.commons}), ${summaryErrors.length} fail`,
   );
 
   // Phase 2: image downloads — strictly sequential with a small base delay.
