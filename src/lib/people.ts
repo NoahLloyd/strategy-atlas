@@ -34,6 +34,7 @@ import { people as peopleGroupAf } from "@/data/people-af";
 import { people as peopleGroupAg } from "@/data/people-ag";
 import { people as peopleGroupAh } from "@/data/people-ah";
 import { profileOverrides } from "@/data/profile-overrides";
+import { wikipediaOverrides } from "@/data/wikipedia-overrides";
 import type { Person } from "./people-types";
 
 const rawPeople: Person[] = [
@@ -75,8 +76,14 @@ const rawPeople: Person[] = [
 ];
 
 export const people: Person[] = rawPeople.map((p) => {
-  const override = profileOverrides[p.id];
-  return override ? { ...p, profile: p.profile ?? override } : p;
+  const profile = profileOverrides[p.id];
+  const wikipedia = p.wikipedia ?? wikipediaOverrides[p.id];
+  if (!profile && wikipedia === p.wikipedia) return p;
+  return {
+    ...p,
+    profile: p.profile ?? profile,
+    wikipedia,
+  };
 });
 
 const byId = new Map(people.map((p) => [p.id, p]));
