@@ -414,7 +414,6 @@ export const photoIndex: Record<string, string> = {
   "sam-harris": "/people/sam-harris.jpg",
   "samo-burja": "/people/samo-burja.png",
   "samuel-butler": "/people/samuel-butler.jpg",
-  "samuel-hammond": "/people/samuel-hammond.png",
   "samy-bengio": "/people/samy-bengio.jpg",
   "sandra-wachter": "/people/sandra-wachter.jpg",
   "sara-beery": "/people/sara-beery.jpg",

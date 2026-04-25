@@ -4055,44 +4055,6 @@ export const people: Person[] = [
   },
 
   {
-    id: "deborah-raji",
-    name: "Deborah Raji",
-    tagline: "UC Berkeley Mozilla Fellow; algorithmic auditing",
-    summary:
-      "UC Berkeley Mozilla Fellow whose research on facial-recognition bias and accountability frameworks has shaped academic and regulatory understanding of ML auditing.",
-    categories: ["researcher", "activist"],
-    affiliations: [
-      { org: "Mozilla Foundation", role: "Fellow", current: true },
-      { org: "UC Berkeley", role: "Researcher (CITRIS)", current: true },
-    ],
-    twitter: "rajiinio",
-    positions: [
-      {
-        strategyId: "near-term-harms",
-        stance: "endorses",
-        summary:
-          "Argues system-level audits—rather than dataset audits or model cards alone—are required to capture real-world harms; supports legal frameworks that mandate access to deployed models.",
-        quotes: [
-          {
-            text:
-              "Algorithmic audits are most effective when they look at the entire sociotechnical system, including the people, processes, and incentives surrounding the deployed model.",
-            date: "2020",
-            fidelity: "paraphrase-faithful",
-            source: {
-              title: "Closing the AI Accountability Gap",
-              url: "https://arxiv.org/abs/2001.00973",
-              medium: "paper",
-              publisher: "arXiv / FAccT",
-              date: "2020-01-03",
-            },
-          },
-        ],
-      },
-    ],
-    lastUpdated: "2026-04-25",
-  },
-
-  {
     id: "seda-gurses",
     name: "Seda Gürses",
     tagline: "TU Delft; computational law and privacy",
@@ -6288,58 +6250,6 @@ export const people: Person[] = [
   },
 
   {
-    id: "joe-carlsmith",
-    name: "Joe Carlsmith",
-    tagline: "Open Philanthropy senior research analyst; AI x-risk",
-    summary:
-      "Philosopher and Open Philanthropy researcher whose 2021 report 'Is Power-Seeking AI an Existential Risk?' became one of the most cited single arguments for existential risk from misaligned AI.",
-    categories: ["researcher", "academic", "public-intellectual"],
-    affiliations: [
-      { org: "Open Philanthropy", role: "Senior Research Analyst", current: true },
-    ],
-    homepage: "https://joecarlsmith.com/",
-    twitter: "jkcarlsmith",
-    positions: [
-      {
-        strategyId: "alignment-first",
-        stance: "endorses",
-        summary:
-          "Argues misaligned power-seeking AI is a substantial existential risk this century and the case requires only weak premises about agentic capabilities.",
-        quotes: [
-          {
-            text:
-              "My current estimate is that the probability of existential catastrophe from power-seeking, misaligned AI by 2070 is more than 10%.",
-            date: "2022",
-            fidelity: "paraphrase-faithful",
-            context: "Updated estimate after report; original report was lower.",
-            source: {
-              title: "Is Power-Seeking AI an Existential Risk?",
-              url: "https://arxiv.org/abs/2206.13353",
-              medium: "paper",
-              publisher: "arXiv / Open Philanthropy",
-              date: "2022",
-            },
-          },
-        ],
-      },
-    ],
-    pDoom: [
-      {
-        value: [0.1, 0.5],
-        date: "2022",
-        definition: "Existential catastrophe from misaligned power-seeking AI by 2070.",
-        source: {
-          title: "Is Power-Seeking AI an Existential Risk?",
-          url: "https://arxiv.org/abs/2206.13353",
-          medium: "paper",
-          publisher: "Open Philanthropy",
-        },
-      },
-    ],
-    lastUpdated: "2026-04-25",
-  },
-
-  {
     id: "sebastien-bubeck",
     name: "Sébastien Bubeck",
     tagline: "OpenAI; lead author of 'Sparks of AGI' paper",
@@ -6445,45 +6355,6 @@ export const people: Person[] = [
               medium: "article",
               publisher: "OpenAI",
               date: "2023-12-18",
-            },
-          },
-        ],
-      },
-    ],
-    lastUpdated: "2026-04-25",
-  },
-
-  {
-    id: "tom-dietterich",
-    name: "Thomas G. Dietterich",
-    tagline: "Oregon State emeritus; former AAAI president",
-    summary:
-      "Oregon State emeritus professor and former AAAI president. Long-standing critic of near-term AGI claims; argues AI safety should focus on robustness, validation, and human oversight rather than speculative existential scenarios.",
-    categories: ["academic", "researcher"],
-    affiliations: [
-      { org: "Oregon State University", role: "Distinguished Professor Emeritus", current: true },
-      { org: "AAAI", role: "President (former)", end: "2016" },
-    ],
-    homepage: "https://web.engr.oregonstate.edu/~tgd/",
-    twitter: "tdietterich",
-    positions: [
-      {
-        strategyId: "near-term-harms",
-        stance: "endorses",
-        summary:
-          "Argues the field over-weights existential risk relative to documented harms from deployed systems and that solid engineering for robustness, validation, and oversight does most of the safety work.",
-        quotes: [
-          {
-            text:
-              "The risk of superintelligent AI taking over the world is much less concerning than the risk of dumb AI being deployed in safety-critical systems without proper validation.",
-            date: "2018",
-            fidelity: "paraphrase-faithful",
-            source: {
-              title: "Robust Artificial Intelligence and Robust Human Organizations",
-              url: "https://arxiv.org/abs/1811.10840",
-              medium: "paper",
-              publisher: "arXiv",
-              date: "2018-11-27",
             },
           },
         ],
@@ -12989,42 +12860,6 @@ export const people: Person[] = [
               medium: "book",
               publisher: "McGraw-Hill",
               date: "1964",
-            },
-          },
-        ],
-      },
-    ],
-    lastUpdated: "2026-04-25",
-  },
-
-  {
-    id: "samuel-hammond",
-    name: "Samuel Hammond",
-    tagline: "Foundation for American Innovation senior economist",
-    summary:
-      "Senior economist at the Foundation for American Innovation. Argues AI requires a new social contract and pushes for liberal-state-capacity responses to AI labour displacement.",
-    categories: ["economist", "policy"],
-    affiliations: [
-      { org: "Foundation for American Innovation", role: "Senior Economist", current: true },
-    ],
-    twitter: "hamandcheese",
-    positions: [
-      {
-        strategyId: "governance-first",
-        stance: "endorses",
-        summary:
-          "Argues AI demands updated US state capacity and labour-market institutions; conservative-coded but governance-supportive.",
-        quotes: [
-          {
-            text:
-              "If AI is the most important technology of the 21st century, the US state should be set up to govern it. Right now, it isn't.",
-            date: "2024",
-            fidelity: "paraphrase-loose",
-            source: {
-              title: "Samuel Hammond — Substack",
-              url: "https://www.secondbest.ca/",
-              medium: "blog",
-              publisher: "Second Best",
             },
           },
         ],
