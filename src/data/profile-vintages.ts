@@ -454,4 +454,648 @@ export const profileVintages: Record<string, VintageEntry> = {
     vintageNote:
       "See eliezer-yudkowsky.",
   },
+
+  // Pioneers (pre-1980).
+  "alan-turing": {
+    vintage: "pioneer",
+    vintageNote:
+      "1912–1954. Turing test 1950. Defines the pre-1980 foundation of AI thinking.",
+  },
+  "claude-shannon": {
+    vintage: "pioneer",
+    vintageNote:
+      "1916–2001. Information theory 1948; chess machines 1950. Cybernetics-era frame.",
+  },
+  "norbert-wiener": {
+    vintage: "pioneer",
+    vintageNote:
+      "1894–1964. Cybernetics 1948. God and Golem 1964 anticipates alignment.",
+  },
+  "john-von-neumann": {
+    vintage: "pioneer",
+    vintageNote:
+      "1903–1957. Computing architecture, game theory, automata. The frame predates AI as a discipline.",
+  },
+  "marvin-minsky": {
+    vintage: "pioneer",
+    vintageNote:
+      "1927–2016. MIT AI Lab co-founded 1959. Society of Mind 1986. His operational era is symbolic AI; foundational pioneer of the field.",
+  },
+  "john-mccarthy": {
+    vintage: "pioneer",
+    vintageNote:
+      "1927–2011. Coined 'AI' 1956 Dartmouth. Lisp 1958. Field-naming pioneer.",
+  },
+  "doug-lenat": {
+    vintage: "pioneer",
+    vintageNote:
+      "1950–2023. Cyc began 1984 building on 1970s symbolic AI. His frame is pre-deep-learning symbolic.",
+  },
+  "joseph-weizenbaum": {
+    vintage: "pioneer",
+    vintageNote:
+      "1923–2008. ELIZA 1966; Computer Power and Human Reason 1976. Cybernetics-era critic of AI.",
+  },
+  "douglas-engelbart": {
+    vintage: "pioneer",
+    vintageNote:
+      "1925–2013. Mother of All Demos 1968. Augmentation-of-intelligence frame predates AI as we now use the term.",
+  },
+  "donald-knuth": {
+    vintage: "pioneer",
+    vintageNote:
+      "TAOCP from 1968. Turing Award 1974. His algorithms-and-craft frame is pre-AI-discipline.",
+  },
+  "alan-kay": {
+    vintage: "pioneer",
+    vintageNote:
+      "Smalltalk and Dynabook concepts late-1960s/1970s. Personal-computing-as-augmentation frame predates the deep-learning AI conversation.",
+  },
+  "vannevar-bush": {
+    vintage: "pioneer",
+    vintageNote:
+      "1890–1974. As We May Think 1945. Pre-AI computing-as-cognition frame.",
+  },
+  "samuel-butler": {
+    vintage: "pioneer",
+    vintageNote:
+      "1835–1902. Erewhon 1872 anticipates machine consciousness — the earliest entry in this corpus.",
+  },
+  "irving-good": {
+    vintage: "pioneer",
+    vintageNote:
+      "1916–2009. 'Speculations Concerning the First Ultraintelligent Machine' 1965. Coined intelligence-explosion framing.",
+  },
+  "j-c-r-licklider": {
+    vintage: "pioneer",
+    vintageNote:
+      "1915–1990. Man-Computer Symbiosis 1960; ARPA IPTO. Foundational human-AI cooperation framing.",
+  },
+  "ada-lovelace": {
+    vintage: "pioneer",
+    vintageNote:
+      "1815–1852. Notes on the Analytical Engine 1843. The earliest figure in this corpus to think computationally about machines and intelligence.",
+  },
+
+  // Symbolic-era / pre-deep-learning (1980 – 2012).
+  "judea-pearl": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "PhD 1965 (Polytechnic). Causality and Bayesian-network work spans 1980s-2000s. Turing Award 2011. His causality frame is pre-deep-learning.",
+  },
+  "richard-sutton": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "PhD 1984 (UMass). Sutton & Barto RL textbook 1998. The Bitter Lesson 2019. His RL frame predates the deep-learning rise.",
+  },
+  "andrew-barto": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "RL textbook with Sutton 1998; UMass through 2010s. Career anchored in pre-deep-learning RL.",
+  },
+  "ben-goertzel": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "OpenCog founded 2008; coined modern AGI usage early 2000s. Symbolic-era AGI advocate.",
+  },
+  "rodney-brooks": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Subsumption 1986. iRobot 1990. Robotics-first AI frame matures pre-deep-learning.",
+  },
+  "ray-kurzweil": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Age of Spiritual Machines 1999; Singularity Is Near 2005. Optical-character-recognition career roots in 1970s; futurist frame established pre-deep-learning.",
+  },
+  "noam-chomsky": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Generative grammar from 1957. His AI commentary inherits a symbolic-era cognitive-science frame and remains skeptical of statistical methods.",
+  },
+  "robin-hanson": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "PhD 1997 (Caltech). Overcoming Bias from 2006. Age of Em 2016 builds on pre-deep-learning frame.",
+  },
+  "vernor-vinge": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "1944–2024. Singularity essay 1993. Pre-deep-learning singularity frame.",
+  },
+  "tim-berners-lee": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "WWW 1989. Solid project 2016. His AI engagement inherits a pre-deep-learning information-architecture frame.",
+  },
+  "stephen-wolfram": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Mathematica 1988; A New Kind of Science 2002. His computational-equivalence frame is pre-deep-learning.",
+  },
+  "peter-singer": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Animal Liberation 1975 founds the philosophical lineage that flows into EA and AI welfare. AI engagement post-2010s inherits pre-deep-learning ethics frame.",
+  },
+  "douglas-hofstadter": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "GEB 1979. AI and cognition framing is pre-deep-learning; he engages modern systems through that prior.",
+  },
+  "stephen-hawking": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "1942–2018. AI commentary mostly 2014-2017 (FLI letter). His AI voice forms in the pre-deep-learning x-risk wave.",
+  },
+  "jaron-lanier": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "VR work from 1980s. Cultural critique of computing across 1990s-2000s. His AI commentary inherits a pre-deep-learning frame.",
+  },
+  "stewart-brand": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Whole Earth Catalog 1968. Long Now from 1996. Long-horizon thinking established before deep learning.",
+  },
+  "kevin-kelly": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Wired 1993. The Inevitable 2016. His tech-futurism frame is pre-deep-learning.",
+  },
+
+  // Deep-learning rise (2012 – 2017).
+  "ian-goodfellow": {
+    vintage: "deep-learning",
+    vintageNote:
+      "GAN 2014. Deep Learning textbook 2016. His career anchors in the deep-learning era.",
+  },
+  "peter-norvig": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Russell & Norvig textbook 1995. Google research director 2001-2014. Career bridges symbolic AI to early deep learning.",
+  },
+  "francois-chollet": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Keras 2015. ARC-AGI benchmark 2019. His career and frame are deep-learning era.",
+  },
+  "melanie-mitchell": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Analogy-and-cognition work spans 1990s-present. AI: A Guide for Thinking Humans 2019 critiques deep learning from a symbolic-era prior.",
+  },
+  "richard-sutton-deep": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Career bridges symbolic to deep learning. Bitter Lesson 2019 is the deep-learning crystallisation.",
+  },
+  "joy-buolamwini": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Gender Shades 2018. Algorithmic Justice League. Career formed during the deep-learning era critique.",
+  },
+  "yejin-choi": {
+    vintage: "deep-learning",
+    vintageNote:
+      "PhD 2010; UW from 2014. NLP commonsense work matures in the deep-learning era.",
+  },
+  "anca-dragan": {
+    vintage: "deep-learning",
+    vintageNote:
+      "PhD 2015 (CMU). Berkeley 2015+. Google DeepMind safety lead 2024. Career is deep-learning era.",
+  },
+  "sebastian-thrun": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Stanford robotics; Google X self-driving 2009. Udacity 2012. Career maps to early deep-learning era.",
+  },
+  "oren-etzioni": {
+    vintage: "deep-learning",
+    vintageNote:
+      "AI2 founding CEO 2014. Career bridges symbolic-era PhD to deep-learning era leadership.",
+  },
+  "eric-horvitz": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Microsoft Research from 1993; Chief Scientific Officer 2017. Career bridges into deep-learning era operationally.",
+  },
+  "iyad-rahwan": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Moral Machine 2014. Max Planck CHM. Computational social science of AI ethics in the deep-learning era.",
+  },
+  "fei-fei-li-deep": {
+    vintage: "deep-learning",
+    vintageNote:
+      "ImageNet 2009 catalysed the deep-learning era. Stanford HAI 2019. See fei-fei-li.",
+  },
+  "thomas-dietterich": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Oregon State from 1985. Long ML career predates deep learning. AAAI president; recognised across both eras.",
+  },
+  "shoshana-zuboff": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Surveillance Capitalism 2019 — a deep-learning era critique built on a longer Harvard-Business career.",
+  },
+
+  // Scaling era (2018 – 2022).
+  "kai-fu-lee": {
+    vintage: "deep-learning",
+    vintageNote:
+      "AI Superpowers 2018. PhD in AI from 1980s but operates as VC/CEO in the deep-learning era.",
+  },
+  "allan-dafoe": {
+    vintage: "scaling-era",
+    vintageNote:
+      "GovAI founded 2018. Now DeepMind frontier safety/governance. Career anchored in scaling-era AI policy.",
+  },
+  "jade-leung": {
+    vintage: "scaling-era",
+    vintageNote:
+      "OpenAI head of governance ~2020-2023. Now UK AI Safety Institute Chief Scientist. Career formed during scaling era.",
+  },
+  "beth-barnes": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Earlier OpenAI alignment ~2020. Founded METR 2022. Career maps to the scaling-era evals push.",
+  },
+  "tamay-besiroglu": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Co-founded Epoch AI 2022. Empirical scaling-laws work is a scaling-era research programme.",
+  },
+  "jaime-sevilla": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Director of Epoch AI from 2022. Compute-and-trends work crystallises in scaling era.",
+  },
+  "anthony-aguirre": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "FLI co-founded 2014. Metaculus 2015. His x-risk forecasting frame predates deep-learning era.",
+  },
+  "joseph-carlsmith": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Senior researcher at Open Philanthropy from late 2010s. Long essays on AI takeover and decision theory matured in scaling era.",
+  },
+  "andrew-critch": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "MIRI/CHAI from early 2010s. Multi-agent safety frame predates deep-learning.",
+  },
+  "william-saunders": {
+    vintage: "scaling-era",
+    vintageNote:
+      "OpenAI Superalignment researcher in scaling era. Resigned 2024 with public concerns.",
+  },
+  "suchir-balaji": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Joined OpenAI 2018. Career spans scaling era through 2024.",
+  },
+  "gwern-branwen": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Independent essayist from 2010+. Wide LessWrong corpus established his analytic frame pre-deep-learning.",
+  },
+  "wei-dai": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "b-money 1998. LessWrong decision-theory posts from late 2000s. Frame predates deep learning.",
+  },
+  "dawn-song": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Berkeley professor; AI security research deepens in the deep-learning era.",
+  },
+  "david-silver": {
+    vintage: "deep-learning",
+    vintageNote:
+      "DeepMind from 2010. AlphaGo 2016, AlphaZero 2017. Career is the deep-learning era.",
+  },
+  "huw-price": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Co-founded Cambridge CSER ~2012 with Rees and Tallinn. Pre-deep-learning x-risk frame.",
+  },
+  "martin-rees": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "CSER co-founded ~2012. Astronomer Royal long before. Pre-deep-learning x-risk frame.",
+  },
+  "patrick-collison": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Stripe 2010. Engages AI/science-of-progress through scaling era reading list. Career frame is post-2010 tech founder.",
+  },
+  "reid-hoffman-deep": {
+    vintage: "deep-learning",
+    vintageNote:
+      "LinkedIn era 2003-2016 predates AI focus; Inflection 2022 brings him into scaling-era. See reid-hoffman.",
+  },
+
+  // Post-ChatGPT (2023+).
+  "ezra-klein": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "NYT podcast/columns turn AI-heavy 2023+. Pre-ChatGPT was politics and journalism.",
+  },
+  "kara-swisher": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Tech-press veteran but AI-as-beat intensifies post-ChatGPT.",
+  },
+  "ev-williams": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Twitter/Medium era pre-AI. AI commentary post-ChatGPT.",
+  },
+  "tyler-cowen": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Marginal Revolution from 2003. AI as a primary topic intensifies post-ChatGPT.",
+  },
+  "naomi-klein": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "AI critique essays 2023+. Pre-ChatGPT focused on capitalism and climate.",
+  },
+  "cory-doctorow": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Enshittification framing 2023. AI essays at Pluralistic intensify post-ChatGPT.",
+  },
+  "maria-ressa": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Information-integrity frame from 2010s; AI specifically post-ChatGPT.",
+  },
+  "steven-pinker": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Cognitive-science career predates AI focus. Active AI commentary intensifies post-ChatGPT.",
+  },
+  "sundar-pichai": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Google CEO 2015; Alphabet CEO 2019. Operationally embedded in deep-learning era.",
+  },
+  "satya-nadella": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Microsoft CEO 2014. OpenAI partnership 2019. Deep-learning era CEO frame.",
+  },
+  "mark-zuckerberg": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Meta-AI work from FAIR 2013+. Llama strategy 2023+ is the post-ChatGPT pivot but the frame is deep-learning era.",
+  },
+  "jeff-bezos": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Long pre-AI career. AI investor (Anthropic) and commentator post-ChatGPT.",
+  },
+  "eric-schmidt": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Google CEO 2001-2011. NSCAI co-chair 2018. Deep-learning era policy frame.",
+  },
+  "peter-thiel": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Long investor career; AI ideological commentary post-ChatGPT.",
+  },
+  "ursula-von-der-leyen": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "EU Commission president 2019+. AI Act drafted pre-ChatGPT but driven through post-ChatGPT.",
+  },
+  "joe-biden": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "AI Executive Order October 2023. Head-of-state AI engagement entirely post-ChatGPT.",
+  },
+  "donald-trump": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Stargate 2025. Rescinded Biden EO. AI policy presence is post-ChatGPT.",
+  },
+  "kamala-harris": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Led Biden-era AI summits 2023-2024. AI engagement post-ChatGPT.",
+  },
+  "jd-vance": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Paris AI Action Summit February 2025. Entirely post-ChatGPT AI frame.",
+  },
+  "audrey-tang-deep": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Civic-tech work 2010+; Digital Minister 2016-2024. See audrey-tang.",
+  },
+  "ted-chiang": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Lifecycle of Software Objects 2010 was prescient SF; widely-cited AI essays come post-ChatGPT.",
+  },
+  "jensen-huang": {
+    vintage: "deep-learning",
+    vintageNote:
+      "NVIDIA from 1993; AI-relevant compute push from 2012 (CUDA + AlexNet). Operational era is deep learning.",
+  },
+  "ben-thompson": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Stratechery 2013. AI strategic-analysis frame from the deep-learning era.",
+  },
+  "mira-murati-deep": {
+    vintage: "deep-learning",
+    vintageNote:
+      "See mira-murati.",
+  },
+  "lex-fridman": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Podcast launched 2018; AI-heavy interview frame matures in scaling era. Deep-learning era entrant.",
+  },
+  "dwarkesh-patel": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Podcast started 2020. Long-form AI interviews crystallise in scaling era.",
+  },
+  "joscha-bach": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Cognitive-architecture work spans 2000s-present. Frame predates deep learning.",
+  },
+  "kate-darling": {
+    vintage: "deep-learning",
+    vintageNote:
+      "MIT Media Lab from late 2000s. Robot-ethics work in deep-learning era.",
+  },
+  "robert-wright": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Nonzero 2000. Bloggingheads 2005. AI-and-cooperation frame predates deep learning.",
+  },
+  "mackenzie-scott": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Yield Giving 2022. AI-related giving post-ChatGPT.",
+  },
+  "rishi-sunak-deep": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "See rishi-sunak.",
+  },
+  "yi-zeng-deep": {
+    vintage: "deep-learning",
+    vintageNote:
+      "See yi-zeng.",
+  },
+  "luciano-floridi": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "Information-philosophy frame established 2000s. AI ethics books span 2010s.",
+  },
+  "frank-pasquale": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Black Box Society 2015. AI accountability and algorithmic regulation in deep-learning era.",
+  },
+  "evgeny-morozov": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "The Net Delusion 2011. Solutionism critique predates deep learning.",
+  },
+  "mireille-hildebrandt": {
+    vintage: "deep-learning",
+    vintageNote:
+      "AI law work matures in deep-learning era; EU AI Act inputs post-2018.",
+  },
+  "jen-easterly": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "CISA director 2021-2025. AI-as-critical-infrastructure framing post-ChatGPT.",
+  },
+  "kai-fu-lee-deep": {
+    vintage: "deep-learning",
+    vintageNote:
+      "See kai-fu-lee.",
+  },
+  "stuart-buck": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Good Science Project 2022. Metascience-and-AI funding frame is scaling-era.",
+  },
+  "brian-christian": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Algorithms to Live By 2016 with Tom Griffiths; The Alignment Problem 2020. Career frame is scaling era.",
+  },
+
+  // Tech founders, late commentary.
+  "patrick-collison-bridge": {
+    vintage: "deep-learning",
+    vintageNote:
+      "See patrick-collison.",
+  },
+  "larry-page": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Funded DeepMind 2014. Deep-learning era posture toward AI.",
+  },
+  "sergey-brin": {
+    vintage: "deep-learning",
+    vintageNote:
+      "Returned to Google for Gemini 2024. Deep-learning era technical re-engagement.",
+  },
+  "larry-ellison": {
+    vintage: "post-chatgpt",
+    vintageNote:
+      "Stargate JV 2025; surveillance-AI framing in post-ChatGPT period.",
+  },
+  "tim-oreilly": {
+    vintage: "deep-learning",
+    vintageNote:
+      "AI-publishing through deep-learning era.",
+  },
+
+  // Late additions.
+  "christopher-manning": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Stanford NLP from 1999. Career bridges symbolic to deep-learning era NLP.",
+  },
+  "michael-jordan": {
+    vintage: "symbolic-era",
+    vintageNote:
+      "Berkeley from 1998. Foundational ML statistician; pre-deep-learning frame.",
+  },
+  "rachel-thomas": {
+    vintage: "deep-learning",
+    vintageNote:
+      "fast.ai co-founded 2016. Career maps to deep-learning era democratisation.",
+  },
+  "shakir-mohamed": {
+    vintage: "deep-learning",
+    vintageNote:
+      "DeepMind from 2013. Career is the deep-learning era.",
+  },
+  "stella-biderman": {
+    vintage: "scaling-era",
+    vintageNote:
+      "EleutherAI 2020. Open-replication of frontier models is a scaling-era research practice.",
+  },
+  "victoria-krakovna": {
+    vintage: "deep-learning",
+    vintageNote:
+      "DeepMind safety from 2017. FLI earlier. Career bridges pre-deep-learning x-risk into deep-learning era safety.",
+  },
+  "tom-davidson": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Open Phil takeoff timelines from 2021. Scaling-era forecaster.",
+  },
+  "rob-bensinger": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "MIRI from early 2010s. Communications director through the era; carries the pre-deep-learning rationalist frame.",
+  },
+  "ryan-greenblatt": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Redwood Research from ~2021. AI control work in scaling era.",
+  },
+  "owain-evans": {
+    vintage: "scaling-era",
+    vintageNote:
+      "FHI/Apollo Research alignment work from late 2010s; out-of-context reasoning research in scaling era.",
+  },
+  "yi-tay": {
+    vintage: "scaling-era",
+    vintageNote:
+      "Google Brain from 2019; Reka co-founder 2023. Career is scaling era LLM scaling.",
+  },
+  "lila-ibrahim": {
+    vintage: "deep-learning",
+    vintageNote:
+      "DeepMind COO from 2018. Operational role spans deep-learning into scaling.",
+  },
+  "stuart-armstrong-bridge": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "See stuart-armstrong.",
+  },
+  "anders-sandberg-bridge": {
+    vintage: "pre-deep-learning",
+    vintageNote:
+      "See anders-sandberg.",
+  },
 };
