@@ -1,6 +1,38 @@
 import type { Metadata } from "next";
+import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
+
+// next/font/google handles font loading with optimized self-hosting,
+// avoids the layout.tsx-was-not-pages/_document.tsx ESLint warning,
+// and exposes CSS variables we already reference in globals.css.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  // Variable font: don't pin weight, let CSS pick from the available
+  // axis range. SOFT and WONK aren't in the next/font axes list yet.
+  axes: ["opsz"],
+  variable: "--font-display-loaded",
+  display: "swap",
+});
+const ibmMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono-loaded",
+  display: "swap",
+});
+const ibmSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-ui-loaded",
+  display: "swap",
+});
+const ibmSerif = IBM_Plex_Serif({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-body-loaded",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "AGI Strategies — a map of AI safety macrostrategies",
@@ -11,8 +43,9 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const fontVariables = `${fraunces.variable} ${ibmMono.variable} ${ibmSans.variable} ${ibmSerif.variable}`;
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={fontVariables}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -26,16 +59,6 @@ export default function RootLayout({
               } catch (_) {}
             `,
           }}
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
-          rel="stylesheet"
         />
       </head>
       <body className="min-h-screen flex flex-col">

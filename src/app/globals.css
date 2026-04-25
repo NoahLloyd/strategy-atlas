@@ -15,10 +15,14 @@
   --color-complement: #3a7a52;
   --color-neutral: #8a8778;
 
-  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "IBM Plex Serif", "Iowan Old Style", Georgia, serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-ui: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  /* Font stacks fall back through the next/font-loaded CSS variable
+     (set on <html> by next/font/google in layout.tsx) and then to
+     system fonts. The --font-{x}-loaded variables themselves resolve
+     to optimized self-hosted Google fonts at request time. */
+  --font-display: var(--font-display-loaded), "Iowan Old Style", Georgia, serif;
+  --font-body: var(--font-body-loaded), "Iowan Old Style", Georgia, serif;
+  --font-mono: var(--font-mono-loaded), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-ui: var(--font-ui-loaded), system-ui, -apple-system, sans-serif;
 }
 
 h1,
