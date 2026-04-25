@@ -51,8 +51,8 @@ export default function HomePage() {
           style={{ color: "var(--color-ink-soft)" }}
         >
           A citation-backed repository of strategic positions on AI and AGI.
-          Every claim is tied to a named person, dated, and linked to a primary
-          source. Videos are cropped to the moment the person said it.
+          Every claim is tied to a named person, dated, and linked to a
+          primary source.
         </p>
         <p
           className="text-base leading-relaxed max-w-3xl"
