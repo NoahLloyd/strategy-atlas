@@ -5,7 +5,7 @@ import { levers } from "@/data/levers";
 import type { Strategy } from "@/lib/types";
 
 export const metadata = {
-  title: "Axes — Strategy Atlas",
+  title: "Axes — AGI Strategies",
 };
 
 const axisKey: Record<string, keyof Strategy> = {

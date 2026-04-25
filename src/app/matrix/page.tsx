@@ -11,7 +11,7 @@ import type { LeverId, Strategy } from "@/lib/types";
 import { mechanismForPair, mechanismCatalogue } from "@/lib/mechanism";
 
 export const metadata = {
-  title: "Matrix — Strategy Atlas",
+  title: "Matrix — AGI Strategies",
 };
 
 export default function MatrixPage() {

@@ -7,7 +7,7 @@ import {
 import type { Commitment } from "@/lib/types";
 
 export const metadata = {
-  title: "Commitments — Strategy Atlas",
+  title: "Commitments — AGI Strategies",
 };
 
 export default function CommitmentsPage() {

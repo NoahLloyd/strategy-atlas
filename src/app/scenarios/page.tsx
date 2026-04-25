@@ -10,7 +10,7 @@ import { leverById } from "@/data/levers";
 import type { Strategy } from "@/lib/types";
 
 export const metadata = {
-  title: "Scenarios — Strategy Atlas",
+  title: "Scenarios — AGI Strategies",
 };
 
 export default function ScenariosPage() {

@@ -3,7 +3,7 @@ import { strategies } from "@/lib/strategies";
 import { falsificationByStrategy } from "@/data/falsification";
 
 export const metadata = {
-  title: "Identity or bet — Strategy Atlas",
+  title: "Identity or bet — AGI Strategies",
 };
 
 /**
