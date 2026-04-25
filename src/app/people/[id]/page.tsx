@@ -8,6 +8,31 @@ import {
   expertiseTiers,
   recognitionTiers,
 } from "@/data/profile-tiers";
+import type { Person } from "@/lib/people-types";
+
+function similarPeople(self: Person, k = 6) {
+  const selfTags = new Set(self.positions.map((p) => p.strategyId));
+  if (selfTags.size === 0) return [];
+  const minShared = selfTags.size >= 3 ? 2 : 1;
+  const scored = people
+    .filter((p) => p.id !== self.id)
+    .map((p) => {
+      const otherTags = new Set(p.positions.map((pos) => pos.strategyId));
+      let shared = 0;
+      for (const t of selfTags) if (otherTags.has(t)) shared++;
+      const union = selfTags.size + otherTags.size - shared;
+      const jaccard = union === 0 ? 0 : shared / union;
+      return { person: p, shared, jaccard };
+    })
+    .filter((s) => s.shared >= minShared)
+    .sort(
+      (a, b) =>
+        b.shared - a.shared ||
+        b.jaccard - a.jaccard ||
+        a.person.name.localeCompare(b.person.name),
+    );
+  return scored.slice(0, k);
+}
 
 export function generateStaticParams() {
   return people.map((p) => ({ id: p.id }));
@@ -322,6 +347,54 @@ export default async function PersonPage({
           })}
         </div>
       </section>
+
+      {(() => {
+        const similar = similarPeople(person);
+        if (similar.length === 0) return null;
+        return (
+          <section className="mb-10 border-t hairline pt-5">
+            <div className="flex items-baseline justify-between mb-3">
+              <h2
+                className="text-xl"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Closest strategy neighbours
+              </h2>
+              <span className="num-label opacity-60">by jaccard overlap</span>
+            </div>
+            <p className="text-xs italic mb-4" style={{ color: "var(--color-ink-soft)" }}>
+              Other people whose strategy tags overlap with {person.name}&apos;s.
+              Overlap is on tag identity, not stance — opposites can show up if
+              they reference the same tags.
+            </p>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {similar.map(({ person: p, shared, jaccard }) => (
+                <li key={p.id}>
+                  <Link
+                    href={`/people/${p.id}`}
+                    className="unstyled flex items-start gap-3 border hairline p-3 hover:border-[var(--color-ink)] transition-colors h-full"
+                  >
+                    <PersonAvatar person={p} size={36} />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm leading-tight" style={{ fontFamily: "var(--font-display)" }}>
+                        {p.name}
+                      </p>
+                      <p className="text-[10px] mt-1" style={{ color: "var(--color-ink-soft)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>
+                        shared {shared} · J={jaccard.toFixed(2)}
+                      </p>
+                      {p.tagline && (
+                        <p className="text-xs italic mt-1 line-clamp-2" style={{ color: "var(--color-ink-soft)" }}>
+                          {p.tagline}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })()}
 
       {person.notes && (
         <section className="mb-10 border-t hairline pt-5">
