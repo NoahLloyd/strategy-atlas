@@ -1068,7 +1068,7 @@ export const profileOverrides: Record<string, Profile> = {
   "suchir-balaji": {
     expertise: "frontier-builder",
     expertiseNote:
-      "Former OpenAI researcher (1991–2024). Public concerns on copyright and training data; died Nov 2024.",
+      "Former OpenAI researcher (1998–2024). Publicly raised copyright/training-data concerns; found dead in November 2024 (suicide per coroner).",
     recognition: "field-leading",
     recognitionNote:
       "Death and circumstances drew major press; recognised in AI/policy circles.",

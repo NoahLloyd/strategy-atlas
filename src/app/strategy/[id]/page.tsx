@@ -331,6 +331,70 @@ export default async function StrategyPage({
               </>
             ) : null}
           </p>
+
+          {(() => {
+            const profiledOnly = peopleOnRecord.filter((p) => p.profile);
+            if (profiledOnly.length < 3) return null;
+            const expCounts = expertiseTiers.map((t) => ({
+              tier: t,
+              count: profiledOnly.filter((p) => p.profile!.expertise === t.id).length,
+            }));
+            const recCounts = recognitionTiers.map((t) => ({
+              tier: t,
+              count: profiledOnly.filter((p) => p.profile!.recognition === t.id)
+                .length,
+            }));
+            const expMax = Math.max(...expCounts.map((c) => c.count), 1);
+            const recMax = Math.max(...recCounts.map((c) => c.count), 1);
+            return (
+              <div className="grid sm:grid-cols-2 gap-4 mb-6 border hairline p-4" style={{ background: "var(--color-parchment-soft)" }}>
+                <div>
+                  <p className="num-label mb-2">expertise mix · {profiledOnly.length} profiled</p>
+                  <div className="space-y-1.5">
+                    {expCounts.map(({ tier, count }) => (
+                      <div key={tier.id} className="flex items-center gap-2 text-xs">
+                        <span style={{ width: 110, color: "var(--color-ink-soft)" }}>{tier.short}</span>
+                        <div className="flex-1 h-2.5" style={{ background: "var(--color-rule)" }}>
+                          <div
+                            style={{
+                              width: `${(count / expMax) * 100}%`,
+                              height: "100%",
+                              background: "var(--color-accent)",
+                            }}
+                          />
+                        </div>
+                        <span className="num-label" style={{ width: 24, textAlign: "right" }}>{count}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="num-label mb-2">recognition mix</p>
+                  <div className="space-y-1.5">
+                    {recCounts.map(({ tier, count }) => (
+                      <div key={tier.id} className="flex items-center gap-2 text-xs">
+                        <span style={{ width: 110, color: "var(--color-ink-soft)" }}>{tier.short}</span>
+                        <div className="flex-1 h-2.5" style={{ background: "var(--color-rule)" }}>
+                          <div
+                            style={{
+                              width: `${(count / recMax) * 100}%`,
+                              height: "100%",
+                              background: "var(--color-accent)",
+                            }}
+                          />
+                        </div>
+                        <span className="num-label" style={{ width: 24, textAlign: "right" }}>{count}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <p className="text-[11px] italic sm:col-span-2" style={{ color: "var(--color-ink-soft)" }}>
+                  A strategy whose endorsement skews to commentators or external-domain experts is in a different epistemic state from one endorsed mostly by frontier-builders. The mix is read carefully across both axes — see <Link href="/board" className="underline-wiggle">the board</Link> for criteria. Counts are over the {profiledOnly.length} profiled people on this strategy ({peopleOnRecord.length - profiledOnly.length} unprofiled excluded).
+                </p>
+              </div>
+            );
+          })()}
+
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {peopleOnRecord.slice(0, 36).map((p) => {
               const expertise = expertiseTiers.find(

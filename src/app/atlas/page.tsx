@@ -3,6 +3,24 @@ import { strategies, strategiesByLever, symmetricConflicts } from "@/lib/strateg
 import { levers } from "@/data/levers";
 import { StrategyCard } from "@/components/StrategyCard";
 import { LeverField } from "@/components/LeverField";
+import { tagsForStrategyId } from "@/data/strategy-tag-bridge";
+import { peopleByStrategyTag } from "@/lib/people";
+import { expertiseTiers } from "@/data/profile-tiers";
+import type { ExpertiseTier } from "@/lib/people-types";
+
+function profiledEndorsers(strategyId: string) {
+  const tags = tagsForStrategyId(strategyId);
+  const ids = new Set<string>();
+  const profiled: { id: string; tier: ExpertiseTier }[] = [];
+  for (const t of tags) {
+    for (const p of peopleByStrategyTag(t)) {
+      if (ids.has(p.id) || !p.profile) continue;
+      ids.add(p.id);
+      profiled.push({ id: p.id, tier: p.profile.expertise });
+    }
+  }
+  return profiled;
+}
 
 export default function HomePage() {
   const byLever = strategiesByLever();
@@ -26,6 +44,63 @@ export default function HomePage() {
     if (up && down) conflictLevers.add(lever.id);
   }
   const leversWithPulls = levers.filter((l) => (byLever[l.id]?.length ?? 0) > 0);
+
+  // Profile concentration per strategy. A strategy with ≥4 profiled endorsers
+  // gets surfaced in the consensus reading; below that the signal is too noisy.
+  type Skew = {
+    strategy: (typeof strategies)[number];
+    total: number;
+    counts: Record<ExpertiseTier, number>;
+    dominant: ExpertiseTier;
+    dominantShare: number;
+  };
+  const skews: Skew[] = [];
+  for (const s of strategies) {
+    const endorsers = profiledEndorsers(s.id);
+    if (endorsers.length < 4) continue;
+    const counts: Record<ExpertiseTier, number> = {
+      "frontier-builder": 0,
+      "deep-technical": 0,
+      "applied-technical": 0,
+      "policy-meta": 0,
+      "external-domain": 0,
+      commentator: 0,
+    };
+    for (const e of endorsers) counts[e.tier]++;
+    let dominant: ExpertiseTier = "deep-technical";
+    let max = -1;
+    for (const k of Object.keys(counts) as ExpertiseTier[]) {
+      if (counts[k] > max) {
+        max = counts[k];
+        dominant = k;
+      }
+    }
+    skews.push({
+      strategy: s,
+      total: endorsers.length,
+      counts,
+      dominant,
+      dominantShare: max / endorsers.length,
+    });
+  }
+  const builderHeavy = skews
+    .filter(
+      (sk) =>
+        (sk.counts["frontier-builder"] + sk.counts["deep-technical"]) /
+          sk.total >=
+        0.6,
+    )
+    .sort((a, b) => b.total - a.total);
+  const commentaryHeavy = skews
+    .filter(
+      (sk) =>
+        (sk.counts.commentator + sk.counts["external-domain"]) / sk.total >=
+        0.5,
+    )
+    .sort((a, b) => b.total - a.total);
+  const policyHeavy = skews
+    .filter((sk) => sk.counts["policy-meta"] / sk.total >= 0.4)
+    .sort((a, b) => b.total - a.total);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
@@ -204,6 +279,45 @@ export default function HomePage() {
         </ol>
       </section>
 
+      {skews.length > 0 && (
+        <section className="mt-16 border-t hairline pt-10">
+          <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
+            <h2
+              className="text-2xl"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Where the consensus lives.
+            </h2>
+            <Link href="/board" className="underline-wiggle text-sm">
+              the board →
+            </Link>
+          </div>
+          <p className="text-sm mb-8 max-w-3xl" style={{ color: "var(--color-ink-soft)" }}>
+            For each strategy with at least four profiled endorsers, who actually
+            holds it. A strategy held mostly by frontier-builders is in a
+            different epistemic state from one held mostly by commentators.
+            Counts are over the {skews.length} strategies that meet the bar.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <SkewColumn
+              label="Builder-heavy"
+              caption="Endorsement is ≥60% frontier-builder + deep-technical"
+              items={builderHeavy}
+            />
+            <SkewColumn
+              label="Policy-heavy"
+              caption="Endorsement is ≥40% policy / meta"
+              items={policyHeavy}
+            />
+            <SkewColumn
+              label="Commentary-heavy"
+              caption="Endorsement is ≥50% commentator + external-domain"
+              items={commentaryHeavy}
+            />
+          </div>
+        </section>
+      )}
+
       <section className="mt-16 border-t hairline pt-10">
         <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
           <h2
@@ -272,6 +386,59 @@ export default function HomePage() {
           })}
         </div>
       </section>
+    </div>
+  );
+}
+
+function SkewColumn({
+  label,
+  caption,
+  items,
+}: {
+  label: string;
+  caption: string;
+  items: {
+    strategy: (typeof strategies)[number];
+    total: number;
+    dominant: ExpertiseTier;
+    dominantShare: number;
+  }[];
+}) {
+  return (
+    <div>
+      <p className="num-label mb-2">{label}</p>
+      <p className="text-xs italic mb-3" style={{ color: "var(--color-ink-soft)" }}>
+        {caption}
+      </p>
+      {items.length === 0 ? (
+        <p className="text-xs italic" style={{ color: "var(--color-ink-soft)" }}>
+          No strategies meet the threshold yet.
+        </p>
+      ) : (
+        <ul className="space-y-2">
+          {items.slice(0, 8).map((sk) => {
+            const tier = expertiseTiers.find((t) => t.id === sk.dominant);
+            return (
+              <li key={sk.strategy.id}>
+                <Link
+                  href={`/strategy/${sk.strategy.id}`}
+                  className="unstyled block border-l-2 hairline pl-3 py-1 hover:border-[var(--color-ink)] transition-colors"
+                >
+                  <p
+                    className="text-sm leading-tight"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {sk.strategy.name}
+                  </p>
+                  <p className="text-[10px] mt-0.5" style={{ color: "var(--color-ink-soft)", fontFamily: "var(--font-mono)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                    {tier?.short} · {Math.round(sk.dominantShare * 100)}% of {sk.total}
+                  </p>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
