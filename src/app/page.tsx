@@ -19,15 +19,6 @@ export default function HomePage() {
       acc + p.positions.reduce((q, pos) => q + pos.quotes.length, 0),
     0,
   );
-  const videoQuotes = people.reduce(
-    (acc, p) =>
-      acc +
-      p.positions.reduce(
-        (q, pos) => q + pos.quotes.filter((qu) => qu.source.videoId).length,
-        0,
-      ),
-    0,
-  );
   const pDoomByValue = people
     .filter((p) => p.pDoom && p.pDoom[0])
     .map((p) => ({
@@ -81,6 +72,9 @@ export default function HomePage() {
           <Link href="/board" className="chip">
             The board
           </Link>
+          <Link href="/compare" className="chip">
+            Compare strategies
+          </Link>
           <Link href="/pdoom" className="chip">
             p(doom)
           </Link>
@@ -92,7 +86,7 @@ export default function HomePage() {
 
       <section className="mb-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-[var(--color-rule)] border hairline">
         <BigStat label="People on the record" value={people.length.toString()} />
-        <BigStat label="Quotes with sources" value={totalQuotes.toString()} sub={`${videoQuotes} timestamped`} />
+        <BigStat label="Quotes with sources" value={totalQuotes.toString()} />
         <BigStat label="p(doom) estimates" value={pDoomCount.toString()} />
         <BigStat label="Dated AGI timelines" value={timelinesCount.toString()} />
       </section>
@@ -258,19 +252,22 @@ export default function HomePage() {
               two-axis grid: <strong style={{ color: "var(--color-ink)" }}>expertise</strong>{" "}
               (frontier-builder → commentator) on the technical side and{" "}
               <strong style={{ color: "var(--color-ink)" }}>recognition</strong>{" "}
-              (household-name → emerging) on the public side. The grid is
-              hand-classified with concrete evidence per person — no single
-              proxy. Filter by strategy to see whether a position is held
-              mostly by builders, mostly by commentators, or somewhere in
-              between.
+              (household-name → emerging) on the public side. A third
+              dimension — <strong style={{ color: "var(--color-ink)" }}>vintage</strong>{" "}
+              (pioneer → post-ChatGPT) — captures the era of AI whose
+              problems shaped the person&apos;s priors. Each tier is
+              hand-classified with concrete evidence; no single proxy.
+              Filter by strategy to see whether a position is held mostly
+              by builders, mostly by commentators, or mostly by people
+              whose worldview formed before AlexNet.
             </p>
             <p
               className="text-sm italic mb-4 max-w-2xl"
               style={{ color: "var(--color-ink-soft)" }}
             >
-              The tiers categorise role and reach. They are not a ranking —
-              an external-domain expert and a frontier-builder are different
-              vantages, not better and worse.
+              The tiers categorise role, reach, and era. They are not a
+              ranking — an external-domain expert and a frontier-builder
+              are different vantages, not better and worse.
             </p>
             <Link href="/board" className="chip is-complement">
               Open the board →
@@ -292,6 +289,15 @@ export default function HomePage() {
               <li>field-leading</li>
               <li>established</li>
               <li>emerging</li>
+            </ul>
+            <p className="num-label mb-2 mt-4">six vintage tiers</p>
+            <ul className="text-xs space-y-1" style={{ color: "var(--color-ink-soft)" }}>
+              <li>pioneer · pre-1980</li>
+              <li>symbolic-era · 1980–2005</li>
+              <li>pre-deep-learning · 2005–2012</li>
+              <li>deep-learning · 2012–2017</li>
+              <li>scaling era · 2018–2022</li>
+              <li>post-chatgpt · 2023+</li>
             </ul>
           </div>
         </div>
@@ -317,8 +323,7 @@ export default function HomePage() {
             <span className="num-label mt-1 flex-shrink-0">02</span>
             <span>
               Every quote is tagged by fidelity: direct, faithful paraphrase,
-              loose paraphrase, or summary. The link goes to the primary source;
-              for videos, the timestamp is embedded.
+              loose paraphrase, or summary. The link goes to the primary source.
             </span>
           </li>
           <li className="flex gap-4">
