@@ -2936,45 +2936,6 @@ export const people: Person[] = [
   },
 
   {
-    id: "robert-miles",
-    name: "Rob Miles",
-    tagline: "AI Safety YouTuber; Computerphile collaborator",
-    summary:
-      "Independent AI safety educator with a long-running YouTube channel ('Robert Miles AI Safety') and frequent appearances on Computerphile. The most accessible mainstream public-facing introduction to alignment for many viewers.",
-    categories: ["public-intellectual", "researcher"],
-    affiliations: [
-      { org: "Independent", role: "AI safety educator", current: true },
-    ],
-    homepage: "https://www.youtube.com/@RobertMilesAI",
-    twitter: "robertskmiles",
-    positions: [
-      {
-        strategyId: "alignment-first",
-        stance: "endorses",
-        summary:
-          "Argues alignment problems—mesa-optimization, deceptive alignment, instrumental convergence—are real and become more urgent as capabilities grow; explains them in plain language for non-technical audiences.",
-        quotes: [
-          {
-            text:
-              "We need to know how to build AGIs we can trust before we build the AGIs. Right now we don't know how, and that is the whole problem.",
-            date: "2022",
-            fidelity: "paraphrase-faithful",
-            source: {
-              title: "Intro to AI Safety",
-              url: "https://www.youtube.com/watch?v=pYXy-A4siMw",
-              medium: "video",
-              publisher: "YouTube",
-              videoId: "pYXy-A4siMw",
-              videoPlatform: "youtube",
-            },
-          },
-        ],
-      },
-    ],
-    lastUpdated: "2026-04-25",
-  },
-
-  {
     id: "garry-kasparov",
     name: "Garry Kasparov",
     tagline: "Former world chess champion; 'Deep Thinking' author",

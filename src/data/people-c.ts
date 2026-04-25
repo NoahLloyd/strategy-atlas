@@ -893,7 +893,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Public educator on alignment theory: instrumental convergence, specification gaming, inner alignment.",
+          "Public educator on alignment theory: instrumental convergence, specification gaming, inner alignment, mesa-optimization, deceptive alignment. Explains them in plain language for non-technical audiences.",
         quotes: [
           {
             text:
@@ -905,6 +905,20 @@ export const people: Person[] = [
               url: "https://www.youtube.com/@RobertMilesAI",
               medium: "video",
               publisher: "YouTube",
+            },
+          },
+          {
+            text:
+              "We need to know how to build AGIs we can trust before we build the AGIs. Right now we don't know how, and that is the whole problem.",
+            date: "2022",
+            fidelity: "paraphrase-faithful",
+            source: {
+              title: "Intro to AI Safety",
+              url: "https://www.youtube.com/watch?v=pYXy-A4siMw",
+              medium: "video",
+              publisher: "YouTube",
+              videoId: "pYXy-A4siMw",
+              videoPlatform: "youtube",
             },
           },
         ],
