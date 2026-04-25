@@ -63,7 +63,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "You're either pushing to accelerate as fast as possible — no holds barred, no guardrails allowed — or dismissed, usually with a smirk, as a 'decel,' an enemy of progress.",
+              "You're either pushing to accelerate as fast as possible, no holds barred, no guardrails allowed, or dismissed, usually with a smirk, as a 'decel,' an enemy of progress.",
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
@@ -178,7 +178,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Garrison Lovely — freelance archive",
+              title: "Garrison Lovely, freelance archive",
               url: "https://www.garrisonlovely.com/",
               medium: "blog",
               publisher: "garrisonlovely.com",
@@ -315,6 +315,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Bullish on AI as a scientific and medical transformation; less focused on x-risk framings.",
         quotes: [

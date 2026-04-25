@@ -96,7 +96,7 @@ export const people: Person[] = [
     name: "Tristan Harris",
     tagline: "Co-founder of the Center for Humane Technology; 'The AI Dilemma'",
     summary:
-      "Former Google design ethicist who became the most visible critic of attention-engineered platforms. Since March 2023, he and Aza Raskin have run 'The AI Dilemma' — a series of briefings to governments and media arguing AI rolls out faster than the institutions needed to handle it.",
+      "Former Google design ethicist who became the most visible critic of attention-engineered platforms. Since March 2023, he and Aza Raskin have run 'The AI Dilemma', a series of briefings to governments and media arguing AI rolls out faster than the institutions needed to handle it.",
     categories: ["public-intellectual", "activist"],
     affiliations: [
       { org: "Center for Humane Technology", role: "Co-founder", current: true },
@@ -131,7 +131,7 @@ export const people: Person[] = [
             fidelity: "paraphrase-faithful",
             context: "Slide quoted in The AI Dilemma presentation.",
             source: {
-              title: "The A.I. Dilemma — March 9, 2023",
+              title: "The A.I. Dilemma, March 9, 2023",
               url: "https://www.youtube.com/watch?v=xoVJKj8lcNQ",
               medium: "video",
               publisher: "Center for Humane Technology",
@@ -239,7 +239,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argues an expert commission with rulemaking recommendations should design AI regulation — not left entirely to incumbent industry.",
+          "Argues an expert commission with rulemaking recommendations should design AI regulation, not left entirely to incumbent industry.",
         quotes: [
           {
             text:
@@ -349,7 +349,7 @@ export const people: Person[] = [
         strategyId: "democratic-mandate",
         stance: "endorses",
         summary:
-          "Argues AI governance must be built from deliberative democracy primitives — alignment assemblies, pol.is-style consensus, plurality of models.",
+          "Argues AI governance must be built from deliberative democracy primitives, alignment assemblies, pol.is-style consensus, plurality of models.",
         quotes: [
           {
             text:
@@ -358,7 +358,7 @@ export const people: Person[] = [
             fidelity: "direct",
             context: "Her first self-description as Digital Minister.",
             source: {
-              title: "Audrey Tang — homepage",
+              title: "Audrey Tang, homepage",
               url: "https://audreyt.org/",
               medium: "article",
               publisher: "audreyt.org",
@@ -1035,6 +1035,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Frames AI as a universal productivity layer; partners with frontier labs to ship products quickly.",
         quotes: [
@@ -1073,6 +1074,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "mixed",
+        tentative: true,
         summary:
           "Critical of stagnation but wary of AI-induced concentration; advocates for national security-framed AI development.",
         quotes: [
@@ -1115,7 +1117,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "AI systems must be secure by design — not bolted on after deployment.",
+              "AI systems must be secure by design, not bolted on after deployment.",
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
@@ -1214,7 +1216,7 @@ export const people: Person[] = [
     name: "Joe Biden",
     tagline: "Former US President",
     summary:
-      "Signed Executive Order 14110 on Safe, Secure, and Trustworthy AI in October 2023 — the most expansive US AI executive action. The order was rescinded by the Trump administration in January 2025.",
+      "Signed Executive Order 14110 on Safe, Secure, and Trustworthy AI in October 2023, the most expansive US AI executive action. The order was rescinded by the Trump administration in January 2025.",
     categories: ["policy"],
     affiliations: [
       { org: "US federal government", role: "Former President", end: "2025-01", current: false },

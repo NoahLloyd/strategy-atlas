@@ -19,7 +19,7 @@ export const selfUnderminingByStrategy: Record<string, SelfUndermining> = {
   "pause": {
     threshold: "When adopted by fewer than all significant actors.",
     mechanism:
-      "Unilateral pause transfers leadership to defectors. The pausing actor loses influence over what comes next — the exact opposite of what the pause was supposed to buy.",
+      "Unilateral pause transfers leadership to defectors. The pausing actor loses influence over what comes next, the exact opposite of what the pause was supposed to buy.",
   },
   "race-to-aligned-superintelligence": {
     threshold: "When more than one state begins racing.",
@@ -79,7 +79,7 @@ export const selfUnderminingByStrategy: Record<string, SelfUndermining> = {
   "multipolarity": {
     threshold: "Without reliable capability verification.",
     mechanism:
-      "Actors assume the worst about each other — the dark-forest failure. Stable multipolarity requires legibility that current AI systems lack.",
+      "Actors assume the worst about each other, the dark-forest failure. Stable multipolarity requires legibility that current AI systems lack.",
   },
   "acceleration": {
     threshold: "When adopted by more than one actor.",

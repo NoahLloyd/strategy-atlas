@@ -150,3 +150,11 @@ export function peopleWithPDoom(): { person: Person; claim: NonNullable<Person["
   }
   return out;
 }
+
+// True when at least one of the person's positions is a clear, primary-source
+// statement of the bet (not a tentative inference from a passing remark, hype
+// quote, or paper abstract). Used by the people index to hide entries we
+// don't actually know the strategic position of.
+export function hasStatedPosition(p: Person): boolean {
+  return p.positions.some((pos) => !pos.tentative);
+}

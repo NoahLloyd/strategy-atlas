@@ -8,7 +8,7 @@ import {
 } from "@/data/profile-tiers";
 
 export const metadata = {
-  title: "Board — AGI Strategies",
+  title: "Board · AGI Strategies",
   description:
     "Hand-classified expertise and recognition tiers for the most prominent figures on the AGI strategy record.",
 };
@@ -33,7 +33,7 @@ export default function BoardPage() {
     count: profiled.filter((p) => p.profile!.vintage === t.id).length,
   }));
   const vintageClassified = profiled.filter((p) => p.profile!.vintage).length;
-  // p(doom) by vintage — does the era of formation predict the estimate?
+  // p(doom) by vintage, does the era of formation predict the estimate?
   const pdoomByVintage = vintageTiers.map((t) => {
     const vals = profiled
       .filter((p) => p.profile!.vintage === t.id)
@@ -60,7 +60,7 @@ export default function BoardPage() {
     })
     .sort((a, b) => b.count - a.count);
 
-  // p(doom) summary per expertise tier — surfaces whether builders, deep
+  // p(doom) summary per expertise tier, surfaces whether builders, deep
   // technicals, policy, or commentators differ in their existential
   // estimates. Uses first stated p(doom) per person to avoid double-counting
   // revisions.
@@ -123,15 +123,15 @@ export default function BoardPage() {
           the third axis (era of AI worldview formation, surfaced in the
           breakdown sections below). Each face is one person. Cells get
           darker the more people sit there. Sparse cells are not gaps in
-          the record — they are positions the field has not actually
+          the record; they are positions the field has not actually
           produced.
         </p>
         <p
           className="text-base leading-relaxed"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          Tiers are hand-assigned with concrete evidence — peer-reviewed work,
-          named roles, mainstream coverage — not from a single proxy.{" "}
+          Tiers are hand-assigned with concrete evidence (peer-reviewed work,
+          named roles, mainstream coverage) rather than from a single proxy.{" "}
           <strong style={{ color: "var(--color-ink)" }}>{profiled.length}</strong>{" "}
           of {people.length} people are classified so far; the rest appear in
           the directory but not on the board until their profile is researched.
@@ -184,7 +184,7 @@ export default function BoardPage() {
             Mean stated p(doom) within each tier. Each tier requires at least
             three p(doom) estimates on record to appear; tiers below the bar
             are honest about being undersampled. The point is to ask{" "}
-            <em>does the tier shape the estimate</em> — not to settle it.
+            <em>does the tier shape the estimate</em>, not to settle it.
           </p>
           <div className="grid md:grid-cols-2 gap-8">
             <TierBars
@@ -210,7 +210,7 @@ export default function BoardPage() {
             className="text-[10px] italic mt-4 max-w-3xl"
             style={{ color: "var(--color-ink-soft)" }}
           >
-            n=3 is a low bar — read this as a sketch, not as evidence. As
+            n=3 is a low bar; read this as a sketch, not as evidence. As
             the corpus grows, this section will sharpen into a real
             tier-comparison.
           </p>
@@ -230,8 +230,8 @@ export default function BoardPage() {
           </div>
           <p className="text-sm mb-5 max-w-3xl" style={{ color: "var(--color-ink-soft)" }}>
             Mean stated p(doom) within each era of AI worldview formation.
-            The hypothesis: priors set before 2012 — when the deep-learning
-            era began — differ from priors set after. This is the visible
+            The hypothesis: priors set before 2012, when the deep-learning
+            era began, differ from priors set after. This is the visible
             test. Each tier requires at least three p(doom) estimates to
             appear.
           </p>
@@ -347,7 +347,7 @@ export default function BoardPage() {
           <li>
             <strong style={{ color: "var(--color-ink)" }}>Justified
             individually.</strong>{" "}
-            Each profile lists what put the person in their tier — papers,
+            Each profile lists what put the person in their tier: papers,
             roles, coverage. Hand-assigned, not derived from a single proxy.
             Open a person to read the reasoning.
           </li>
@@ -419,7 +419,7 @@ function TierBars({
               className="num-label whitespace-nowrap"
               style={{ width: 70, textAlign: "right" }}
             >
-              {row.mean !== null ? `${Math.round(row.mean * 100)}%` : "—"}
+              {row.mean !== null ? `${Math.round(row.mean * 100)}%` : "·"}
               {" · n="}
               {row.n}
             </span>

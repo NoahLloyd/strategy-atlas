@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   scenarios,
   adversaryLabel,
@@ -7,10 +6,11 @@ import {
 } from "@/data/scenarios";
 import { getStrategy, strategies } from "@/lib/strategies";
 import { leverById } from "@/data/levers";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 import type { Strategy } from "@/lib/types";
 
 export const metadata = {
-  title: "Scenarios — AGI Strategies",
+  title: "Scenarios · AGI Strategies",
 };
 
 export default function ScenariosPage() {
@@ -47,8 +47,8 @@ export default function ScenariosPage() {
           to that scenario specifically.
         </p>
         <p className="text-sm leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
-          A strategy listed under a scenario does not promise to prevent it
-          — only to pull on a lever that would matter under that scenario.
+          A strategy listed under a scenario does not promise to prevent it,
+          only to pull on a lever that would matter under that scenario.
           Pick the scenario, then ask whether the strategies listed are
           sufficient and whether any are missing.
         </p>
@@ -109,7 +109,7 @@ export default function ScenariosPage() {
         </div>
         <p className="text-sm mb-5 max-w-3xl" style={{ color: "var(--color-ink-soft)" }}>
           Strategies that appear in multiple scenarios are robust across
-          failure modes — they pull levers that matter under several
+          failure modes; they pull levers that matter under several
           different fears. Substrate and response strategies concentrate
           here.
         </p>
@@ -120,13 +120,14 @@ export default function ScenariosPage() {
               className="grid grid-cols-[40px_1fr_auto] items-baseline gap-3 border-b hairline py-2 text-sm"
             >
               <span className="num-label text-right">{n}×</span>
-              <Link
-                href={`/strategy/${id}`}
-                className="unstyled hover:underline"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {strategy.name}
-              </Link>
+              <HoverStrategyLink strategy={strategy} placement="below">
+                <span
+                  className="hover:underline"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {strategy.name}
+                </span>
+              </HoverStrategyLink>
               <span className="num-label text-[10px]">
                 {leverById[strategy.primaryLever]?.name}
               </span>
@@ -140,7 +141,7 @@ export default function ScenariosPage() {
           The scenario coverage is biased toward preventable failures.
           Scenarios where prevention fails and only response matters need
           expansion. Strategies that do not appear in any scenario here are
-          not useless — they often deny the scenario&apos;s framing rather
+          not useless; they often deny the scenario&apos;s framing rather
           than respond within it.
         </p>
         <p>
@@ -226,17 +227,14 @@ function ScenarioBlock({ scenario }: { scenario: Scenario }) {
         </p>
         <div className="flex flex-wrap gap-2">
           {responsiveStrategies.map((s) => (
-            <Link
-              key={s.id}
-              href={`/strategy/${s.id}`}
-              className="chip"
-              title={s.bet}
-            >
-              {s.name}
-              <span className="direction">
-                {leverById[s.primaryLever]?.name}
+            <HoverStrategyLink key={s.id} strategy={s} placement="below">
+              <span className="chip">
+                {s.name}
+                <span className="direction">
+                  {leverById[s.primaryLever]?.name}
+                </span>
               </span>
-            </Link>
+            </HoverStrategyLink>
           ))}
           {missing > 0 && (
             <span className="chip" style={{ opacity: 0.5 }}>

@@ -176,7 +176,7 @@ export const people: Person[] = [
             date: "2023-11-15",
             fidelity: "direct",
             source: {
-              title: "Ed Newton-Rex — resignation statement",
+              title: "Ed Newton-Rex, resignation statement",
               url: "https://twitter.com/ednewtonrex/status/1724902327151452486",
               medium: "tweet",
               publisher: "X/Twitter",
@@ -283,11 +283,11 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "AI is too important to leave to engineers alone — and too technical to leave to regulators alone.",
+              "AI is too important to leave to engineers alone, and too technical to leave to regulators alone.",
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Inga Strümke — NTNU",
+              title: "Inga Strümke, NTNU",
               url: "https://www.ntnu.edu/employees/inga.strumke",
               medium: "article",
               publisher: "NTNU",
@@ -320,7 +320,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "We built verification infrastructure for chemical and nuclear weapons. We can build it for AI — but only if we decide to.",
+              "We built verification infrastructure for chemical and nuclear weapons. We can build it for AI, but only if we decide to.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {

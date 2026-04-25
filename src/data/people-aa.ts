@@ -200,7 +200,7 @@ export const people: Person[] = [
             date: "2021",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Amnesty International — Ban the Scan",
+              title: "Amnesty International, Ban the Scan",
               url: "https://banthescan.amnesty.org/",
               medium: "article",
               publisher: "Amnesty International",
@@ -414,6 +414,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Argues AI is the most important technology wave of the generation and should be built quickly by startups.",
         quotes: [

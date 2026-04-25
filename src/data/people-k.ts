@@ -267,7 +267,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Séb Krier — Substack",
+              title: "Séb Krier, Substack",
               url: "https://sebkrier.substack.com/",
               medium: "blog",
               publisher: "Substack",
@@ -330,7 +330,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Publishes on how AI is actually deployed and what the societal impact patterns are — concrete data rather than speculative framings.",
+          "Publishes on how AI is actually deployed and what the societal impact patterns are, concrete data rather than speculative framings.",
         quotes: [
           {
             text:

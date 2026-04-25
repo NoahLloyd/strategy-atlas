@@ -182,7 +182,7 @@ export function StrategyBoard({
                                   textAlign: "center",
                                   fontFamily: "var(--font-mono)",
                                 }}
-                                title={`${p.name} — opposes`}
+                                title={`${p.name}, opposes`}
                               >
                                 ×
                               </span>
@@ -203,7 +203,7 @@ export function StrategyBoard({
         style={{ color: "var(--color-ink-soft)" }}
       >
         Each face is one profiled person. Cell shade intensifies with endorser
-        density. Faces with × are profiled opposers — same tier, opposite
+        density. Faces with × are profiled opposers, same tier, opposite
         position. Empty cells mark tier combinations the field has not
         produced for this bet.
       </p>

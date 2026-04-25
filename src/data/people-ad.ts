@@ -24,7 +24,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Teachers must be in charge of education — not the tool, not the machine. We're choosing the GPS system, not the driverless car.",
+              "Teachers must be in charge of education, not the tool, not the machine. We're choosing the GPS system, not the driverless car.",
             date: "2025-07",
             fidelity: "direct",
             source: {
@@ -103,7 +103,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Dorothy Denning — Georgetown",
+              title: "Dorothy Denning, Georgetown",
               url: "https://cs.georgetown.edu/",
               medium: "article",
               publisher: "Georgetown University",
@@ -166,6 +166,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Bullish on AI-coding and agent-driven software development; arguments for accelerationist framing.",
         quotes: [
@@ -203,6 +204,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Drives AI startup acceleration at YC; frames AI as the new 'full-stack' opportunity.",
         quotes: [

@@ -103,7 +103,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Moxie Marlinspike — blog archive",
+              title: "Moxie Marlinspike, blog archive",
               url: "https://moxie.org/",
               medium: "blog",
               publisher: "moxie.org",
@@ -250,7 +250,7 @@ export const people: Person[] = [
             date: "2020",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Adam Kalai — Microsoft Research",
+              title: "Adam Kalai, Microsoft Research",
               url: "https://www.microsoft.com/en-us/research/people/adum/",
               medium: "article",
               publisher: "Microsoft Research",

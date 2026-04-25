@@ -100,7 +100,7 @@ export const people: Person[] = [
     name: "Cory Doctorow",
     tagline: "EFF special advisor; 'enshittification' coiner",
     summary:
-      "Long-time digital rights activist and EFF advisor. Argues AI is being driven by the same 'enshittification' dynamic that decayed social platforms — and that capture of AI policy by incumbents will make it worse.",
+      "Long-time digital rights activist and EFF advisor. Argues AI is being driven by the same 'enshittification' dynamic that decayed social platforms, and that capture of AI policy by incumbents will make it worse.",
     categories: ["activist", "journalist", "public-intellectual"],
     affiliations: [
       { org: "Electronic Frontier Foundation", role: "Special Advisor", current: true },
@@ -113,7 +113,7 @@ export const people: Person[] = [
         strategyId: "antitrust-primacy",
         stance: "endorses",
         summary:
-          "Argues the actual AI policy question is about competition, labour, and interoperability — not existential risk.",
+          "Argues the actual AI policy question is about competition, labour, and interoperability, not existential risk.",
         quotes: [
           {
             text:
@@ -188,7 +188,7 @@ export const people: Person[] = [
     name: "Ruha Benjamin",
     tagline: "Princeton sociologist; 'Race After Technology'",
     summary:
-      "Princeton sociologist whose 2019 Race After Technology coined 'the New Jim Code' — the way digital technologies reinforce racial hierarchies. Central voice in the civil-rights framing of AI governance.",
+      "Princeton sociologist whose 2019 Race After Technology coined 'the New Jim Code', the way digital technologies reinforce racial hierarchies. Central voice in the civil-rights framing of AI governance.",
     categories: ["academic", "researcher"],
     affiliations: [
       { org: "Princeton University", role: "Alexander Stewart 1886 Professor of African American Studies", current: true },
@@ -491,6 +491,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "mixed",
+        tentative: true,
         summary:
           "Publishes the State of AI Report annually, tracking trends in capability, deployment, and policy.",
         quotes: [
@@ -563,6 +564,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "VC-grade optimism on AI's transformative deployment.",
         quotes: [

@@ -3,7 +3,7 @@ import { strategyTags } from "@/lib/strategy-tags";
 import { strategyTagUsage, people } from "@/lib/people";
 
 export const metadata = {
-  title: "Strategies — AGI Strategies",
+  title: "Strategies · AGI Strategies",
   description:
     "Strategy tags applied to the corpus of people on record. Tags emerge from what people actually argue.",
 };
@@ -89,10 +89,10 @@ export default function StrategiesIndex() {
           Strategy tags.
         </h1>
         <p className="text-base leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
-          A tag is a handle for a recurring strategic claim. Tags are inductive:
-          if the corpus does not carry an argument for a tag, the tag does not
-          exist here yet. Tags with one or two adherents may merge or split as
-          data grows.
+          A tag is a handle for a recurring strategic claim. Tags are
+          inductive: if the corpus does not carry an argument for a tag,
+          the tag does not exist here yet. Tags with one or two adherents
+          may merge or split as data grows.
         </p>
       </section>
 
@@ -232,8 +232,8 @@ export default function StrategiesIndex() {
                 className="text-sm italic mb-4 max-w-3xl"
                 style={{ color: "var(--color-ink-soft)" }}
               >
-                The 11 strategies that show up most across the corpus.
-                Read these first to map the discourse.
+                The {tier1.length} strategies that show up most across the
+                corpus. Read these first to map the discourse.
               </p>
               <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {tier1.map(renderCard)}

@@ -30,7 +30,7 @@ export const axes: Axis[] = [
       {
         id: "legal-individual",
         name: "Legal / individual",
-        description: "Acts on specific actors — prosecution, whistleblowing, authority reservation.",
+        description: "Acts on specific actors, prosecution, whistleblowing, authority reservation.",
       },
       {
         id: "non-preventive",

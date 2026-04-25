@@ -26,7 +26,7 @@ export const people: Person[] = [
             date: "2021",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Wei Dai — LessWrong",
+              title: "Wei Dai, LessWrong",
               url: "https://www.lesswrong.com/users/wei_dai",
               medium: "blog",
               publisher: "LessWrong",
@@ -59,7 +59,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Making AI cooperate — with us, and with itself — is an alignment problem of its own.",
+              "Making AI cooperate, with us, and with itself, is an alignment problem of its own.",
             date: "2021",
             fidelity: "paraphrase-faithful",
             source: {
@@ -174,7 +174,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "METR — About",
+              title: "METR, About",
               url: "https://metr.org/about",
               medium: "article",
               publisher: "METR",
@@ -211,7 +211,7 @@ export const people: Person[] = [
             date: "2014",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Allen Institute for AI — Founding",
+              title: "Allen Institute for AI, Founding",
               url: "https://allenai.org/about",
               medium: "article",
               publisher: "AI2",
@@ -283,7 +283,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The real intelligence we want our machines to have — flexible, abstract, analogical reasoning — is far beyond current systems.",
+              "The real intelligence we want our machines to have, flexible, abstract, analogical reasoning, is far beyond current systems.",
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
@@ -305,7 +305,7 @@ export const people: Person[] = [
     name: "Erik Brynjolfsson",
     tagline: "Stanford HAI; 'Turing Trap' essay",
     summary:
-      "Economist who coined the 'Turing Trap' — the idea that aiming AI at imitating humans, rather than augmenting them, leads to labour displacement without productivity gains. Signed the Statement on AI Risk.",
+      "Economist who coined the 'Turing Trap', the idea that aiming AI at imitating humans, rather than augmenting them, leads to labour displacement without productivity gains. Signed the Statement on AI Risk.",
     categories: ["academic", "economist"],
     affiliations: [
       { org: "Stanford University HAI", role: "Senior Fellow and Director of the Digital Economy Lab", current: true },
@@ -337,7 +337,7 @@ export const people: Person[] = [
         strategyId: "ai-skeptic",
         stance: "mixed",
         summary:
-          "Frames the 'Turing Trap' as the economically urgent risk — not extinction but labour displacement and inequality.",
+          "Frames the 'Turing Trap' as the economically urgent risk, not extinction but labour displacement and inequality.",
         quotes: [
           {
             text:
@@ -411,7 +411,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argues synthetic media governance — provenance, disclosure, liability — is the tractable live AI governance problem.",
+          "Argues synthetic media governance, provenance, disclosure, liability, is the tractable live AI governance problem.",
         quotes: [
           {
             text:
@@ -521,12 +521,13 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Frames AI as a highly positive force when deployed well; skeptical of catastrophe framings.",
         quotes: [
           {
             text:
-              "We are at the beginning of the most important transformation in human history — let's not waste it panicking.",
+              "We are at the beginning of the most important transformation in human history, let's not waste it panicking.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
@@ -599,7 +600,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Frontier AI raises specific, measurable uplift risks for biological and chemical misuse — and those risks are tractable for policy.",
+              "Frontier AI raises specific, measurable uplift risks for biological and chemical misuse, and those risks are tractable for policy.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {

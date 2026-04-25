@@ -203,11 +203,11 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argues AI labour conditions — especially for data annotators and content moderators — must be central to AI governance.",
+          "Argues AI labour conditions, especially for data annotators and content moderators, must be central to AI governance.",
         quotes: [
           {
             text:
-              "The people making AI safe in training — data workers, content moderators — are the least protected part of the AI supply chain.",
+              "The people making AI safe in training, data workers, content moderators, are the least protected part of the AI supply chain.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {

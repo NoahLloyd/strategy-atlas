@@ -1,5 +1,5 @@
 /**
- * Vintage drift per strategy — the content a name has carried over time.
+ * Vintage drift per strategy, the content a name has carried over time.
  * Drawn from the vault note "Strategies evolve under the same name".
  *
  * A strategy's name is stable while its substance drifts. A reader acting
@@ -33,7 +33,7 @@ export const vintagesByStrategy: Record<string, VintageEntry[]> = {
     {
       period: "2026",
       meaning:
-        "Most advocates now mean conditional pause triggered by eval thresholds — which is capability ceiling renamed.",
+        "Most advocates now mean conditional pause triggered by eval thresholds, which is capability ceiling renamed.",
     },
   ],
   "governance-first": [
@@ -55,7 +55,7 @@ export const vintagesByStrategy: Record<string, VintageEntry[]> = {
     {
       period: "2026",
       meaning:
-        "Broadened to reporting requirements, cloud access controls, and domestic audits — tools the original frame did not consider.",
+        "Broadened to reporting requirements, cloud access controls, and domestic audits, tools the original frame did not consider.",
     },
   ],
 };

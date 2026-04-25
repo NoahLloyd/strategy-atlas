@@ -4,7 +4,7 @@ import { portfolios } from "@/data/portfolios";
 import { PortfolioAudit } from "./PortfolioAudit";
 
 export const metadata = {
-  title: "Portfolio audit — AGI Strategies",
+  title: "Portfolio audit · AGI Strategies",
 };
 
 export default function PortfolioPage() {

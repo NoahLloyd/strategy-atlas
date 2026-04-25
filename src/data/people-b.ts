@@ -64,7 +64,7 @@ export const people: Person[] = [
         strategyId: "long-reflection",
         stance: "endorses",
         summary:
-          "His 2024 Deep Utopia explores what happens after superintelligence solves all practical problems — the 'post-instrumental' condition.",
+          "His 2024 Deep Utopia explores what happens after superintelligence solves all practical problems, the 'post-instrumental' condition.",
         quotes: [
           {
             text:
@@ -107,7 +107,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Humanity stands at a precipice. Our species could survive for millions of generations — enough time to end disease, poverty, and injustice; to reach new heights of flourishing.",
+              "Humanity stands at a precipice. Our species could survive for millions of generations, enough time to end disease, poverty, and injustice; to reach new heights of flourishing.",
             date: "2020-03-05",
             fidelity: "direct",
             context: "Opening of The Precipice.",
@@ -255,7 +255,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Calls for regulation grounded in present harms — labour, data rights, surveillance — rather than speculative extinction concerns.",
+          "Calls for regulation grounded in present harms, labour, data rights, surveillance, rather than speculative extinction concerns.",
         quotes: [
           {
             text:
@@ -336,7 +336,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "We need documentation of models and their datasets as a basic accountability mechanism — not an optional extra.",
+              "We need documentation of models and their datasets as a basic accountability mechanism, not an optional extra.",
             date: "2019-10",
             fidelity: "paraphrase-faithful",
             source: {
@@ -392,7 +392,7 @@ export const people: Person[] = [
         probability: 0.5,
         date: "2023-10-26",
         source: {
-          title: "Shane Legg (DeepMind Founder) — 2028 AGI",
+          title: "Shane Legg (DeepMind Founder), 2028 AGI",
           url: "https://www.dwarkesh.com/p/shane-legg",
           medium: "podcast",
           publisher: "Dwarkesh Patel Podcast",
@@ -663,7 +663,7 @@ export const people: Person[] = [
             date: "2023-10",
             fidelity: "paraphrase-faithful",
             context:
-              "From her co-authored paper 'Decoding Intentions: Artificial Intelligence and Costly Signals' — the paper that preceded the OpenAI board clash.",
+              "From her co-authored paper 'Decoding Intentions: Artificial Intelligence and Costly Signals', the paper that preceded the OpenAI board clash.",
             source: {
               title: "Decoding Intentions: Artificial Intelligence and Costly Signals",
               url: "https://cset.georgetown.edu/publication/decoding-intentions/",
@@ -804,7 +804,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "We know that moments of technological transition can lead to enormous consolidation — and moments of transition are also when the right policy can keep markets open.",
+              "We know that moments of technological transition can lead to enormous consolidation, and moments of transition are also when the right policy can keep markets open.",
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {

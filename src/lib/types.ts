@@ -70,7 +70,7 @@ export interface Strategy {
   conflictsWith: string[];
   complementsWith: string[];
   /**
-   * What binds if this strategy succeeds. The successor-problem pattern —
+   * What binds if this strategy succeeds. The successor-problem pattern,
    * a strategy that produces a worse next problem than the one it solved has
    * not done durable work. See the vault note on post-success states.
    */

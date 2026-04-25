@@ -230,7 +230,7 @@ export const people: Person[] = [
     name: "Mary Phuong",
     tagline: "DeepMind autonomous-replication evaluations researcher",
     summary:
-      "DeepMind research scientist who leads autonomous-replication evaluations — tests for whether models can autonomously set up and run copies of themselves.",
+      "DeepMind research scientist who leads autonomous-replication evaluations, tests for whether models can autonomously set up and run copies of themselves.",
     categories: ["researcher"],
     affiliations: [
       { org: "Google DeepMind", role: "Research Scientist", current: true },
@@ -285,7 +285,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Hoda Heidari — CMU",
+              title: "Hoda Heidari, CMU",
               url: "https://www.cs.cmu.edu/~hheidari/",
               medium: "article",
               publisher: "CMU",
@@ -432,7 +432,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Andy Jones — Anthropic",
+              title: "Andy Jones, Anthropic",
               url: "https://www.anthropic.com/research",
               medium: "article",
               publisher: "Anthropic",

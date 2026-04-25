@@ -27,6 +27,10 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
   const [stanceFilter, setStanceFilter] = useState<
     "all" | "endorses" | "opposes"
   >("all");
+  // When filtering by a tag, drop people whose only matching position is
+  // tentative, same default the people directory uses, so the board never
+  // shows a darker cell than the data actually supports.
+  const [hideTentative, setHideTentative] = useState(true);
   const [hovered, setHovered] = useState<Person | null>(null);
   const [view, setView] = useState<"faces" | "names">("faces");
   const [tagsExpanded, setTagsExpanded] = useState(false);
@@ -40,12 +44,13 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
   const filtered = useMemo(() => {
     return profiled.filter((p) => {
       if (!tagFilter) return true;
-      const matched = p.positions.find((pos) => pos.strategyId === tagFilter);
-      if (!matched) return false;
+      const matching = p.positions.filter((pos) => pos.strategyId === tagFilter);
+      if (matching.length === 0) return false;
+      if (hideTentative && matching.every((pos) => pos.tentative)) return false;
       if (stanceFilter === "all") return true;
-      return matched.stance === stanceFilter;
+      return matching.some((pos) => pos.stance === stanceFilter);
     });
-  }, [profiled, tagFilter, stanceFilter]);
+  }, [profiled, tagFilter, stanceFilter, hideTentative]);
 
   const grid: Record<string, Record<string, Person[]>> = {};
   for (const e of expertiseTiers) {
@@ -115,6 +120,23 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
               {v}
             </button>
           ))}
+          <label
+            className="flex items-center gap-1.5 cursor-pointer text-[10px] uppercase tracking-wider"
+            title="Hide people whose only matching position for this tag is tentative, i.e. inferred from a passing remark, not a stated position."
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-ink-soft)",
+              opacity: tagFilter ? 1 : 0.45,
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={hideTentative}
+              onChange={(e) => setHideTentative(e.target.checked)}
+              disabled={!tagFilter}
+            />
+            hide tentative
+          </label>
           <span className="num-label ml-auto">
             {filtered.length} of {totalProfiled} profiled
             {filtered.length !== totalProfiled && tagFilter
@@ -244,14 +266,12 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                             .slice()
                             .sort((a, b) => a.name.localeCompare(b.name))
                             .map((p) => (
-                              <li key={p.id}>
-                                <Link
-                                  href={`/people/${p.id}`}
-                                  className="unstyled block text-[11px] leading-tight hover:underline"
-                                  onMouseEnter={() => setHovered(p)}
-                                >
-                                  {p.name}
-                                </Link>
+                              <li key={p.id} onMouseEnter={() => setHovered(p)}>
+                                <HoverFaceLink person={p} placement="right">
+                                  <span className="block text-[11px] leading-tight hover:underline">
+                                    {p.name}
+                                  </span>
+                                </HoverFaceLink>
                               </li>
                             ))}
                         </ul>
@@ -306,29 +326,29 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
                 .slice()
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .map((p) => (
-                  <li key={p.id}>
-                    <Link
-                      href={`/people/${p.id}`}
-                      className="unstyled flex items-start gap-3 border hairline p-2 hover:border-[var(--color-ink)] transition-colors h-full"
-                    >
-                      <PersonAvatar person={p} size={36} />
-                      <div className="flex-1 min-w-0">
+                  <li
+                    key={p.id}
+                    className="flex items-start gap-3 border hairline p-2 hover:border-[var(--color-ink)] transition-colors h-full"
+                  >
+                    <HoverFaceLink person={p} size={36} placement="right" />
+                    <div className="flex-1 min-w-0">
+                      <Link href={`/people/${p.id}`} className="unstyled hover:underline">
                         <p
                           className="text-sm leading-tight"
                           style={{ fontFamily: "var(--font-display)" }}
                         >
                           {p.name}
                         </p>
-                        {p.tagline && (
-                          <p
-                            className="text-[10px] italic mt-1 line-clamp-2"
-                            style={{ color: "var(--color-ink-soft)" }}
-                          >
-                            {p.tagline}
-                          </p>
-                        )}
-                      </div>
-                    </Link>
+                      </Link>
+                      {p.tagline && (
+                        <p
+                          className="text-[10px] italic mt-1 line-clamp-2"
+                          style={{ color: "var(--color-ink-soft)" }}
+                        >
+                          {p.tagline}
+                        </p>
+                      )}
+                    </div>
                   </li>
                 ))}
             </ul>
@@ -388,7 +408,7 @@ export function BoardMatrix({ people, allTagsRanked }: Props) {
             style={{ color: "var(--color-ink-soft)" }}
           >
             Hover a face or name to see who it is. Click a face to open the
-            profile, or click a cell to drill in. Cells deepen with population —
+            profile, or click a cell to drill in. Cells deepen with population,
             sparse cells name positions the field has not produced.
           </p>
         )}

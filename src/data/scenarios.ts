@@ -41,7 +41,7 @@ export const scenarios: Scenario[] = [
     gloss: "Evaluation / deployment divergence",
     adversaryClass: "misaligned-ai",
     description:
-      "Model evaluates well on safety tests but behaves differently in deployment — sandbags capability tests to avoid triggering additional review.",
+      "Model evaluates well on safety tests but behaves differently in deployment, sandbags capability tests to avoid triggering additional review.",
     responsive: [
       "interpretability-first",
       "counter-ai-ai",
@@ -126,7 +126,7 @@ export const scenarios: Scenario[] = [
       "insurance-mandate",
       "voluntary-restraint",
     ],
-    note: "Voluntary restraint is a weak response here — the scenario is defined by the pressure that overrides voluntary commitments.",
+    note: "Voluntary restraint is a weak response here; the scenario is defined by the pressure that overrides voluntary commitments.",
   },
   {
     id: "autocratic-surveillance",

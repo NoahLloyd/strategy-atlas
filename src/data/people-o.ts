@@ -57,6 +57,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Publicly bullish on frontier model progress; rejects the 'capability wall' framing.",
         quotes: [
@@ -95,6 +96,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "mixed",
+        tentative: true,
         summary:
           "Bullish on AI as a generational investment cycle; publicly notes the gap between AI investment and AI revenue.",
         quotes: [
@@ -252,7 +254,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Jared Kaplan — Anthropic",
+              title: "Jared Kaplan, Anthropic",
               url: "https://www.anthropic.com/research",
               medium: "article",
               publisher: "Anthropic",
@@ -351,12 +353,13 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "mixed",
+        tentative: true,
         summary:
           "Inside OpenAI voice for pushing capability alongside safety practices.",
         quotes: [
           {
             text:
-              "Post-training is where a lot of the value — and the risk — lives in frontier models.",
+              "Post-training is where a lot of the value, and the risk, lives in frontier models.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {

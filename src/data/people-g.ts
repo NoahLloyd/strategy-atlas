@@ -175,7 +175,7 @@ export const people: Person[] = [
     name: "Andrew Critch",
     tagline: "Berkeley AI safety researcher; ARCHES framework",
     summary:
-      "AI safety researcher focusing on multi-multi alignment — coordination between multiple AI systems and multiple human stakeholders — as the distinctive AI x-safety problem.",
+      "AI safety researcher focusing on multi-multi alignment, coordination between multiple AI systems and multiple human stakeholders, as the distinctive AI x-safety problem.",
     categories: ["researcher", "academic"],
     affiliations: [
       { org: "UC Berkeley Center for Human-Compatible AI", role: "Research Scientist", current: true },
@@ -186,7 +186,7 @@ export const people: Person[] = [
         strategyId: "cooperative-ai",
         stance: "endorses",
         summary:
-          "Argues 'multi-multi delegation' — coordinating many AIs with many stakeholders — is the distinctive existential AI problem.",
+          "Argues 'multi-multi delegation', coordinating many AIs with many stakeholders, is the distinctive existential AI problem.",
         quotes: [
           {
             text:
@@ -308,7 +308,7 @@ export const people: Person[] = [
         strategyId: "abandon-superintelligence",
         stance: "endorses",
         summary:
-          "Argued in 1863 — roughly 160 years before the Pause letter — that humanity should destroy intelligent machines before they displaced humans.",
+          "Argued in 1863, roughly 160 years before the Pause letter, that humanity should destroy intelligent machines before they displaced humans.",
         quotes: [
           {
             text:
@@ -383,7 +383,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Argued automated systems operating on imperfectly specified goals pose grave risks — the original articulation of the specification problem.",
+          "Argued automated systems operating on imperfectly specified goals pose grave risks, the original articulation of the specification problem.",
         quotes: [
           {
             text:
@@ -428,7 +428,7 @@ export const people: Person[] = [
             date: "2023-04-20",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Jaron Lanier — There Is No A.I.",
+              title: "Jaron Lanier, There Is No A.I.",
               url: "https://www.newyorker.com/science/annals-of-artificial-intelligence/there-is-no-ai",
               medium: "article",
               publisher: "The New Yorker",

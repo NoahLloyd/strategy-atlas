@@ -136,7 +136,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "AI for Good — South Asia voices",
+              title: "AI for Good, South Asia voices",
               url: "https://aiforgood.itu.int/",
               medium: "article",
               publisher: "AI for Good",
@@ -243,7 +243,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Steven Weber — UC Berkeley",
+              title: "Steven Weber, UC Berkeley",
               url: "https://polisci.berkeley.edu/people/person/steven-weber",
               medium: "article",
               publisher: "UC Berkeley",

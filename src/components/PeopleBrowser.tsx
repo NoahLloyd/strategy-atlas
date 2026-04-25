@@ -43,7 +43,7 @@ export function PeopleBrowser({
   const [query, setQuery] = useState("");
   const [tag, setTag] = useState<string | null>(null);
   const [category, setCategory] = useState<string | null>(null);
-  const [sort, setSort] = useState<Sort>("name");
+  const [sort, setSort] = useState<Sort>("recent");
   const [onlyWithPDoom, setOnlyWithPDoom] = useState(false);
   const [onlyWithVideo, setOnlyWithVideo] = useState(false);
   const [expertise, setExpertise] = useState<ExpertiseTier | null>(null);
@@ -52,14 +52,25 @@ export function PeopleBrowser({
   const [onlyProfiled, setOnlyProfiled] = useState(false);
   // When filtering by a strategy tag, hide people whose only position on
   // that tag is tentative (assigned from a passing remark, not a clear
-  // statement). Default ON — tentative assignments otherwise pad the
+  // statement). Default ON, tentative assignments otherwise pad the
   // per-strategy list with people who aren't really on that bet.
   const [hideTentative, setHideTentative] = useState(true);
+  // Person-level: hide anyone whose every catalogued position is tentative.
+  // Default OFF: render them after a divider so the reader sees what we
+  // stand behind versus what we are still chasing primary sources for.
+  const [hideUnknownStrategy, setHideUnknownStrategy] = useState(false);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     let out = people.filter((p) => {
       if (q && !p.name.toLowerCase().includes(q) && !p.summary.toLowerCase().includes(q) && !(p.tagline?.toLowerCase().includes(q))) {
+        return false;
+      }
+      if (
+        hideUnknownStrategy &&
+        p.positions.length > 0 &&
+        p.positions.every((pos) => pos.tentative)
+      ) {
         return false;
       }
       if (tag) {
@@ -126,6 +137,7 @@ export function PeopleBrowser({
     vintage,
     onlyProfiled,
     hideTentative,
+    hideUnknownStrategy,
   ]);
 
   return (
@@ -152,7 +164,7 @@ export function PeopleBrowser({
             <option value="recent">Recently updated</option>
           </select>
         </div>
-        {/* Profile filters — visible by default. These are the load-bearing
+        {/* Profile filters, visible by default. These are the load-bearing
             filters; the strategy chip list below is for narrowing further. */}
         <div className="border hairline p-3 text-xs" style={{ color: "var(--color-ink-soft)" }}>
           <p className="num-label mb-3">
@@ -241,7 +253,7 @@ export function PeopleBrowser({
               board
             </Link>{" "}
             for the full grid and tier criteria. Profiled subset is
-            hand-classified — unprofiled people are filtered out by these
+            hand-classified, unprofiled people are filtered out by these
             chips.
           </p>
         </div>
@@ -262,7 +274,7 @@ export function PeopleBrowser({
             </button>
           ))}
         </div>
-        {/* Strategy chips — collapsed by default. There are too many tags
+        {/* Strategy chips, collapsed by default. There are too many tags
             to scan as a top-level filter; reach for them when you have a
             specific strategy in mind. */}
         <details className="border hairline p-2 text-xs" style={{ color: "var(--color-ink-soft)" }}>
@@ -318,7 +330,18 @@ export function PeopleBrowser({
           </label>
           <label
             className="flex items-center gap-2 cursor-pointer"
-            title="When filtering by a strategy, hide people whose only matching position is tentative — i.e. inferred from a passing remark, not a clear statement."
+            title="Hide people whose every catalogued position is tentative, i.e. assignments inferred from passing remarks, hype quotes, or paper abstracts rather than clear strategy statements. On by default."
+          >
+            <input
+              type="checkbox"
+              checked={hideUnknownStrategy}
+              onChange={(e) => setHideUnknownStrategy(e.target.checked)}
+            />
+            hide people without a clear stated position
+          </label>
+          <label
+            className="flex items-center gap-2 cursor-pointer"
+            title="When filtering by a strategy, hide people whose only matching position is tentative, i.e. inferred from a passing remark, not a clear statement."
             style={tag ? undefined : { opacity: 0.5 }}
           >
             <input
@@ -327,7 +350,7 @@ export function PeopleBrowser({
               onChange={(e) => setHideTentative(e.target.checked)}
               disabled={!tag}
             />
-            hide tentative-only matches
+            hide tentative-only matches for this tag
           </label>
           <span className="num-label ml-auto">{filtered.length} of {people.length}</span>
         </div>
@@ -337,74 +360,156 @@ export function PeopleBrowser({
         corpus={people}
         strategyId={tag}
       />
-      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filtered.map((p) => {
-          const tagList = Array.from(new Set(p.positions.map((pos) => pos.strategyId)));
-          return (
-            <li key={p.id}>
-              <Link href={`/people/${p.id}`} className="unstyled">
-                <div className="border hairline p-4 hover:border-[var(--color-ink)] transition-colors h-full">
-                  <div className="flex gap-3 items-start mb-2">
-                    <PersonAvatar person={p} size={48} />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-baseline justify-between gap-2">
-                        <h3 className="text-lg leading-tight" style={{ fontFamily: "var(--font-display)" }}>
-                          {p.name}
-                        </h3>
-                        {p.pDoom && p.pDoom[0] && (
-                          <span className="num-label whitespace-nowrap">p {formatPDoom(p.pDoom[0].value)}</span>
-                        )}
-                      </div>
-                      {p.tagline && (
-                        <p className="text-xs italic mt-1" style={{ color: "var(--color-ink-soft)" }}>
-                          {p.tagline}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-sm mb-3" style={{ color: "var(--color-ink)" }}>
-                    {p.summary}
+      {(() => {
+        const stated = filtered.filter(
+          (p) => !(p.positions.length > 0 && p.positions.every((pos) => pos.tentative)),
+        );
+        const tentative = filtered.filter(
+          (p) => p.positions.length > 0 && p.positions.every((pos) => pos.tentative),
+        );
+        return (
+          <>
+            {stated.length > 0 && (
+              <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {stated.map((p) => (
+                  <PersonCard key={p.id} person={p} />
+                ))}
+              </ul>
+            )}
+            {tentative.length > 0 && (
+              <>
+                <div
+                  className="my-8 border-l-2 pl-3 max-w-3xl"
+                  style={{
+                    color: "var(--color-ink-soft)",
+                    borderLeftStyle: "dashed",
+                    borderColor: "var(--color-rule)",
+                  }}
+                >
+                  <p className="text-sm leading-relaxed">
+                    People with stated positions appear above. Below are{" "}
+                    <em>{tentative.length}</em> entries flagged{" "}
+                    <em>tentative</em>: assignments inferred from a passing
+                    remark, hype quote, or paper abstract rather than a clear
+                    strategy statement. They are shown in dashed cards so a
+                    stronger primary source can replace them later.
                   </p>
-                  {p.profile && (
-                    <p
-                      className="text-[10px] uppercase tracking-wider mb-2"
-                      style={{
-                        color: "var(--color-ink-soft)",
-                        fontFamily: "var(--font-mono)",
-                      }}
-                    >
-                      {expertiseTiers.find((t) => t.id === p.profile!.expertise)?.label}
-                      {" · "}
-                      {recognitionTiers.find((t) => t.id === p.profile!.recognition)?.label}
-                      {p.profile.vintage && (
-                        <>
-                          {" · "}
-                          {vintageTiers.find((t) => t.id === p.profile!.vintage)?.label}
-                        </>
-                      )}
-                    </p>
-                  )}
-                  <div className="flex flex-wrap gap-1">
-                    {tagList.map((id) => {
-                      const t = getTagById(id);
-                      return (
-                        <span key={id} className="lever-pill">
-                          {t?.name ?? id}
-                        </span>
-                      );
-                    })}
-                  </div>
                 </div>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-      {filtered.length === 0 && (
-        <p className="text-sm italic" style={{ color: "var(--color-ink-soft)" }}>
-          No one on record matches these filters.
-        </p>
-      )}
+                <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {tentative.map((p) => (
+                    <PersonCard key={p.id} person={p} />
+                  ))}
+                </ul>
+              </>
+            )}
+            {filtered.length === 0 && (
+              <p className="text-sm italic" style={{ color: "var(--color-ink-soft)" }}>
+                No one on record matches these filters.
+              </p>
+            )}
+          </>
+        );
+      })()}
     </div>
+  );
+}
+
+function PersonCard({ person: p }: { person: Person }) {
+  const tagsWithConfidence = (() => {
+    const map = new Map<string, boolean>();
+    for (const pos of p.positions) {
+      const isStated = !pos.tentative;
+      if (!map.has(pos.strategyId)) map.set(pos.strategyId, isStated);
+      else if (isStated) map.set(pos.strategyId, true);
+    }
+    return Array.from(map.entries()).map(([id, stated]) => ({ id, stated }));
+  })();
+  const allTentative =
+    p.positions.length > 0 && p.positions.every((pos) => pos.tentative);
+  return (
+    <li>
+      <Link href={`/people/${p.id}`} className="unstyled">
+        <div
+          className="border hairline p-4 hover:border-[var(--color-ink)] transition-colors h-full"
+          style={allTentative ? { borderStyle: "dashed" } : undefined}
+        >
+          <div className="flex gap-3 items-start mb-2">
+            <PersonAvatar person={p} size={48} />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline justify-between gap-2">
+                <h3 className="text-lg leading-tight" style={{ fontFamily: "var(--font-display)" }}>
+                  {p.name}
+                </h3>
+                {p.pDoom && p.pDoom[0] && (
+                  <span className="num-label whitespace-nowrap">p {formatPDoom(p.pDoom[0].value)}</span>
+                )}
+              </div>
+              {p.tagline && (
+                <p className="text-xs italic mt-1" style={{ color: "var(--color-ink-soft)" }}>
+                  {p.tagline}
+                </p>
+              )}
+            </div>
+          </div>
+          <p className="text-sm mb-3" style={{ color: "var(--color-ink)" }}>
+            {p.summary}
+          </p>
+          {p.profile && (
+            <p
+              className="text-[10px] uppercase tracking-wider mb-2"
+              style={{
+                color: "var(--color-ink-soft)",
+                fontFamily: "var(--font-mono)",
+              }}
+            >
+              {expertiseTiers.find((t) => t.id === p.profile!.expertise)?.label}
+              {" · "}
+              {recognitionTiers.find((t) => t.id === p.profile!.recognition)?.label}
+              {p.profile.vintage && (
+                <>
+                  {" · "}
+                  {vintageTiers.find((t) => t.id === p.profile!.vintage)?.label}
+                </>
+              )}
+            </p>
+          )}
+          <div className="flex flex-wrap gap-1 items-center">
+            {tagsWithConfidence.map(({ id, stated }) => {
+              const t = getTagById(id);
+              return (
+                <span
+                  key={id}
+                  className="lever-pill"
+                  style={
+                    stated
+                      ? undefined
+                      : {
+                          borderStyle: "dashed",
+                          opacity: 0.7,
+                        }
+                  }
+                  title={stated ? undefined : "tentative, inferred from a passing remark"}
+                >
+                  {t?.name ?? id}
+                </span>
+              );
+            })}
+            {allTentative && (
+              <span
+                className="num-label"
+                title="All catalogued positions for this person are tentative, primary-source position statements are still missing."
+                style={{
+                  color: "var(--color-ink-soft)",
+                  fontSize: "0.6rem",
+                  marginLeft: "0.25rem",
+                }}
+              >
+                position unclear
+              </span>
+            )}
+          </div>
+        </div>
+      </Link>
+    </li>
   );
 }

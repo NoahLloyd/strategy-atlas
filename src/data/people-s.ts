@@ -105,7 +105,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Daniel Khashabi — homepage",
+              title: "Daniel Khashabi, homepage",
               url: "https://danielkhashabi.com/",
               medium: "article",
               publisher: "danielkhashabi.com",
@@ -137,7 +137,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The General-Purpose AI Code of Practice is a scaffolding for structured transparency — not a substitute for evaluations, but a foundation for them.",
+              "The General-Purpose AI Code of Practice is a scaffolding for structured transparency, not a substitute for evaluations, but a foundation for them.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
@@ -194,7 +194,7 @@ export const people: Person[] = [
     name: "Lennart Heim",
     tagline: "Compute governance researcher at RAND",
     summary:
-      "Former Centre for the Governance of AI researcher now at RAND, focused specifically on compute governance — the chokepoint framework for frontier AI.",
+      "Former Centre for the Governance of AI researcher now at RAND, focused specifically on compute governance, the chokepoint framework for frontier AI.",
     categories: ["researcher", "policy"],
     affiliations: [
       { org: "RAND Corporation", role: "Information Scientist", current: true },
@@ -232,7 +232,7 @@ export const people: Person[] = [
     name: "Yonadav Shavit",
     tagline: "OpenAI researcher; on-chip compute verification",
     summary:
-      "Computer scientist who has published on how to verify AI training and inference via on-chip mechanisms — the technical side of compute governance.",
+      "Computer scientist who has published on how to verify AI training and inference via on-chip mechanisms, the technical side of compute governance.",
     categories: ["researcher"],
     affiliations: [
       { org: "OpenAI", role: "Researcher", current: true },
@@ -247,7 +247,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Hardware-based mechanisms can verify where, when, and how frontier compute is used — making compute governance enforceable.",
+              "Hardware-based mechanisms can verify where, when, and how frontier compute is used, making compute governance enforceable.",
             date: "2023-04-14",
             fidelity: "paraphrase-faithful",
             source: {
@@ -342,7 +342,7 @@ export const people: Person[] = [
     name: "Bletchley Declaration Signatories",
     tagline: "First international AI Safety Summit signatories (2023)",
     summary:
-      "29 countries including the US, UK, EU, China, India, and Japan signed the November 2023 Bletchley Declaration — the first international statement on frontier AI risk. This entry stands in for the collective action.",
+      "29 countries including the US, UK, EU, China, India, and Japan signed the November 2023 Bletchley Declaration, the first international statement on frontier AI risk. This entry stands in for the collective action.",
     categories: ["policy"],
     affiliations: [
       { org: "AI Safety Summit (Bletchley Park)", role: "Declaration signatories", current: true },

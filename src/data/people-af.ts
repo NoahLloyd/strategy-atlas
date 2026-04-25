@@ -99,7 +99,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The digital commons — open models, open datasets, open infrastructure — is the sovereign ground for AI governance in the Global South.",
+              "The digital commons, open models, open datasets, open infrastructure, is the sovereign ground for AI governance in the Global South.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
@@ -132,15 +132,15 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Frames AI governance through 'data epistemologies' — whose knowledge systems shape what counts as valid AI data.",
+          "Frames AI governance through 'data epistemologies', whose knowledge systems shape what counts as valid AI data.",
         quotes: [
           {
             text:
-              "Data epistemologies are political. What is considered legitimate data shapes what AI knows — and does not know.",
+              "Data epistemologies are political. What is considered legitimate data shapes what AI knows, and does not know.",
             date: "2019",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Paola Ricaurte — Data Epistemologies",
+              title: "Paola Ricaurte, Data Epistemologies",
               url: "https://paolaricaurte.com/",
               medium: "article",
               publisher: "paolaricaurte.com",
@@ -175,7 +175,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "CSET — Catherine Aiken",
+              title: "CSET, Catherine Aiken",
               url: "https://cset.georgetown.edu/staff/catherine-aiken/",
               medium: "article",
               publisher: "CSET",
@@ -247,7 +247,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Wafa Ben-Hassine — Omidyar Network",
+              title: "Wafa Ben-Hassine, Omidyar Network",
               url: "https://omidyar.com/people/wafa-ben-hassine/",
               medium: "article",
               publisher: "Omidyar Network",

@@ -1,13 +1,13 @@
-import Link from "next/link";
-import { strategies } from "@/lib/strategies";
+import { strategies, getStrategy } from "@/lib/strategies";
 import {
   commitmentsByStrategy,
   commitmentTopics,
 } from "@/data/commitments";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 import type { Commitment } from "@/lib/types";
 
 export const metadata = {
-  title: "Commitments — AGI Strategies",
+  title: "Commitments · AGI Strategies",
 };
 
 export default function CommitmentsPage() {
@@ -50,7 +50,7 @@ export default function CommitmentsPage() {
           The worldviews strategies quietly assume.
         </h1>
         <p className="text-lg leading-relaxed mb-3" style={{ color: "var(--color-ink-soft)" }}>
-          Every strategy rests on assumptions its advocates rarely name —
+          Every strategy rests on assumptions its advocates rarely name:
           about values, AI, humans, time, authority, coordination, agency.
           If the assumption fails, the strategy loses its target or its
           premise, regardless of instrument.
@@ -94,26 +94,36 @@ export default function CommitmentsPage() {
                 {topic.description}
               </p>
               <div className="space-y-3">
-                {entries.map((e, i) => (
-                  <div
-                    key={`${topic.id}-${i}`}
-                    className="border hairline p-4"
-                  >
-                    <div className="flex items-baseline justify-between mb-2">
-                      <Link
-                        href={`/strategy/${e.strategyId}`}
-                        className="unstyled hover:underline"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        {e.strategyName}
-                      </Link>
+                {entries.map((e, i) => {
+                  const s = getStrategy(e.strategyId);
+                  return (
+                    <div
+                      key={`${topic.id}-${i}`}
+                      className="border hairline p-4"
+                    >
+                      <div className="flex items-baseline justify-between mb-2">
+                        {s ? (
+                          <HoverStrategyLink strategy={s} placement="below">
+                            <span
+                              className="hover:underline"
+                              style={{ fontFamily: "var(--font-display)" }}
+                            >
+                              {e.strategyName}
+                            </span>
+                          </HoverStrategyLink>
+                        ) : (
+                          <span style={{ fontFamily: "var(--font-display)" }}>
+                            {e.strategyName}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm mb-1">{e.claim}</p>
+                      <p className="text-xs italic" style={{ color: "var(--color-ink-soft)" }}>
+                        Fails if: {e.failureMode}
+                      </p>
                     </div>
-                    <p className="text-sm mb-1">{e.claim}</p>
-                    <p className="text-xs italic" style={{ color: "var(--color-ink-soft)" }}>
-                      Fails if: {e.failureMode}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
           );
@@ -125,7 +135,7 @@ export default function CommitmentsPage() {
           The annotations cover only the strategies the source notes
           explicitly discuss. Many strategies rest on commitments that have
           not yet been named. An empty row is not evidence that a strategy
-          has no commitments — only that none are catalogued here.
+          has no commitments, only that none are catalogued here.
         </p>
         <p>
           Testing these commitments is usually beyond the empirical reach of
@@ -142,7 +152,7 @@ export default function CommitmentsPage() {
 function topTopic(
   byTopic: Map<string, { strategyName: string; claim: string; failureMode: string; strategyId: string }[]>
 ): string {
-  let best = "—";
+  let best = "·";
   let bestN = 0;
   for (const t of commitmentTopics) {
     const n = (byTopic.get(t.id) || []).length;

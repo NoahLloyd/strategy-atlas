@@ -166,7 +166,7 @@ export const people: Person[] = [
         strategyId: "public-ai",
         stance: "endorses",
         summary:
-          "Argues AI should be built as digital public infrastructure — like Aadhaar or UPI — rather than as proprietary products.",
+          "Argues AI should be built as digital public infrastructure, like Aadhaar or UPI, rather than as proprietary products.",
         quotes: [
           {
             text:

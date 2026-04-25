@@ -23,7 +23,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The UK needs a proactive, principles-based approach to AI regulation — not a wait-and-see approach.",
+              "The UK needs a proactive, principles-based approach to AI regulation, not a wait-and-see approach.",
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {

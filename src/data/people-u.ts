@@ -108,7 +108,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Works on assistance games — the Russellian proposal that AI should model and defer to human preferences rather than optimise fixed objectives.",
+          "Works on assistance games, the Russellian proposal that AI should model and defer to human preferences rather than optimise fixed objectives.",
         quotes: [
           {
             text:

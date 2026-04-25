@@ -5,7 +5,7 @@ import { symmetricConflicts, symmetricComplements, pairKey } from "@/lib/strateg
 import { tagToStrategyId } from "@/data/strategy-tag-bridge";
 
 export const metadata = {
-  title: "Co-endorsement — AGI Strategies",
+  title: "Co-endorsement · AGI Strategies",
   description:
     "Which strategy pairs are most often held together by the same people. Behavioural pairing data, independent of the declared catalogue.",
 };
@@ -18,13 +18,16 @@ const ENDORSING_STANCES = new Set([
 ]);
 
 export default function CoStrategiesPage() {
-  // Per-tag endorser sets.
+  // Per-tag endorser sets. Tentative positions are excluded so the
+  // co-endorsement signal isn't padded by people whose only quote on a
+  // strategy was tangential, that's the same noise the strategy detail
+  // pages already filter out.
   const endorsersByTag = new Map<string, Set<string>>();
   for (const t of strategyTags) endorsersByTag.set(t.id, new Set());
   for (const p of people) {
     const heldTags = new Set(
       p.positions
-        .filter((pos) => ENDORSING_STANCES.has(pos.stance))
+        .filter((pos) => ENDORSING_STANCES.has(pos.stance) && !pos.tentative)
         .map((pos) => pos.strategyId),
     );
     for (const tagId of heldTags) {
@@ -90,7 +93,7 @@ export default function CoStrategiesPage() {
 
   // Two views: most overlap (raw count) and tightest (jaccard).
   // Thresholds are loose because the corpus is sparse on cross-strategy
-  // endorsement — most people argue for one or two positions, not many.
+  // endorsement, most people argue for one or two positions, not many.
   const byOverlap = pairs
     .slice()
     .sort((a, b) => b.overlap - a.overlap || b.jaccard - a.jaccard)
@@ -118,7 +121,7 @@ export default function CoStrategiesPage() {
     .sort((a, b) => b.overlap - a.overlap)
     .slice(0, 12);
 
-  // Conflict pairs that nonetheless share endorsers — interesting because
+  // Conflict pairs that nonetheless share endorsers, interesting because
   // it suggests the conflict is less binary than declared.
   const declaredConflictsButShared = pairs
     .slice()
@@ -141,15 +144,15 @@ export default function CoStrategiesPage() {
           style={{ color: "var(--color-ink-soft)" }}
         >
           Which pairs of strategies are most commonly endorsed by the same
-          people. Behavioural data — not what the catalogue declares
+          people. Behavioural data, not what the catalogue declares
           compatible. The two views can disagree in instructive ways.
         </p>
         <p
           className="text-sm leading-relaxed"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          Pairs with fewer than three shared endorsers are not shown — too
-          noisy to read as signal. The corpus is sparse on cross-strategy
+          Pairs with fewer than three shared endorsers are not shown:
+          too noisy to read as signal. The corpus is sparse on cross-strategy
           endorsement: most people argue for one or two positions, not many.
           Even three shared voices is meaningful at this density. Compare
           against the{" "}
@@ -210,7 +213,7 @@ export default function CoStrategiesPage() {
             catalogue, yet the declared-relations matrix is silent. Either
             the framework should name them as complements, or the bundling
             is opportunistic and incoherent. The corpus is sparse on
-            cross-strategy endorsement — even four shared voices is signal.
+            cross-strategy endorsement; even four shared voices is signal.
           </p>
           <PairList pairs={surprising} />
         </section>

@@ -1,11 +1,11 @@
 import type { Profile } from "@/lib/people-types";
 
-// Hand-classified profiles. Each entry is justified by concrete evidence —
+// Hand-classified profiles. Each entry is justified by concrete evidence,
 // publications, roles, public reach. Do not generate from a single proxy
 // (followers, citations alone). Add new entries as research catches up.
 //
 // Tiers are defined in src/data/profile-tiers.ts. Re-read the criteria
-// before assigning a tier — same tier should mean the same thing across
+// before assigning a tier, same tier should mean the same thing across
 // every person.
 
 export const profileOverrides: Record<string, Profile> = {
@@ -60,7 +60,7 @@ export const profileOverrides: Record<string, Profile> = {
   "sam-altman": {
     expertise: "policy-meta",
     expertiseNote:
-      "CEO of OpenAI. Not a research scientist — sets strategy, capital, and policy direction. Deep operational knowledge of frontier deployment and lab incentives.",
+      "CEO of OpenAI. Not a research scientist, sets strategy, capital, and policy direction. Deep operational knowledge of frontier deployment and lab incentives.",
     recognition: "household-name",
     recognitionNote:
       "Defining public-face figure of the AI era. Covered globally; testifying to US Senate; Saudi sovereign-fund and trillion-dollar capital negotiations.",
@@ -71,7 +71,7 @@ export const profileOverrides: Record<string, Profile> = {
       "Co-author of AlexNet (2012). Co-founder and former Chief Scientist of OpenAI; co-led the Superalignment team. Co-founded Safe Superintelligence Inc. (2024). Hands-on technical lead on most major OpenAI training runs through GPT-4.",
     recognition: "household-name",
     recognitionNote:
-      "Featured by NYT, The Atlantic, podcasts. Central character in the November 2023 OpenAI board episode — name-recognised beyond the field.",
+      "Featured by NYT, The Atlantic, podcasts. Central character in the November 2023 OpenAI board episode, name-recognised beyond the field.",
   },
   "eliezer-yudkowsky": {
     expertise: "deep-technical",
@@ -180,7 +180,7 @@ export const profileOverrides: Record<string, Profile> = {
   "fei-fei-li": {
     expertise: "deep-technical",
     expertiseNote:
-      "Created ImageNet — the dataset that catalysed the deep-learning revolution. Stanford professor, co-director Stanford HAI. Memoir 'The Worlds I See'.",
+      "Created ImageNet, the dataset that catalysed the deep-learning revolution. Stanford professor, co-director Stanford HAI. Memoir 'The Worlds I See'.",
     recognition: "household-name",
     recognitionNote:
       "Repeated TED talks, congressional testimony, mainstream press. Memoir was a NYT bestseller.",
@@ -212,7 +212,7 @@ export const profileOverrides: Record<string, Profile> = {
   "vitalik-buterin": {
     expertise: "deep-technical",
     expertiseNote:
-      "Inventor of Ethereum. Cryptography and mechanism-design depth. AI engagement is via 'd/acc' framing — substantive but adjacent to ML proper.",
+      "Inventor of Ethereum. Cryptography and mechanism-design depth. AI engagement is via 'd/acc' framing, substantive but adjacent to ML proper.",
     recognition: "household-name",
     recognitionNote:
       "Defining public figure of crypto. Repeated mainstream press. Wikipedia in 70+ languages.",
@@ -268,7 +268,7 @@ export const profileOverrides: Record<string, Profile> = {
   "jaan-tallinn": {
     expertise: "policy-meta",
     expertiseNote:
-      "Skype co-founder; major funder of FLI, FHI, MIRI, and others. Operates as funder and convener — not a technical researcher.",
+      "Skype co-founder; major funder of FLI, FHI, MIRI, and others. Operates as funder and convener, not a technical researcher.",
     recognition: "field-leading",
     recognitionNote:
       "Recurring podcast guest. Recognised in the safety community. Less press visibility than the founders he funds.",
@@ -332,7 +332,7 @@ export const profileOverrides: Record<string, Profile> = {
   "pope-francis": {
     expertise: "external-domain",
     expertiseNote:
-      "Religious leader, not a technical AI expert. Engages AI through encyclicals (Antiqua et Nova, 2025) and the Rome Call for AI Ethics — civilisational and ethical framing.",
+      "Religious leader, not a technical AI expert. Engages AI through encyclicals (Antiqua et Nova, 2025) and the Rome Call for AI Ethics, civilisational and ethical framing.",
     recognition: "household-name",
     recognitionNote:
       "Global religious leader. Universal name recognition.",
@@ -404,7 +404,7 @@ export const profileOverrides: Record<string, Profile> = {
   "evan-hubinger": {
     expertise: "deep-technical",
     expertiseNote:
-      "Anthropic alignment-stress-testing lead. Co-author of 'Risks from Learned Optimization' (2019) — origin of mesa-optimisation framing.",
+      "Anthropic alignment-stress-testing lead. Co-author of 'Risks from Learned Optimization' (2019), origin of mesa-optimisation framing.",
     recognition: "established",
     recognitionNote:
       "Recognised inside alignment community; low public profile.",
@@ -428,7 +428,7 @@ export const profileOverrides: Record<string, Profile> = {
   "daniel-dennett": {
     expertise: "external-domain",
     expertiseNote:
-      "Philosopher of mind (Tufts; died 2024). Long body of work on consciousness, intentionality, evolution — applied late to AI consciousness debates.",
+      "Philosopher of mind (Tufts; died 2024). Long body of work on consciousness, intentionality, evolution, applied late to AI consciousness debates.",
     recognition: "household-name",
     recognitionNote:
       "Major public-intellectual stature; Wikipedia entries in 40+ languages.",
@@ -1388,7 +1388,7 @@ export const profileOverrides: Record<string, Profile> = {
   "samuel-butler": {
     expertise: "external-domain",
     expertiseNote:
-      "Victorian writer (1835–1902). 'Erewhon' (1872) anticipates machine consciousness; cited as the earliest treatment of AI x-risk. Not a technical contributor — historical reference.",
+      "Victorian writer (1835–1902). 'Erewhon' (1872) anticipates machine consciousness; cited as the earliest treatment of AI x-risk. Not a technical contributor, historical reference.",
     recognition: "field-leading",
     recognitionNote:
       "Canonical Victorian author; cited in AI history.",

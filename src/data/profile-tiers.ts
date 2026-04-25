@@ -79,7 +79,7 @@ export const recognitionTiers: TierDefinition<RecognitionTier>[] = [
     label: "Emerging",
     short: "Newer or less central voice",
     criterion:
-      "Recently active, narrow following, or central in only one venue. The work may be excellent — the public footprint is still forming.",
+      "Recently active, narrow following, or central in only one venue. The work may be excellent, the public footprint is still forming.",
   },
 ];
 
@@ -157,7 +157,7 @@ export const recognitionRank: Record<RecognitionTier, number> = {
   "household-name": 3,
 };
 
-// Vintage rank — earlier first. Useful for time-ordered displays.
+// Vintage rank, earlier first. Useful for time-ordered displays.
 export const vintageRank: Record<VintageEra, number> = {
   pioneer: 0,
   "symbolic-era": 1,

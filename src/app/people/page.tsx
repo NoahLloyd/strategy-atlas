@@ -3,7 +3,7 @@ import { getTagById } from "@/lib/strategy-tags";
 import { PeopleBrowser } from "@/components/PeopleBrowser";
 
 export const metadata = {
-  title: "People — AGI Strategies",
+  title: "People · AGI Strategies",
   description:
     "Every person on the record about AI/AGI strategy. Quotes with dates, media, and direct links.",
 };
@@ -26,7 +26,6 @@ export default function PeopleIndex() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <section className="mb-10 max-w-3xl">
-        <p className="num-label mb-3">the record</p>
         <h1
           className="text-4xl sm:text-5xl leading-tight mb-4"
           style={{ fontFamily: "var(--font-display)" }}
@@ -39,7 +38,7 @@ export default function PeopleIndex() {
           <em> direct</em>; paraphrases are marked as such.
         </p>
         <p className="text-base leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
-          Strategy categories are inductive — built from what people actually
+          Strategy categories are inductive, built from what people actually
           argue, not imposed from a framework. Expect the taxonomy to change as
           the corpus grows.
         </p>

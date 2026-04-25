@@ -34,7 +34,7 @@ function median(values: number[]): number | null {
 }
 
 function fmtPct(n: number | null, digits = 0): string {
-  if (n === null) return "—";
+  if (n === null) return "·";
   return `${(n * 100).toFixed(digits)}%`;
 }
 

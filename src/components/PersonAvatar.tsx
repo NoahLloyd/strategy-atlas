@@ -15,7 +15,7 @@ function initials(name: string): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-// Tier rule color — consistent with the board axes. Frontier-builder reads
+// Tier rule color, consistent with the board axes. Frontier-builder reads
 // as the warmest mark, commentator the coolest. Keeps the monogram visually
 // indexed to the cell the face would sit in on the board.
 const tierAccent: Record<ExpertiseTier, string> = {
@@ -66,7 +66,7 @@ export function PersonAvatar({
     );
   }
 
-  // Monogram fallback — designed to feel like a printed label, not a
+  // Monogram fallback, designed to feel like a printed label, not a
   // missing photo. Initials sit in display type. A two-character code
   // below pulls the seed for the textured backdrop. The tier accent on
   // the corner mark indexes to the board axis, so a face in the
@@ -74,8 +74,8 @@ export function PersonAvatar({
   const tier = person.profile?.expertise;
   const accent = tier ? tierAccent[tier] : "var(--color-rule)";
   const seed = hash(person.id);
-  // Two diagonal hairlines per monogram — angle and offset hashed from id
-  // — give every avatar a unique fingerprint without colour noise.
+  // Two diagonal hairlines per monogram, angle and offset hashed from id
+  //, give every avatar a unique fingerprint without colour noise.
   const angle = (seed % 60) - 30;
   const offsetA = (seed % 13) - 6;
   const offsetB = ((seed >> 7) % 13) - 6;

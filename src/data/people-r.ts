@@ -58,7 +58,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argues AI biosecurity risks — including uplift for biological weapons — are the most concrete, measurable near-term catastrophic risk.",
+          "Argues AI biosecurity risks, including uplift for biological weapons, are the most concrete, measurable near-term catastrophic risk.",
         quotes: [
           {
             text:
@@ -212,7 +212,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Pushmeet Kohli — DeepMind",
+              title: "Pushmeet Kohli, DeepMind",
               url: "https://deepmind.google/",
               medium: "article",
               publisher: "Google DeepMind",
@@ -276,7 +276,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argues policy should focus on labour-market transition — retraining, portable benefits, wage insurance — alongside any safety focus.",
+          "Argues policy should focus on labour-market transition, retraining, portable benefits, wage insurance, alongside any safety focus.",
         quotes: [
           {
             text:

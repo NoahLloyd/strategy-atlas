@@ -1,12 +1,14 @@
-import { people } from "@/lib/people";
+import { people, hasStatedPosition } from "@/lib/people";
 
 export const metadata = {
-  title: "About — AGI Strategies",
+  title: "About · AGI Strategies",
   description:
     "How this corpus was built and how to send corrections.",
 };
 
 export default function AboutPage() {
+  const stated = people.filter(hasStatedPosition).length;
+  const tentativeOnly = people.length - stated;
   return (
     <article className="max-w-3xl mx-auto px-6 py-10">
       <section className="mb-10">
@@ -26,6 +28,19 @@ export default function AboutPage() {
           drafted the analysis, and wrote the front-end. The corpus
           currently holds <strong>{people.length}</strong> people, every
           claim source-linked.
+        </p>
+        <p
+          className="text-base leading-relaxed mb-4"
+          style={{ color: "var(--color-ink-soft)" }}
+        >
+          A label is only as good as its source. Of the {people.length}{" "}
+          people, <strong>{stated}</strong> have at least one strategy
+          assignment backed by a primary-source position statement. The
+          other <strong>{tentativeOnly}</strong> are flagged{" "}
+          <em>tentative</em>: the assignment was inferred from a passing
+          remark, hype quote, or paper abstract rather than a stated
+          position. They render in dashed cards below a divider on the
+          people directory so the boundary is visible.
         </p>
         <p
           className="text-base leading-relaxed"

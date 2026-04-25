@@ -4,6 +4,7 @@ import { people, getPerson } from "@/lib/people";
 import { getTagById } from "@/lib/strategy-tags";
 import { QuoteBlock } from "@/components/QuoteBlock";
 import { PersonAvatar } from "@/components/PersonAvatar";
+import { HoverFaceLink } from "@/components/HoverFaceLink";
 import {
   expertiseTiers,
   recognitionTiers,
@@ -48,7 +49,7 @@ export async function generateMetadata({
   const p = getPerson(id);
   if (!p) return { title: "Not found" };
   return {
-    title: `${p.name} — AGI Strategies`,
+    title: `${p.name} · AGI Strategies`,
     description: p.summary,
   };
 }
@@ -233,7 +234,7 @@ export default async function PersonPage({
             className="text-xs italic mt-3"
             style={{ color: "var(--color-ink-soft)" }}
           >
-            Hand-classified — see the{" "}
+            Hand-classified. See the{" "}
             <Link href="/board" className="underline-wiggle">
               board
             </Link>{" "}
@@ -343,7 +344,17 @@ export default async function PersonPage({
           {person.positions.map((pos, i) => {
             const tag = getTagById(pos.strategyId);
             return (
-              <div key={i} className="border-t hairline pt-5">
+              <div
+                key={i}
+                className="border-t hairline pt-5"
+                style={
+                  pos.tentative
+                    ? {
+                        borderTopStyle: "dashed",
+                      }
+                    : undefined
+                }
+              >
                 <div className="flex items-baseline justify-between flex-wrap gap-2 mb-2">
                   <h3
                     className="text-xl"
@@ -353,6 +364,22 @@ export default async function PersonPage({
                       {tag?.name ?? pos.strategyId}
                     </Link>
                     <span className="num-label ml-3">{pos.stance}</span>
+                    {pos.tentative && (
+                      <span
+                        title="Position inferred from a passing remark, hype quote, or paper abstract; not a clear strategy statement. Treat as a working hypothesis."
+                        className="num-label ml-2"
+                        style={{
+                          border: "1px solid var(--color-rule)",
+                          borderStyle: "dashed",
+                          padding: "0.05rem 0.4rem",
+                          fontSize: "0.55rem",
+                          color: "var(--color-ink-soft)",
+                          letterSpacing: "0.05em",
+                        }}
+                      >
+                        tentative
+                      </span>
+                    )}
                   </h3>
                   {tag?.oneLine && (
                     <span
@@ -391,31 +418,34 @@ export default async function PersonPage({
             </div>
             <p className="text-xs italic mb-4" style={{ color: "var(--color-ink-soft)" }}>
               Other people whose strategy tags overlap with {person.name}&apos;s.
-              Overlap is on tag identity, not stance — opposites can show up if
+              Overlap is on tag identity, not stance; opposites can show up if
               they reference the same tags.
             </p>
             <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {similar.map(({ person: p, shared, jaccard }) => (
-                <li key={p.id}>
-                  <Link
-                    href={`/people/${p.id}`}
-                    className="unstyled flex items-start gap-3 border hairline p-3 hover:border-[var(--color-ink)] transition-colors h-full"
-                  >
-                    <PersonAvatar person={p} size={36} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm leading-tight" style={{ fontFamily: "var(--font-display)" }}>
+                <li
+                  key={p.id}
+                  className="flex items-start gap-3 border hairline p-3 hover:border-[var(--color-ink)] transition-colors h-full"
+                >
+                  <HoverFaceLink person={p} size={36} placement="right" />
+                  <div className="flex-1 min-w-0">
+                    <HoverFaceLink person={p} placement="below">
+                      <p
+                        className="text-sm leading-tight hover:underline"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
                         {p.name}
                       </p>
-                      <p className="text-[10px] mt-1" style={{ color: "var(--color-ink-soft)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>
-                        shared {shared} · J={jaccard.toFixed(2)}
+                    </HoverFaceLink>
+                    <p className="text-[10px] mt-1" style={{ color: "var(--color-ink-soft)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>
+                      shared {shared} · J={jaccard.toFixed(2)}
+                    </p>
+                    {p.tagline && (
+                      <p className="text-xs italic mt-1 line-clamp-2" style={{ color: "var(--color-ink-soft)" }}>
+                        {p.tagline}
                       </p>
-                      {p.tagline && (
-                        <p className="text-xs italic mt-1 line-clamp-2" style={{ color: "var(--color-ink-soft)" }}>
-                          {p.tagline}
-                        </p>
-                      )}
-                    </div>
-                  </Link>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>

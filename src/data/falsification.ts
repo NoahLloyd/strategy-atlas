@@ -3,20 +3,20 @@
  * "Macrostrategy falsification signals.md". Each entry names a specific,
  * plausible observation that would update against the strategy's core bet.
  *
- * A strategy held without a falsification signal is not strategy — it is
+ * A strategy held without a falsification signal is not strategy, it is
  * affiliation. Surfacing these signals converts commitments into wagers
  * and lets the field's bets update on evidence rather than persist on
  * inertia.
  */
 export const falsificationByStrategy: Record<string, string> = {
   "alignment-first":
-    "Interpretability and oversight methods stop scaling with model capability — stronger models are less rather than more inspectable.",
+    "Interpretability and oversight methods stop scaling with model capability, stronger models are less rather than more inspectable.",
   "pause":
     "Major states or frontier labs publicly defect from a declared pause, or verification tech cannot distinguish a real pause from a declared one.",
   "governance-first":
     "Enacted regulations cover less than 20% of frontier compute by some date, or institutional capture moves faster than capacity building.",
   "resilience-first":
-    "Core infrastructure degradation rates exceed hardening rates for three consecutive years — particularly in verification cost and democratic trust.",
+    "Core infrastructure degradation rates exceed hardening rates for three consecutive years, particularly in verification cost and democratic trust.",
   "compute-governance":
     "The capability-per-flop curve steepens faster than chip export controls tighten.",
   "differential-technology-development":
@@ -34,7 +34,7 @@ export const falsificationByStrategy: Record<string, string> = {
   "human-augmentation-race":
     "Default failure case: capability gap widens faster than augmentation narrows it. Falsification requires a discontinuous enhancement result.",
   "consumer-refusal":
-    "Major lab scandals produce no measurable user migration — which is the current pattern.",
+    "Major lab scandals produce no measurable user migration, which is the current pattern.",
   "military-primacy":
     "Catastrophic outcome under a race dynamic that the strategy predicted would be stable.",
   "multipolarity":
@@ -46,7 +46,7 @@ export const falsificationByStrategy: Record<string, string> = {
   "cooperative-ai":
     "AI systems defect in deployments where commitment technology exists and cooperation was available.",
   "ai-skeptic":
-    "Each capability threshold the skeptic named as unreachable is reached — though the position often survives via recalibration rather than abandonment.",
+    "Each capability threshold the skeptic named as unreachable is reached, though the position often survives via recalibration rather than abandonment.",
   "acceleration":
     "A visible harm large enough that policy overrides the growth coalition (2008 financial crisis analogue).",
   "arms-control-treaty":
@@ -58,7 +58,7 @@ export const falsificationByStrategy: Record<string, string> = {
   "information-integrity-first":
     "Continued political coordination under synthetic saturation, or provenance infrastructure operationalised as surveillance.",
   "coup-prevention-first":
-    "An undetected coup crosses the threshold — the detection regime does not currently exist.",
+    "An undetected coup crosses the threshold, the detection regime does not currently exist.",
   "democratic-mandate":
     "Binding AI referenda are functionally ignored within three years.",
   "counter-ai-ai":

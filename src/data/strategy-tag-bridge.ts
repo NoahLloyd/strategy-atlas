@@ -1,6 +1,6 @@
 // Bridge between two ID spaces:
-//   - strategyTags (in @/lib/strategy-tags) — what people positions reference
-//   - strategies   (in @/data/strategies)   — the canonical 76-entry rich catalogue
+//   - strategyTags (in @/lib/strategy-tags), what people positions reference
+//   - strategies   (in @/data/strategies)  , the canonical 76-entry rich catalogue
 //
 // The two grew separately and only overlap loosely. This map records the
 // canonical-strategy id for each tag, where one exists. Used to link a
@@ -8,7 +8,7 @@
 // populate /atlas with endorser faces.
 //
 // `null` means the tag is a real category but no canonical strategy is
-// mapped yet — the tag still works for people positions, it just lacks a
+// mapped yet, the tag still works for people positions, it just lacks a
 // rich detail page.
 
 export const tagToStrategyId: Record<string, string | null> = {

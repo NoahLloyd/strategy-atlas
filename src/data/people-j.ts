@@ -151,11 +151,11 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The AI boom feels less like a technological revolution and more like a cultural and political one — where the technology is the vehicle, not the driver.",
+              "The AI boom feels less like a technological revolution and more like a cultural and political one, where the technology is the vehicle, not the driver.",
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Charlie Warzel — Galaxy Brain",
+              title: "Charlie Warzel, Galaxy Brain",
               url: "https://www.theatlantic.com/author/charlie-warzel/",
               medium: "article",
               publisher: "The Atlantic",
@@ -192,7 +192,7 @@ export const people: Person[] = [
             date: "2023-08",
             fidelity: "paraphrase-loose",
             source: {
-              title: "The Ezra Klein Show — AI episodes",
+              title: "The Ezra Klein Show, AI episodes",
               url: "https://www.nytimes.com/column/ezra-klein-podcast",
               medium: "podcast",
               publisher: "The New York Times",
@@ -283,7 +283,7 @@ export const people: Person[] = [
     name: "Casey Newton",
     tagline: "Platformer founder; Hard Fork co-host",
     summary:
-      "Tech journalist whose newsletter Platformer and Hard Fork podcast have been key mainstream venues for AI coverage. Reports from the middle — skeptical of hype but attentive to safety arguments.",
+      "Tech journalist whose newsletter Platformer and Hard Fork podcast have been key mainstream venues for AI coverage. Reports from the middle, skeptical of hype but attentive to safety arguments.",
     categories: ["journalist"],
     affiliations: [
       { org: "Platformer", role: "Founder", current: true },
@@ -298,7 +298,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The AI companies are going to police themselves exactly as well as every past industry has — which is to say, not at all.",
+              "The AI companies are going to police themselves exactly as well as every past industry has, which is to say, not at all.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
@@ -375,7 +375,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Deb Raji — Mozilla Foundation",
+              title: "Deb Raji, Mozilla Foundation",
               url: "https://foundation.mozilla.org/en/fellowships/fellows-directory/inioluwa-deborah-raji/",
               medium: "article",
               publisher: "Mozilla Foundation",
@@ -387,7 +387,7 @@ export const people: Person[] = [
         strategyId: "near-term-harms",
         stance: "endorses",
         summary:
-          "Argues system-level audits—rather than dataset audits or model cards alone—are required to capture real-world harms; supports legal frameworks that mandate access to deployed models.",
+          "Argues system-level audits, rather than dataset audits or model cards alone, are required to capture real-world harms; supports legal frameworks that mandate access to deployed models.",
         quotes: [
           {
             text:
@@ -468,7 +468,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Queen's University Belfast — Deepak Padmanabhan",
+              title: "Queen's University Belfast, Deepak Padmanabhan",
               url: "https://pure.qub.ac.uk/en/persons/deepak-padmanabhan",
               medium: "article",
               publisher: "Queen's University Belfast",

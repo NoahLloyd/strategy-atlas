@@ -106,7 +106,7 @@ export type RecognitionTier =
   | "established"
   | "emerging";
 
-// When did this person's AI worldview form. Not a birth year — the era of
+// When did this person's AI worldview form. Not a birth year, the era of
 // AI whose problems and tools shaped their intuitions. Someone who came
 // up in symbolic AI carries different priors than a post-ChatGPT entrant,
 // even if both are publishing today.

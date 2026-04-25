@@ -58,7 +58,7 @@ export const people: Person[] = [
     name: "Gillian Hadfield",
     tagline: "University of Toronto; 'regulatory markets' theorist",
     summary:
-      "Legal scholar who proposed 'regulatory markets' — governments require AI targets to purchase regulatory services from private regulators — as a scalable AI governance design. Canada CIFAR AI Chair.",
+      "Legal scholar who proposed 'regulatory markets', governments require AI targets to purchase regulatory services from private regulators, as a scalable AI governance design. Canada CIFAR AI Chair.",
     categories: ["academic", "policy"],
     affiliations: [
       { org: "University of Toronto", role: "Schwartz Reisman Chair in Technology and Society", current: true },
@@ -155,7 +155,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The Blueprint for an AI Bill of Rights is for everyone who interacts daily with these powerful technologies — and every person whose life has been altered by unaccountable algorithms.",
+              "The Blueprint for an AI Bill of Rights is for everyone who interacts daily with these powerful technologies, and every person whose life has been altered by unaccountable algorithms.",
             date: "2022-10-04",
             fidelity: "direct",
             source: {
@@ -177,7 +177,7 @@ export const people: Person[] = [
     name: "Reid Blackman",
     tagline: "AI ethics consultant; 'Ethical Machines' author",
     summary:
-      "Philosopher turned AI ethics consultant who built Virtue, a firm advising Fortune 500 companies. Argues practical ethics implementation is the bottleneck — not theoretical frameworks or extinction-risk debates.",
+      "Philosopher turned AI ethics consultant who built Virtue, a firm advising Fortune 500 companies. Argues practical ethics implementation is the bottleneck, not theoretical frameworks or extinction-risk debates.",
     categories: ["theorist", "public-intellectual"],
     affiliations: [
       { org: "Virtue", role: "CEO", current: true },
@@ -188,7 +188,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Publishes on the operational ethics problems enterprises face deploying AI — accountability, discrimination, explainability.",
+          "Publishes on the operational ethics problems enterprises face deploying AI, accountability, discrimination, explainability.",
         quotes: [
           {
             text:
@@ -233,7 +233,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "German Marshall Fund — Technology and Geopolitics",
+              title: "German Marshall Fund, Technology and Geopolitics",
               url: "https://www.gmfus.org/experts/lindsay-gorman",
               medium: "article",
               publisher: "German Marshall Fund",
@@ -261,6 +261,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "mixed",
+        tentative: true,
         summary:
           "Focuses on training-efficient frontier research; pragmatic about near-term progress trajectory.",
         quotes: [
@@ -323,7 +324,7 @@ export const people: Person[] = [
     name: "Shakir Mohamed",
     tagline: "DeepMind researcher; decolonial AI framework",
     summary:
-      "Research scientist at DeepMind who has advanced decolonial framings of AI — arguing AI systems and their ethics should centre historically marginalised geographies and communities.",
+      "Research scientist at DeepMind who has advanced decolonial framings of AI, arguing AI systems and their ethics should centre historically marginalised geographies and communities.",
     categories: ["researcher"],
     affiliations: [
       { org: "Google DeepMind", role: "Senior Research Scientist", current: true },
@@ -338,7 +339,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Decolonial AI centres lived experience, colonial legacies, and power. It is not a sideline to 'real' AI ethics — it is the foundation.",
+              "Decolonial AI centres lived experience, colonial legacies, and power. It is not a sideline to 'real' AI ethics, it is the foundation.",
             date: "2020-07",
             fidelity: "paraphrase-faithful",
             source: {
@@ -490,7 +491,7 @@ export const people: Person[] = [
             date: "2019",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Artificial Intelligence—The Revolution Hasn't Happened Yet",
+              title: "Artificial Intelligence, The Revolution Hasn't Happened Yet",
               url: "https://hdsr.mitpress.mit.edu/pub/wot7mkc1",
               medium: "article",
               publisher: "Harvard Data Science Review",
@@ -731,7 +732,7 @@ export const people: Person[] = [
     name: "Quintin Pope",
     tagline: "Researcher; shard theory co-originator",
     summary:
-      "Independent alignment researcher who, with Alex Turner, developed 'shard theory' — a framework for how value representations might arise in reinforcement-learning agents that differs from utility-function-centric framings.",
+      "Independent alignment researcher who, with Alex Turner, developed 'shard theory', a framework for how value representations might arise in reinforcement-learning agents that differs from utility-function-centric framings.",
     categories: ["researcher", "theorist"],
     affiliations: [
       { org: "Independent", role: "Researcher", current: true },
@@ -746,7 +747,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Values in learned agents emerge as shards — context-activated circuits — not unified utility functions.",
+              "Values in learned agents emerge as shards, context-activated circuits, not unified utility functions.",
             date: "2022-09",
             fidelity: "paraphrase-faithful",
             source: {
@@ -779,7 +780,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Both co-developer of shard theory (optimistic inside view) and author of formal power-seeking results (pessimistic formal result) — representative of the richness of inside-view alignment research.",
+          "Both co-developer of shard theory (optimistic inside view) and author of formal power-seeking results (pessimistic formal result), representative of the richness of inside-view alignment research.",
         quotes: [
           {
             text:

@@ -95,6 +95,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Frames AI as the infrastructure for a new generation of knowledge discovery tools; less focused on risk framings.",
         quotes: [
@@ -213,11 +214,11 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The environmental cost of AI is not invisible. It just isn't measured — yet.",
+              "The environmental cost of AI is not invisible. It just isn't measured, yet.",
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Sasha Luccioni — Hugging Face",
+              title: "Sasha Luccioni, Hugging Face",
               url: "https://huggingface.co/sasha",
               medium: "article",
               publisher: "Hugging Face",
@@ -253,7 +254,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Tim Dettmers — efficiency research",
+              title: "Tim Dettmers, efficiency research",
               url: "https://timdettmers.com/",
               medium: "blog",
               publisher: "timdettmers.com",
@@ -321,7 +322,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "We need to slow down — not stop — so that we can put in place the guardrails that a technology this powerful demands.",
+              "We need to slow down, not stop, so that we can put in place the guardrails that a technology this powerful demands.",
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
@@ -417,7 +418,7 @@ export const people: Person[] = [
     name: "Peter Szolovits",
     tagline: "MIT medical AI pioneer",
     summary:
-      "MIT professor who pioneered clinical decision-support AI in the 1970s. Argues the most urgent AI policy questions concern reliability, evaluation, and deployment context — not superintelligence.",
+      "MIT professor who pioneered clinical decision-support AI in the 1970s. Argues the most urgent AI policy questions concern reliability, evaluation, and deployment context, not superintelligence.",
     categories: ["academic", "researcher"],
     affiliations: [
       { org: "MIT CSAIL", role: "Professor of Computer Science and Engineering", current: true },
@@ -427,7 +428,7 @@ export const people: Person[] = [
         strategyId: "evals-driven",
         stance: "endorses",
         summary:
-          "Argues the medical-AI governance playbook — FDA-style pre-deployment validation and continued monitoring — is the right template.",
+          "Argues the medical-AI governance playbook, FDA-style pre-deployment validation and continued monitoring, is the right template.",
         quotes: [
           {
             text:
@@ -435,7 +436,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Peter Szolovits — MIT CSAIL",
+              title: "Peter Szolovits, MIT CSAIL",
               url: "https://www.csail.mit.edu/person/peter-szolovits",
               medium: "article",
               publisher: "MIT CSAIL",

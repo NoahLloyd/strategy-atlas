@@ -314,7 +314,7 @@ export const people: Person[] = [
             fidelity: "direct",
             context: "On his personal AGI timeline.",
             source: {
-              title: "Dwarkesh Podcast — AI Timelines",
+              title: "Dwarkesh Podcast, AI Timelines",
               url: "https://www.dwarkesh.com/",
               medium: "podcast",
               publisher: "Dwarkesh Podcast",
@@ -405,7 +405,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Robin Hanson — Overcoming Bias",
+              title: "Robin Hanson, Overcoming Bias",
               url: "https://www.overcomingbias.com/",
               medium: "blog",
               publisher: "Overcoming Bias",
@@ -500,7 +500,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Cassie Kozyrkov — Medium",
+              title: "Cassie Kozyrkov, Medium",
               url: "https://medium.com/@kozyrkov",
               medium: "blog",
               publisher: "Medium",
@@ -528,6 +528,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Publicly optimistic about AI as a transformative technology; large-scale investment via Amazon's Anthropic stake.",
         quotes: [
@@ -607,7 +608,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "We are in a technology race with China — one the US must win.",
+              "We are in a technology race with China, one the US must win.",
             date: "2021",
             fidelity: "paraphrase-faithful",
             source: {
@@ -642,6 +643,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "mixed",
+        tentative: true,
         summary:
           "Focuses on education and on democratising access to LLMs; publicly less engaged with extinction-risk framings than some peers.",
         quotes: [
@@ -799,7 +801,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "We don't want to stop all AI — we want to stop the reckless training of giant, dangerous, unaligned systems.",
+              "We don't want to stop all AI, we want to stop the reckless training of giant, dangerous, unaligned systems.",
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {

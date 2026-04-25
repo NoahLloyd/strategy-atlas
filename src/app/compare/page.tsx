@@ -3,7 +3,7 @@ import { strategyTags } from "@/lib/strategy-tags";
 import { CompareView } from "@/components/CompareView";
 
 export const metadata = {
-  title: "Compare strategies — AGI Strategies",
+  title: "Compare strategies · AGI Strategies",
   description:
     "Pick two strategy positions and see who endorses each, in what tier mix, with what p(doom).",
 };
@@ -30,7 +30,9 @@ export default async function ComparePage({
         .filter((p) =>
           p.positions.some(
             (pos) =>
-              pos.strategyId === t.id && ENDORSING_STANCES.has(pos.stance),
+              pos.strategyId === t.id &&
+              ENDORSING_STANCES.has(pos.stance) &&
+              !pos.tentative,
           ),
         )
         .map((p) => p.id);
@@ -93,10 +95,9 @@ export default async function ComparePage({
           className="text-sm italic"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          Stance defaults to anyone whose position is endorses, mixed,
-          conditional, or evolved-toward — that is, people who treat the
-          strategy as a live bet of theirs at any time. Opposers are listed
-          separately.
+          Stance defaults to live engagement: endorses, mixed, conditional,
+          or evolved-toward. These are people who treat the strategy as a
+          live bet of theirs at any time. Opposers are listed separately.
         </p>
       </section>
 

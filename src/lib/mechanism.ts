@@ -3,7 +3,7 @@ import { leverById } from "@/data/levers";
 
 /**
  * A pair of strategies either conflicts or composes. The atlas needs to name
- * *how* — not just that they do. This module classifies a pair into a
+ * *how*, not just that they do. This module classifies a pair into a
  * mechanism and produces a short human-readable label.
  *
  * The classifier is structural: it reads the coordinates each strategy carries
@@ -64,7 +64,7 @@ export const mechanismCatalogue: MechanismDescriptor[] = [
     kind: "conflict",
     short: "same lever, scope blocks combination",
     explain:
-      "Different direction on the same lever plus scope commitments that cannot co-exist — e.g., one permanently forbids what the other permits.",
+      "Different direction on the same lever plus scope commitments that cannot co-exist, e.g., one permanently forbids what the other permits.",
   },
   {
     id: "same-lever-reinforce",
@@ -112,7 +112,7 @@ export const mechanismCatalogue: MechanismDescriptor[] = [
     kind: "complement",
     short: "same legitimacy source",
     explain:
-      "Different levers, same legitimacy source (democratic, state, technical, market). The pair hangs together under one kind of authority — it stands or falls with that authority.",
+      "Different levers, same legitimacy source (democratic, state, technical, market). The pair hangs together under one kind of authority; it stands or falls with that authority.",
   },
   {
     id: "adjacent-bet",
@@ -128,7 +128,7 @@ export const mechanismCatalogue: MechanismDescriptor[] = [
     kind: "same-lever",
     short: "same lever, same pull",
     explain:
-      "Both use the same lever in the same direction. Usually redundant inside a portfolio — each dollar or effort unit only buys one lever pull, even if two strategies are named.",
+      "Both use the same lever in the same direction. Usually redundant inside a portfolio: each dollar or effort unit only buys one lever pull, even if two strategies are named.",
   },
 ];
 
@@ -145,7 +145,7 @@ export const mechanismById: Record<PairMechanism, MechanismDescriptor> =
  */
 const frameRejectors = new Set([
   "ai-as-sovereign-entity",
-  "ai-self-directed-macrostrategy",
+  "ai-self-directed",
   "reframe-ai",
   "default-drift",
   "acceleration",
@@ -220,7 +220,7 @@ export function classifyComplement(
 
 /**
  * Same lever, same direction, but not explicitly listed as complement. These
- * pairs are "twins" — they stack on one lever and double-count in portfolios.
+ * pairs are "twins", they stack on one lever and double-count in portfolios.
  */
 export function classifySameLever(): SameLeverMechanism {
   return "same-lever-twin";

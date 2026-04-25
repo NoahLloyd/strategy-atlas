@@ -116,7 +116,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "AI should be governed the way we govern public investments — with missions, not markets.",
+              "AI should be governed the way we govern public investments, with missions, not markets.",
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
@@ -264,7 +264,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The near-term catastrophic AI risks we can actually measure — biosecurity uplift, cyber offence — should ground policy, not speculative framings.",
+              "The near-term catastrophic AI risks we can actually measure, biosecurity uplift, cyber offence, should ground policy, not speculative framings.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
@@ -340,7 +340,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Woodrow Hartzog — BU Law",
+              title: "Woodrow Hartzog, BU Law",
               url: "https://www.bu.edu/law/profile/woodrow-hartzog/",
               medium: "article",
               publisher: "Boston University School of Law",
@@ -357,7 +357,7 @@ export const people: Person[] = [
     name: "Frank Pasquale",
     tagline: "Brooklyn Law; Black Box Society",
     summary:
-      "Brooklyn Law professor whose 2015 Black Box Society foreshadowed modern debate about AI accountability. Advocates 'functional' laws of AI — humans must retain moral agency and accountability.",
+      "Brooklyn Law professor whose 2015 Black Box Society foreshadowed modern debate about AI accountability. Advocates 'functional' laws of AI, humans must retain moral agency and accountability.",
     categories: ["academic", "policy"],
     affiliations: [
       { org: "Brooklyn Law School", role: "Professor of Law", current: true },
@@ -368,7 +368,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Proposed four 'New Laws of Robotics' — robots should complement humans, not counterfeit them, and humans must retain accountability.",
+          "Proposed four 'New Laws of Robotics', robots should complement humans, not counterfeit them, and humans must retain accountability.",
         quotes: [
           {
             text:
@@ -445,11 +445,11 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "AI law should learn from how we regulated aviation, medicine, and financial services — each had to develop its own risk frameworks.",
+              "AI law should learn from how we regulated aviation, medicine, and financial services, each had to develop its own risk frameworks.",
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Ryan Calo — UW Law",
+              title: "Ryan Calo, UW Law",
               url: "https://www.law.uw.edu/directory/ryan-calo",
               medium: "article",
               publisher: "University of Washington",

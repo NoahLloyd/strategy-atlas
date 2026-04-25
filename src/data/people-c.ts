@@ -184,7 +184,7 @@ export const people: Person[] = [
         strategyId: "existential-primacy",
         stance: "endorses",
         summary:
-          "Has publicly argued that even conservative survey estimates put AI extinction probability above 5% — high enough for serious action.",
+          "Has publicly argued that even conservative survey estimates put AI extinction probability above 5%, high enough for serious action.",
         quotes: [
           {
             text:
@@ -233,7 +233,7 @@ export const people: Person[] = [
             fidelity: "direct",
             source: {
               title:
-                "Researcher Meredith Whittaker says AI's biggest risk isn't 'consciousness' — it's the corporations that control them",
+                "Researcher Meredith Whittaker says AI's biggest risk isn't 'consciousness', it's the corporations that control them",
               url: "https://www.fastcompany.com/90892235/researcher-meredith-whittaker-says-ais-biggest-risk-isnt-consciousness-its-the-corporations-that-control-them",
               medium: "article",
               publisher: "Fast Company",
@@ -259,7 +259,7 @@ export const people: Person[] = [
         strategyId: "antitrust-primacy",
         stance: "endorses",
         summary:
-          "Advocates structural remedies to AI corporate concentration — breaking up infrastructure and compute oligopolies.",
+          "Advocates structural remedies to AI corporate concentration, breaking up infrastructure and compute oligopolies.",
         quotes: [
           {
             text:
@@ -544,7 +544,7 @@ export const people: Person[] = [
         strategyId: "interpretability-bet",
         stance: "mixed",
         summary:
-          "Argues for inherently interpretable models over post-hoc explanations — a different flavour of interpretability than the mechanistic-interpretability school.",
+          "Argues for inherently interpretable models over post-hoc explanations, a different flavour of interpretability than the mechanistic-interpretability school.",
         quotes: [
           {
             text:
@@ -571,7 +571,7 @@ export const people: Person[] = [
     name: "Stuart Armstrong",
     tagline: "Aligned AI co-founder; ex-FHI; value-extrapolation approach",
     summary:
-      "Philosopher and AI safety researcher who spent over a decade at the Future of Humanity Institute. Co-founded Aligned AI; his research centres on value extrapolation—the hypothesis that solving how to extend human values across contexts is necessary and nearly sufficient for alignment.",
+      "Philosopher and AI safety researcher who spent over a decade at the Future of Humanity Institute. Co-founded Aligned AI; his research centres on value extrapolation, the hypothesis that solving how to extend human values across contexts is necessary and nearly sufficient for alignment.",
     categories: ["researcher", "founder", "theorist"],
     affiliations: [
       { org: "Aligned AI", role: "Co-founder and CEO", current: true },
@@ -604,7 +604,7 @@ export const people: Person[] = [
             date: "2022",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Aligned AI — Research overview",
+              title: "Aligned AI, Research overview",
               url: "https://www.alignedai.com/research",
               medium: "article",
               publisher: "Aligned AI",
@@ -668,7 +668,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "mixed",
         summary:
-          "Advocates 'AI control' — protocol-level safety assuming the worst about model intentions — as a complement to direct alignment.",
+          "Advocates 'AI control', protocol-level safety assuming the worst about model intentions, as a complement to direct alignment.",
         quotes: [
           {
             text:
@@ -704,7 +704,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Frames inner alignment — ensuring a model's learned optimiser has the intended objective — as a separate and harder problem than outer alignment.",
+          "Frames inner alignment, ensuring a model's learned optimiser has the intended objective, as a separate and harder problem than outer alignment.",
         quotes: [
           {
             text:
@@ -789,7 +789,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Neel Nanda — homepage",
+              title: "Neel Nanda, homepage",
               url: "https://www.neelnanda.io/",
               medium: "blog",
               publisher: "neelnanda.io",
@@ -989,7 +989,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Statement on AI Risk — signatories",
+              title: "Statement on AI Risk, signatories",
               url: "https://www.safe.ai/work/statement-on-ai-risk",
               medium: "article",
               publisher: "Center for AI Safety",

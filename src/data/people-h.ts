@@ -23,7 +23,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "If we specified AGI to be something very specific — a set of tests where a software program can do very well — I believe we will get there within 5 years.",
+              "If we specified AGI to be something very specific, a set of tests where a software program can do very well, I believe we will get there within 5 years.",
             date: "2024-03-19",
             fidelity: "direct",
             context: "Stanford economic forum comments during the NVIDIA GTC 2024 week.",
@@ -62,7 +62,7 @@ export const people: Person[] = [
     name: "Emmanuel Macron",
     tagline: "President of France; hosted the 2025 Paris AI Action Summit",
     summary:
-      "Convened the 2025 Paris AI Action Summit and announced a €109B French AI investment. Frames France as pursuing a 'third way' between the US and China — sovereign, open, and regulation-aware but pro-deployment.",
+      "Convened the 2025 Paris AI Action Summit and announced a €109B French AI investment. Frames France as pursuing a 'third way' between the US and China, sovereign, open, and regulation-aware but pro-deployment.",
     categories: ["policy"],
     affiliations: [
       { org: "Government of France", role: "President", current: true },
@@ -174,7 +174,7 @@ export const people: Person[] = [
         date: "2024",
         definition: "~50% p(doom) with wide error bars (5–80%).",
         source: {
-          title: "Modern Wisdom — Geoffrey Miller episode",
+          title: "Modern Wisdom, Geoffrey Miller episode",
           url: "https://podscripts.co/podcasts/modern-wisdom/650-geoffrey-miller-how-dangerous-is-the-threat-of-ai-to-humanity",
           medium: "podcast",
           publisher: "Modern Wisdom",
@@ -207,7 +207,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Moralizing AGI governance and innovation — calling some 'bad' and others 'good' — is disingenuous. All players are selfish.",
+              "Moralizing AGI governance and innovation, calling some 'bad' and others 'good', is disingenuous. All players are selfish.",
             date: "2024",
             fidelity: "direct",
             source: {
@@ -241,7 +241,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Advocates for AI governance based on present harms — disinformation, bias, surveillance — rather than speculative extinction framings.",
+          "Advocates for AI governance based on present harms, disinformation, bias, surveillance, rather than speculative extinction framings.",
         quotes: [
           {
             text:
@@ -249,7 +249,7 @@ export const people: Person[] = [
             date: "2021",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Rachel Thomas — Medium",
+              title: "Rachel Thomas, Medium",
               url: "https://rachel.fast.ai/",
               medium: "blog",
               publisher: "fast.ai",
@@ -388,7 +388,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argues the robot/AI ethics questions are best framed via analogy with how humans treat animals and tools — not via new metaphysics.",
+          "Argues the robot/AI ethics questions are best framed via analogy with how humans treat animals and tools, not via new metaphysics.",
         quotes: [
           {
             text:
@@ -436,7 +436,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Abeba Birhane — research",
+              title: "Abeba Birhane, research",
               url: "https://abeba-birhane.com/",
               medium: "article",
               publisher: "abeba-birhane.com",
@@ -491,7 +491,7 @@ export const people: Person[] = [
     name: "Margaret Hu",
     tagline: "William & Mary law professor; biometric surveillance scholar",
     summary:
-      "Law professor whose work on 'algorithmic Jim Crow' and biometric ID systems has informed AI governance debates. Argues we already know how to regulate against harmful AI — we just don't.",
+      "Law professor whose work on 'algorithmic Jim Crow' and biometric ID systems has informed AI governance debates. Argues we already know how to regulate against harmful AI, we just don't.",
     categories: ["academic", "policy"],
     affiliations: [
       { org: "William & Mary Law School", role: "Professor of Law", current: true },
@@ -636,7 +636,7 @@ export const people: Person[] = [
     name: "Stella Biderman",
     tagline: "Executive Director of EleutherAI",
     summary:
-      "Leads EleutherAI, the largest community open-science AI lab. Focuses on open reproducibility of frontier research — a counterweight to both closed frontier labs and to the safety-first pause camp.",
+      "Leads EleutherAI, the largest community open-science AI lab. Focuses on open reproducibility of frontier research, a counterweight to both closed frontier labs and to the safety-first pause camp.",
     categories: ["researcher", "founder"],
     affiliations: [
       { org: "EleutherAI", role: "Executive Director", current: true },
@@ -725,7 +725,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "The specification gaming reference list is a catalogue of failures — and a reminder that we cannot rely on getting objectives right by default.",
+              "The specification gaming reference list is a catalogue of failures, and a reminder that we cannot rely on getting objectives right by default.",
             date: "2020",
             fidelity: "paraphrase-faithful",
             source: {
@@ -914,7 +914,7 @@ export const people: Person[] = [
             date: "2019",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Andrew Yang — The War on Normal People",
+              title: "Andrew Yang, The War on Normal People",
               url: "https://www.yang2020.com/",
               medium: "book",
               publisher: "Hachette",

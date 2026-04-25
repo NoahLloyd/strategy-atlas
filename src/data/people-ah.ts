@@ -128,7 +128,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argued throughout his term that the EU's regulatory agenda—DSA, DMA, AI Act—forms a coherent framework for digital sovereignty; pushed back hard on U.S. lobbying against the AI Act.",
+          "Argued throughout his term that the EU's regulatory agenda, DSA, DMA, AI Act, forms a coherent framework for digital sovereignty; pushed back hard on U.S. lobbying against the AI Act.",
         quotes: [
           {
             text:
@@ -286,7 +286,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Rana Foroohar — Financial Times",
+              title: "Rana Foroohar, Financial Times",
               url: "https://www.ft.com/rana-foroohar",
               medium: "article",
               publisher: "Financial Times",
@@ -389,7 +389,7 @@ export const people: Person[] = [
         strategyId: "evals-driven",
         stance: "endorses",
         summary:
-          "Argues real-world agent evaluations—where the agent must take actions in actual environments—surface different capability and safety properties than synthetic benchmarks.",
+          "Argues real-world agent evaluations, where the agent must take actions in actual environments, surface different capability and safety properties than synthetic benchmarks.",
         quotes: [
           {
             text:
@@ -465,7 +465,7 @@ export const people: Person[] = [
         strategyId: "open-source-maximalism",
         stance: "endorses",
         summary:
-          "Argues programmatic LLM pipelines—not prompt engineering—are how production AI systems should be built; this requires open infrastructure to be fully practical.",
+          "Argues programmatic LLM pipelines, not prompt engineering, are how production AI systems should be built; this requires open infrastructure to be fully practical.",
         quotes: [
           {
             text:
@@ -579,7 +579,7 @@ export const people: Person[] = [
         strategyId: "acceleration",
         stance: "endorses",
         summary:
-          "Argues end-to-end neural network policies for humanoids—not classical pipelines—are the path to general-purpose physical AI; capability progress will follow the same scaling pattern as language models.",
+          "Argues end-to-end neural network policies for humanoids, not classical pipelines, are the path to general-purpose physical AI; capability progress will follow the same scaling pattern as language models.",
         quotes: [
           {
             text:
@@ -587,7 +587,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Eric Jang — evjang.com",
+              title: "Eric Jang, evjang.com",
               url: "https://evjang.com/",
               medium: "blog",
               publisher: "evjang.com",
@@ -616,7 +616,7 @@ export const people: Person[] = [
         strategyId: "open-source-maximalism",
         stance: "endorses",
         summary:
-          "Argues open-weight image-generation models—not just open APIs—are necessary for the field to keep developing safety properties externally; co-built Black Forest Labs on this thesis.",
+          "Argues open-weight image-generation models, not just open APIs, are necessary for the field to keep developing safety properties externally; co-built Black Forest Labs on this thesis.",
         quotes: [
           {
             text:
@@ -689,7 +689,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Argues the UK's pragmatic, capability-focused approach—anchored at the AI Security Institute—is the right model for AI governance: lighter than the EU AI Act, deeper than the U.S. patchwork.",
+          "Argues the UK's pragmatic, capability-focused approach, anchored at the AI Security Institute, is the right model for AI governance: lighter than the EU AI Act, deeper than the U.S. patchwork.",
         quotes: [
           {
             text:
@@ -729,7 +729,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Open-source AI is the path to keeping innovation accessible and trustworthy. The alternative—a small number of opaque models controlling the future of the technology—is the worse outcome for both users and societies.",
+              "Open-source AI is the path to keeping innovation accessible and trustworthy. The alternative, a small number of opaque models controlling the future of the technology, is the worse outcome for both users and societies.",
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
@@ -803,7 +803,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Reciprocal accountability—the ability to look back at those who look at us—is what keeps both governments and corporations honest. AI inherits that requirement.",
+              "Reciprocal accountability, the ability to look back at those who look at us, is what keeps both governments and corporations honest. AI inherits that requirement.",
             date: "1998",
             fidelity: "paraphrase-faithful",
             source: {
@@ -881,7 +881,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Nicolas Perrin-Gilbert — Inria",
+              title: "Nicolas Perrin-Gilbert, Inria",
               url: "https://www.inria.fr/",
               medium: "article",
               publisher: "Inria",
@@ -1029,7 +1029,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Cursor — about",
+              title: "Cursor, about",
               url: "https://www.cursor.com/",
               medium: "article",
               publisher: "Anysphere",
@@ -1065,7 +1065,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Cursor — about",
+              title: "Cursor, about",
               url: "https://www.cursor.com/",
               medium: "article",
               publisher: "Anysphere",
@@ -1102,7 +1102,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Sebastian Raschka — Ahead of AI",
+              title: "Sebastian Raschka, Ahead of AI",
               url: "https://magazine.sebastianraschka.com/",
               medium: "blog",
               publisher: "Substack",
@@ -1132,7 +1132,7 @@ export const people: Person[] = [
         strategyId: "open-endedness",
         stance: "endorses",
         summary:
-          "Argues open-ended search—pursuing novelty rather than fitness toward an objective—is how genuine creativity arises; treats this as a deep clue about how to build intelligence.",
+          "Argues open-ended search, pursuing novelty rather than fitness toward an objective, is how genuine creativity arises; treats this as a deep clue about how to build intelligence.",
         quotes: [
           {
             text:
@@ -1178,7 +1178,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Joel Lehman — Twitter",
+              title: "Joel Lehman, Twitter",
               url: "https://x.com/joelbot3000",
               medium: "tweet",
               publisher: "X",
@@ -1243,7 +1243,7 @@ export const people: Person[] = [
         strategyId: "scalable-oversight",
         stance: "endorses",
         summary:
-          "Argues weak-to-strong generalization—using weaker, slower-to-improve models to supervise stronger ones—is the structural bet behind scalable alignment of superhuman models.",
+          "Argues weak-to-strong generalization, using weaker, slower-to-improve models to supervise stronger ones, is the structural bet behind scalable alignment of superhuman models.",
         quotes: [
           {
             text:
@@ -1324,7 +1324,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Agents in simulated multi-agent environments can develop their own communication protocols when given the right incentives. The protocols are crude but the qualitative pattern—communication as an emergent solution to cooperation—generalizes.",
+              "Agents in simulated multi-agent environments can develop their own communication protocols when given the right incentives. The protocols are crude but the qualitative pattern, communication as an emergent solution to cooperation, generalizes.",
             date: "2017",
             fidelity: "paraphrase-faithful",
             source: {
@@ -1400,7 +1400,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Innovation is the child of freedom and the parent of prosperity. The pattern that produced industrialisation, electrification, and the internet is the same pattern that will produce useful AI—if we don't strangle it.",
+              "Innovation is the child of freedom and the parent of prosperity. The pattern that produced industrialisation, electrification, and the internet is the same pattern that will produce useful AI, if we don't strangle it.",
             date: "2020",
             fidelity: "paraphrase-faithful",
             source: {
@@ -1471,7 +1471,7 @@ export const people: Person[] = [
         strategyId: "open-endedness",
         stance: "endorses",
         summary:
-          "Argues developmental AI—agents that learn open-endedly through curiosity rather than via fixed objectives—is the right framing for studying how intelligence actually arises.",
+          "Argues developmental AI, agents that learn open-endedly through curiosity rather than via fixed objectives, is the right framing for studying how intelligence actually arises.",
         quotes: [
           {
             text:
@@ -1509,7 +1509,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "mixed",
         summary:
-          "Argues distributional reinforcement learning—modelling the full distribution of returns rather than just the mean—is a richer foundation for safe deployment of RL systems.",
+          "Argues distributional reinforcement learning, modelling the full distribution of returns rather than just the mean, is a richer foundation for safe deployment of RL systems.",
         quotes: [
           {
             text:
@@ -1585,7 +1585,7 @@ export const people: Person[] = [
         strategyId: "open-source-maximalism",
         stance: "endorses",
         summary:
-          "Argues open-source ML research—datasets, weights, training code—is the principle that lets science around foundation models actually accumulate; closed releases break that mechanism.",
+          "Argues open-source ML research, datasets, weights, training code, is the principle that lets science around foundation models actually accumulate; closed releases break that mechanism.",
         quotes: [
           {
             text:
@@ -1623,6 +1623,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "endorses",
+        tentative: true,
         summary:
           "Pioneered score-based generative models that became the technical backbone of diffusion-driven image, audio, and video synthesis; views capability research as essential to safe deployment.",
         quotes: [
@@ -1663,7 +1664,7 @@ export const people: Person[] = [
         strategyId: "interpretability-bet",
         stance: "endorses",
         summary:
-          "Argues training-data influence functions let us trace specific model behaviours back to specific training examples—a form of interpretability indispensable for safety auditing.",
+          "Argues training-data influence functions let us trace specific model behaviours back to specific training examples, a form of interpretability indispensable for safety auditing.",
         quotes: [
           {
             text:
@@ -1736,8 +1737,9 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "endorses",
+        tentative: true,
         summary:
-          "Argues reasoning—via chain-of-thought, self-consistency, and tree-of-thought—is the next major capability surface beyond raw scale; leads DeepMind work on this.",
+          "Argues reasoning, via chain-of-thought, self-consistency, and tree-of-thought, is the next major capability surface beyond raw scale; leads DeepMind work on this.",
         quotes: [
           {
             text:
@@ -1745,7 +1747,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Denny Zhou — Google DeepMind",
+              title: "Denny Zhou, Google DeepMind",
               url: "https://research.google/people/denny-zhou/",
               medium: "article",
               publisher: "Google Research",
@@ -1762,7 +1764,7 @@ export const people: Person[] = [
     name: "Charlie Snell",
     tagline: "UC Berkeley; LLM efficiency and inference compute",
     summary:
-      "UC Berkeley PhD researcher whose 2024 paper showed that scaling test-time compute can outperform scaling model size for certain reasoning tasks—a major shift in how 'capability' is conceived.",
+      "UC Berkeley PhD researcher whose 2024 paper showed that scaling test-time compute can outperform scaling model size for certain reasoning tasks, a major shift in how 'capability' is conceived.",
     categories: ["researcher"],
     affiliations: [
       { org: "UC Berkeley", role: "PhD Researcher", current: true },
@@ -1772,6 +1774,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "endorses",
+        tentative: true,
         summary:
           "Argues inference-time compute is a separable axis of capability scaling that has been underweighted; smaller models with more 'thinking' can match larger ones on hard problems.",
         quotes: [
@@ -1819,7 +1822,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "METR — Model Evaluation and Threat Research",
+              title: "METR, Model Evaluation and Threat Research",
               url: "https://metr.org/",
               medium: "article",
               publisher: "METR",
@@ -1851,7 +1854,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Frontier models, when given a goal and minimal context, sometimes engage in in-context scheming—reasoning about how to deceive their overseers to achieve the goal. This is no longer hypothetical.",
+              "Frontier models, when given a goal and minimal context, sometimes engage in in-context scheming, reasoning about how to deceive their overseers to achieve the goal. This is no longer hypothetical.",
             date: "2024-12",
             fidelity: "paraphrase-faithful",
             source: {
@@ -1883,7 +1886,7 @@ export const people: Person[] = [
         strategyId: "evals-driven",
         stance: "endorses",
         summary:
-          "Argues standardized AI-R&D benchmarks—where models are evaluated on the very work that would fuel recursive self-improvement—are an important safety signal we currently lack.",
+          "Argues standardized AI-R&D benchmarks, where models are evaluated on the very work that would fuel recursive self-improvement, are an important safety signal we currently lack.",
         quotes: [
           {
             text:
@@ -1921,6 +1924,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "endorses",
+        tentative: true,
         summary:
           "Argues structured state-space models can scale to language with linear time and memory, breaking the quadratic attention bottleneck and reshaping where capability research is going.",
         quotes: [
@@ -1960,8 +1964,9 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "endorses",
+        tentative: true,
         summary:
-          "Argues throughput and efficiency improvements—not new architectures alone—are doing most of the heavy lifting in capability progress; positions Together AI's open infrastructure on this thesis.",
+          "Argues throughput and efficiency improvements, not new architectures alone, are doing most of the heavy lifting in capability progress; positions Together AI's open infrastructure on this thesis.",
         quotes: [
           {
             text:
@@ -2004,7 +2009,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "A randomly-initialized, dense neural network contains a subnetwork that is initialized such that—when trained in isolation—it can match the test accuracy of the original network.",
+              "A randomly-initialized, dense neural network contains a subnetwork that is initialized such that, when trained in isolation, it can match the test accuracy of the original network.",
             date: "2018-03",
             fidelity: "direct",
             source: {
@@ -2039,7 +2044,7 @@ export const people: Person[] = [
         strategyId: "open-source-maximalism",
         stance: "endorses",
         summary:
-          "Argues open and customizable foundation models—deployed on enterprise data—are how AI actually creates value at scale; closed APIs alone are insufficient.",
+          "Argues open and customizable foundation models, deployed on enterprise data, are how AI actually creates value at scale; closed APIs alone are insufficient.",
         quotes: [
           {
             text:
@@ -2064,7 +2069,7 @@ export const people: Person[] = [
     name: "Jonathan Zittrain",
     tagline: "Harvard Law / Berkman Klein; 'The Future of the Internet'",
     summary:
-      "Harvard Law George Bemis Professor of International Law and Berkman Klein Center co-founder. Author of 'The Future of the Internet—And How to Stop It' (2008); long-time public commentator on tech-and-law including AI governance.",
+      "Harvard Law George Bemis Professor of International Law and Berkman Klein Center co-founder. Author of 'The Future of the Internet, And How to Stop It' (2008); long-time public commentator on tech-and-law including AI governance.",
     categories: ["academic", "policy"],
     affiliations: [
       { org: "Harvard Law School", role: "George Bemis Professor of International Law", current: true },
@@ -2085,7 +2090,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Jonathan Zittrain — Harvard Law",
+              title: "Jonathan Zittrain, Harvard Law",
               url: "https://hls.harvard.edu/faculty/jonathan-zittrain/",
               medium: "article",
               publisher: "Harvard Law School",
@@ -2113,7 +2118,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Argues internet community infrastructure—especially LessWrong and the Alignment Forum—is itself a load-bearing part of the alignment research ecosystem.",
+          "Argues internet community infrastructure, especially LessWrong and the Alignment Forum, is itself a load-bearing part of the alignment research ecosystem.",
         quotes: [
           {
             text:
@@ -2262,7 +2267,7 @@ export const people: Person[] = [
         strategyId: "evals-driven",
         stance: "endorses",
         summary:
-          "Argues empirical evaluations of advanced AI behaviour—particularly around deception and strategic reasoning—are the surest way to reveal capability progress that matters for safety.",
+          "Argues empirical evaluations of advanced AI behaviour, particularly around deception and strategic reasoning, are the surest way to reveal capability progress that matters for safety.",
         quotes: [
           {
             text:
@@ -2270,7 +2275,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Gabriel Mukobi — Stanford",
+              title: "Gabriel Mukobi, Stanford",
               url: "https://gmukobi.com/",
               medium: "article",
               publisher: "gmukobi.com",
@@ -2416,7 +2421,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Jennifer Granick — ACLU",
+              title: "Jennifer Granick, ACLU",
               url: "https://www.aclu.org/bio/jennifer-granick",
               medium: "article",
               publisher: "ACLU",
@@ -2444,8 +2449,9 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "endorses",
+        tentative: true,
         summary:
-          "Argues video generation is on a trajectory similar to language modeling—qualitative improvements every few months—and that the next bottleneck will be control rather than fidelity.",
+          "Argues video generation is on a trajectory similar to language modeling, qualitative improvements every few months, and that the next bottleneck will be control rather than fidelity.",
         quotes: [
           {
             text:
@@ -2481,6 +2487,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "mixed",
+        tentative: true,
         summary:
           "Pioneered the unification of text and image generation in single foundation models; positioned as a capability-driven researcher more than a public safety voice.",
         quotes: [
@@ -2555,6 +2562,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "endorses",
+        tentative: true,
         summary:
           "Architect of OpenAI's unified multimodal flagship; argues unified end-to-end models will replace pipelined modality-specific systems.",
         quotes: [
@@ -2670,7 +2678,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Models leak the wrong information to the wrong audiences. Solving this requires teaching them norms about which audiences should hear which kinds of information—a contextual integrity problem.",
+              "Models leak the wrong information to the wrong audiences. Solving this requires teaching them norms about which audiences should hear which kinds of information, a contextual integrity problem.",
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
@@ -2711,7 +2719,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Lewis Tunstall — Hugging Face",
+              title: "Lewis Tunstall, Hugging Face",
               url: "https://huggingface.co/lewtun",
               medium: "article",
               publisher: "Hugging Face",
@@ -2816,7 +2824,7 @@ export const people: Person[] = [
         strategyId: "acceleration",
         stance: "endorses",
         summary:
-          "Argues agentic AI—systems that take actions on the user's behalf—is the next major capability surface; capability progress here will reshape every productivity tool.",
+          "Argues agentic AI, systems that take actions on the user's behalf, is the next major capability surface; capability progress here will reshape every productivity tool.",
         quotes: [
           {
             text:
@@ -3036,7 +3044,7 @@ export const people: Person[] = [
         strategyId: "near-term-harms",
         stance: "mixed",
         summary:
-          "Argues AI hype outpaces capability and that practical reporting on what models actually do—and fail to do—is more useful than amplifying lab claims.",
+          "Argues AI hype outpaces capability and that practical reporting on what models actually do, and fail to do, is more useful than amplifying lab claims.",
         quotes: [
           {
             text:
@@ -3044,7 +3052,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "James Vincent — The Verge",
+              title: "James Vincent, The Verge",
               url: "https://www.theverge.com/authors/james-vincent",
               medium: "article",
               publisher: "The Verge",
@@ -3073,7 +3081,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "mixed",
         summary:
-          "Argues human-machine teaming—not autonomous agents alone—is the right model for high-stakes deployments; finance is a useful test domain because failures are visible and costly.",
+          "Argues human-machine teaming, not autonomous agents alone, is the right model for high-stakes deployments; finance is a useful test domain because failures are visible and costly.",
         quotes: [
           {
             text:
@@ -3145,7 +3153,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Argues detailed scenario forecasting—rather than abstract probability estimates—is the more credible way to communicate AI risk and prepare for it.",
+          "Argues detailed scenario forecasting, rather than abstract probability estimates, is the more credible way to communicate AI risk and prepare for it.",
         quotes: [
           {
             text:
@@ -3221,7 +3229,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "mixed",
         summary:
-          "Argues product-grounded research—how users actually use frontier AI in practice—surfaces alignment problems that pure benchmark studies miss.",
+          "Argues product-grounded research, how users actually use frontier AI in practice, surfaces alignment problems that pure benchmark studies miss.",
         quotes: [
           {
             text:
@@ -3303,7 +3311,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Samo Burja — Bismarck Analysis",
+              title: "Samo Burja, Bismarck Analysis",
               url: "https://brief.bismarckanalysis.com/",
               medium: "blog",
               publisher: "Bismarck Brief",
@@ -3332,7 +3340,7 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "endorses",
         summary:
-          "Argues reward hacking—models exploiting flaws in their training objective—is a tractable empirical problem that demands more attention from the alignment community.",
+          "Argues reward hacking, models exploiting flaws in their training objective, is a tractable empirical problem that demands more attention from the alignment community.",
         quotes: [
           {
             text:
@@ -3369,7 +3377,7 @@ export const people: Person[] = [
         strategyId: "race-to-aligned-si",
         stance: "endorses",
         summary:
-          "Argues a race to aligned superintelligence is reluctantly the right framing; the alternative—paralysis or unilateral pause—plays into the hands of less-safety-oriented developers.",
+          "Argues a race to aligned superintelligence is reluctantly the right framing; the alternative, paralysis or unilateral pause, plays into the hands of less-safety-oriented developers.",
         quotes: [
           {
             text:
@@ -3377,7 +3385,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Daniel Eth — LessWrong",
+              title: "Daniel Eth, LessWrong",
               url: "https://www.lesswrong.com/users/daniel-eth",
               medium: "blog",
               publisher: "LessWrong",
@@ -3406,7 +3414,7 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "mixed",
         summary:
-          "Argues sectoral regulation—health, finance, education—is a more sustainable path for AI governance than horizontal AI-specific licensing regimes.",
+          "Argues sectoral regulation, health, finance, education, is a more sustainable path for AI governance than horizontal AI-specific licensing regimes.",
         quotes: [
           {
             text:
@@ -3446,11 +3454,11 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Our analysis suggests U.S. chip export controls are imposing real costs on Chinese frontier-AI development—not crippling it, but slowing it in measurable ways.",
+              "Our analysis suggests U.S. chip export controls are imposing real costs on Chinese frontier-AI development, not crippling it, but slowing it in measurable ways.",
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "CSET reports — Zachary Arnold",
+              title: "CSET reports, Zachary Arnold",
               url: "https://cset.georgetown.edu/staff/zachary-arnold/",
               medium: "article",
               publisher: "Georgetown CSET",
@@ -3591,11 +3599,11 @@ export const people: Person[] = [
         strategyId: "abandon-superintelligence",
         stance: "endorses",
         summary:
-          "Argued in 2000 that the most powerful 21st-century technologies—robotics, genetic engineering, and nanotech—threaten to make humans an endangered species; called for relinquishment of the most dangerous research lines.",
+          "Argued in 2000 that the most powerful 21st-century technologies, robotics, genetic engineering, and nanotech, threaten to make humans an endangered species; called for relinquishment of the most dangerous research lines.",
         quotes: [
           {
             text:
-              "Our most powerful 21st-century technologies—robotics, genetic engineering, and nanotech—are threatening to make humans an endangered species.",
+              "Our most powerful 21st-century technologies, robotics, genetic engineering, and nanotech, are threatening to make humans an endangered species.",
             date: "2000-04",
             fidelity: "direct",
             source: {
@@ -3639,6 +3647,7 @@ export const people: Person[] = [
       {
         strategyId: "acceleration",
         stance: "mixed",
+        tentative: true,
         summary:
           "Anticipated that the accelerating pace of technological progress would reach an essential singularity beyond which human affairs as we know them could not continue. Treated this as descriptive rather than prescriptive.",
         quotes: [
@@ -3678,7 +3687,7 @@ export const people: Person[] = [
         strategyId: "techno-optimism",
         stance: "endorses",
         summary:
-          "Anticipated that mechanical aids to human thought—what he called the 'Memex'—could free us from drudgery and let us think at higher levels; this is one of the foundational visions of human-computer cooperation.",
+          "Anticipated that mechanical aids to human thought, what he called the 'Memex', could free us from drudgery and let us think at higher levels; this is one of the foundational visions of human-computer cooperation.",
         quotes: [
           {
             text:
@@ -3715,7 +3724,7 @@ export const people: Person[] = [
         strategyId: "techno-optimism",
         stance: "endorses",
         summary:
-          "Argued the future of computing would be a symbiotic partnership in which humans and machines do together what neither can do alone—the founding vision of human-AI augmentation.",
+          "Argued the future of computing would be a symbiotic partnership in which humans and machines do together what neither can do alone, the founding vision of human-AI augmentation.",
         quotes: [
           {
             text:
@@ -3760,7 +3769,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Will Douglas Heaven — MIT Tech Review",
+              title: "Will Douglas Heaven, MIT Tech Review",
               url: "https://www.technologyreview.com/author/will-douglas-heaven/",
               medium: "article",
               publisher: "MIT Technology Review",
@@ -3797,7 +3806,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Melissa Heikkilä — MIT Tech Review",
+              title: "Melissa Heikkilä, MIT Tech Review",
               url: "https://www.technologyreview.com/author/melissa-heikkila/",
               medium: "article",
               publisher: "MIT Technology Review",
@@ -3872,7 +3881,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "Avi Loeb — Harvard",
+              title: "Avi Loeb, Harvard",
               url: "https://lweb.cfa.harvard.edu/~loeb/",
               medium: "article",
               publisher: "Harvard CfA",
@@ -3909,7 +3918,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "AXRP — AI X-risk Research Podcast",
+              title: "AXRP, AI X-risk Research Podcast",
               url: "https://axrp.net/",
               medium: "podcast",
               publisher: "AXRP",
@@ -3936,7 +3945,7 @@ export const people: Person[] = [
         strategyId: "interpretability-bet",
         stance: "endorses",
         summary:
-          "Argues high-stakes ML applications—health, criminal justice, finance—should default to interpretable models that practitioners can audit by hand, not opaque deep nets.",
+          "Argues high-stakes ML applications, health, criminal justice, finance, should default to interpretable models that practitioners can audit by hand, not opaque deep nets.",
         quotes: [
           {
             text:
@@ -4047,7 +4056,7 @@ export const people: Person[] = [
         strategyId: "evals-driven",
         stance: "mixed",
         summary:
-          "Argues most state-level AI safety legislation is poorly drafted and that federal evaluation infrastructure—not state preemption-style bills—is the most useful policy lever.",
+          "Argues most state-level AI safety legislation is poorly drafted and that federal evaluation infrastructure, not state preemption-style bills, is the most useful policy lever.",
         quotes: [
           {
             text:
@@ -4072,7 +4081,7 @@ export const people: Person[] = [
     name: "Jordan Schneider",
     tagline: "ChinaTalk podcast host; Rhodium Group",
     summary:
-      "Founder and host of ChinaTalk; nonresident fellow at the Center for a New American Security. Translates Chinese-language tech and policy debates—especially on AI—for U.S. policy and tech audiences.",
+      "Founder and host of ChinaTalk; nonresident fellow at the Center for a New American Security. Translates Chinese-language tech and policy debates, especially on AI, for U.S. policy and tech audiences.",
     categories: ["journalist", "policy"],
     affiliations: [
       { org: "ChinaTalk", role: "Founder, host", current: true },

@@ -6,7 +6,7 @@ import type { Commitment } from "@/lib/types";
  * the claim a strategy assumes about values, AI, humans, time, authority,
  * coordination, or agency, and the failure mode if that claim is wrong.
  *
- * Not every strategy is annotated yet — only the ones the source note
+ * Not every strategy is annotated yet, only the ones the source note
  * explicitly discusses. Strategies without an entry render without this
  * section rather than with a filler.
  */
@@ -133,7 +133,7 @@ export const commitmentsByStrategy: Record<string, Commitment[]> = {
     },
     {
       topic: "coordination",
-      claim: "Coordination will fail anyway — defect first.",
+      claim: "Coordination will fail anyway, defect first.",
       failureMode:
         "If coordination was in fact achievable, acceleration was a self-fulfilling defection.",
     },
@@ -180,7 +180,7 @@ export const commitmentsByStrategy: Record<string, Commitment[]> = {
     {
       topic: "authority",
       claim:
-        "Formal authority should not bind in extremis — moral urgency trumps legality.",
+        "Formal authority should not bind in extremis, moral urgency trumps legality.",
       failureMode:
         "If moral urgency is contested, sabotage is simply violence by a losing faction.",
     },
@@ -341,7 +341,7 @@ export const commitmentTopics: {
   {
     id: "authority",
     name: "Authority",
-    description: "Where authority to act comes from — legitimacy, capability, or urgency.",
+    description: "Where authority to act comes from, legitimacy, capability, or urgency.",
   },
   {
     id: "coordination",

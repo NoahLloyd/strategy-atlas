@@ -134,7 +134,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Regional regulatory capacity — the US Pacific Northwest plus British Columbia, for instance — is an overlooked AI governance unit.",
+              "Regional regulatory capacity, the US Pacific Northwest plus British Columbia, for instance, is an overlooked AI governance unit.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
@@ -175,7 +175,7 @@ export const people: Person[] = [
             date: "2023",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Dan Jurafsky — Stanford",
+              title: "Dan Jurafsky, Stanford",
               url: "https://web.stanford.edu/~jurafsky/",
               medium: "article",
               publisher: "Stanford University",

@@ -46,7 +46,7 @@ export default async function LeverPage({
           <p className="num-label mb-2">Conflict surface</p>
           <p className="text-sm" style={{ color: "var(--color-ink-soft)" }}>
             This lever has strategies pulling in both directions. Any portfolio
-            that includes one of each is in tension — the combination cannot be
+            that includes one of each is in tension; the combination cannot be
             honestly pursued simultaneously.
           </p>
         </section>

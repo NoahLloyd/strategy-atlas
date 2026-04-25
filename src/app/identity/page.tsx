@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { strategies } from "@/lib/strategies";
 import { falsificationByStrategy } from "@/data/falsification";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 
 export const metadata = {
-  title: "Identity or bet — AGI Strategies",
+  title: "Identity or bet · AGI Strategies",
 };
 
 /**
@@ -47,7 +47,7 @@ const diagnosticQuestions: { q: string; bet: string; identity: string }[] = [
   {
     q: "Can the advocate articulate the strongest version of the opposing view?",
     bet: "Yes, and correctly.",
-    identity: "No — or only in caricature.",
+    identity: "No, or only in caricature.",
   },
   {
     q: "What costs do they pay beyond reputation?",
@@ -56,8 +56,8 @@ const diagnosticQuestions: { q: string; bet: string; identity: string }[] = [
   },
   {
     q: "Has the advocate ever publicly updated on this topic?",
-    bet: "Yes — and frames the update as a gain.",
-    identity: "No — or frames past positions as \"always meant.\"",
+    bet: "Yes, and frames the update as a gain.",
+    identity: "No, or frames past positions as \"always meant.\"",
   },
   {
     q: "Does advocating the strategy produce identity rewards (community, status, belonging)?",
@@ -127,7 +127,7 @@ export default function IdentityPage() {
         <p className="text-sm mb-5 max-w-3xl" style={{ color: "var(--color-ink-soft)" }}>
           Strategies where the current advocate cohort shows identity markers
           rather than bet markers, per the vault note. The position can
-          still be right — identity binding is about how, not whether.
+          still be right; identity binding is about how, not whether.
         </p>
         <div className="space-y-4">
           {identitySuspects.map((entry) => {
@@ -136,13 +136,14 @@ export default function IdentityPage() {
             return (
               <div key={entry.strategyId} className="border hairline p-4">
                 <div className="flex items-baseline justify-between mb-1">
-                  <Link
-                    href={`/strategy/${s.id}`}
-                    className="unstyled hover:underline"
-                    style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem" }}
-                  >
-                    {s.name}
-                  </Link>
+                  <HoverStrategyLink strategy={s} placement="below">
+                    <span
+                      className="hover:underline"
+                      style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem" }}
+                    >
+                      {s.name}
+                    </span>
+                  </HoverStrategyLink>
                   <span className="num-label">{entry.marker}</span>
                 </div>
                 <p className="text-sm" style={{ color: "var(--color-ink-soft)" }}>
@@ -177,13 +178,14 @@ export default function IdentityPage() {
             .filter((s) => falsificationByStrategy[s.id])
             .map((s) => (
               <div key={s.id} className="border hairline p-3 text-sm grid grid-cols-[200px_1fr] gap-3 items-baseline">
-                <Link
-                  href={`/strategy/${s.id}`}
-                  className="unstyled hover:underline"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {s.name}
-                </Link>
+                <HoverStrategyLink strategy={s} placement="right">
+                  <span
+                    className="hover:underline"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s.name}
+                  </span>
+                </HoverStrategyLink>
                 <p style={{ color: "var(--color-ink-soft)" }}>
                   {falsificationByStrategy[s.id]}
                 </p>

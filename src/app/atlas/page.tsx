@@ -10,10 +10,10 @@ import {
   expertiseTiers,
   recognitionRank,
 } from "@/data/profile-tiers";
-import type { ExpertiseTier, Person, VintageEra } from "@/lib/people-types";
+import type { ExpertiseTier, Person } from "@/lib/people-types";
 
 // Stances that count as "live endorsement" of a strategy. evolved-away and
-// opposes deliberately excluded — counting them would conflate the people
+// opposes deliberately excluded, counting them would conflate the people
 // arguing against a position with the people arguing for it.
 const ENDORSING_STANCES = new Set([
   "endorses",
@@ -29,8 +29,15 @@ function profiledEndorsers(strategyId: string) {
   for (const t of tags) {
     for (const p of peopleByStrategyTag(t)) {
       if (ids.has(p.id) || !p.profile) continue;
+      // Only count stated positions, a tentative-only endorser shouldn't
+      // appear on this strategy's face strip or its consensus skew. Their
+      // presence padded "techno-optimism" with people whose only quote was
+      // hype or a paper abstract.
       const matched = p.positions.find(
-        (pos) => pos.strategyId === t && ENDORSING_STANCES.has(pos.stance),
+        (pos) =>
+          pos.strategyId === t &&
+          ENDORSING_STANCES.has(pos.stance) &&
+          !pos.tentative,
       );
       if (!matched) continue;
       ids.add(p.id);
@@ -72,7 +79,7 @@ export default function HomePage() {
     dominant: ExpertiseTier;
     dominantShare: number;
     // Top faces ranked by recognition then quote count, used for the
-    // visual face strip — the merge with the people view.
+    // visual face strip, the merge with the people view.
     topFaces: Person[];
     primaryTagId: string;
   };
@@ -145,100 +152,6 @@ export default function HomePage() {
     .filter((sk) => sk.counts["policy-meta"] / sk.total >= 0.4)
     .sort((a, b) => b.total - a.total);
 
-  // Vintage signature per strategy. For each strategy with 4+ profiled
-  // endorsers, what share of its endorsers come from each era. Then
-  // surface strategies where one era is over-indexed vs the corpus-wide
-  // baseline.
-  type VintageSkew = {
-    strategy: (typeof strategies)[number];
-    total: number;
-    counts: Record<VintageEra, number>;
-    n: number;
-  };
-  const corpusVintageBaseline: Record<VintageEra, number> = {
-    pioneer: 0,
-    "symbolic-era": 0,
-    "pre-deep-learning": 0,
-    "deep-learning": 0,
-    "scaling-era": 0,
-    "post-chatgpt": 0,
-  };
-  let baselineN = 0;
-  for (const s of strategies) {
-    for (const e of profiledEndorsers(s.id)) {
-      const v = e.person.profile?.vintage;
-      if (!v) continue;
-      corpusVintageBaseline[v]++;
-      baselineN++;
-    }
-  }
-  const baselineShare: Record<VintageEra, number> = { ...corpusVintageBaseline };
-  if (baselineN > 0) {
-    for (const k of Object.keys(baselineShare) as VintageEra[]) {
-      baselineShare[k] = baselineShare[k] / baselineN;
-    }
-  }
-  const vintageSkews: VintageSkew[] = [];
-  for (const s of strategies) {
-    const endorsers = profiledEndorsers(s.id);
-    const counts: Record<VintageEra, number> = {
-      pioneer: 0,
-      "symbolic-era": 0,
-      "pre-deep-learning": 0,
-      "deep-learning": 0,
-      "scaling-era": 0,
-      "post-chatgpt": 0,
-    };
-    let n = 0;
-    for (const e of endorsers) {
-      const v = e.person.profile?.vintage;
-      if (!v) continue;
-      counts[v]++;
-      n++;
-    }
-    if (n < 4) continue;
-    vintageSkews.push({ strategy: s, total: endorsers.length, counts, n });
-  }
-  // For each era, surface strategies where its share is at least 1.5x
-  // the corpus baseline AND it has at least 3 endorsers from that era.
-  const oldGuardLean = vintageSkews
-    .map((sk) => ({
-      sk,
-      eraCount: sk.counts.pioneer + sk.counts["symbolic-era"],
-      lift:
-        baselineShare.pioneer + baselineShare["symbolic-era"] > 0
-          ? (sk.counts.pioneer + sk.counts["symbolic-era"]) / sk.n /
-            (baselineShare.pioneer + baselineShare["symbolic-era"])
-          : 0,
-    }))
-    .filter((x) => x.eraCount >= 3 && x.lift >= 1.5)
-    .sort((a, b) => b.lift - a.lift)
-    .slice(0, 6);
-  const newWaveLean = vintageSkews
-    .map((sk) => ({
-      sk,
-      eraCount: sk.counts["post-chatgpt"],
-      lift:
-        baselineShare["post-chatgpt"] > 0
-          ? sk.counts["post-chatgpt"] / sk.n / baselineShare["post-chatgpt"]
-          : 0,
-    }))
-    .filter((x) => x.eraCount >= 3 && x.lift >= 1.5)
-    .sort((a, b) => b.lift - a.lift)
-    .slice(0, 6);
-  const scalingEraLean = vintageSkews
-    .map((sk) => ({
-      sk,
-      eraCount: sk.counts["scaling-era"],
-      lift:
-        baselineShare["scaling-era"] > 0
-          ? sk.counts["scaling-era"] / sk.n / baselineShare["scaling-era"]
-          : 0,
-    }))
-    .filter((x) => x.eraCount >= 3 && x.lift >= 1.5)
-    .sort((a, b) => b.lift - a.lift)
-    .slice(0, 6);
-
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <section className="mb-10 max-w-3xl">
@@ -247,10 +160,10 @@ export default function HomePage() {
           className="text-4xl sm:text-5xl leading-tight mb-4"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          A map of AI safety macrostrategies.
+          A map of AI safety strategies.
         </h1>
         <p className="text-lg leading-relaxed mb-3" style={{ color: "var(--color-ink-soft)" }}>
-          Each strategy is a bet about which failure mode binds — which one
+          Each strategy is a bet about which failure mode binds, which one
           actually gates a good outcome. The survey catalogues{" "}
           <strong style={{ color: "var(--color-ink)" }}>{strategies.length}</strong>{" "}
           named bets, the{" "}
@@ -259,7 +172,7 @@ export default function HomePage() {
         </p>
         <p className="text-base leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
           Two strategies conflict only when they pull the same lever in
-          opposite directions — which is rare. Most pairs compose.
+          opposite directions, which is rare. Most pairs compose.
           Most <em>public</em> proposals combine three or four levers without
           stating which bet is load-bearing; the{" "}
           <Link className="underline-wiggle" href="/portfolio">
@@ -276,7 +189,7 @@ export default function HomePage() {
           style={{ color: "var(--color-ink-soft)" }}
         >
           Each dot is one strategy. Rows are levers. A lever with dots on
-          both sides is a real conflict surface — any portfolio with
+          both sides is a real conflict surface; any portfolio with
           strategies from both sides contradicts itself on that lever.
           Lonely dots name under-explored positions. Click any dot to open
           the strategy.
@@ -302,7 +215,7 @@ export default function HomePage() {
         <Stat
           label="World-side strategies"
           value={`${Math.round((leverClassCounts.worldSide / strategies.length) * 100)}%`}
-          sub="act on institutions, culture, substrate — not the model"
+          sub="act on institutions, culture, substrate, not the model"
         />
         <Stat
           label="Total unordered pairs"
@@ -327,7 +240,7 @@ export default function HomePage() {
           <EntryCard
             href="/scenarios"
             title="Start from a failure mode"
-            body="Pick a concrete fear — decisive advantage, eval abandonment, accumulative erosion — and see which strategies are responsive."
+            body="Pick a concrete fear, decisive advantage, eval abandonment, accumulative erosion, and see which strategies are responsive."
             marker="9"
           />
           <EntryCard
@@ -398,7 +311,7 @@ export default function HomePage() {
         <ol className="space-y-3 text-sm max-w-3xl" style={{ color: "var(--color-ink)" }}>
           <li>
             <span className="num-label mr-2">01</span>
-            Start with a failure mode you actually fear — pick one at{" "}
+            Start with a failure mode you actually fear, pick one at{" "}
             <Link className="underline-wiggle" href="/scenarios">scenarios</Link>.
             See which strategies are catalogued as responsive.
           </li>
@@ -462,66 +375,6 @@ export default function HomePage() {
               label="Commentary-heavy"
               caption="Endorsement is ≥50% commentator + external-domain"
               items={commentaryHeavy}
-            />
-          </div>
-        </section>
-      )}
-
-      {(oldGuardLean.length > 0 ||
-        scalingEraLean.length > 0 ||
-        newWaveLean.length > 0) && (
-        <section className="mt-16 border-t hairline pt-10">
-          <div className="flex items-baseline justify-between border-b hairline pb-2 mb-6">
-            <h2
-              className="text-2xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Where each era leans.
-            </h2>
-            <Link href="/board" className="underline-wiggle text-sm">
-              the board →
-            </Link>
-          </div>
-          <p
-            className="text-sm mb-8 max-w-3xl"
-            style={{ color: "var(--color-ink-soft)" }}
-          >
-            Strategies where one vintage is at least 1.5× over-represented
-            among endorsers compared with the corpus baseline. Reads as
-            'positions disproportionately held by people whose AI worldview
-            formed in this era'. Threshold: 4+ profiled endorsers per
-            strategy, 3+ from the leaning era.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <VintageLeanColumn
-              label="Old guard"
-              caption="≥1.5× lift from pioneer + symbolic-era"
-              items={oldGuardLean.map((x) => ({
-                strategy: x.sk.strategy,
-                total: x.sk.total,
-                eraCount: x.eraCount,
-                lift: x.lift,
-              }))}
-            />
-            <VintageLeanColumn
-              label="Scaling-era"
-              caption="≥1.5× lift from 2018–2022 entrants"
-              items={scalingEraLean.map((x) => ({
-                strategy: x.sk.strategy,
-                total: x.sk.total,
-                eraCount: x.eraCount,
-                lift: x.lift,
-              }))}
-            />
-            <VintageLeanColumn
-              label="New wave"
-              caption="≥1.5× lift from post-ChatGPT entrants"
-              items={newWaveLean.map((x) => ({
-                strategy: x.sk.strategy,
-                total: x.sk.total,
-                eraCount: x.eraCount,
-                lift: x.lift,
-              }))}
             />
           </div>
         </section>
@@ -710,73 +563,6 @@ function LeverRow({
           <StrategyCard key={s.id} strategy={s} compact />
         ))}
       </div>
-    </div>
-  );
-}
-
-function VintageLeanColumn({
-  label,
-  caption,
-  items,
-}: {
-  label: string;
-  caption: string;
-  items: {
-    strategy: (typeof strategies)[number];
-    total: number;
-    eraCount: number;
-    lift: number;
-  }[];
-}) {
-  return (
-    <div>
-      <p className="num-label mb-2">{label}</p>
-      <p
-        className="text-xs italic mb-3"
-        style={{ color: "var(--color-ink-soft)" }}
-      >
-        {caption}
-      </p>
-      {items.length === 0 ? (
-        <p
-          className="text-xs italic"
-          style={{ color: "var(--color-ink-soft)" }}
-        >
-          No strategy meets the threshold.
-        </p>
-      ) : (
-        <ul className="space-y-2">
-          {items.map(({ strategy, total, eraCount, lift }) => (
-            <li
-              key={strategy.id}
-              className="border-l-2 hairline pl-3 py-1.5 hover:border-[var(--color-ink)] transition-colors"
-            >
-              <Link
-                href={`/strategy/${strategy.id}`}
-                className="unstyled block"
-              >
-                <p
-                  className="text-sm leading-tight"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {strategy.name}
-                </p>
-                <p
-                  className="text-[10px] mt-0.5"
-                  style={{
-                    color: "var(--color-ink-soft)",
-                    fontFamily: "var(--font-mono)",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {eraCount} of {total} · lift {lift.toFixed(1)}×
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }

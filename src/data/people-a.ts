@@ -173,9 +173,9 @@ export const people: Person[] = [
               "We are creating entities that may be smarter than us, pursuing goals that may not align with ours. That's the risk.",
             date: "2025-04",
             fidelity: "paraphrase-faithful",
-            context: "TED2025 talk 'The Catastrophic Risks of AI — and a Safer Path'.",
+            context: "TED2025 talk 'The Catastrophic Risks of AI, and a Safer Path'.",
             source: {
-              title: "The Catastrophic Risks of AI — and a Safer Path",
+              title: "The Catastrophic Risks of AI, and a Safer Path",
               url: "https://www.youtube.com/watch?v=qe9QSCF-d88",
               medium: "video",
               publisher: "TED",
@@ -238,7 +238,7 @@ export const people: Person[] = [
     name: "Stuart Russell",
     tagline: "Co-author of the standard AI textbook; leading critic of the 'standard model' of AI",
     summary:
-      "Argues the field's default paradigm — build systems that optimise fixed objectives — is dangerously misguided, and proposes instead that AI systems be uncertain about human preferences and defer to humans by construction. Author of Human Compatible (2019).",
+      "Argues the field's default paradigm, build systems that optimise fixed objectives, is dangerously misguided, and proposes instead that AI systems be uncertain about human preferences and defer to humans by construction. Author of Human Compatible (2019).",
     categories: ["researcher", "academic"],
     affiliations: [
       { org: "UC Berkeley", role: "Professor of Computer Science", current: true },
@@ -706,7 +706,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "We should think of aligning AI like raising a child — guardrails and values have to come together.",
+              "We should think of aligning AI like raising a child, guardrails and values have to come together.",
             date: "2025-04-20",
             fidelity: "paraphrase-faithful",
             context: "CBS 60 Minutes interview with Scott Pelley.",
@@ -761,7 +761,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "My worst fears are that we cause significant—we, the field, the technology, the industry—cause significant harm to the world. I think if this technology goes wrong, it can go quite wrong.",
+              "My worst fears are that we cause significant, we, the field, the technology, the industry, cause significant harm to the world. I think if this technology goes wrong, it can go quite wrong.",
             date: "2023-05-16",
             fidelity: "direct",
             context:
@@ -838,7 +838,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "Recent months have seen AI labs locked in an out-of-control race to develop and deploy ever more powerful digital minds that no one — not even their creators — can understand, predict, or reliably control.",
+              "Recent months have seen AI labs locked in an out-of-control race to develop and deploy ever more powerful digital minds that no one, not even their creators, can understand, predict, or reliably control.",
             date: "2023-03-22",
             fidelity: "direct",
             context:
@@ -1171,7 +1171,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "I'm highly uncertain — somewhere between a 10% and 90% chance that things go badly. The honest answer is that we just don't know.",
+              "I'm highly uncertain, somewhere between a 10% and 90% chance that things go badly. The honest answer is that we just don't know.",
             date: "2022-08",
             fidelity: "paraphrase-faithful",
             context:
@@ -1708,7 +1708,7 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "I'd put the risk of catastrophe at around 20% — high enough to take seriously, low enough that we should still race to get the benefits.",
+              "I'd put the risk of catastrophe at around 20%, high enough to take seriously, low enough that we should still race to get the benefits.",
             date: "2024-09",
             fidelity: "paraphrase-faithful",
             source: {

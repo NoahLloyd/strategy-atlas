@@ -10,7 +10,7 @@ import type { VintageEra } from "@/lib/people-types";
 //
 // Definitions live in src/data/profile-tiers.ts. Add an entry here when
 // you have at least one specific year/event that anchors the
-// classification — never assign by intuition alone.
+// classification, never assign by intuition alone.
 
 export interface VintageEntry {
   vintage: VintageEra;
@@ -41,7 +41,7 @@ export const profileVintages: Record<string, VintageEntry> = {
   "demis-hassabis": {
     vintage: "deep-learning",
     vintageNote:
-      "Founded DeepMind 2010 — the year the deep-learning lab template begins. AlphaGo 2016, AlphaFold 2018. His operational era is squarely deep-learning.",
+      "Founded DeepMind 2010, the year the deep-learning lab template begins. AlphaGo 2016, AlphaFold 2018. His operational era is squarely deep-learning.",
   },
   "dario-amodei": {
     vintage: "scaling-era",
@@ -51,12 +51,12 @@ export const profileVintages: Record<string, VintageEntry> = {
   "sam-altman": {
     vintage: "scaling-era",
     vintageNote:
-      "OpenAI co-founder 2015. AI as a strategic-capital problem starts with him in this era — pre-OpenAI he was YC president, not an AI figure.",
+      "OpenAI co-founder 2015. AI as a strategic-capital problem starts with him in this era, pre-OpenAI he was YC president, not an AI figure.",
   },
   "ilya-sutskever": {
     vintage: "deep-learning",
     vintageNote:
-      "AlexNet co-author 2012 — the paper that named the era. Sequence-to-sequence 2014. His career is the deep-learning era.",
+      "AlexNet co-author 2012, the paper that named the era. Sequence-to-sequence 2014. His career is the deep-learning era.",
   },
   "eliezer-yudkowsky": {
     vintage: "symbolic-era",
@@ -146,7 +146,7 @@ export const profileVintages: Record<string, VintageEntry> = {
   "vitalik-buterin": {
     vintage: "scaling-era",
     vintageNote:
-      "Ethereum 2014. Active AI engagement begins ~2022 with d/acc framing — squarely in the scaling era.",
+      "Ethereum 2014. Active AI engagement begins ~2022 with d/acc framing, squarely in the scaling era.",
   },
   "elon-musk": {
     vintage: "deep-learning",
@@ -156,7 +156,7 @@ export const profileVintages: Record<string, VintageEntry> = {
   "marc-andreessen": {
     vintage: "post-chatgpt",
     vintageNote:
-      "Techno-Optimist Manifesto October 2023 — six months after ChatGPT. Pre-2023 his AI engagement was VC, not advocacy.",
+      "Techno-Optimist Manifesto October 2023, six months after ChatGPT. Pre-2023 his AI engagement was VC, not advocacy.",
   },
   "tristan-harris": {
     vintage: "post-chatgpt",
@@ -421,7 +421,7 @@ export const profileVintages: Record<string, VintageEntry> = {
   "bryan-caplan": {
     vintage: "post-chatgpt",
     vintageNote:
-      "Economist long before. AI engagement via blog posts and Don't Be a Feminist (unrelated) — AI focus is post-ChatGPT.",
+      "Economist long before. AI engagement via blog posts and Don't Be a Feminist (unrelated), AI focus is post-ChatGPT.",
   },
   "liv-boeree": {
     vintage: "post-chatgpt",
@@ -513,7 +513,7 @@ export const profileVintages: Record<string, VintageEntry> = {
   "samuel-butler": {
     vintage: "pioneer",
     vintageNote:
-      "1835–1902. Erewhon 1872 anticipates machine consciousness — the earliest entry in this corpus.",
+      "1835–1902. Erewhon 1872 anticipates machine consciousness, the earliest entry in this corpus.",
   },
   "irving-good": {
     vintage: "pioneer",
@@ -682,7 +682,7 @@ export const profileVintages: Record<string, VintageEntry> = {
   "shoshana-zuboff": {
     vintage: "deep-learning",
     vintageNote:
-      "Surveillance Capitalism 2019 — a deep-learning era critique built on a longer Harvard-Business career.",
+      "Surveillance Capitalism 2019, a deep-learning era critique built on a longer Harvard-Business career.",
   },
 
   // Scaling era (2018 – 2022).
@@ -1072,7 +1072,7 @@ export const profileVintages: Record<string, VintageEntry> = {
   "carl-benedikt-frey": {
     vintage: "pre-deep-learning",
     vintageNote:
-      "Future of Employment 2013 with Osborne — defining pre-deep-learning automation-economics paper.",
+      "Future of Employment 2013 with Osborne, defining pre-deep-learning automation-economics paper.",
   },
   "jason-matheny": {
     vintage: "scaling-era",
@@ -1307,6 +1307,6 @@ export const profileVintages: Record<string, VintageEntry> = {
   "bill-joy": {
     vintage: "symbolic-era",
     vintageNote:
-      "Sun Microsystems co-founder. Why the Future Doesn't Need Us 2000 — pre-deep-learning x-risk argument.",
+      "Sun Microsystems co-founder. Why the Future Doesn't Need Us 2000, pre-deep-learning x-risk argument.",
   },
 };

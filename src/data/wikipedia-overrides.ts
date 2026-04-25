@@ -34,7 +34,7 @@ export const wikipediaOverrides: Record<string, string> = {
   "ted-lieu": "https://en.wikipedia.org/wiki/Ted_Lieu",
   // stuart-armstrong: no dedicated Wikipedia article exists (cited in others).
   "katja-grace": "https://en.wikipedia.org/wiki/Katja_Grace",
-  // rob-miles: AI safety YouTuber has no dedicated article — Rob_Miles is a different person.
+  // rob-miles: AI safety YouTuber has no dedicated article, Rob_Miles is a different person.
   "kara-swisher": "https://en.wikipedia.org/wiki/Kara_Swisher",
   "ev-williams": "https://en.wikipedia.org/wiki/Ev_Williams",
   "ezra-klein": "https://en.wikipedia.org/wiki/Ezra_Klein",

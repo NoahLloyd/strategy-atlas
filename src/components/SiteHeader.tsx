@@ -117,7 +117,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="unstyled flex items-center gap-3 shrink-0"
-          aria-label="AGI Strategies — home"
+          aria-label="AGI Strategies, home"
         >
           <AtlasMark />
           <span

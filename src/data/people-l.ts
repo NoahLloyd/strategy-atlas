@@ -117,7 +117,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Thoughtworks — AI insights",
+              title: "Thoughtworks, AI insights",
               url: "https://www.thoughtworks.com/insights",
               medium: "article",
               publisher: "Thoughtworks",
@@ -184,6 +184,7 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
           "Frames AI robotics as a major productivity and quality-of-life unlock; less focused on extinction framings.",
         quotes: [
@@ -210,7 +211,7 @@ export const people: Person[] = [
     name: "Anthropic Policy Team (RSP authors)",
     tagline: "Anthropic responsible scaling policy author",
     summary:
-      "Anthropic policy team member who co-authored the Responsible Scaling Policy framework — Anthropic's capability-tied safety commitments which became the most-emulated industry RSP template.",
+      "Anthropic policy team member who co-authored the Responsible Scaling Policy framework, Anthropic's capability-tied safety commitments which became the most-emulated industry RSP template.",
     categories: ["policy", "researcher"],
     affiliations: [
       { org: "Anthropic", role: "Policy Researcher", current: true },
@@ -296,7 +297,7 @@ export const people: Person[] = [
         strategyId: "ai-welfare",
         stance: "mixed",
         summary:
-          "Publishes on what it means for LLMs to 'talk as if' — treating LLM personas as dissociable role-plays; raises the consciousness question without committing to positive answers.",
+          "Publishes on what it means for LLMs to 'talk as if', treating LLM personas as dissociable role-plays; raises the consciousness question without committing to positive answers.",
         quotes: [
           {
             text:
@@ -342,7 +343,7 @@ export const people: Person[] = [
             date: "2021",
             fidelity: "paraphrase-faithful",
             source: {
-              title: "From Artificial Intelligence to Artificial Consciousness — Joscha Bach (TEDxBeaconStreet)",
+              title: "From Artificial Intelligence to Artificial Consciousness, Joscha Bach (TEDxBeaconStreet)",
               url: "https://www.youtube.com/watch?v=Jr7gY3JyzP8",
               medium: "video",
               publisher: "TEDx",
@@ -361,7 +362,7 @@ export const people: Person[] = [
     name: "David Pearce",
     tagline: "Transhumanist philosopher; Hedonistic Imperative author",
     summary:
-      "Transhumanist philosopher whose 1995 Hedonistic Imperative argues biology should be re-engineered to abolish suffering. Frames AI as instrumental to a post-Darwinian future — not as an existential threat.",
+      "Transhumanist philosopher whose 1995 Hedonistic Imperative argues biology should be re-engineered to abolish suffering. Frames AI as instrumental to a post-Darwinian future, not as an existential threat.",
     categories: ["theorist", "public-intellectual"],
     affiliations: [
       { org: "Humanity Plus", role: "Co-founder", current: true },
@@ -371,8 +372,9 @@ export const people: Person[] = [
       {
         strategyId: "techno-optimism",
         stance: "endorses",
+        tentative: true,
         summary:
-          "Frames AI and biotech as instruments of radical welfare expansion — especially suffering abolition — rather than sources of catastrophic risk.",
+          "Frames AI and biotech as instruments of radical welfare expansion, especially suffering abolition, rather than sources of catastrophic risk.",
         quotes: [
           {
             text:
@@ -418,7 +420,7 @@ export const people: Person[] = [
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Anders Sandberg — Grand Futures",
+              title: "Anders Sandberg, Grand Futures",
               url: "https://www.andersandberg.net/",
               medium: "article",
               publisher: "andersandberg.net",
@@ -489,11 +491,11 @@ export const people: Person[] = [
         quotes: [
           {
             text:
-              "When we train a model, we are not just shaping behaviour — we are shaping a character.",
+              "When we train a model, we are not just shaping behaviour, we are shaping a character.",
             date: "2024",
             fidelity: "paraphrase-loose",
             source: {
-              title: "Amanda Askell — Anthropic",
+              title: "Amanda Askell, Anthropic",
               url: "https://www.anthropic.com/research",
               medium: "article",
               publisher: "Anthropic",
