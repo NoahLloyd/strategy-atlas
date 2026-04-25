@@ -114,13 +114,17 @@ export default function BoardPage() {
           className="text-lg leading-relaxed mb-3"
           style={{ color: "var(--color-ink-soft)" }}
         >
-          A two-axis grid of the AI/AGI discourse:{" "}
+          A grid of the AI/AGI discourse:{" "}
           <strong style={{ color: "var(--color-ink)" }}>expertise</strong> on
           the technical side,{" "}
           <strong style={{ color: "var(--color-ink)" }}>recognition</strong> on
-          the public side. Each face is one person. Cells get darker the more
-          people sit there. Sparse cells are not gaps in the record — they are
-          positions the field has not actually produced.
+          the public side, and{" "}
+          <strong style={{ color: "var(--color-ink)" }}>vintage</strong> as
+          the third axis (era of AI worldview formation, surfaced in the
+          breakdown sections below). Each face is one person. Cells get
+          darker the more people sit there. Sparse cells are not gaps in
+          the record — they are positions the field has not actually
+          produced.
         </p>
         <p
           className="text-base leading-relaxed"
