@@ -1,0 +1,250 @@
+"use client";
+
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import type { Person } from "@/lib/people-types";
+import {
+  expertiseTiers,
+  recognitionTiers,
+} from "@/data/profile-tiers";
+import { getTagById } from "@/lib/strategy-tags";
+import { PersonAvatar } from "@/components/PersonAvatar";
+
+type Props = {
+  people: Person[];
+  allTagsRanked: { id: string; name: string; count: number }[];
+};
+
+export function BoardMatrix({ people, allTagsRanked }: Props) {
+  const [tagFilter, setTagFilter] = useState<string | null>(null);
+  const [stanceFilter, setStanceFilter] = useState<
+    "all" | "endorses" | "opposes"
+  >("all");
+  const [hovered, setHovered] = useState<Person | null>(null);
+
+  const profiled = useMemo(
+    () => people.filter((p) => p.profile),
+    [people],
+  );
+
+  const filtered = useMemo(() => {
+    return profiled.filter((p) => {
+      if (!tagFilter) return true;
+      const matched = p.positions.find((pos) => pos.strategyId === tagFilter);
+      if (!matched) return false;
+      if (stanceFilter === "all") return true;
+      return matched.stance === stanceFilter;
+    });
+  }, [profiled, tagFilter, stanceFilter]);
+
+  const grid: Record<string, Record<string, Person[]>> = {};
+  for (const e of expertiseTiers) {
+    grid[e.id] = {};
+    for (const r of recognitionTiers) grid[e.id][r.id] = [];
+  }
+  for (const p of filtered) {
+    if (!p.profile) continue;
+    grid[p.profile.expertise][p.profile.recognition].push(p);
+  }
+
+  const totalProfiled = profiled.length;
+
+  return (
+    <div>
+      <div className="mb-6 grid gap-3" style={{ fontFamily: "var(--font-ui)" }}>
+        <div className="flex items-center gap-3 flex-wrap text-xs">
+          <span className="num-label">filter by strategy</span>
+          <button
+            onClick={() => setTagFilter(null)}
+            className={tagFilter === null ? "chip is-complement" : "chip"}
+          >
+            any
+          </button>
+          {allTagsRanked.slice(0, 18).map((t) => (
+            <button
+              key={t.id}
+              onClick={() =>
+                setTagFilter(tagFilter === t.id ? null : t.id)
+              }
+              className={tagFilter === t.id ? "chip is-complement" : "chip"}
+            >
+              {t.name} <span className="direction">{t.count}</span>
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-3 flex-wrap text-xs">
+          <span className="num-label">stance</span>
+          {(["all", "endorses", "opposes"] as const).map((s) => (
+            <button
+              key={s}
+              onClick={() => setStanceFilter(s)}
+              className={stanceFilter === s ? "chip is-complement" : "chip"}
+              disabled={!tagFilter && s !== "all"}
+              style={!tagFilter && s !== "all" ? { opacity: 0.4 } : undefined}
+            >
+              {s}
+            </button>
+          ))}
+          <span className="num-label ml-auto">
+            {filtered.length} of {totalProfiled} profiled
+            {filtered.length !== totalProfiled && tagFilter
+              ? ` · ${getTagById(tagFilter)?.name ?? tagFilter}`
+              : ""}
+          </span>
+        </div>
+      </div>
+
+      <div
+        className="overflow-x-auto"
+        style={{ fontFamily: "var(--font-ui)" }}
+      >
+        <table className="w-full text-xs" style={{ minWidth: "720px" }}>
+          <thead>
+            <tr>
+              <th className="text-left p-2 align-bottom">
+                <span className="num-label">expertise ↓ · recognition →</span>
+              </th>
+              {recognitionTiers.map((r) => (
+                <th
+                  key={r.id}
+                  className="text-left p-2 align-bottom border-b hairline"
+                  style={{ minWidth: "150px" }}
+                >
+                  <span className="num-label block">{r.label}</span>
+                  <span
+                    className="block mt-1 text-[10px] italic leading-tight"
+                    style={{ color: "var(--color-ink-soft)" }}
+                  >
+                    {r.short}
+                  </span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {expertiseTiers.map((e) => (
+              <tr key={e.id}>
+                <th
+                  scope="row"
+                  className="text-left p-2 align-top border-r hairline"
+                  style={{ width: "180px" }}
+                >
+                  <span className="num-label block">{e.label}</span>
+                  <span
+                    className="block mt-1 text-[10px] italic leading-tight"
+                    style={{ color: "var(--color-ink-soft)" }}
+                  >
+                    {e.short}
+                  </span>
+                </th>
+                {recognitionTiers.map((r) => {
+                  const cell = grid[e.id][r.id];
+                  return (
+                    <td
+                      key={r.id}
+                      className="p-1 align-top border hairline"
+                      style={{
+                        background:
+                          cell.length > 0
+                            ? `color-mix(in oklab, var(--color-accent) ${Math.min(
+                                cell.length * 4,
+                                32,
+                              )}%, var(--color-parchment))`
+                            : "var(--color-parchment)",
+                        verticalAlign: "top",
+                      }}
+                    >
+                      {cell.length === 0 && (
+                        <span
+                          className="block text-center text-xl select-none"
+                          style={{ color: "var(--color-ink-soft)", opacity: 0.4 }}
+                        >
+                          ·
+                        </span>
+                      )}
+                      <ul className="flex flex-wrap gap-1.5">
+                        {cell.map((p) => (
+                          <li key={p.id}>
+                            <Link
+                              href={`/people/${p.id}`}
+                              className="unstyled inline-block"
+                              onMouseEnter={() => setHovered(p)}
+                              onMouseLeave={() =>
+                                setHovered((h) => (h?.id === p.id ? null : h))
+                              }
+                              title={p.name}
+                            >
+                              <PersonAvatar person={p} size={28} />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div
+        className="mt-4 border hairline p-4 min-h-[5rem]"
+        style={{ background: "var(--color-parchment-soft)" }}
+      >
+        {hovered ? (
+          <div className="flex gap-4 items-start">
+            <PersonAvatar person={hovered} size={56} />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <h3
+                  className="text-lg leading-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {hovered.name}
+                </h3>
+                {hovered.tagline && (
+                  <span
+                    className="text-xs italic"
+                    style={{ color: "var(--color-ink-soft)" }}
+                  >
+                    {hovered.tagline}
+                  </span>
+                )}
+              </div>
+              <p
+                className="text-xs mt-1"
+                style={{ color: "var(--color-ink-soft)" }}
+              >
+                {hovered.profile?.expertiseNote.split(".")[0]}.
+              </p>
+              <div className="flex flex-wrap gap-1 mt-2">
+                {Array.from(
+                  new Set(hovered.positions.map((pos) => pos.strategyId)),
+                )
+                  .slice(0, 6)
+                  .map((id) => {
+                    const t = getTagById(id);
+                    return (
+                      <span key={id} className="lever-pill">
+                        {t?.name ?? id}
+                      </span>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p
+            className="text-xs italic"
+            style={{ color: "var(--color-ink-soft)" }}
+          >
+            Hover any face to see who it is. Click to open the full profile.
+            Cells deepen with population — sparse cells name positions the
+            field has not produced.
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}

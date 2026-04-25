@@ -2,9 +2,17 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { Person } from "@/lib/people-types";
+import type {
+  Person,
+  ExpertiseTier,
+  RecognitionTier,
+} from "@/lib/people-types";
 import { getTagById } from "@/lib/strategy-tags";
 import { PersonAvatar } from "@/components/PersonAvatar";
+import {
+  expertiseTiers,
+  recognitionTiers,
+} from "@/data/profile-tiers";
 
 function formatPDoom(v: number | [number, number]): string {
   if (Array.isArray(v)) return `${Math.round(v[0] * 100)}–${Math.round(v[1] * 100)}%`;
@@ -28,6 +36,9 @@ export function PeopleBrowser({
   const [sort, setSort] = useState<Sort>("name");
   const [onlyWithPDoom, setOnlyWithPDoom] = useState(false);
   const [onlyWithVideo, setOnlyWithVideo] = useState(false);
+  const [expertise, setExpertise] = useState<ExpertiseTier | null>(null);
+  const [recognition, setRecognition] = useState<RecognitionTier | null>(null);
+  const [onlyProfiled, setOnlyProfiled] = useState(false);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -44,6 +55,9 @@ export function PeopleBrowser({
         );
         if (!hasVideo) return false;
       }
+      if (onlyProfiled && !p.profile) return false;
+      if (expertise && p.profile?.expertise !== expertise) return false;
+      if (recognition && p.profile?.recognition !== recognition) return false;
       return true;
     });
     if (sort === "name") {
@@ -62,7 +76,18 @@ export function PeopleBrowser({
       out = out.slice().sort((a, b) => (b.lastUpdated ?? "").localeCompare(a.lastUpdated ?? ""));
     }
     return out;
-  }, [people, query, tag, category, onlyWithPDoom, onlyWithVideo, sort]);
+  }, [
+    people,
+    query,
+    tag,
+    category,
+    onlyWithPDoom,
+    onlyWithVideo,
+    sort,
+    expertise,
+    recognition,
+    onlyProfiled,
+  ]);
 
   return (
     <div>
@@ -120,6 +145,70 @@ export function PeopleBrowser({
             </button>
           ))}
         </div>
+        <details className="border hairline p-2 text-xs" style={{ color: "var(--color-ink-soft)" }}>
+          <summary className="cursor-pointer num-label">
+            profile filters · expertise &amp; recognition
+          </summary>
+          <div className="grid sm:grid-cols-2 gap-3 mt-3">
+            <div>
+              <p className="num-label mb-2">expertise</p>
+              <div className="flex flex-wrap gap-1">
+                <button
+                  onClick={() => setExpertise(null)}
+                  className={expertise === null ? "chip is-complement" : "chip"}
+                >
+                  any
+                </button>
+                {expertiseTiers.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() =>
+                      setExpertise(expertise === t.id ? null : t.id)
+                    }
+                    className={expertise === t.id ? "chip is-complement" : "chip"}
+                    title={t.criterion}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="num-label mb-2">recognition</p>
+              <div className="flex flex-wrap gap-1">
+                <button
+                  onClick={() => setRecognition(null)}
+                  className={
+                    recognition === null ? "chip is-complement" : "chip"
+                  }
+                >
+                  any
+                </button>
+                {recognitionTiers.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() =>
+                      setRecognition(recognition === t.id ? null : t.id)
+                    }
+                    className={
+                      recognition === t.id ? "chip is-complement" : "chip"
+                    }
+                    title={t.criterion}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          <p className="text-xs italic mt-3">
+            See the{" "}
+            <Link href="/board" className="underline-wiggle">
+              board
+            </Link>{" "}
+            for the full grid and tier criteria. Profiled subset is hand-classified.
+          </p>
+        </details>
         <div className="flex flex-wrap gap-4 text-xs" style={{ color: "var(--color-ink-soft)" }}>
           <label className="flex items-center gap-2 cursor-pointer">
             <input
@@ -136,6 +225,14 @@ export function PeopleBrowser({
               onChange={(e) => setOnlyWithVideo(e.target.checked)}
             />
             only with timestamped video
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={onlyProfiled}
+              onChange={(e) => setOnlyProfiled(e.target.checked)}
+            />
+            only profiled
           </label>
           <span className="num-label ml-auto">{filtered.length} of {people.length}</span>
         </div>
@@ -168,6 +265,19 @@ export function PeopleBrowser({
                   <p className="text-sm mb-3" style={{ color: "var(--color-ink)" }}>
                     {p.summary}
                   </p>
+                  {p.profile && (
+                    <p
+                      className="text-[10px] uppercase tracking-wider mb-2"
+                      style={{
+                        color: "var(--color-ink-soft)",
+                        fontFamily: "var(--font-mono)",
+                      }}
+                    >
+                      {expertiseTiers.find((t) => t.id === p.profile!.expertise)?.label}
+                      {" · "}
+                      {recognitionTiers.find((t) => t.id === p.profile!.recognition)?.label}
+                    </p>
+                  )}
                   <div className="flex flex-wrap gap-1">
                     {tagList.map((id) => {
                       const t = getTagById(id);

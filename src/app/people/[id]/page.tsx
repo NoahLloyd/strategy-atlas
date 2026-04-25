@@ -4,6 +4,10 @@ import { people, getPerson } from "@/lib/people";
 import { getTagById } from "@/lib/strategy-tags";
 import { QuoteBlock } from "@/components/QuoteBlock";
 import { PersonAvatar } from "@/components/PersonAvatar";
+import {
+  expertiseTiers,
+  recognitionTiers,
+} from "@/data/profile-tiers";
 
 export function generateStaticParams() {
   return people.map((p) => ({ id: p.id }));
@@ -116,6 +120,75 @@ export default async function PersonPage({
           )}
         </div>
       </header>
+
+      {person.profile && (
+        <section className="mb-10">
+          <h2
+            className="text-2xl mb-3"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Profile
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {(() => {
+              const tier = expertiseTiers.find(
+                (t) => t.id === person.profile!.expertise,
+              );
+              return (
+                <div className="border hairline p-4">
+                  <p className="num-label mb-2">expertise</p>
+                  <p
+                    className="text-lg mb-1"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {tier?.label ?? person.profile!.expertise}
+                  </p>
+                  <p
+                    className="text-xs italic mb-3"
+                    style={{ color: "var(--color-ink-soft)" }}
+                  >
+                    {tier?.criterion}
+                  </p>
+                  <p className="text-sm">{person.profile!.expertiseNote}</p>
+                </div>
+              );
+            })()}
+            {(() => {
+              const tier = recognitionTiers.find(
+                (t) => t.id === person.profile!.recognition,
+              );
+              return (
+                <div className="border hairline p-4">
+                  <p className="num-label mb-2">recognition</p>
+                  <p
+                    className="text-lg mb-1"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {tier?.label ?? person.profile!.recognition}
+                  </p>
+                  <p
+                    className="text-xs italic mb-3"
+                    style={{ color: "var(--color-ink-soft)" }}
+                  >
+                    {tier?.criterion}
+                  </p>
+                  <p className="text-sm">{person.profile!.recognitionNote}</p>
+                </div>
+              );
+            })()}
+          </div>
+          <p
+            className="text-xs italic mt-3"
+            style={{ color: "var(--color-ink-soft)" }}
+          >
+            Hand-classified — see the{" "}
+            <Link href="/board" className="underline-wiggle">
+              board
+            </Link>{" "}
+            for the criteria and the full grid.
+          </p>
+        </section>
+      )}
 
       {person.pDoom && person.pDoom.length > 0 && (
         <section className="mb-10">

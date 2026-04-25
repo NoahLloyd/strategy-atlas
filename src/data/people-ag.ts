@@ -7059,8 +7059,21 @@ export const people: Person[] = [
         strategyId: "alignment-first",
         stance: "mixed",
         summary:
-          "Works on practical alignment tools (watermarking, cryptographic safety) while rejecting certainty-of-doom framings.",
+          "Argues alignment is genuinely hard, that doomers are not crazy, but the productive response is more theoretical work and alignment-focused engineering rather than panic or pause; works on practical alignment tools like watermarking.",
         quotes: [
+          {
+            text:
+              "I'm now persuaded that the alignment problem is real, that there is no king's road to it, and that humanity is in a much worse position than we should be. I am working on it because the alternative is shrugging.",
+            date: "2022-06",
+            fidelity: "paraphrase-faithful",
+            source: {
+              title: "Why I'm joining OpenAI",
+              url: "https://scottaaronson.blog/?p=6484",
+              medium: "blog",
+              publisher: "Shtetl-Optimized",
+              date: "2022-06-17",
+            },
+          },
           {
             text:
               "AI safety is finally becoming a field where you can make clear, legible progress.",
@@ -7095,11 +7108,26 @@ export const people: Person[] = [
     twitter: "YejinChoinka",
     positions: [
       {
-        strategyId: "alignment-first",
+        strategyId: "ai-skeptic",
         stance: "mixed",
         summary:
-          "Argues common-sense reasoning is under-appreciated as an alignment substrate; pushes for cognitively-grounded evaluation.",
+          "Argues frontier LLMs lack robust commonsense reasoning despite impressive surface fluency; common-sense reasoning is under-appreciated as an alignment substrate, and the gap between fluency and understanding has not been closed.",
         quotes: [
+          {
+            text:
+              "AI is unbelievably smart and shockingly stupid—both at the same time. Until we close the commonsense gap, claims about general intelligence are not yet defensible.",
+            date: "2023-04",
+            fidelity: "paraphrase-faithful",
+            source: {
+              title: "Why AI is incredibly smart and shockingly stupid",
+              url: "https://www.ted.com/talks/yejin_choi_why_ai_is_incredibly_smart_and_shockingly_stupid",
+              medium: "talk",
+              publisher: "TED",
+              date: "2023-04",
+              videoId: "SvBR0OGT5VI",
+              videoPlatform: "youtube",
+            },
+          },
           {
             text:
               "Common-sense reasoning is the unsolved part of AI, and it is the same part where safety is hardest to evaluate.",
@@ -13805,13 +13833,15 @@ export const people: Person[] = [
   {
     id: "ed-felten",
     name: "Edward Felten",
-    tagline: "Princeton professor; former US Deputy CTO",
+    tagline: "Princeton emeritus; ex-FTC Chief Technologist",
     summary:
-      "Princeton CS professor and former US Deputy Chief Technology Officer in the Obama administration. Long-time leader on tech policy from privacy to AI.",
+      "Princeton University Robert E. Kahn Professor of Computer Science Emeritus; founding director of the Center for Information Technology Policy. Twice served the U.S. government—as deputy U.S. CTO and as FTC Chief Technologist.",
     categories: ["academic", "policy"],
     affiliations: [
-      { org: "Princeton University", role: "Robert E. Kahn Professor of Computer Science and Public Affairs", current: true },
+      { org: "Princeton University", role: "Professor Emeritus", current: true },
+      { org: "Federal Trade Commission", role: "Chief Technologist (former)", end: "2012" },
     ],
+    homepage: "https://www.cs.princeton.edu/~felten/",
     wikipedia: "https://en.wikipedia.org/wiki/Edward_Felten",
     twitter: "EdFelten",
     positions: [
@@ -13819,8 +13849,20 @@ export const people: Person[] = [
         strategyId: "governance-first",
         stance: "endorses",
         summary:
-          "Bridges academic computer science and federal tech policy. Frames AI governance as a continuity of internet-policy work.",
+          "Argues AI policy should be built on technical literacy in government; technologists need to be inside agencies to make policy implementable rather than performative. Frames AI governance as a continuity of decades of computer-and-society policy work.",
         quotes: [
+          {
+            text:
+              "Good tech policy requires technologists in government, not just outside advisors. The detail of what AI systems actually do is where policy succeeds or fails.",
+            date: "2023",
+            fidelity: "paraphrase-faithful",
+            source: {
+              title: "CITP Princeton",
+              url: "https://citp.princeton.edu/",
+              medium: "article",
+              publisher: "Princeton CITP",
+            },
+          },
           {
             text:
               "AI governance is not a new field. It is a continuation of decades of computer-and-society policy work.",

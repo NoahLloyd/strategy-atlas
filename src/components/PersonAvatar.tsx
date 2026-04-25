@@ -1,4 +1,5 @@
 import type { Person } from "@/lib/people-types";
+import { photoIndex } from "@/data/photo-index";
 
 const palette = [
   "#8b3a2e",
@@ -34,7 +35,8 @@ export function PersonAvatar({
   person: Pick<Person, "id" | "name" | "photoUrl">;
   size?: number;
 }) {
-  if (person.photoUrl) {
+  const src = person.photoUrl ?? photoIndex[person.id];
+  if (src) {
     return (
       <span
         className="block overflow-hidden flex-shrink-0"
@@ -48,11 +50,12 @@ export function PersonAvatar({
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={person.photoUrl}
+          src={src}
           alt={person.name}
           width={size}
           height={size}
           loading="lazy"
+          referrerPolicy="no-referrer"
           style={{
             width: "100%",
             height: "100%",

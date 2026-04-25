@@ -33,9 +33,10 @@ import { people as peopleGroupAe } from "@/data/people-ae";
 import { people as peopleGroupAf } from "@/data/people-af";
 import { people as peopleGroupAg } from "@/data/people-ag";
 import { people as peopleGroupAh } from "@/data/people-ah";
+import { profileOverrides } from "@/data/profile-overrides";
 import type { Person } from "./people-types";
 
-export const people: Person[] = [
+const rawPeople: Person[] = [
   ...basePeople,
   ...peopleGroupA,
   ...peopleGroupB,
@@ -72,6 +73,11 @@ export const people: Person[] = [
   ...peopleGroupAg,
   ...peopleGroupAh,
 ];
+
+export const people: Person[] = rawPeople.map((p) => {
+  const override = profileOverrides[p.id];
+  return override ? { ...p, profile: p.profile ?? override } : p;
+});
 
 const byId = new Map(people.map((p) => [p.id, p]));
 

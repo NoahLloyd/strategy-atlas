@@ -87,6 +87,27 @@ export interface Affiliation {
   current?: boolean;
 }
 
+export type ExpertiseTier =
+  | "frontier-builder"
+  | "deep-technical"
+  | "applied-technical"
+  | "policy-meta"
+  | "external-domain"
+  | "commentator";
+
+export type RecognitionTier =
+  | "household-name"
+  | "field-leading"
+  | "established"
+  | "emerging";
+
+export interface Profile {
+  expertise: ExpertiseTier;
+  expertiseNote: string;
+  recognition: RecognitionTier;
+  recognitionNote: string;
+}
+
 export interface Person {
   id: string;
   name: string;
@@ -101,6 +122,7 @@ export interface Person {
   positions: StrategyPosition[];
   pDoom?: PDoomClaim[];
   timelines?: TimelineClaim[];
+  profile?: Profile;
   notes?: string;
   lastUpdated?: string;
 }

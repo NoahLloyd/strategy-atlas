@@ -53,6 +53,7 @@ const sections: NavSection[] = [
     icon: "people",
     links: [
       { href: "/people", label: "Directory", hint: "researchers, executives, public figures", icon: "directory" },
+      { href: "/board", label: "Board", hint: "expertise × recognition grid", icon: "matrix" },
       { href: "/strategies", label: "Positions", hint: "strategy tags people hold", icon: "positions" },
       { href: "/pdoom", label: "p(doom)", hint: "extinction-risk estimates on record", icon: "pdoom" },
       { href: "/timelines", label: "Timelines", hint: "AGI-arrival forecasts", icon: "timelines" },
