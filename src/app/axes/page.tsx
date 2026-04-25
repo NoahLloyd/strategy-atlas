@@ -2,10 +2,11 @@ import Link from "next/link";
 import { axes } from "@/data/axes";
 import { strategies } from "@/lib/strategies";
 import { levers } from "@/data/levers";
+import { HoverStrategyLink } from "@/components/HoverStrategyLink";
 import type { Strategy } from "@/lib/types";
 
 export const metadata = {
-  title: "Axes — AGI Strategies",
+  title: "Axes · AGI Strategies",
 };
 
 const axisKey: Record<string, keyof Strategy> = {
@@ -49,7 +50,7 @@ function DensityMap() {
     <section className="mt-20 border-t-2 border-[var(--color-ink)] pt-8">
       <p className="num-label mb-2">density map</p>
       <h2 className="text-3xl mb-3" style={{ fontFamily: "var(--font-display)" }}>
-        Where the field has explored — and where it has not.
+        Where the field has explored, and where it has not.
       </h2>
       <p className="text-base leading-relaxed mb-2 max-w-3xl" style={{ color: "var(--color-ink-soft)" }}>
         Each cell is one lever crossed with one time horizon. A thick cell
@@ -61,7 +62,7 @@ function DensityMap() {
         <span style={{ color: "var(--color-ink)" }}>{thickCells}</span>{" "}
         thick cells (4+ strategies),{" "}
         <span style={{ color: "var(--color-ink)" }}>{emptyCells}</span>{" "}
-        empty cells of {totalCells} — marginal returns to new strategy
+        empty cells of {totalCells}. Marginal returns to new strategy
         invention are higher in the empty cells than in the crowded ones.
       </p>
 
@@ -125,13 +126,13 @@ function DensityMap() {
                         }}
                         title={
                           items.length === 0
-                            ? "Empty cell — no catalogued strategy"
+                            ? "Empty cell, no catalogued strategy"
                             : items.map((s) => s.name).join(", ")
                         }
                       >
                         <div className="flex items-baseline justify-between mb-1">
                           <span className="text-sm font-semibold">
-                            {count === 0 ? "—" : count}
+                            {count === 0 ? "·" : count}
                           </span>
                           {count > 0 && count <= 2 && (
                             <span className="num-label" style={{ opacity: 0.7, color: fg }}>
@@ -148,13 +149,14 @@ function DensityMap() {
                           <div className="text-[10px] leading-tight" style={{ opacity: 0.9 }}>
                             {items.slice(0, 3).map((s, i) => (
                               <span key={s.id}>
-                                <Link
-                                  href={`/strategy/${s.id}`}
-                                  className="unstyled hover:underline"
-                                  style={{ color: "inherit" }}
-                                >
-                                  {s.name}
-                                </Link>
+                                <HoverStrategyLink strategy={s} placement="below">
+                                  <span
+                                    className="hover:underline"
+                                    style={{ color: "inherit" }}
+                                  >
+                                    {s.name}
+                                  </span>
+                                </HoverStrategyLink>
                                 {i < Math.min(2, items.length - 1) ? ", " : ""}
                               </span>
                             ))}
@@ -193,7 +195,7 @@ function DensityMap() {
       <div className="mt-4 text-xs max-w-3xl" style={{ color: "var(--color-ink-soft)" }}>
         <p>
           Read down the horizon columns: the <em>post-transition</em> column
-          is thin — the field has little to say about the world after AI
+          is thin. The field has little to say about the world after AI
           succeeds or fails. The <em>during-transition</em> column is where
           most strategy effort concentrates. Read across lever rows: the
           field is thick on speed, concentration, control mechanism; thin on
@@ -290,14 +292,14 @@ export default function AxesPage() {
                       {items.length > 0 ? (
                         <div className="flex flex-wrap gap-1">
                           {items.map((s) => (
-                            <Link
-                              key={s.id}
-                              href={`/strategy/${s.id}`}
-                              className="chip"
-                              style={{ fontSize: "0.72rem", padding: "0.15rem 0.45rem" }}
-                            >
-                              {s.name}
-                            </Link>
+                            <HoverStrategyLink key={s.id} strategy={s} placement="below">
+                              <span
+                                className="chip"
+                                style={{ fontSize: "0.72rem", padding: "0.15rem 0.45rem" }}
+                              >
+                                {s.name}
+                              </span>
+                            </HoverStrategyLink>
                           ))}
                         </div>
                       ) : (
@@ -323,9 +325,9 @@ export default function AxesPage() {
           space (see vault notes on frame unification).
         </p>
         <p>
-          An empty cell here — say, <em>coercion = unilateral force</em> with
-          few strategies — either points to a blind spot in the named
-          portfolio, or to an empirical no-go region. The survey catalogues;
+          An empty cell here (say, <em>coercion = unilateral force</em> with
+          few strategies) either points to a blind spot in the named
+          portfolio or to an empirical no-go region. The survey catalogues;
           it does not judge which.
         </p>
       </section>

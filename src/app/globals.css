@@ -202,8 +202,8 @@ a.underline-wiggle:hover {
 
 /* Hover-card on face avatars in dense people-grids. The card is hidden
    by default and revealed when the hovering face is hovered or has
-   keyboard focus, including via the wrapping link. We use CSS only —
-   no JS state — so the card stays available even on touch (tap reveals
+   keyboard focus, including via the wrapping link. We use CSS only,
+   no JS state, so the card stays available even on touch (tap reveals
    the link's :focus-visible state). */
 .face-hover {
   position: relative;
@@ -238,7 +238,7 @@ a.underline-wiggle:hover {
 }
 /* Default placement: bottom-aligned with the face. Variants handle
    the edge cases. The viewport-anchored max-width keeps the card
-   inside the viewport even when the avatar is near a screen edge —
+   inside the viewport even when the avatar is near a screen edge,
    the card may be offset, but it won't get clipped. */
 .face-hover-card.place-below {
   top: calc(100% + 6px);
@@ -289,12 +289,4 @@ a.underline-wiggle:hover {
   font-size: 0.62rem;
   color: var(--color-ink-soft);
   background: var(--color-parchment-soft);
-}
-.face-hover-card .face-hover-cta {
-  margin-top: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
 }
