@@ -1,4 +1,4 @@
-import type { ExpertiseTier, RecognitionTier } from "@/lib/people-types";
+import type { ExpertiseTier, RecognitionTier, VintageEra } from "@/lib/people-types";
 
 export interface TierDefinition<T> {
   id: T;
@@ -83,12 +83,61 @@ export const recognitionTiers: TierDefinition<RecognitionTier>[] = [
   },
 ];
 
+export const vintageTiers: TierDefinition<VintageEra>[] = [
+  {
+    id: "pioneer",
+    label: "Pioneer",
+    short: "Pre-1980 foundations",
+    criterion:
+      "Defining figure from before 1980. Cybernetics, formal computation, early AI laboratories. Their concept of intelligence is not bound to neural networks.",
+  },
+  {
+    id: "symbolic-era",
+    label: "Symbolic era",
+    short: "1980 – 2005",
+    criterion:
+      "Career started in the GOFAI / expert-systems / early-rationalist period. Vinge's 1993 Singularity, MIRI founded 2000, Bostrom and Yudkowsky writing.",
+  },
+  {
+    id: "pre-deep-learning",
+    label: "Pre-deep-learning",
+    short: "2005 – 2012",
+    criterion:
+      "Active before AlexNet. The existential-risk frame matures (FHI, OpenPhil, EA). Public AI commentary still rare; deep learning not yet dominant.",
+  },
+  {
+    id: "deep-learning",
+    label: "Deep-learning rise",
+    short: "2012 – 2017",
+    criterion:
+      "Came up post-AlexNet. ImageNet, AlphaGo, transformer paper. DeepMind, Google Brain, FAIR establish the modern lab template.",
+  },
+  {
+    id: "scaling-era",
+    label: "Scaling era",
+    short: "2018 – 2022",
+    criterion:
+      "Worldview formed during GPT-2/3, scaling laws, Anthropic's founding. Pre-ChatGPT but post-deep-learning. The 'scale is all you need' debate is live.",
+  },
+  {
+    id: "post-chatgpt",
+    label: "Post-ChatGPT",
+    short: "2023+ mainstream wave",
+    criterion:
+      "Entered the AI strategy debate in or after 2023. ChatGPT was already public when their voice became influential. Often shaped by Pause letter, AISIs, AI 2027.",
+  },
+];
+
 export function expertiseLabel(t: ExpertiseTier): string {
   return expertiseTiers.find((x) => x.id === t)?.label ?? t;
 }
 
 export function recognitionLabel(t: RecognitionTier): string {
   return recognitionTiers.find((x) => x.id === t)?.label ?? t;
+}
+
+export function vintageLabel(t: VintageEra): string {
+  return vintageTiers.find((x) => x.id === t)?.label ?? t;
 }
 
 // Numeric coords for plotting. Higher = more expertise / more recognition.
@@ -106,4 +155,14 @@ export const recognitionRank: Record<RecognitionTier, number> = {
   "established": 1,
   "field-leading": 2,
   "household-name": 3,
+};
+
+// Vintage rank — earlier first. Useful for time-ordered displays.
+export const vintageRank: Record<VintageEra, number> = {
+  pioneer: 0,
+  "symbolic-era": 1,
+  "pre-deep-learning": 2,
+  "deep-learning": 3,
+  "scaling-era": 4,
+  "post-chatgpt": 5,
 };

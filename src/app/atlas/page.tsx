@@ -3,20 +3,38 @@ import { strategies, strategiesByLever, symmetricConflicts } from "@/lib/strateg
 import { levers } from "@/data/levers";
 import { StrategyCard } from "@/components/StrategyCard";
 import { LeverField } from "@/components/LeverField";
+import { PersonAvatar } from "@/components/PersonAvatar";
 import { tagsForStrategyId } from "@/data/strategy-tag-bridge";
 import { peopleByStrategyTag } from "@/lib/people";
-import { expertiseTiers } from "@/data/profile-tiers";
-import type { ExpertiseTier } from "@/lib/people-types";
+import {
+  expertiseTiers,
+  recognitionRank,
+} from "@/data/profile-tiers";
+import type { ExpertiseTier, Person } from "@/lib/people-types";
+
+// Stances that count as "live endorsement" of a strategy. evolved-away and
+// opposes deliberately excluded — counting them would conflate the people
+// arguing against a position with the people arguing for it.
+const ENDORSING_STANCES = new Set([
+  "endorses",
+  "mixed",
+  "conditional",
+  "evolved-toward",
+]);
 
 function profiledEndorsers(strategyId: string) {
   const tags = tagsForStrategyId(strategyId);
   const ids = new Set<string>();
-  const profiled: { id: string; tier: ExpertiseTier }[] = [];
+  const profiled: { id: string; tier: ExpertiseTier; person: Person }[] = [];
   for (const t of tags) {
     for (const p of peopleByStrategyTag(t)) {
       if (ids.has(p.id) || !p.profile) continue;
+      const matched = p.positions.find(
+        (pos) => pos.strategyId === t && ENDORSING_STANCES.has(pos.stance),
+      );
+      if (!matched) continue;
       ids.add(p.id);
-      profiled.push({ id: p.id, tier: p.profile.expertise });
+      profiled.push({ id: p.id, tier: p.profile.expertise, person: p });
     }
   }
   return profiled;
@@ -53,6 +71,10 @@ export default function HomePage() {
     counts: Record<ExpertiseTier, number>;
     dominant: ExpertiseTier;
     dominantShare: number;
+    // Top faces ranked by recognition then quote count, used for the
+    // visual face strip — the merge with the people view.
+    topFaces: Person[];
+    primaryTagId: string;
   };
   const skews: Skew[] = [];
   for (const s of strategies) {
@@ -75,12 +97,33 @@ export default function HomePage() {
         dominant = k;
       }
     }
+    const sortedFaces = endorsers
+      .slice()
+      .sort((a, b) => {
+        const ra = recognitionRank[a.person.profile!.recognition];
+        const rb = recognitionRank[b.person.profile!.recognition];
+        if (ra !== rb) return rb - ra;
+        const qa = a.person.positions.reduce(
+          (acc, pos) => acc + pos.quotes.length,
+          0,
+        );
+        const qb = b.person.positions.reduce(
+          (acc, pos) => acc + pos.quotes.length,
+          0,
+        );
+        return qb - qa;
+      })
+      .slice(0, 6)
+      .map((e) => e.person);
+    const tags = tagsForStrategyId(s.id);
     skews.push({
       strategy: s,
       total: endorsers.length,
       counts,
       dominant,
       dominantShare: max / endorsers.length,
+      topFaces: sortedFaces,
+      primaryTagId: tags[0] ?? s.id,
     });
   }
   const builderHeavy = skews
@@ -210,6 +253,18 @@ export default function HomePage() {
             title="Portfolio audit"
             body="Load a proposal. See its lever footprint and hidden concentration."
             marker="tool"
+          />
+          <EntryCard
+            href="/compare"
+            title="Compare two"
+            body="Pick two strategies. See who endorses each, the tier mix of endorsers, and where the disagreement lives."
+            marker="A↔B"
+          />
+          <EntryCard
+            href="/co-strategies"
+            title="Co-endorsement"
+            body="Strategy pairs the same people actually hold together. Behavioural data, not declared rules. Shows where the catalogue and the corpus disagree."
+            marker="data"
           />
           <EntryCard
             href="/axes"
@@ -402,6 +457,8 @@ function SkewColumn({
     total: number;
     dominant: ExpertiseTier;
     dominantShare: number;
+    topFaces: Person[];
+    primaryTagId: string;
   }[];
 }) {
   return (
@@ -415,14 +472,14 @@ function SkewColumn({
           No strategies meet the threshold yet.
         </p>
       ) : (
-        <ul className="space-y-2">
-          {items.slice(0, 8).map((sk) => {
+        <ul className="space-y-3">
+          {items.slice(0, 6).map((sk) => {
             const tier = expertiseTiers.find((t) => t.id === sk.dominant);
             return (
               <li key={sk.strategy.id}>
                 <Link
                   href={`/strategy/${sk.strategy.id}`}
-                  className="unstyled block border-l-2 hairline pl-3 py-1 hover:border-[var(--color-ink)] transition-colors"
+                  className="unstyled block border-l-2 hairline pl-3 py-1.5 hover:border-[var(--color-ink)] transition-colors"
                 >
                   <p
                     className="text-sm leading-tight"
@@ -430,9 +487,39 @@ function SkewColumn({
                   >
                     {sk.strategy.name}
                   </p>
-                  <p className="text-[10px] mt-0.5" style={{ color: "var(--color-ink-soft)", fontFamily: "var(--font-mono)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                    {tier?.short} · {Math.round(sk.dominantShare * 100)}% of {sk.total}
+                  <p
+                    className="text-[10px] mt-0.5 mb-1.5"
+                    style={{
+                      color: "var(--color-ink-soft)",
+                      fontFamily: "var(--font-mono)",
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {tier?.short} · {Math.round(sk.dominantShare * 100)}% of{" "}
+                    {sk.total}
                   </p>
+                  {sk.topFaces.length > 0 && (
+                    <ul className="flex flex-wrap gap-1">
+                      {sk.topFaces.map((p) => (
+                        <li key={p.id} title={p.name}>
+                          <PersonAvatar person={p} size={20} />
+                        </li>
+                      ))}
+                      {sk.total > sk.topFaces.length && (
+                        <li
+                          className="num-label"
+                          style={{
+                            alignSelf: "center",
+                            color: "var(--color-ink-soft)",
+                            marginLeft: 2,
+                          }}
+                        >
+                          +{sk.total - sk.topFaces.length}
+                        </li>
+                      )}
+                    </ul>
+                  )}
                 </Link>
               </li>
             );

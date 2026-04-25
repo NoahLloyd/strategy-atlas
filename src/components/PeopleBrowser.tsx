@@ -6,12 +6,15 @@ import type {
   Person,
   ExpertiseTier,
   RecognitionTier,
+  VintageEra,
 } from "@/lib/people-types";
 import { getTagById } from "@/lib/strategy-tags";
 import { PersonAvatar } from "@/components/PersonAvatar";
+import { PeopleAggregate } from "@/components/PeopleAggregate";
 import {
   expertiseTiers,
   recognitionTiers,
+  vintageTiers,
 } from "@/data/profile-tiers";
 
 function formatPDoom(v: number | [number, number]): string {
@@ -38,6 +41,7 @@ export function PeopleBrowser({
   const [onlyWithVideo, setOnlyWithVideo] = useState(false);
   const [expertise, setExpertise] = useState<ExpertiseTier | null>(null);
   const [recognition, setRecognition] = useState<RecognitionTier | null>(null);
+  const [vintage, setVintage] = useState<VintageEra | null>(null);
   const [onlyProfiled, setOnlyProfiled] = useState(false);
 
   const filtered = useMemo(() => {
@@ -58,6 +62,7 @@ export function PeopleBrowser({
       if (onlyProfiled && !p.profile) return false;
       if (expertise && p.profile?.expertise !== expertise) return false;
       if (recognition && p.profile?.recognition !== recognition) return false;
+      if (vintage && p.profile?.vintage !== vintage) return false;
       return true;
     });
     if (sort === "name") {
@@ -86,6 +91,7 @@ export function PeopleBrowser({
     sort,
     expertise,
     recognition,
+    vintage,
     onlyProfiled,
   ]);
 
@@ -200,6 +206,31 @@ export function PeopleBrowser({
                 ))}
               </div>
             </div>
+            <div className="sm:col-span-2">
+              <p className="num-label mb-2">
+                vintage · era of AI worldview formation
+              </p>
+              <div className="flex flex-wrap gap-1">
+                <button
+                  onClick={() => setVintage(null)}
+                  className={vintage === null ? "chip is-complement" : "chip"}
+                >
+                  any
+                </button>
+                {vintageTiers.map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() =>
+                      setVintage(vintage === t.id ? null : t.id)
+                    }
+                    className={vintage === t.id ? "chip is-complement" : "chip"}
+                    title={t.criterion}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
           <p className="text-xs italic mt-3">
             See the{" "}
@@ -224,7 +255,7 @@ export function PeopleBrowser({
               checked={onlyWithVideo}
               onChange={(e) => setOnlyWithVideo(e.target.checked)}
             />
-            only with timestamped video
+            only with video source
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
             <input
@@ -237,6 +268,11 @@ export function PeopleBrowser({
           <span className="num-label ml-auto">{filtered.length} of {people.length}</span>
         </div>
       </div>
+      <PeopleAggregate
+        filtered={filtered}
+        corpus={people}
+        strategyId={tag}
+      />
       <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filtered.map((p) => {
           const tagList = Array.from(new Set(p.positions.map((pos) => pos.strategyId)));

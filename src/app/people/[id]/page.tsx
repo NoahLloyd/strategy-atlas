@@ -7,6 +7,7 @@ import { PersonAvatar } from "@/components/PersonAvatar";
 import {
   expertiseTiers,
   recognitionTiers,
+  vintageTiers,
 } from "@/data/profile-tiers";
 import type { Person } from "@/lib/people-types";
 
@@ -201,6 +202,32 @@ export default async function PersonPage({
                 </div>
               );
             })()}
+            {person.profile!.vintage &&
+              (() => {
+                const tier = vintageTiers.find(
+                  (t) => t.id === person.profile!.vintage,
+                );
+                return (
+                  <div className="border hairline p-4 sm:col-span-2">
+                    <p className="num-label mb-2">vintage</p>
+                    <p
+                      className="text-lg mb-1"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {tier?.label ?? person.profile!.vintage}
+                    </p>
+                    <p
+                      className="text-xs italic mb-3"
+                      style={{ color: "var(--color-ink-soft)" }}
+                    >
+                      {tier?.criterion}
+                    </p>
+                    {person.profile!.vintageNote && (
+                      <p className="text-sm">{person.profile!.vintageNote}</p>
+                    )}
+                  </div>
+                );
+              })()}
           </div>
           <p
             className="text-xs italic mt-3"

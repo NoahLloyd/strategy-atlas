@@ -34,6 +34,7 @@ import { people as peopleGroupAf } from "@/data/people-af";
 import { people as peopleGroupAg } from "@/data/people-ag";
 import { people as peopleGroupAh } from "@/data/people-ah";
 import { profileOverrides } from "@/data/profile-overrides";
+import { profileVintages } from "@/data/profile-vintages";
 import { wikipediaOverrides } from "@/data/wikipedia-overrides";
 import type { Person } from "./people-types";
 
@@ -76,12 +77,22 @@ const rawPeople: Person[] = [
 ];
 
 export const people: Person[] = rawPeople.map((p) => {
-  const profile = profileOverrides[p.id];
+  const baseProfile = p.profile ?? profileOverrides[p.id];
+  const vintage = profileVintages[p.id];
   const wikipedia = p.wikipedia ?? wikipediaOverrides[p.id];
-  if (!profile && wikipedia === p.wikipedia) return p;
+  if (!baseProfile && !vintage && wikipedia === p.wikipedia) return p;
+  // Vintage rides on top of the existing profile so a person can have a
+  // hand-classified era without us re-stating their expertise/recognition.
+  const profile = baseProfile
+    ? {
+        ...baseProfile,
+        vintage: baseProfile.vintage ?? vintage?.vintage,
+        vintageNote: baseProfile.vintageNote ?? vintage?.vintageNote,
+      }
+    : undefined;
   return {
     ...p,
-    profile: p.profile ?? profile,
+    profile,
     wikipedia,
   };
 });

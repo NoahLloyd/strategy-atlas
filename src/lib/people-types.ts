@@ -101,11 +101,25 @@ export type RecognitionTier =
   | "established"
   | "emerging";
 
+// When did this person's AI worldview form. Not a birth year — the era of
+// AI whose problems and tools shaped their intuitions. Someone who came
+// up in symbolic AI carries different priors than a post-ChatGPT entrant,
+// even if both are publishing today.
+export type VintageEra =
+  | "pioneer"          // pre-1980 foundational figures
+  | "symbolic-era"     // 1980 – 2005, classical AI, early MIRI/SI/EA
+  | "pre-deep-learning"// 2005 – 2012, x-risk frame matures pre-AlexNet
+  | "deep-learning"    // 2012 – 2017, post-AlexNet, ImageNet, DeepMind
+  | "scaling-era"      // 2018 – 2022, GPT-2/3, Anthropic founded, scaling laws
+  | "post-chatgpt";    // 2023+, mainstream wave, AISIs, AI 2027
+
 export interface Profile {
   expertise: ExpertiseTier;
   expertiseNote: string;
   recognition: RecognitionTier;
   recognitionNote: string;
+  vintage?: VintageEra;
+  vintageNote?: string;
 }
 
 export interface Person {
