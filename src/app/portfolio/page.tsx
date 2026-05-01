@@ -2,14 +2,48 @@ import { strategies } from "@/lib/strategies";
 import { levers } from "@/data/levers";
 import { portfolios } from "@/data/portfolios";
 import { PortfolioAudit } from "./PortfolioAudit";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Portfolio audit · AGI Strategies",
-};
+export const metadata = buildMetadata({
+  title: "Portfolio audit: stack-test an AGI strategy combination",
+  description:
+    "Pick an AGI strategy portfolio. The audit reads it in lever space: coverage, concentration on the dominant lever, world-side vs AI-side balance, coercion mix, and hidden conflicts.",
+  path: "/portfolio",
+  keywords: [
+    "AGI portfolio audit",
+    "AI strategy portfolio",
+    "stack test AI strategies",
+    "AI safety portfolio",
+    "AI policy portfolio",
+    "AGI strategy concentration",
+    "AI safety lever coverage",
+  ],
+  imageAlt: "Portfolio audit — stack-test AGI strategies",
+});
 
 export default function PortfolioPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "AGI strategy portfolio audit",
+            description:
+              "Stack-test a strategy combination in lever space.",
+            path: "/portfolio",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Portfolio audit", path: "/portfolio" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">portfolio audit</p>
         <h1

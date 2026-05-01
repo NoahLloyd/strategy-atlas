@@ -4,6 +4,8 @@ import { getStrategy, strategies } from "@/lib/strategies";
 import { leverById } from "@/data/levers";
 import { axes } from "@/data/axes";
 import { DirectionGlyph } from "@/components/DirectionGlyph";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import {
   mechanismForPair,
   mechanismCatalogue,
@@ -24,9 +26,64 @@ import {
   expertiseTiers,
   recognitionTiers,
 } from "@/data/profile-tiers";
+import { buildMetadata, clamp } from "@/lib/seo";
+import {
+  strategyDefinedTermSchema,
+  webPageSchema,
+} from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return strategies.map((s) => ({ id: s.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const s = getStrategy(id);
+  if (!s) {
+    return buildMetadata({
+      title: "Strategy not found",
+      description: "The requested AGI strategy does not exist on AGI Strategies.",
+      path: `/strategy/${id}`,
+      noIndex: true,
+    });
+  }
+  const lever = leverById[s.primaryLever];
+  const direction =
+    s.leverDirection === "+"
+      ? "↑"
+      : s.leverDirection === "-"
+        ? "↓"
+        : "·";
+  const description = clamp(
+    `${s.bet} Primary lever: ${lever?.name ?? s.primaryLever} ${direction}. Mechanism, conflicts, complements, falsification signal.`,
+    160,
+  );
+  return buildMetadata({
+    title: `${s.name}: AGI strategy, mechanism, and conflicts`,
+    description,
+    path: `/strategy/${s.id}`,
+    type: "article",
+    keywords: [
+      s.name,
+      `${s.name} AGI`,
+      `${s.name} strategy`,
+      `${s.name} AI safety`,
+      lever?.name ?? "",
+      "AGI strategy",
+      "AI safety strategy",
+      "AI alignment",
+      "AI policy",
+      s.actsOn.replace(/-/g, " "),
+      s.coercion.replace(/-/g, " "),
+    ].filter(Boolean),
+    imageAlt: `${s.name} — strategy on AGI Strategies`,
+    section: "AI Strategy",
+    tags: [s.name, lever?.name ?? ""].filter(Boolean),
+  });
 }
 
 export default async function StrategyPage({
@@ -113,9 +170,24 @@ export default async function StrategyPage({
 
   return (
     <article className="max-w-4xl mx-auto px-6 py-10">
-      <Link href="/" className="num-label inline-block mb-6 hover:underline">
-        ← overview
-      </Link>
+      <JsonLd
+        data={[
+          strategyDefinedTermSchema(strategy),
+          webPageSchema({
+            name: `${strategy.name} — AGI strategy`,
+            description: strategy.bet,
+            path: `/strategy/${strategy.id}`,
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Strategies", path: "/strategies" },
+          { name: strategy.name, path: `/strategy/${strategy.id}` },
+        ]}
+      />
 
       <header className="mb-8">
         <p className="num-label mb-1">

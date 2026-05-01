@@ -3,11 +3,27 @@ import { axes } from "@/data/axes";
 import { strategies } from "@/lib/strategies";
 import { levers } from "@/data/levers";
 import { HoverStrategyLink } from "@/components/HoverStrategyLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import type { Strategy } from "@/lib/types";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Axes · AGI Strategies",
-};
+export const metadata = buildMetadata({
+  title: "Strategy axes: orthogonal dimensions of AGI strategies",
+  description:
+    "Five orthogonal axes across AGI strategies — acts on, coercion, actor in control, time horizon, legitimacy source. Each strategy plotted on every axis.",
+  path: "/axes",
+  keywords: [
+    "AGI strategy axes",
+    "AI strategy dimensions",
+    "AI safety taxonomy",
+    "AI policy actor",
+    "AI strategy time horizon",
+    "AI legitimacy source",
+  ],
+  imageAlt: "Five orthogonal axes of AGI strategies",
+});
 
 const axisKey: Record<string, keyof Strategy> = {
   "acts-on": "actsOn",
@@ -211,6 +227,23 @@ export default function AxesPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "AGI strategy axes — orthogonal dimensions",
+            description:
+              "Five orthogonal axes used to classify AGI strategies.",
+            path: "/axes",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Axes", path: "/axes" },
+        ]}
+      />
       <section className="mb-12 max-w-3xl">
         <p className="num-label mb-3">axes</p>
         <h1

@@ -1,10 +1,26 @@
 import { strategies } from "@/lib/strategies";
 import { falsificationByStrategy } from "@/data/falsification";
 import { HoverStrategyLink } from "@/components/HoverStrategyLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Identity or bet · AGI Strategies",
-};
+export const metadata = buildMetadata({
+  title: "Identity or bet: how AGI strategies are actually held",
+  description:
+    "Diagnostic for whether an AGI strategy is held as a bet or as identity. A strategy without a falsification signal is not strategy — it is affiliation.",
+  path: "/identity",
+  keywords: [
+    "AGI strategy identity",
+    "AI strategy as identity",
+    "AI safety affiliation",
+    "AI alignment identity",
+    "falsification signal AI",
+    "AI strategy diagnostic",
+  ],
+  imageAlt: "Identity or bet diagnostic for AGI strategies",
+});
 
 /**
  * Strategies that the vault note "Strategies function as identities not bets"
@@ -71,6 +87,23 @@ export default function IdentityPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "Identity or bet — diagnostic for AGI strategies",
+            description:
+              "Diagnostic for whether a strategy is held as a bet or as identity.",
+            path: "/identity",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Identity or bet", path: "/identity" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">diagnostic</p>
         <h1

@@ -3,12 +3,25 @@ import { people } from "@/lib/people";
 import { strategyTags, getTagById } from "@/lib/strategy-tags";
 import { symmetricConflicts, symmetricComplements, pairKey } from "@/lib/strategies";
 import { tagToStrategyId } from "@/data/strategy-tag-bridge";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Co-endorsement · AGI Strategies",
+export const metadata = buildMetadata({
+  title: "Co-endorsement: which AGI strategies people hold together",
   description:
-    "Which strategy pairs are most often held together by the same people. Behavioural pairing data, independent of the declared catalogue.",
-};
+    "Behavioural pairing data on AGI strategies. Which positions are routinely held together by the same researcher, independent of declared conflicts and complements.",
+  path: "/co-strategies",
+  keywords: [
+    "AGI strategy co-endorsement",
+    "AI strategy pairings",
+    "AI safety positions held together",
+    "AI strategy compatibility",
+    "AI alignment correlations",
+  ],
+  imageAlt: "Co-endorsement of AGI strategies",
+});
 
 const ENDORSING_STANCES = new Set([
   "endorses",
@@ -131,6 +144,23 @@ export default function CoStrategiesPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "Co-endorsement of AGI strategies",
+            description:
+              "Which strategy pairs are most often held together by the same people.",
+            path: "/co-strategies",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Co-endorsement", path: "/co-strategies" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">co-endorsement</p>
         <h1

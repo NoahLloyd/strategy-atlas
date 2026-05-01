@@ -1,12 +1,32 @@
 import Link from "next/link";
 import { strategyTags } from "@/lib/strategy-tags";
 import { strategyTagUsage, people } from "@/lib/people";
+import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { buildMetadata } from "@/lib/seo";
+import { itemListSchema, webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Strategies · AGI Strategies",
+export const metadata = buildMetadata({
+  title: "AGI strategies and AI safety positions, by endorser count",
   description:
-    "Strategy tags applied to the corpus of people on record. Tags emerge from what people actually argue.",
-};
+    "Every AGI strategy tag in the corpus, ranked by adherents. Pause, alignment-first, acceleration, compute governance, and 40+ more — with named endorsers and primary sources.",
+  path: "/strategies",
+  keywords: [
+    "AGI strategies",
+    "AI safety strategies",
+    "AI alignment strategies",
+    "AI policy strategies",
+    "pause AI",
+    "alignment first",
+    "acceleration AI",
+    "e/acc",
+    "compute governance",
+    "open source AI",
+    "AI moratorium",
+    "AI safety positions",
+  ],
+  imageAlt: "Index of AGI strategy tags",
+});
 
 const ENDORSING_STANCES = new Set([
   "endorses",
@@ -80,6 +100,51 @@ export default function StrategiesIndex() {
   ).length;
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "AGI strategy tags",
+            description:
+              "Directory of AGI strategy tags as held by named voices on the record.",
+            path: "/strategies",
+            type: "CollectionPage",
+          }),
+          {
+            "@context": "https://schema.org",
+            "@type": "DefinedTermSet",
+            "@id": "https://agi-strategies.com/strategies#termset",
+            name: "AGI Strategies",
+            description:
+              "An inductive set of strategy tags built from what named voices argue about AGI.",
+            url: "https://agi-strategies.com/strategies",
+            hasDefinedTerm: strategyTags.map((t) => ({
+              "@type": "DefinedTerm",
+              name: t.name,
+              description: t.oneLine,
+              url: `https://agi-strategies.com/strategies/${t.id}`,
+              ...(t.aka ? { alternateName: t.aka } : {}),
+            })),
+          },
+          itemListSchema({
+            name: "All AGI strategy tags",
+            description:
+              "Every AGI strategy tag in the corpus, with one-line summaries.",
+            path: "/strategies",
+            items: strategyTags.map((t) => ({
+              name: t.name,
+              path: `/strategies/${t.id}`,
+              description: t.oneLine,
+            })),
+            itemType: "DefinedTerm",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Strategies", path: "/strategies" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">strategies</p>
         <h1

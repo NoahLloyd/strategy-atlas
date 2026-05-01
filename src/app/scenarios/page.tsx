@@ -7,11 +7,29 @@ import {
 import { getStrategy, strategies } from "@/lib/strategies";
 import { leverById } from "@/data/levers";
 import { HoverStrategyLink } from "@/components/HoverStrategyLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import type { Strategy } from "@/lib/types";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Scenarios · AGI Strategies",
-};
+export const metadata = buildMetadata({
+  title: "AGI failure scenarios: what each strategy actually addresses",
+  description:
+    "Catalogued failure scenarios for AGI: misuse, misalignment, accident, race dynamics, lock-in, gradual disempowerment. Which strategies are responsive to each, and which scenarios have no answer.",
+  path: "/scenarios",
+  keywords: [
+    "AGI failure scenarios",
+    "AI failure modes",
+    "AI catastrophe scenarios",
+    "AI misalignment scenarios",
+    "AI race dynamics",
+    "AI lock-in",
+    "gradual disempowerment",
+    "AI accident scenarios",
+  ],
+  imageAlt: "AGI failure scenarios and responsive strategies",
+});
 
 export default function ScenariosPage() {
   // Cross-scenario robustness: strategies appearing in many scenarios
@@ -33,6 +51,23 @@ export default function ScenariosPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "AGI failure scenarios",
+            description:
+              "Catalogued failure scenarios for AGI and the strategies that address each.",
+            path: "/scenarios",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Scenarios", path: "/scenarios" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">scenarios</p>
         <h1

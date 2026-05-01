@@ -1,14 +1,32 @@
 import Link from "next/link";
 import { people, getPerson } from "@/lib/people";
 import { HoverFaceLink } from "@/components/HoverFaceLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import { vintageTiers } from "@/data/profile-tiers";
 import type { VintageEra } from "@/lib/people-types";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Timelines · AGI Strategies",
+export const metadata = buildMetadata({
+  title: "AGI timelines: every transformative-AI forecast, sourced and dated",
   description:
-    "Every named AGI / transformative AI timeline on the record, with a dated primary source.",
-};
+    "Every named AGI / transformative-AI timeline on the record, with a dated primary source. When researchers and executives expect AGI by — and how those predictions have shifted.",
+  path: "/timelines",
+  keywords: [
+    "AGI timelines",
+    "AI timelines",
+    "transformative AI forecast",
+    "when will AGI arrive",
+    "AGI by 2030",
+    "AGI by 2027",
+    "AI 2027",
+    "AGI predictions",
+    "Hassabis timeline",
+    "Amodei timeline",
+  ],
+  imageAlt: "AGI timeline forecasts on the record",
+});
 
 export default function TimelinesBoard() {
   const claims: {
@@ -121,6 +139,23 @@ export default function TimelinesBoard() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "AGI timelines on the record",
+            description:
+              "Every named AGI / transformative-AI timeline on the record, with a dated primary source.",
+            path: "/timelines",
+            type: "CollectionPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Timelines", path: "/timelines" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">timelines</p>
         <h1

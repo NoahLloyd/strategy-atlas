@@ -4,6 +4,8 @@ import { levers } from "@/data/levers";
 import { StrategyCard } from "@/components/StrategyCard";
 import { LeverField } from "@/components/LeverField";
 import { HoverFaceLink } from "@/components/HoverFaceLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import { tagsForStrategyId } from "@/data/strategy-tag-bridge";
 import { peopleByStrategyTag } from "@/lib/people";
 import {
@@ -11,6 +13,24 @@ import {
   recognitionRank,
 } from "@/data/profile-tiers";
 import type { ExpertiseTier, Person } from "@/lib/people-types";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
+
+export const metadata = buildMetadata({
+  title: "Atlas: a survey of AGI strategies, levers, and conflicts",
+  description:
+    "Overview of the strategy survey. Strategies grouped by lever, where conflicts cluster, and which positions skew toward frontier-builders or commentators.",
+  path: "/atlas",
+  keywords: [
+    "AGI strategy atlas",
+    "AI safety strategy overview",
+    "AI strategy survey",
+    "strategies vs levers",
+    "AI safety conflicts",
+    "AI strategy taxonomy",
+  ],
+  imageAlt: "Atlas of AGI strategies",
+});
 
 // Stances that count as "live endorsement" of a strategy. evolved-away and
 // opposes deliberately excluded, counting them would conflate the people
@@ -154,6 +174,23 @@ export default function HomePage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "Atlas — AGI strategies, levers, and conflicts",
+            description:
+              "Survey of AGI strategies, the levers they pull, and where they conflict.",
+            path: "/atlas",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Atlas", path: "/atlas" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">overview</p>
         <h1

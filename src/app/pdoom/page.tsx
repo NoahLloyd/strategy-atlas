@@ -1,14 +1,32 @@
 import Link from "next/link";
 import { people, getPerson } from "@/lib/people";
 import { HoverFaceLink } from "@/components/HoverFaceLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import { vintageTiers } from "@/data/profile-tiers";
 import type { VintageEra } from "@/lib/people-types";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "p(doom) board · AGI Strategies",
+export const metadata = buildMetadata({
+  title: "p(doom) by researcher: every AI extinction risk estimate, sourced",
   description:
-    "Every p(doom) estimate on the record, dated and linked to its source.",
-};
+    "Every p(doom) estimate on the record. Researchers, executives, and policymakers ranked by their probability of AI catastrophe — each estimate dated and linked to a primary source.",
+  path: "/pdoom",
+  keywords: [
+    "p(doom)",
+    "p doom",
+    "AI extinction probability",
+    "AI doom",
+    "AI x-risk",
+    "AI existential risk estimates",
+    "p(doom) by researcher",
+    "AI catastrophe probability",
+    "Yudkowsky p(doom)",
+    "Hinton p(doom)",
+  ],
+  imageAlt: "Every p(doom) estimate on the record",
+});
 
 function valueNumber(v: number | [number, number]): number {
   if (Array.isArray(v)) return (v[0] + v[1]) / 2;
@@ -113,6 +131,23 @@ export default function PDoomBoard() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "p(doom) board — every AI extinction-risk estimate on record",
+            description:
+              "Every p(doom) estimate on the record, dated and linked to its source.",
+            path: "/pdoom",
+            type: "CollectionPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "p(doom)", path: "/pdoom" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">p(doom) board</p>
         <h1
