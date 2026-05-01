@@ -4,11 +4,27 @@ import {
   commitmentTopics,
 } from "@/data/commitments";
 import { HoverStrategyLink } from "@/components/HoverStrategyLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import type { Commitment } from "@/lib/types";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Commitments · AGI Strategies",
-};
+export const metadata = buildMetadata({
+  title: "Load-bearing commitments behind every AGI strategy",
+  description:
+    "The worldview claims AGI strategies quietly assume. If the commitment fails empirically or philosophically, the strategy loses its target or its premise. Grouped by topic.",
+  path: "/commitments",
+  keywords: [
+    "AGI strategy commitments",
+    "AI safety assumptions",
+    "AI alignment commitments",
+    "AI policy worldview",
+    "AI safety load-bearing assumptions",
+    "AGI philosophical commitments",
+  ],
+  imageAlt: "Load-bearing commitments behind AGI strategies",
+});
 
 export default function CommitmentsPage() {
   const annotated = strategies.filter(
@@ -41,6 +57,23 @@ export default function CommitmentsPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "Load-bearing commitments behind AGI strategies",
+            description:
+              "Worldview assumptions strategies quietly require to remain coherent.",
+            path: "/commitments",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Commitments", path: "/commitments" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">commitments</p>
         <h1

@@ -1,17 +1,32 @@
 import { people, strategyTagUsage } from "@/lib/people";
 import { getTagById } from "@/lib/strategy-tags";
 import { BoardMatrix } from "@/components/BoardMatrix";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import {
   expertiseTiers,
   recognitionTiers,
   vintageTiers,
 } from "@/data/profile-tiers";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Board · AGI Strategies",
+export const metadata = buildMetadata({
+  title: "The board: AI experts by expertise, recognition, and vintage",
   description:
-    "Hand-classified expertise and recognition tiers for the most prominent figures on the AGI strategy record.",
-};
+    "Hand-classified expertise and recognition tiers for the most prominent figures on AGI. Frontier-builders, household names, pioneers — placed on a 2D grid with vintage as a third axis.",
+  path: "/board",
+  keywords: [
+    "AI experts board",
+    "AI researcher tiers",
+    "AGI expertise tiers",
+    "AI safety household names",
+    "AI vintage classification",
+    "frontier AI researchers",
+    "AI policy experts",
+  ],
+  imageAlt: "The board — expertise, recognition, vintage tiers",
+});
 
 export default function BoardPage() {
   const profiled = people.filter((p) => p.profile);
@@ -102,6 +117,23 @@ export default function BoardPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "The board — expertise × recognition × vintage",
+            description:
+              "Two-axis grid of profiled AGI voices, with vintage as a third dimension.",
+            path: "/board",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Board", path: "/board" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">the board</p>
         <h1

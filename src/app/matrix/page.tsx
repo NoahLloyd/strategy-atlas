@@ -8,12 +8,28 @@ import {
 } from "@/lib/strategies";
 import { levers, leverById } from "@/data/levers";
 import { HoverStrategyLink } from "@/components/HoverStrategyLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import type { LeverId, Strategy } from "@/lib/types";
 import { mechanismForPair, mechanismCatalogue } from "@/lib/mechanism";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Matrix · AGI Strategies",
-};
+export const metadata = buildMetadata({
+  title: "Strategy matrix: AGI conflicts and complements, pairwise",
+  description:
+    "Pairwise relationship matrix for every AGI strategy. Where strategies conflict on the same lever and where they compose. Mechanism-grouped.",
+  path: "/matrix",
+  keywords: [
+    "AGI strategy matrix",
+    "AI safety conflicts",
+    "AI strategy complements",
+    "AI policy conflicts",
+    "strategies that compose",
+    "AI safety incompatibilities",
+  ],
+  imageAlt: "Pairwise matrix of strategy conflicts and complements",
+});
 
 export default function MatrixPage() {
   const conflicts = symmetricConflicts();
@@ -43,6 +59,23 @@ export default function MatrixPage() {
 
   return (
     <div className="max-w-[1400px] mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "AGI strategy matrix — conflicts and complements",
+            description:
+              "Pairwise relationship matrix of every AGI strategy.",
+            path: "/matrix",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Matrix", path: "/matrix" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <p className="num-label mb-3">matrix</p>
         <h1

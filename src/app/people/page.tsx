@@ -1,12 +1,30 @@
 import { people, strategyTagUsage, allCategories } from "@/lib/people";
 import { getTagById } from "@/lib/strategy-tags";
 import { PeopleBrowser } from "@/components/PeopleBrowser";
+import { JsonLd } from "@/components/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { buildMetadata } from "@/lib/seo";
+import { itemListSchema, webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "People · AGI Strategies",
+export const metadata = buildMetadata({
+  title: "AI safety researchers, executives, and policymakers on AGI",
   description:
-    "Every person on the record about AI/AGI strategy. Quotes with dates, media, and direct links.",
-};
+    "Every person on the record about AI/AGI strategy. Quotes with dates, sources, p(doom) estimates, and AGI timelines. Filter by strategy or category.",
+  path: "/people",
+  keywords: [
+    "AI safety researchers",
+    "AGI researchers",
+    "AI risk researchers",
+    "AI policy experts",
+    "AI alignment researchers",
+    "AI executives on AGI",
+    "p(doom) by researcher",
+    "AI safety directory",
+    "AI researcher database",
+    "AGI strategy positions",
+  ],
+  imageAlt: "Directory of named voices on AGI strategy",
+});
 
 export default function PeopleIndex() {
   const tags = strategyTagUsage()
@@ -25,6 +43,38 @@ export default function PeopleIndex() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "People on the record about AGI",
+            description:
+              "Directory of researchers, executives, and policymakers with named positions on AGI strategy.",
+            path: "/people",
+            type: "CollectionPage",
+          }),
+          itemListSchema({
+            name: "People on the record about AGI",
+            description:
+              "Researchers, executives, and policymakers with sourced positions on AGI strategy.",
+            path: "/people",
+            items: people
+              .slice()
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((p) => ({
+                name: p.name,
+                path: `/people/${p.id}`,
+                description: p.tagline ?? p.summary,
+              })),
+            itemType: "Person",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "People", path: "/people" },
+        ]}
+      />
       <section className="mb-10 max-w-3xl">
         <h1
           className="text-4xl sm:text-5xl leading-tight mb-4"

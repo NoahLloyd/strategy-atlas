@@ -5,12 +5,16 @@ import { getTagById } from "@/lib/strategy-tags";
 import { QuoteBlock } from "@/components/QuoteBlock";
 import { PersonAvatar } from "@/components/PersonAvatar";
 import { HoverFaceLink } from "@/components/HoverFaceLink";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import {
   expertiseTiers,
   recognitionTiers,
   vintageTiers,
 } from "@/data/profile-tiers";
 import type { Person } from "@/lib/people-types";
+import { buildMetadata, clamp } from "@/lib/seo";
+import { personSchema, profilePageSchema } from "@/lib/structured-data";
 
 function similarPeople(self: Person, k = 6) {
   const selfTags = new Set(self.positions.map((p) => p.strategyId));
@@ -47,11 +51,61 @@ export async function generateMetadata({
 }) {
   const { id } = await params;
   const p = getPerson(id);
-  if (!p) return { title: "Not found" };
-  return {
-    title: `${p.name} · AGI Strategies`,
-    description: p.summary,
-  };
+  if (!p) {
+    return buildMetadata({
+      title: "Person not found",
+      description: "The requested person profile does not exist on AGI Strategies.",
+      path: `/people/${id}`,
+      noIndex: true,
+    });
+  }
+  const current = p.affiliations.find((a) => a.current);
+  const role = current?.role ?? p.categories[0]?.replace(/-/g, " ") ?? "researcher";
+  const facts: string[] = [];
+  if (p.pDoom && p.pDoom.length > 0) facts.push("p(doom)");
+  if (p.timelines && p.timelines.length > 0) facts.push("AI timelines");
+  if (p.positions.length > 0) facts.push(`${p.positions.length} strategy positions`);
+  const factsLine = facts.length > 0 ? `: ${facts.join(", ")}` : "";
+
+  const tagNames = Array.from(
+    new Set(
+      p.positions
+        .map((pos) => getTagById(pos.strategyId)?.name)
+        .filter((n): n is string => Boolean(n)),
+    ),
+  ).slice(0, 8);
+
+  const orgs = Array.from(
+    new Set(
+      p.affiliations.slice(0, 4).map((a) => a.org).filter(Boolean),
+    ),
+  );
+
+  const description = clamp(
+    `${p.name}${current ? `, ${role} at ${current.org},` : ","} on AGI: ${p.summary}`,
+    160,
+  );
+
+  return buildMetadata({
+    title: `${p.name} on AGI strategy${factsLine}`,
+    description,
+    path: `/people/${p.id}`,
+    type: "profile",
+    keywords: [
+      p.name,
+      `${p.name} AGI`,
+      `${p.name} AI safety`,
+      `${p.name} p(doom)`,
+      ...orgs,
+      ...tagNames,
+      "AI researcher",
+      "AGI strategy",
+      "AI alignment",
+    ],
+    imageAlt: `${p.name} — profile on AGI Strategies`,
+    modifiedTime: p.lastUpdated,
+    authors: ["Noah Lloyd"],
+  });
 }
 
 export default async function PersonPage({
@@ -66,6 +120,19 @@ export default async function PersonPage({
   const pastAffiliations = person.affiliations.filter((a) => !a.current);
   return (
     <article className="max-w-4xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          personSchema(person),
+          profilePageSchema(person, `/people/${person.id}`),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "People", path: "/people" },
+          { name: person.name, path: `/people/${person.id}` },
+        ]}
+      />
       <header className="mb-10 border-b-2 border-[var(--color-ink)] pb-8">
         <p className="num-label mb-3">person</p>
         <div className="flex gap-5 items-start mb-4">

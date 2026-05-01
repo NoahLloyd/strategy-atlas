@@ -3,9 +3,53 @@ import { notFound } from "next/navigation";
 import { levers, leverById } from "@/data/levers";
 import { strategiesByLever } from "@/lib/strategies";
 import { StrategyCard } from "@/components/StrategyCard";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
+import { buildMetadata, clamp } from "@/lib/seo";
+import {
+  leverDefinedTermSchema,
+  webPageSchema,
+} from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return levers.map((l) => ({ id: l.id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const lever = leverById[id];
+  if (!lever) {
+    return buildMetadata({
+      title: "Lever not found",
+      description: "The requested AGI strategy lever does not exist.",
+      path: `/levers/${id}`,
+      noIndex: true,
+    });
+  }
+  const description = clamp(
+    `${lever.description} Strategies pulling ↑ ${lever.positivePull} or ↓ ${lever.negativePull}. ${lever.class.replace("-", " ")} lever.`,
+    160,
+  );
+  return buildMetadata({
+    title: `${lever.name}: an AGI strategy lever`,
+    description,
+    path: `/levers/${lever.id}`,
+    keywords: [
+      lever.name,
+      `${lever.name} lever`,
+      `${lever.name} AI safety`,
+      lever.class.replace("-", " "),
+      "AGI strategy lever",
+      "AI safety lever",
+      "AI policy lever",
+      "AI alignment",
+    ],
+    imageAlt: `${lever.name} — strategy lever on AGI Strategies`,
+  });
 }
 
 export default async function LeverPage({
@@ -25,9 +69,28 @@ export default async function LeverPage({
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">
-      <Link href="/levers" className="num-label inline-block mb-6 hover:underline">
-        ← levers
-      </Link>
+      <JsonLd
+        data={[
+          leverDefinedTermSchema({
+            id: lever.id,
+            name: lever.name,
+            description: lever.description,
+          }),
+          webPageSchema({
+            name: `${lever.name} — AGI strategy lever`,
+            description: lever.description,
+            path: `/levers/${lever.id}`,
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Levers", path: "/levers" },
+          { name: lever.name, path: `/levers/${lever.id}` },
+        ]}
+      />
       <header className="mb-10 max-w-3xl">
         <p className="num-label mb-2">{lever.class.replace("-", " ")} lever</p>
         <h1

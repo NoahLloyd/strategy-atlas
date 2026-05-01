@@ -5,12 +5,19 @@ import { peopleByStrategyTag, people as allPeople } from "@/lib/people";
 import { QuoteBlock } from "@/components/QuoteBlock";
 import { HoverFaceLink } from "@/components/HoverFaceLink";
 import { StrategyBoard } from "@/components/StrategyBoard";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import {
   expertiseTiers,
   recognitionTiers,
   vintageTiers,
 } from "@/data/profile-tiers";
 import { tagToStrategyId } from "@/data/strategy-tag-bridge";
+import { buildMetadata, clamp } from "@/lib/seo";
+import {
+  strategyTagDefinedTermSchema,
+  webPageSchema,
+} from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return strategyTags.map((t) => ({ id: t.id }));
@@ -23,11 +30,73 @@ export async function generateMetadata({
 }) {
   const { id } = await params;
   const t = getTagById(id);
-  if (!t) return { title: "Not found" };
-  return {
-    title: `${t.name} · AGI Strategies`,
-    description: t.oneLine,
-  };
+  if (!t) {
+    return buildMetadata({
+      title: "Strategy not found",
+      description: "The requested strategy tag does not exist on AGI Strategies.",
+      path: `/strategies/${id}`,
+      noIndex: true,
+    });
+  }
+  const adherents = peopleByStrategyTag(id);
+  const endorseSet = new Set([
+    "endorses",
+    "mixed",
+    "conditional",
+    "evolved-toward",
+  ]);
+  const endorsers = adherents.filter((p) =>
+    p.positions.some(
+      (pos) =>
+        pos.strategyId === id &&
+        endorseSet.has(pos.stance) &&
+        !pos.tentative,
+    ),
+  );
+  const opposers = adherents.filter((p) =>
+    p.positions.some(
+      (pos) =>
+        pos.strategyId === id &&
+        (pos.stance === "opposes" || pos.stance === "evolved-away"),
+    ),
+  );
+
+  const countLine =
+    endorsers.length > 0
+      ? `${endorsers.length} ${endorsers.length === 1 ? "endorser" : "endorsers"}${
+          opposers.length > 0
+            ? `, ${opposers.length} ${opposers.length === 1 ? "opposer" : "opposers"}`
+            : ""
+        } on the record. `
+      : "";
+
+  const description = clamp(
+    `${t.name}: ${t.oneLine}. ${countLine}Named voices, dated quotes, primary-source links.`,
+    160,
+  );
+
+  const aliasKeywords = t.aka ?? [];
+
+  return buildMetadata({
+    title: `${t.name}: AGI strategy, endorsers, and arguments`,
+    description,
+    path: `/strategies/${t.id}`,
+    type: "article",
+    keywords: [
+      t.name,
+      `${t.name} AGI`,
+      `${t.name} AI safety`,
+      `${t.name} strategy`,
+      ...aliasKeywords,
+      "AGI strategy",
+      "AI safety strategy",
+      "AI alignment",
+      "p(doom)",
+    ],
+    imageAlt: `${t.name} — strategy tag on AGI Strategies`,
+    section: "AI Strategy",
+    tags: [t.name, ...(t.aka ?? [])],
+  });
 }
 
 export default async function StrategyTagPage({
@@ -146,6 +215,24 @@ export default async function StrategyTagPage({
     .slice(0, 8);
   return (
     <article className="max-w-5xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          strategyTagDefinedTermSchema(tag, endorsers.length),
+          webPageSchema({
+            name: `${tag.name} — AGI strategy`,
+            description: tag.oneLine,
+            path: `/strategies/${tag.id}`,
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Strategies", path: "/strategies" },
+          { name: tag.name, path: `/strategies/${tag.id}` },
+        ]}
+      />
       <header className="mb-10 border-b-2 border-[var(--color-ink)] pb-6">
         <p className="num-label mb-3">strategy tag</p>
         <h1

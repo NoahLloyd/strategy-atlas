@@ -1,12 +1,36 @@
 import Link from "next/link";
 import { people, strategyTagUsage } from "@/lib/people";
-import { getTagById } from "@/lib/strategy-tags";
+import { getTagById, strategyTags } from "@/lib/strategy-tags";
 import { HoverFaceLink } from "@/components/HoverFaceLink";
+import { JsonLd } from "@/components/JsonLd";
+import { buildMetadata } from "@/lib/seo";
+import { itemListSchema, webPageSchema } from "@/lib/structured-data";
 
 function formatPDoom(v: number | [number, number]): string {
   if (Array.isArray(v)) return `${Math.round(v[0] * 100)}–${Math.round(v[1] * 100)}%`;
   return `${Math.round(v * 100)}%`;
 }
+
+export const metadata = buildMetadata({
+  title: "AGI Strategies — Who believes what about AGI",
+  titleAbsolute: true,
+  description:
+    "A citation-backed map of AI safety strategies. Every position belongs to a named researcher, executive, or policymaker, dated and linked to a primary source.",
+  path: "/",
+  keywords: [
+    "AGI strategies",
+    "AI safety map",
+    "who believes what about AGI",
+    "AI risk researchers",
+    "p(doom)",
+    "AI alignment positions",
+    "AI safety strategies",
+    "AGI timelines",
+    "AI policy positions",
+    "AI safety database",
+  ],
+  imageAlt: "AGI Strategies — a map of AI safety strategies",
+});
 
 export default function HomePage() {
   const tagStats = strategyTagUsage();
@@ -38,6 +62,31 @@ export default function HomePage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 pt-14 pb-20">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "AGI Strategies — Who believes what about AGI",
+            description:
+              "Citation-backed map of AI safety strategies. Researchers, executives, and policymakers on the record about AGI.",
+            path: "/",
+            type: "WebPage",
+          }),
+          itemListSchema({
+            name: "Most adhered-to AGI strategy tags",
+            description: "Strategy tags ranked by endorser count.",
+            path: "/strategies",
+            items: topTags.slice(0, 8).map(({ id }) => {
+              const t = getTagById(id);
+              return {
+                name: t?.name ?? id,
+                path: `/strategies/${id}`,
+                description: t?.oneLine,
+              };
+            }),
+            itemType: "DefinedTerm",
+          }),
+        ]}
+      />
       <section className="mb-16 max-w-4xl">
         <h1
           className="text-5xl sm:text-6xl lg:text-7xl leading-[1.03] mb-6"

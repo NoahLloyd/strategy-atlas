@@ -1,12 +1,26 @@
 import { people } from "@/lib/people";
 import { strategyTags } from "@/lib/strategy-tags";
 import { CompareView } from "@/components/CompareView";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
+import { buildMetadata } from "@/lib/seo";
+import { webPageSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Compare strategies · AGI Strategies",
+export const metadata = buildMetadata({
+  title: "Compare AGI strategies side-by-side: endorsers, p(doom), tiers",
   description:
-    "Pick two strategy positions and see who endorses each, in what tier mix, with what p(doom).",
-};
+    "Pick two AGI strategy positions and see who endorses each, in what expertise/recognition tier mix, with what p(doom). Compare pause vs acceleration, alignment-first vs scaling, and more.",
+  path: "/compare",
+  keywords: [
+    "compare AGI strategies",
+    "pause vs acceleration",
+    "alignment first vs scaling",
+    "AI strategy comparison",
+    "AGI position comparison",
+    "AI safety strategies side by side",
+  ],
+  imageAlt: "Compare two AGI strategy positions",
+});
 
 export default async function ComparePage({
   searchParams,
@@ -73,6 +87,23 @@ export default async function ComparePage({
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: "Compare AGI strategies side-by-side",
+            description:
+              "Compare two AGI strategy tags, endorsers, p(doom), and tier mix.",
+            path: "/compare",
+            type: "WebPage",
+          }),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Compare", path: "/compare" },
+        ]}
+      />
       <section className="mb-8 max-w-3xl">
         <p className="num-label mb-3">compare</p>
         <h1
